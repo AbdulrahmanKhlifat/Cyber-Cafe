@@ -228,6 +228,7 @@ Partial Class frmLogin
         Me.ClientSize = New System.Drawing.Size(961, 554)
         Me.Controls.Add(Me.pnlBrand)
         Me.Controls.Add(Me.pnlLoginCard)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmLogin"
         Me.Text = "Form1"
