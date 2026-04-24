@@ -1,8 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
 Module Program
-    <DllImport("user32.dll", SetLastError:=True)>
-    Private Function SetProcessDPIAware() As Boolean
-    End Function
+
     <STAThread>
     Sub Main()
         Try
