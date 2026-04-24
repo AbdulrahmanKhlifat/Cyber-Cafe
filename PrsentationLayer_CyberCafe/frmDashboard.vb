@@ -1,6 +1,22 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports CyberCafeModels.CyberCafe.Models
 
 Public Class frmDashboard
+    Private _admin As AdminDTO
+
+    Public Sub New(admin As AdminDTO)
+        InitializeComponent()
+
+        _admin = admin
+    End Sub
+
+    'This will be removed
+    Public Sub New()
+        InitializeComponent()
+
+        _admin = Nothing
+    End Sub
+
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tmrClock.Start()
         pnlTopBar.EnableDragging()

@@ -64,7 +64,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.vb" />
+    <Compile Include="AdminRepo.vb" />
+    <Compile Include="CustomerRepo.vb" />
+    <Compile Include="LoggedInUser.vb" />
+    <Compile Include="UserManager.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -101,6 +104,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CyberCafeModels\CyberCafeModels.vbproj">
+      <Project>{a657ec2a-9e82-44de-adfa-416bca788700}</Project>
+      <Name>CyberCafeModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CyberCafe_DataAccess\CyberCafe_DataAccess.vbproj">
       <Project>{b1008886-0adc-46eb-a639-64a1c602132a}</Project>
       <Name>CyberCafe_DataAccess</Name>

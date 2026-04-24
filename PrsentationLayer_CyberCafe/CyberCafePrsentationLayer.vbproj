@@ -80,6 +80,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DragHelper.vb" />
+    <Compile Include="frmCustomerMain.Designer.vb">
+      <DependentUpon>frmCustomerMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomerMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCustomers.Designer.vb">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </Compile>
@@ -130,6 +136,9 @@
     <Compile Include="Program.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCustomerMain.resx">
+      <DependentUpon>frmCustomerMain.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +178,10 @@
     <ProjectReference Include="..\BusinessLayer_CyberCafe\CyberCafe_BusinessLayer.vbproj">
       <Project>{559a5012-f7c0-49c9-abc4-f83148c846fe}</Project>
       <Name>CyberCafe_BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CyberCafeModels\CyberCafeModels.vbproj">
+      <Project>{a657ec2a-9e82-44de-adfa-416bca788700}</Project>
+      <Name>CyberCafeModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

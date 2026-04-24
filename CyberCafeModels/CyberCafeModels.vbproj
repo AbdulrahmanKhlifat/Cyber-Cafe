@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="AdminDTO.vb" />
     <Compile Include="CustomerDTO.vb" />
+    <Compile Include="LoginResultDTO.vb" />
+    <Compile Include="UserRoleType.vb" />
     <Compile Include="UserDTO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

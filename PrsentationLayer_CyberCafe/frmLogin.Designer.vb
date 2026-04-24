@@ -27,6 +27,7 @@ Partial Class frmLogin
         Me.lblTline = New System.Windows.Forms.Label()
         Me.lblAppName = New System.Windows.Forms.Label()
         Me.pnlLoginCard = New Guna.UI2.WinForms.Guna2Panel()
+        Me.lblTries = New System.Windows.Forms.Label()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.btnLogin = New Guna.UI2.WinForms.Guna2Button()
         Me.lblRoleHdr = New System.Windows.Forms.Label()
@@ -36,7 +37,7 @@ Partial Class frmLogin
         Me.lblUsernameHdr = New System.Windows.Forms.Label()
         Me.lblSubtitle = New System.Windows.Forms.Label()
         Me.lblWelcome = New System.Windows.Forms.Label()
-        Me.lnkForgot = New System.Windows.Forms.LinkLabel()
+        Me.chkRememberMe = New Guna.UI2.WinForms.Guna2ToggleSwitch()
         Me.pnlBrand.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLoginCard.SuspendLayout()
@@ -50,19 +51,19 @@ Partial Class frmLogin
         Me.pnlBrand.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlBrand.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.pnlBrand.Location = New System.Drawing.Point(0, 0)
-        Me.pnlBrand.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.pnlBrand.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlBrand.Name = "pnlBrand"
-        Me.pnlBrand.Size = New System.Drawing.Size(411, 554)
+        Me.pnlBrand.Size = New System.Drawing.Size(308, 450)
         Me.pnlBrand.TabIndex = 2
         '
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.PictureBox1.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._4239781_200
-        Me.PictureBox1.Location = New System.Drawing.Point(140, 162)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.PictureBox1.Location = New System.Drawing.Point(105, 132)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 101)
+        Me.PictureBox1.Size = New System.Drawing.Size(75, 82)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
@@ -72,9 +73,10 @@ Partial Class frmLogin
         Me.lblTline.BackColor = System.Drawing.Color.Transparent
         Me.lblTline.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.lblTline.ForeColor = System.Drawing.Color.Black
-        Me.lblTline.Location = New System.Drawing.Point(32, 337)
+        Me.lblTline.Location = New System.Drawing.Point(24, 274)
+        Me.lblTline.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTline.Name = "lblTline"
-        Me.lblTline.Size = New System.Drawing.Size(343, 32)
+        Me.lblTline.Size = New System.Drawing.Size(257, 26)
         Me.lblTline.TabIndex = 0
         Me.lblTline.Text = "Gaming Center Management System"
         Me.lblTline.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -84,16 +86,18 @@ Partial Class frmLogin
         Me.lblAppName.BackColor = System.Drawing.Color.Transparent
         Me.lblAppName.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
         Me.lblAppName.ForeColor = System.Drawing.Color.Black
-        Me.lblAppName.Location = New System.Drawing.Point(35, 273)
+        Me.lblAppName.Location = New System.Drawing.Point(26, 222)
+        Me.lblAppName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAppName.Name = "lblAppName"
-        Me.lblAppName.Size = New System.Drawing.Size(343, 53)
+        Me.lblAppName.Size = New System.Drawing.Size(257, 43)
         Me.lblAppName.TabIndex = 1
         Me.lblAppName.Text = "CyberCafe Pro"
         Me.lblAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pnlLoginCard
         '
-        Me.pnlLoginCard.Controls.Add(Me.lnkForgot)
+        Me.pnlLoginCard.Controls.Add(Me.chkRememberMe)
+        Me.pnlLoginCard.Controls.Add(Me.lblTries)
         Me.pnlLoginCard.Controls.Add(Me.btnExit)
         Me.pnlLoginCard.Controls.Add(Me.btnLogin)
         Me.pnlLoginCard.Controls.Add(Me.lblRoleHdr)
@@ -106,10 +110,25 @@ Partial Class frmLogin
         Me.pnlLoginCard.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlLoginCard.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.pnlLoginCard.Location = New System.Drawing.Point(0, 0)
-        Me.pnlLoginCard.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.pnlLoginCard.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlLoginCard.Name = "pnlLoginCard"
-        Me.pnlLoginCard.Size = New System.Drawing.Size(961, 554)
+        Me.pnlLoginCard.Size = New System.Drawing.Size(721, 450)
         Me.pnlLoginCard.TabIndex = 3
+        '
+        'lblTries
+        '
+        Me.lblTries.AutoSize = True
+        Me.lblTries.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.lblTries.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTries.ForeColor = System.Drawing.Color.Red
+        Me.lblTries.Location = New System.Drawing.Point(418, 367)
+        Me.lblTries.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblTries.Name = "lblTries"
+        Me.lblTries.Size = New System.Drawing.Size(196, 38)
+        Me.lblTries.TabIndex = 45
+        Me.lblTries.Tag = "5"
+        Me.lblTries.Text = "Wrong Username or Password" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "       Number of Tries Left: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblTries.Visible = False
         '
         'btnExit
         '
@@ -118,10 +137,10 @@ Partial Class frmLogin
         Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.btnExit.Location = New System.Drawing.Point(909, 0)
-        Me.btnExit.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnExit.Location = New System.Drawing.Point(682, 0)
+        Me.btnExit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnExit.Name = "btnExit"
-        Me.btnExit.Size = New System.Drawing.Size(52, 52)
+        Me.btnExit.Size = New System.Drawing.Size(39, 42)
         Me.btnExit.TabIndex = 43
         Me.btnExit.Text = "✕"
         Me.btnExit.UseVisualStyleBackColor = False
@@ -133,10 +152,10 @@ Partial Class frmLogin
         Me.btnLogin.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.btnLogin.ForeColor = System.Drawing.Color.White
-        Me.btnLogin.Location = New System.Drawing.Point(460, 353)
-        Me.btnLogin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnLogin.Location = New System.Drawing.Point(345, 287)
+        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(457, 50)
+        Me.btnLogin.Size = New System.Drawing.Size(343, 41)
         Me.btnLogin.TabIndex = 3
         Me.btnLogin.Text = "Sign In  →"
         '
@@ -144,9 +163,10 @@ Partial Class frmLogin
         '
         Me.lblRoleHdr.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblRoleHdr.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblRoleHdr.Location = New System.Drawing.Point(80, 395)
+        Me.lblRoleHdr.Location = New System.Drawing.Point(60, 321)
+        Me.lblRoleHdr.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblRoleHdr.Name = "lblRoleHdr"
-        Me.lblRoleHdr.Size = New System.Drawing.Size(229, 21)
+        Me.lblRoleHdr.Size = New System.Drawing.Size(172, 17)
         Me.lblRoleHdr.TabIndex = 4
         Me.lblRoleHdr.Text = "ROLE"
         '
@@ -160,12 +180,12 @@ Partial Class frmLogin
         Me.txtPassword.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtPassword.Location = New System.Drawing.Point(459, 262)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
+        Me.txtPassword.Location = New System.Drawing.Point(344, 213)
+        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PlaceholderText = "Enter your password"
         Me.txtPassword.SelectedText = ""
-        Me.txtPassword.Size = New System.Drawing.Size(457, 47)
+        Me.txtPassword.Size = New System.Drawing.Size(343, 38)
         Me.txtPassword.TabIndex = 1
         Me.txtPassword.UseSystemPasswordChar = True
         '
@@ -173,9 +193,10 @@ Partial Class frmLogin
         '
         Me.lblPasswordHdr.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblPasswordHdr.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblPasswordHdr.Location = New System.Drawing.Point(80, 304)
+        Me.lblPasswordHdr.Location = New System.Drawing.Point(60, 247)
+        Me.lblPasswordHdr.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPasswordHdr.Name = "lblPasswordHdr"
-        Me.lblPasswordHdr.Size = New System.Drawing.Size(229, 21)
+        Me.lblPasswordHdr.Size = New System.Drawing.Size(172, 17)
         Me.lblPasswordHdr.TabIndex = 5
         Me.lblPasswordHdr.Text = "PASSWORD"
         '
@@ -189,21 +210,22 @@ Partial Class frmLogin
         Me.txtUsername.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtUsername.Location = New System.Drawing.Point(459, 171)
-        Me.txtUsername.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
+        Me.txtUsername.Location = New System.Drawing.Point(344, 139)
+        Me.txtUsername.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.PlaceholderText = "Enter your username"
         Me.txtUsername.SelectedText = ""
-        Me.txtUsername.Size = New System.Drawing.Size(457, 47)
+        Me.txtUsername.Size = New System.Drawing.Size(343, 38)
         Me.txtUsername.TabIndex = 0
         '
         'lblUsernameHdr
         '
         Me.lblUsernameHdr.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblUsernameHdr.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblUsernameHdr.Location = New System.Drawing.Point(80, 213)
+        Me.lblUsernameHdr.Location = New System.Drawing.Point(60, 173)
+        Me.lblUsernameHdr.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblUsernameHdr.Name = "lblUsernameHdr"
-        Me.lblUsernameHdr.Size = New System.Drawing.Size(229, 21)
+        Me.lblUsernameHdr.Size = New System.Drawing.Size(172, 17)
         Me.lblUsernameHdr.TabIndex = 6
         Me.lblUsernameHdr.Text = "USERNAME"
         '
@@ -212,9 +234,10 @@ Partial Class frmLogin
         Me.lblSubtitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.lblSubtitle.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblSubtitle.Location = New System.Drawing.Point(459, 112)
+        Me.lblSubtitle.Location = New System.Drawing.Point(344, 91)
+        Me.lblSubtitle.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSubtitle.Name = "lblSubtitle"
-        Me.lblSubtitle.Size = New System.Drawing.Size(457, 27)
+        Me.lblSubtitle.Size = New System.Drawing.Size(343, 22)
         Me.lblSubtitle.TabIndex = 7
         Me.lblSubtitle.Text = "Sign in to your account"
         '
@@ -223,35 +246,36 @@ Partial Class frmLogin
         Me.lblWelcome.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.lblWelcome.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
         Me.lblWelcome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblWelcome.Location = New System.Drawing.Point(449, 53)
+        Me.lblWelcome.Location = New System.Drawing.Point(337, 43)
+        Me.lblWelcome.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblWelcome.Name = "lblWelcome"
-        Me.lblWelcome.Size = New System.Drawing.Size(457, 53)
+        Me.lblWelcome.Size = New System.Drawing.Size(343, 43)
         Me.lblWelcome.TabIndex = 8
         Me.lblWelcome.Text = "Welcome Back"
         '
-        'lnkForgot
+        'chkRememberMe
         '
-        Me.lnkForgot.AutoSize = True
-        Me.lnkForgot.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.lnkForgot.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.8!)
-        Me.lnkForgot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lnkForgot.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lnkForgot.Location = New System.Drawing.Point(604, 440)
-        Me.lnkForgot.Name = "lnkForgot"
-        Me.lnkForgot.Size = New System.Drawing.Size(145, 20)
-        Me.lnkForgot.TabIndex = 44
-        Me.lnkForgot.TabStop = True
-        Me.lnkForgot.Text = "Forgot Password?"
+        Me.chkRememberMe.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkRememberMe.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkRememberMe.CheckedState.InnerBorderColor = System.Drawing.Color.White
+        Me.chkRememberMe.CheckedState.InnerColor = System.Drawing.Color.White
+        Me.chkRememberMe.Location = New System.Drawing.Point(422, 340)
+        Me.chkRememberMe.Name = "chkRememberMe"
+        Me.chkRememberMe.Size = New System.Drawing.Size(169, 24)
+        Me.chkRememberMe.TabIndex = 46
+        Me.chkRememberMe.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.chkRememberMe.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.chkRememberMe.UncheckedState.InnerBorderColor = System.Drawing.Color.White
+        Me.chkRememberMe.UncheckedState.InnerColor = System.Drawing.Color.White
         '
         'frmLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(961, 554)
+        Me.ClientSize = New System.Drawing.Size(721, 450)
         Me.Controls.Add(Me.pnlBrand)
         Me.Controls.Add(Me.pnlLoginCard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
@@ -277,5 +301,6 @@ Partial Class frmLogin
     Private WithEvents lblWelcome As Label
     Friend WithEvents PictureBox1 As PictureBox
     Private WithEvents btnExit As Button
-    Friend WithEvents lnkForgot As LinkLabel
+    Private WithEvents lblTries As Label
+    Friend WithEvents chkRememberMe As Guna.UI2.WinForms.Guna2ToggleSwitch
 End Class
