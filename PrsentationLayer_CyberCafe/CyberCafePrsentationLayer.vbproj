@@ -86,6 +86,12 @@
     <Compile Include="frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmDevices.Designer.vb">
+      <DependentUpon>frmDevices.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDevices.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevices.resx">
+      <DependentUpon>frmDevices.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>

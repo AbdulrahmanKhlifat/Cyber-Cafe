@@ -25,4 +25,8 @@
     Private Sub btnExit_MouseLeave(sender As Object, e As EventArgs) Handles btnExit.MouseLeave
         btnExit.BackColor = ColorTranslator.FromHtml("#1F2937")
     End Sub
+
+    Private Sub pnlLoginCard_Paint(sender As Object, e As PaintEventArgs) Handles pnlLoginCard.Paint
+
+    End Sub
 End Class
