@@ -22,9 +22,6 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
@@ -33,7 +30,6 @@ Partial Class frmDevices
         Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
         Me.cboTypeFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cboStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.dgvDevices = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.pnlDeviceDetail = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblDetailTitle = New System.Windows.Forms.Label()
         Me.pnlDivider = New System.Windows.Forms.Panel()
@@ -48,7 +44,6 @@ Partial Class frmDevices
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlHeader.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
-        CType(Me.dgvDevices, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlDeviceDetail.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -168,62 +163,6 @@ Partial Class frmDevices
         Me.cboStatusFilter.Size = New System.Drawing.Size(177, 36)
         Me.cboStatusFilter.TabIndex = 3
         '
-        'dgvDevices
-        '
-        Me.dgvDevices.AllowUserToAddRows = False
-        Me.dgvDevices.AllowUserToDeleteRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.dgvDevices.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvDevices.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvDevices.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgvDevices.ColumnHeadersHeight = 42
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvDevices.DefaultCellStyle = DataGridViewCellStyle6
-        Me.dgvDevices.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.dgvDevices.Location = New System.Drawing.Point(3, 141)
-        Me.dgvDevices.MultiSelect = False
-        Me.dgvDevices.Name = "dgvDevices"
-        Me.dgvDevices.ReadOnly = True
-        Me.dgvDevices.RowHeadersVisible = False
-        Me.dgvDevices.RowHeadersWidth = 51
-        Me.dgvDevices.RowTemplate.Height = 40
-        Me.dgvDevices.Size = New System.Drawing.Size(1389, 601)
-        Me.dgvDevices.TabIndex = 1
-        Me.dgvDevices.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        Me.dgvDevices.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
-        Me.dgvDevices.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
-        Me.dgvDevices.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
-        Me.dgvDevices.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgvDevices.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.dgvDevices.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvDevices.ThemeStyle.HeaderStyle.Height = 42
-        Me.dgvDevices.ThemeStyle.ReadOnly = True
-        Me.dgvDevices.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvDevices.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-        Me.dgvDevices.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.RowsStyle.Height = 40
-        Me.dgvDevices.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.dgvDevices.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        '
         'pnlDeviceDetail
         '
         Me.pnlDeviceDetail.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
@@ -240,9 +179,9 @@ Partial Class frmDevices
         Me.pnlDeviceDetail.Controls.Add(Me.btnDeleteDevice)
         Me.pnlDeviceDetail.Controls.Add(Me.btnCancelDevice)
         Me.pnlDeviceDetail.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlDeviceDetail.Location = New System.Drawing.Point(981, 145)
+        Me.pnlDeviceDetail.Location = New System.Drawing.Point(981, 141)
         Me.pnlDeviceDetail.Name = "pnlDeviceDetail"
-        Me.pnlDeviceDetail.Size = New System.Drawing.Size(411, 533)
+        Me.pnlDeviceDetail.Size = New System.Drawing.Size(411, 537)
         Me.pnlDeviceDetail.TabIndex = 0
         Me.pnlDeviceDetail.Visible = False
         '
@@ -368,14 +307,14 @@ Partial Class frmDevices
         Me.btnDeleteDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnDeleteDevice.BorderColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(73, Byte), Integer))
         Me.btnDeleteDevice.BorderRadius = 12
-        Me.btnDeleteDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.btnDeleteDevice.FillColor = System.Drawing.Color.DimGray
         Me.btnDeleteDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.btnDeleteDevice.ForeColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(73, Byte), Integer))
+        Me.btnDeleteDevice.ForeColor = System.Drawing.Color.White
         Me.btnDeleteDevice.Location = New System.Drawing.Point(22, 437)
         Me.btnDeleteDevice.Name = "btnDeleteDevice"
         Me.btnDeleteDevice.Size = New System.Drawing.Size(181, 43)
         Me.btnDeleteDevice.TabIndex = 5
-        Me.btnDeleteDevice.Text = "Delete"
+        Me.btnDeleteDevice.Text = "Clear"
         '
         'btnCancelDevice
         '
@@ -395,9 +334,8 @@ Partial Class frmDevices
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1393, 740)
+        Me.ClientSize = New System.Drawing.Size(1393, 699)
         Me.Controls.Add(Me.pnlDeviceDetail)
-        Me.Controls.Add(Me.dgvDevices)
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -405,7 +343,6 @@ Partial Class frmDevices
         Me.Text = "frmDevices"
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlFilter.ResumeLayout(False)
-        CType(Me.dgvDevices, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlDeviceDetail.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -418,7 +355,6 @@ Partial Class frmDevices
     Private WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
     Private WithEvents cboTypeFilter As Guna.UI2.WinForms.Guna2ComboBox
     Private WithEvents cboStatusFilter As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents dgvDevices As Guna.UI2.WinForms.Guna2DataGridView
     Private WithEvents pnlDeviceDetail As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblDetailTitle As Label
     Private WithEvents pnlDivider As Panel

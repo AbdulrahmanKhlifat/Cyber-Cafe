@@ -23,11 +23,11 @@ Partial Class frmLogin
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pnlBrand = New Guna.UI2.WinForms.Guna2Panel()
-        Me.lblTagline = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lblTline = New System.Windows.Forms.Label()
         Me.lblAppName = New System.Windows.Forms.Label()
         Me.pnlLoginCard = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnExit = New System.Windows.Forms.Button()
-        Me.lblForgot = New System.Windows.Forms.Label()
         Me.btnLogin = New Guna.UI2.WinForms.Guna2Button()
         Me.lblRoleHdr = New System.Windows.Forms.Label()
         Me.txtPassword = New Guna.UI2.WinForms.Guna2TextBox()
@@ -36,16 +36,16 @@ Partial Class frmLogin
         Me.lblUsernameHdr = New System.Windows.Forms.Label()
         Me.lblSubtitle = New System.Windows.Forms.Label()
         Me.lblWelcome = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lnkForgot = New System.Windows.Forms.LinkLabel()
         Me.pnlBrand.SuspendLayout()
-        Me.pnlLoginCard.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlLoginCard.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlBrand
         '
         Me.pnlBrand.Controls.Add(Me.PictureBox1)
-        Me.pnlBrand.Controls.Add(Me.lblTagline)
+        Me.pnlBrand.Controls.Add(Me.lblTline)
         Me.pnlBrand.Controls.Add(Me.lblAppName)
         Me.pnlBrand.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlBrand.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
@@ -55,17 +55,29 @@ Partial Class frmLogin
         Me.pnlBrand.Size = New System.Drawing.Size(411, 554)
         Me.pnlBrand.TabIndex = 2
         '
-        'lblTagline
+        'PictureBox1
         '
-        Me.lblTagline.BackColor = System.Drawing.Color.Transparent
-        Me.lblTagline.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lblTagline.ForeColor = System.Drawing.Color.Black
-        Me.lblTagline.Location = New System.Drawing.Point(32, 337)
-        Me.lblTagline.Name = "lblTagline"
-        Me.lblTagline.Size = New System.Drawing.Size(343, 32)
-        Me.lblTagline.TabIndex = 0
-        Me.lblTagline.Text = "Gaming Center Management System"
-        Me.lblTagline.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.PictureBox1.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._4239781_200
+        Me.PictureBox1.Location = New System.Drawing.Point(140, 162)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 101)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 2
+        Me.PictureBox1.TabStop = False
+        '
+        'lblTline
+        '
+        Me.lblTline.BackColor = System.Drawing.Color.Transparent
+        Me.lblTline.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblTline.ForeColor = System.Drawing.Color.Black
+        Me.lblTline.Location = New System.Drawing.Point(32, 337)
+        Me.lblTline.Name = "lblTline"
+        Me.lblTline.Size = New System.Drawing.Size(343, 32)
+        Me.lblTline.TabIndex = 0
+        Me.lblTline.Text = "Gaming Center Management System"
+        Me.lblTline.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblAppName
         '
@@ -81,8 +93,8 @@ Partial Class frmLogin
         '
         'pnlLoginCard
         '
+        Me.pnlLoginCard.Controls.Add(Me.lnkForgot)
         Me.pnlLoginCard.Controls.Add(Me.btnExit)
-        Me.pnlLoginCard.Controls.Add(Me.lblForgot)
         Me.pnlLoginCard.Controls.Add(Me.btnLogin)
         Me.pnlLoginCard.Controls.Add(Me.lblRoleHdr)
         Me.pnlLoginCard.Controls.Add(Me.txtPassword)
@@ -113,20 +125,6 @@ Partial Class frmLogin
         Me.btnExit.TabIndex = 43
         Me.btnExit.Text = "✕"
         Me.btnExit.UseVisualStyleBackColor = False
-        '
-        'lblForgot
-        '
-        Me.lblForgot.AutoSize = True
-        Me.lblForgot.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.lblForgot.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblForgot.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.lblForgot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lblForgot.Location = New System.Drawing.Point(617, 452)
-        Me.lblForgot.Name = "lblForgot"
-        Me.lblForgot.Size = New System.Drawing.Size(127, 20)
-        Me.lblForgot.TabIndex = 0
-        Me.lblForgot.Text = "Forgot password?"
-        Me.lblForgot.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnLogin
         '
@@ -231,17 +229,19 @@ Partial Class frmLogin
         Me.lblWelcome.TabIndex = 8
         Me.lblWelcome.Text = "Welcome Back"
         '
-        'PictureBox1
+        'lnkForgot
         '
-        Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.PictureBox1.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._4239781_200
-        Me.PictureBox1.Location = New System.Drawing.Point(140, 162)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 101)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
+        Me.lnkForgot.AutoSize = True
+        Me.lnkForgot.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.lnkForgot.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.8!)
+        Me.lnkForgot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lnkForgot.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lnkForgot.Location = New System.Drawing.Point(604, 440)
+        Me.lnkForgot.Name = "lnkForgot"
+        Me.lnkForgot.Size = New System.Drawing.Size(145, 20)
+        Me.lnkForgot.TabIndex = 44
+        Me.lnkForgot.TabStop = True
+        Me.lnkForgot.Text = "Forgot Password?"
         '
         'frmLogin
         '
@@ -256,18 +256,17 @@ Partial Class frmLogin
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
         Me.pnlBrand.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLoginCard.ResumeLayout(False)
         Me.pnlLoginCard.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Private WithEvents pnlBrand As Guna.UI2.WinForms.Guna2Panel
-    Private WithEvents lblTagline As Label
+    Private WithEvents lblTline As Label
     Private WithEvents lblAppName As Label
     Private WithEvents pnlLoginCard As Guna.UI2.WinForms.Guna2Panel
-    Private WithEvents lblForgot As Label
     Private WithEvents btnLogin As Guna.UI2.WinForms.Guna2Button
     Private WithEvents lblRoleHdr As Label
     Private WithEvents txtPassword As Guna.UI2.WinForms.Guna2TextBox
@@ -278,4 +277,5 @@ Partial Class frmLogin
     Private WithEvents lblWelcome As Label
     Friend WithEvents PictureBox1 As PictureBox
     Private WithEvents btnExit As Button
+    Friend WithEvents lnkForgot As LinkLabel
 End Class

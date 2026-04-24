@@ -40,22 +40,24 @@ Partial Class frmDashboard
         Me.tblKpis = New System.Windows.Forms.TableLayoutPanel()
         Me.pnlKpiCustomers = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblKpiCustIcon = New System.Windows.Forms.Label()
-        Me.lblKpiCustNum = New System.Windows.Forms.Label()
+        Me.lblCustNum = New System.Windows.Forms.Label()
         Me.lblKpiCustTitle = New System.Windows.Forms.Label()
         Me.pnlKpiDevices = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblKpiDevIcon = New System.Windows.Forms.Label()
-        Me.lblKpiDevNum = New System.Windows.Forms.Label()
+        Me.lblDevNum = New System.Windows.Forms.Label()
         Me.lblKpiDevTitle = New System.Windows.Forms.Label()
         Me.pnlKpiSessions = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblKpiSessIcon = New System.Windows.Forms.Label()
-        Me.lblKpiSessNum = New System.Windows.Forms.Label()
+        Me.lblSessNum = New System.Windows.Forms.Label()
         Me.lblKpiSessTitle = New System.Windows.Forms.Label()
         Me.pnlKpiRevenue = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblKpiRevIcon = New System.Windows.Forms.Label()
-        Me.lblKpiRevNum = New System.Windows.Forms.Label()
+        Me.lblRevNum = New System.Windows.Forms.Label()
         Me.lblKpiRevTitle = New System.Windows.Forms.Label()
         Me.lblHomeSubtitle = New System.Windows.Forms.Label()
         Me.lblHomeGreeting = New System.Windows.Forms.Label()
+        Me.btnCutomers = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlTopBar.SuspendLayout()
         Me.pnlUserBadge.SuspendLayout()
         Me.pnlNav.SuspendLayout()
@@ -186,6 +188,8 @@ Partial Class frmDashboard
         'pnlNav
         '
         Me.pnlNav.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.pnlNav.Controls.Add(Me.Button1)
+        Me.pnlNav.Controls.Add(Me.btnCutomers)
         Me.pnlNav.Controls.Add(Me.btnLogout)
         Me.pnlNav.Controls.Add(Me.btnDevices)
         Me.pnlNav.Dock = System.Windows.Forms.DockStyle.Left
@@ -213,8 +217,8 @@ Partial Class frmDashboard
         Me.btnDevices.FlatAppearance.BorderSize = 0
         Me.btnDevices.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDevices.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDevices.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.btnDevices.Location = New System.Drawing.Point(3, 3)
+        Me.btnDevices.ForeColor = System.Drawing.Color.MediumAquamarine
+        Me.btnDevices.Location = New System.Drawing.Point(2, 3)
         Me.btnDevices.Name = "btnDevices"
         Me.btnDevices.Size = New System.Drawing.Size(236, 66)
         Me.btnDevices.TabIndex = 8
@@ -257,7 +261,7 @@ Partial Class frmDashboard
         Me.pnlKpiCustomers.BorderRadius = 12
         Me.pnlKpiCustomers.BorderThickness = 1
         Me.pnlKpiCustomers.Controls.Add(Me.lblKpiCustIcon)
-        Me.pnlKpiCustomers.Controls.Add(Me.lblKpiCustNum)
+        Me.pnlKpiCustomers.Controls.Add(Me.lblCustNum)
         Me.pnlKpiCustomers.Controls.Add(Me.lblKpiCustTitle)
         Me.pnlKpiCustomers.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlKpiCustomers.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -279,17 +283,17 @@ Partial Class frmDashboard
         Me.lblKpiCustIcon.TabIndex = 0
         Me.lblKpiCustIcon.Text = "👥"
         '
-        'lblKpiCustNum
+        'lblCustNum
         '
-        Me.lblKpiCustNum.AutoSize = True
-        Me.lblKpiCustNum.BackColor = System.Drawing.Color.Transparent
-        Me.lblKpiCustNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
-        Me.lblKpiCustNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblKpiCustNum.Location = New System.Drawing.Point(17, 51)
-        Me.lblKpiCustNum.Name = "lblKpiCustNum"
-        Me.lblKpiCustNum.Size = New System.Drawing.Size(116, 50)
-        Me.lblKpiCustNum.TabIndex = 1
-        Me.lblKpiCustNum.Text = "1,247"
+        Me.lblCustNum.AutoSize = True
+        Me.lblCustNum.BackColor = System.Drawing.Color.Transparent
+        Me.lblCustNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCustNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.lblCustNum.Location = New System.Drawing.Point(17, 51)
+        Me.lblCustNum.Name = "lblCustNum"
+        Me.lblCustNum.Size = New System.Drawing.Size(116, 50)
+        Me.lblCustNum.TabIndex = 1
+        Me.lblCustNum.Text = "1,247"
         '
         'lblKpiCustTitle
         '
@@ -309,7 +313,7 @@ Partial Class frmDashboard
         Me.pnlKpiDevices.BorderRadius = 12
         Me.pnlKpiDevices.BorderThickness = 1
         Me.pnlKpiDevices.Controls.Add(Me.lblKpiDevIcon)
-        Me.pnlKpiDevices.Controls.Add(Me.lblKpiDevNum)
+        Me.pnlKpiDevices.Controls.Add(Me.lblDevNum)
         Me.pnlKpiDevices.Controls.Add(Me.lblKpiDevTitle)
         Me.pnlKpiDevices.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlKpiDevices.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -331,17 +335,17 @@ Partial Class frmDashboard
         Me.lblKpiDevIcon.TabIndex = 0
         Me.lblKpiDevIcon.Text = "🖥"
         '
-        'lblKpiDevNum
+        'lblDevNum
         '
-        Me.lblKpiDevNum.AutoSize = True
-        Me.lblKpiDevNum.BackColor = System.Drawing.Color.Transparent
-        Me.lblKpiDevNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
-        Me.lblKpiDevNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblKpiDevNum.Location = New System.Drawing.Point(17, 51)
-        Me.lblKpiDevNum.Name = "lblKpiDevNum"
-        Me.lblKpiDevNum.Size = New System.Drawing.Size(142, 50)
-        Me.lblKpiDevNum.TabIndex = 1
-        Me.lblKpiDevNum.Text = "18 / 25"
+        Me.lblDevNum.AutoSize = True
+        Me.lblDevNum.BackColor = System.Drawing.Color.Transparent
+        Me.lblDevNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
+        Me.lblDevNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.lblDevNum.Location = New System.Drawing.Point(17, 51)
+        Me.lblDevNum.Name = "lblDevNum"
+        Me.lblDevNum.Size = New System.Drawing.Size(142, 50)
+        Me.lblDevNum.TabIndex = 1
+        Me.lblDevNum.Text = "18 / 25"
         '
         'lblKpiDevTitle
         '
@@ -361,7 +365,7 @@ Partial Class frmDashboard
         Me.pnlKpiSessions.BorderRadius = 12
         Me.pnlKpiSessions.BorderThickness = 1
         Me.pnlKpiSessions.Controls.Add(Me.lblKpiSessIcon)
-        Me.pnlKpiSessions.Controls.Add(Me.lblKpiSessNum)
+        Me.pnlKpiSessions.Controls.Add(Me.lblSessNum)
         Me.pnlKpiSessions.Controls.Add(Me.lblKpiSessTitle)
         Me.pnlKpiSessions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlKpiSessions.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -383,17 +387,17 @@ Partial Class frmDashboard
         Me.lblKpiSessIcon.TabIndex = 0
         Me.lblKpiSessIcon.Text = "⏱"
         '
-        'lblKpiSessNum
+        'lblSessNum
         '
-        Me.lblKpiSessNum.AutoSize = True
-        Me.lblKpiSessNum.BackColor = System.Drawing.Color.Transparent
-        Me.lblKpiSessNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
-        Me.lblKpiSessNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblKpiSessNum.Location = New System.Drawing.Point(17, 51)
-        Me.lblKpiSessNum.Name = "lblKpiSessNum"
-        Me.lblKpiSessNum.Size = New System.Drawing.Size(43, 50)
-        Me.lblKpiSessNum.TabIndex = 1
-        Me.lblKpiSessNum.Text = "5"
+        Me.lblSessNum.AutoSize = True
+        Me.lblSessNum.BackColor = System.Drawing.Color.Transparent
+        Me.lblSessNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
+        Me.lblSessNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.lblSessNum.Location = New System.Drawing.Point(17, 51)
+        Me.lblSessNum.Name = "lblSessNum"
+        Me.lblSessNum.Size = New System.Drawing.Size(43, 50)
+        Me.lblSessNum.TabIndex = 1
+        Me.lblSessNum.Text = "5"
         '
         'lblKpiSessTitle
         '
@@ -413,7 +417,7 @@ Partial Class frmDashboard
         Me.pnlKpiRevenue.BorderRadius = 12
         Me.pnlKpiRevenue.BorderThickness = 1
         Me.pnlKpiRevenue.Controls.Add(Me.lblKpiRevIcon)
-        Me.pnlKpiRevenue.Controls.Add(Me.lblKpiRevNum)
+        Me.pnlKpiRevenue.Controls.Add(Me.lblRevNum)
         Me.pnlKpiRevenue.Controls.Add(Me.lblKpiRevTitle)
         Me.pnlKpiRevenue.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlKpiRevenue.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -435,17 +439,17 @@ Partial Class frmDashboard
         Me.lblKpiRevIcon.TabIndex = 0
         Me.lblKpiRevIcon.Text = "💰"
         '
-        'lblKpiRevNum
+        'lblRevNum
         '
-        Me.lblKpiRevNum.AutoSize = True
-        Me.lblKpiRevNum.BackColor = System.Drawing.Color.Transparent
-        Me.lblKpiRevNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
-        Me.lblKpiRevNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblKpiRevNum.Location = New System.Drawing.Point(17, 51)
-        Me.lblKpiRevNum.Name = "lblKpiRevNum"
-        Me.lblKpiRevNum.Size = New System.Drawing.Size(106, 50)
-        Me.lblKpiRevNum.TabIndex = 1
-        Me.lblKpiRevNum.Text = "$284"
+        Me.lblRevNum.AutoSize = True
+        Me.lblRevNum.BackColor = System.Drawing.Color.Transparent
+        Me.lblRevNum.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRevNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.lblRevNum.Location = New System.Drawing.Point(17, 51)
+        Me.lblRevNum.Name = "lblRevNum"
+        Me.lblRevNum.Size = New System.Drawing.Size(106, 50)
+        Me.lblRevNum.TabIndex = 1
+        Me.lblRevNum.Text = "$284"
         '
         'lblKpiRevTitle
         '
@@ -480,6 +484,34 @@ Partial Class frmDashboard
         Me.lblHomeGreeting.Size = New System.Drawing.Size(654, 51)
         Me.lblHomeGreeting.TabIndex = 7
         Me.lblHomeGreeting.Text = "👋  Good Morning, Administrator!"
+        '
+        'btnCutomers
+        '
+        Me.btnCutomers.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.btnCutomers.FlatAppearance.BorderSize = 0
+        Me.btnCutomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCutomers.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCutomers.ForeColor = System.Drawing.Color.MediumAquamarine
+        Me.btnCutomers.Location = New System.Drawing.Point(3, 83)
+        Me.btnCutomers.Name = "btnCutomers"
+        Me.btnCutomers.Size = New System.Drawing.Size(236, 66)
+        Me.btnCutomers.TabIndex = 10
+        Me.btnCutomers.Text = "Customers"
+        Me.btnCutomers.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.MediumAquamarine
+        Me.Button1.Location = New System.Drawing.Point(2, 157)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(236, 66)
+        Me.Button1.TabIndex = 11
+        Me.Button1.Text = "Sessions"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'frmDashboard
         '
@@ -530,20 +562,22 @@ Partial Class frmDashboard
     Private WithEvents tblKpis As TableLayoutPanel
     Private WithEvents pnlKpiCustomers As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblKpiCustIcon As Label
-    Private WithEvents lblKpiCustNum As Label
+    Private WithEvents lblCustNum As Label
     Private WithEvents lblKpiCustTitle As Label
     Private WithEvents pnlKpiDevices As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblKpiDevIcon As Label
-    Private WithEvents lblKpiDevNum As Label
+    Private WithEvents lblDevNum As Label
     Private WithEvents lblKpiDevTitle As Label
     Private WithEvents pnlKpiSessions As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblKpiSessIcon As Label
-    Private WithEvents lblKpiSessNum As Label
+    Private WithEvents lblSessNum As Label
     Private WithEvents lblKpiSessTitle As Label
     Private WithEvents pnlKpiRevenue As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblKpiRevIcon As Label
-    Private WithEvents lblKpiRevNum As Label
+    Private WithEvents lblRevNum As Label
     Private WithEvents lblKpiRevTitle As Label
     Private WithEvents lblHomeSubtitle As Label
     Private WithEvents lblHomeGreeting As Label
+    Friend WithEvents btnCutomers As Button
+    Friend WithEvents Button1 As Button
 End Class
