@@ -57,7 +57,7 @@ Public Class frmDashboard
 
     End Sub
 
-    Private Sub lblKpiSessTitle_Click(sender As Object, e As EventArgs) Handles lblKpiSessTitle.Click
+    Private Sub lblKpiSessTitle_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -71,9 +71,29 @@ Public Class frmDashboard
         frm.Show()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnSessions.Click
         pnlMain.Controls.Clear()
         Dim frm As New frmSessions()
+        frm.TopLevel = False
+        frm.FormBorderStyle = FormBorderStyle.None
+        frm.Dock = DockStyle.Fill
+        pnlMain.Controls.Add(frm)
+        frm.Show()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
+        pnlMain.Controls.Clear()
+        Dim frm As New frmMainForm()
+        frm.TopLevel = False
+        frm.FormBorderStyle = FormBorderStyle.None
+        frm.Dock = DockStyle.Fill
+        pnlMain.Controls.Add(frm)
+        frm.Show()
+    End Sub
+
+    Private Sub btnTrans_Click(sender As Object, e As EventArgs) Handles btnTrans.Click
+        pnlMain.Controls.Clear()
+        Dim frm As New frmTransactions()
         frm.TopLevel = False
         frm.FormBorderStyle = FormBorderStyle.None
         frm.Dock = DockStyle.Fill
