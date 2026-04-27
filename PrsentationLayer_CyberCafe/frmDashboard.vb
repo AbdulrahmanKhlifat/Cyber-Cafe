@@ -20,84 +20,39 @@ Public Class frmDashboard
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tmrClock.Start()
         pnlTopBar.EnableDragging()
+        DisplayForm(New frmMainForm())
     End Sub
 
     Private Sub tmrClock_Tick(sender As Object, e As EventArgs) Handles tmrClock.Tick
         lblClock.Text = DateTime.Now.ToString("HH:mm:ss   ddd, MMM dd yyyy")
     End Sub
 
-    Private Sub pnlTopBar_Paint(sender As Object, e As PaintEventArgs) Handles pnlTopBar.Paint
-
-    End Sub
-
-    Private Sub btnLogout_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub btnCloseWin_Click(sender As Object, e As EventArgs) Handles btnCloseWin.Click
         Me.Close()
     End Sub
-
+    Private Sub DisplayForm(ByRef childForm As Form)
+        pnlMain.Controls.Clear()
+        childForm.TopLevel = False
+        childForm.FormBorderStyle = FormBorderStyle.None
+        childForm.Dock = DockStyle.Fill
+        pnlMain.Controls.Add(childForm)
+        childForm.BringToFront()
+        childForm.Show()
+    End Sub
     Private Sub btnDevices_Click(sender As Object, e As EventArgs) Handles btnDevices.Click
-        pnlMain.Controls.Clear()
-        Dim frm As New frmDevices()
-        frm.TopLevel = False
-        frm.FormBorderStyle = FormBorderStyle.None
-        frm.Dock = DockStyle.Fill
-        pnlMain.Controls.Add(frm)
-        frm.Show()
-
+        DisplayForm(New frmDevices())
     End Sub
-
-    Private Sub pnlHome_Paint(sender As Object, e As PaintEventArgs)
-
-    End Sub
-
-    Private Sub pnlNav_Paint(sender As Object, e As PaintEventArgs) Handles pnlNav.Paint
-
-    End Sub
-
-    Private Sub lblKpiSessTitle_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub btnCutomers_Click(sender As Object, e As EventArgs) Handles btnCutomers.Click
-        pnlMain.Controls.Clear()
-        Dim frm As New frmCustomers()
-        frm.TopLevel = False
-        frm.FormBorderStyle = FormBorderStyle.None
-        frm.Dock = DockStyle.Fill
-        pnlMain.Controls.Add(frm)
-        frm.Show()
+        DisplayForm(New frmCustomers())
     End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnSessions.Click
-        pnlMain.Controls.Clear()
-        Dim frm As New frmSessions()
-        frm.TopLevel = False
-        frm.FormBorderStyle = FormBorderStyle.None
-        frm.Dock = DockStyle.Fill
-        pnlMain.Controls.Add(frm)
-        frm.Show()
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        pnlMain.Controls.Clear()
-        Dim frm As New frmMainForm()
-        frm.TopLevel = False
-        frm.FormBorderStyle = FormBorderStyle.None
-        frm.Dock = DockStyle.Fill
-        pnlMain.Controls.Add(frm)
-        frm.Show()
-    End Sub
-
     Private Sub btnTrans_Click(sender As Object, e As EventArgs) Handles btnTrans.Click
-        pnlMain.Controls.Clear()
-        Dim frm As New frmTransactions()
-        frm.TopLevel = False
-        frm.FormBorderStyle = FormBorderStyle.None
-        frm.Dock = DockStyle.Fill
-        pnlMain.Controls.Add(frm)
-        frm.Show()
+        DisplayForm(New frmTransactions())
+    End Sub
+    Private Sub btnSessions_Click(sender As Object, e As EventArgs) Handles btnSessions.Click
+        DisplayForm(New frmSessions())
+    End Sub
+
+    Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
+        DisplayForm(New frmMainForm())
     End Sub
 End Class

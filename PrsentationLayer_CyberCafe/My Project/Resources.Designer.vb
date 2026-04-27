@@ -73,6 +73,36 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property free_computer_icon_956_thumb() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("free-computer-icon-956-thumb", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property games() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("games", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property imac() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("imac", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property joystic() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("joystic", resourceCulture)

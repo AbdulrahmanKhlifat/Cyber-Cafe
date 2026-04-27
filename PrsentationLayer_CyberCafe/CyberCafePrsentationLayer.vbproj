@@ -79,6 +79,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctrShowDeviceInfo.Designer.vb">
+      <DependentUpon>ctrShowDeviceInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctrShowDeviceInfo.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="DragHelper.vb" />
     <Compile Include="frmCustomerMain.Designer.vb">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>
@@ -148,6 +154,9 @@
     <Compile Include="Program.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ctrShowDeviceInfo.resx">
+      <DependentUpon>ctrShowDeviceInfo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerMain.resx">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +216,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\4239781-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-computer-icon-956-thumb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\games.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imac.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

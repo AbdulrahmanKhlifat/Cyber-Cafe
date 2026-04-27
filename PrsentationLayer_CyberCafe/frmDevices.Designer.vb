@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmDevices
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmDevices
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -31,6 +31,7 @@ Partial Class frmDevices
         Me.cboTypeFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cboStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.pnlDeviceDetail = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2NumericUpDown1 = New Guna.UI2.WinForms.Guna2NumericUpDown()
         Me.lblDetailTitle = New System.Windows.Forms.Label()
         Me.pnlDivider = New System.Windows.Forms.Panel()
         Me.lblDevNameF = New System.Windows.Forms.Label()
@@ -38,13 +39,14 @@ Partial Class frmDevices
         Me.lblDevTypeF = New System.Windows.Forms.Label()
         Me.cboDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.lblStatusF = New System.Windows.Forms.Label()
-        Me.cboStatus = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnSaveDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDeleteDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
+        Me.FlowLayoutPaneldev = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlHeader.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
+        CType(Me.Guna2NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlHeader
@@ -55,7 +57,7 @@ Partial Class frmDevices
         Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.pnlHeader.Location = New System.Drawing.Point(0, 59)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1393, 80)
+        Me.pnlHeader.Size = New System.Drawing.Size(1408, 74)
         Me.pnlHeader.TabIndex = 5
         '
         'lblTitle
@@ -77,9 +79,9 @@ Partial Class frmDevices
         Me.btnAddDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnAddDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddDevice.ForeColor = System.Drawing.Color.White
-        Me.btnAddDevice.Location = New System.Drawing.Point(1173, 10)
+        Me.btnAddDevice.Location = New System.Drawing.Point(1212, 6)
         Me.btnAddDevice.Name = "btnAddDevice"
-        Me.btnAddDevice.Size = New System.Drawing.Size(160, 41)
+        Me.btnAddDevice.Size = New System.Drawing.Size(165, 46)
         Me.btnAddDevice.TabIndex = 1
         Me.btnAddDevice.Text = "+  Add Device"
         '
@@ -93,7 +95,7 @@ Partial Class frmDevices
         Me.pnlFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.pnlFilter.Location = New System.Drawing.Point(0, 0)
         Me.pnlFilter.Name = "pnlFilter"
-        Me.pnlFilter.Size = New System.Drawing.Size(1393, 59)
+        Me.pnlFilter.Size = New System.Drawing.Size(1408, 59)
         Me.pnlFilter.TabIndex = 4
         '
         'txtSearch
@@ -167,6 +169,7 @@ Partial Class frmDevices
         '
         Me.pnlDeviceDetail.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlDeviceDetail.BorderThickness = 1
+        Me.pnlDeviceDetail.Controls.Add(Me.Guna2NumericUpDown1)
         Me.pnlDeviceDetail.Controls.Add(Me.lblDetailTitle)
         Me.pnlDeviceDetail.Controls.Add(Me.pnlDivider)
         Me.pnlDeviceDetail.Controls.Add(Me.lblDevNameF)
@@ -174,16 +177,36 @@ Partial Class frmDevices
         Me.pnlDeviceDetail.Controls.Add(Me.lblDevTypeF)
         Me.pnlDeviceDetail.Controls.Add(Me.cboDeviceType)
         Me.pnlDeviceDetail.Controls.Add(Me.lblStatusF)
-        Me.pnlDeviceDetail.Controls.Add(Me.cboStatus)
         Me.pnlDeviceDetail.Controls.Add(Me.btnSaveDevice)
         Me.pnlDeviceDetail.Controls.Add(Me.btnDeleteDevice)
         Me.pnlDeviceDetail.Controls.Add(Me.btnCancelDevice)
+        Me.pnlDeviceDetail.Dock = System.Windows.Forms.DockStyle.Right
         Me.pnlDeviceDetail.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlDeviceDetail.Location = New System.Drawing.Point(981, 141)
+        Me.pnlDeviceDetail.Location = New System.Drawing.Point(1000, 133)
         Me.pnlDeviceDetail.Name = "pnlDeviceDetail"
-        Me.pnlDeviceDetail.Size = New System.Drawing.Size(411, 537)
+        Me.pnlDeviceDetail.Size = New System.Drawing.Size(408, 558)
         Me.pnlDeviceDetail.TabIndex = 0
         Me.pnlDeviceDetail.Visible = False
+        '
+        'Guna2NumericUpDown1
+        '
+        Me.Guna2NumericUpDown1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2NumericUpDown1.BorderRadius = 5
+        Me.Guna2NumericUpDown1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom
+        Me.Guna2NumericUpDown1.BorderThickness = 0
+        Me.Guna2NumericUpDown1.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Guna2NumericUpDown1.DecimalPlaces = 2
+        Me.Guna2NumericUpDown1.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
+        Me.Guna2NumericUpDown1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.Guna2NumericUpDown1.ForeColor = System.Drawing.Color.White
+        Me.Guna2NumericUpDown1.Location = New System.Drawing.Point(22, 322)
+        Me.Guna2NumericUpDown1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Guna2NumericUpDown1.Name = "Guna2NumericUpDown1"
+        Me.Guna2NumericUpDown1.Size = New System.Drawing.Size(360, 48)
+        Me.Guna2NumericUpDown1.TabIndex = 7
+        Me.Guna2NumericUpDown1.UpDownButtonFillColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Guna2NumericUpDown1.UpDownButtonForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Guna2NumericUpDown1.Value = New Decimal(New Integer() {5, 0, 0, 65536})
         '
         'lblDetailTitle
         '
@@ -270,25 +293,7 @@ Partial Class frmDevices
         Me.lblStatusF.Name = "lblStatusF"
         Me.lblStatusF.Size = New System.Drawing.Size(229, 19)
         Me.lblStatusF.TabIndex = 5
-        Me.lblStatusF.Text = "STATUS"
-        '
-        'cboStatus
-        '
-        Me.cboStatus.BackColor = System.Drawing.Color.Transparent
-        Me.cboStatus.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.cboStatus.BorderRadius = 8
-        Me.cboStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboStatus.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.cboStatus.FocusedColor = System.Drawing.Color.Empty
-        Me.cboStatus.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cboStatus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.cboStatus.ItemHeight = 30
-        Me.cboStatus.Items.AddRange(New Object() {"Available", "In Use", "Maintenance", "Offline"})
-        Me.cboStatus.Location = New System.Drawing.Point(18, 317)
-        Me.cboStatus.Name = "cboStatus"
-        Me.cboStatus.Size = New System.Drawing.Size(377, 36)
-        Me.cboStatus.TabIndex = 3
+        Me.lblStatusF.Text = "Price Per Hour"
         '
         'btnSaveDevice
         '
@@ -310,7 +315,7 @@ Partial Class frmDevices
         Me.btnDeleteDevice.FillColor = System.Drawing.Color.DimGray
         Me.btnDeleteDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnDeleteDevice.ForeColor = System.Drawing.Color.White
-        Me.btnDeleteDevice.Location = New System.Drawing.Point(22, 437)
+        Me.btnDeleteDevice.Location = New System.Drawing.Point(20, 437)
         Me.btnDeleteDevice.Name = "btnDeleteDevice"
         Me.btnDeleteDevice.Size = New System.Drawing.Size(181, 43)
         Me.btnDeleteDevice.TabIndex = 5
@@ -329,12 +334,21 @@ Partial Class frmDevices
         Me.btnCancelDevice.TabIndex = 6
         Me.btnCancelDevice.Text = "Cancel"
         '
+        'FlowLayoutPaneldev
+        '
+        Me.FlowLayoutPaneldev.AutoScroll = True
+        Me.FlowLayoutPaneldev.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlowLayoutPaneldev.Location = New System.Drawing.Point(0, 133)
+        Me.FlowLayoutPaneldev.Name = "FlowLayoutPaneldev"
+        Me.FlowLayoutPaneldev.Size = New System.Drawing.Size(1000, 558)
+        Me.FlowLayoutPaneldev.TabIndex = 6
+        '
         'frmDevices
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1393, 699)
+        Me.ClientSize = New System.Drawing.Size(1408, 691)
+        Me.Controls.Add(Me.FlowLayoutPaneldev)
         Me.Controls.Add(Me.pnlDeviceDetail)
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlFilter)
@@ -344,6 +358,7 @@ Partial Class frmDevices
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlFilter.ResumeLayout(False)
         Me.pnlDeviceDetail.ResumeLayout(False)
+        CType(Me.Guna2NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -363,8 +378,9 @@ Partial Class frmDevices
     Private WithEvents lblDevTypeF As Label
     Private WithEvents cboDeviceType As Guna.UI2.WinForms.Guna2ComboBox
     Private WithEvents lblStatusF As Label
-    Private WithEvents cboStatus As Guna.UI2.WinForms.Guna2ComboBox
     Private WithEvents btnSaveDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnDeleteDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnCancelDevice As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2NumericUpDown1 As Guna.UI2.WinForms.Guna2NumericUpDown
+    Friend WithEvents FlowLayoutPaneldev As FlowLayoutPanel
 End Class
