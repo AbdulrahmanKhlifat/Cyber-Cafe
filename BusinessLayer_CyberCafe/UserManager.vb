@@ -1,44 +1,54 @@
-﻿Imports System.Security.Cryptography
-Imports System.Text
-Imports CyberCafe_DataAccess.CyberCafe.DAL
+﻿Imports CyberCafe_DataAccess.CyberCafe.DAL
 Imports CyberCafeModels.CyberCafe.Models
 
 Namespace CyberCafe.BusinessLayer
     Public Class UserManager
 
-        Private Shared Function ComputeHash(input As String) As String
-            Using sha256Hash As SHA256 = SHA256.Create()
-                Dim bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input))
-
-                Dim builder As StringBuilder = New StringBuilder()
-                For i = 0 To bytes.Length - 1
-                    builder.Append(bytes(i).ToString("x2"))
-                Next
-                Return builder.ToString()
-            End Using
-        End Function
-
         Public Shared Function AuthenticateUser(username As String, password As String) As LoginResultDTO
-            Dim passwordHash As String = ComputeHash(password)
+            Dim user As UserDTO = UserRepo.GetLoginInfoByUsername(username)
 
-            Dim loginResults As LoginResultDTO = UserRepo.CheckCredentials(username, passwordHash)
+            Dim loginResults As New LoginResultDTO
+
+            If user Is Nothing Then
+                loginResults.IsAuthenticated = False
+                loginResults.Message = "Invalid username or password"
+
+                Return loginResults
+            End If
+
+            If user.IsDeleted Then
+
+                loginResults.IsAuthenticated = False
+                loginResults.Message = "Account is disabled"
+
+                Return loginResults
+            End If
+
+            If Not HashUtility.VerifyPassword(password, user.Password) Then
+
+                loginResults.IsAuthenticated = False
+                loginResults.Message = "Invalid username or password"
+
+                Return loginResults
+            End If
+
+            loginResults.IsAuthenticated = True
+            loginResults.UserID = user.UserID
+            loginResults.Role = user.RoleType
 
             Return loginResults
 
         End Function
 
+        Public Shared Function LoadUser(userID As Integer, role As UserRoleType) As UserDTO
 
-        Public Shared Function LoadUser(loginResult As LoginResultDTO) As UserDTO
-
-            Select Case loginResult.Role
+            Select Case role
 
                 Case UserRoleType.Admin
-                    Return AdminRepo.GetAdminByUserID(
-                        loginResult.UserID)
+                    Return AdminManager.Find(userID)
 
                 Case UserRoleType.Customer
-                    Return CustomerRepo.GetCustomerByUserID(
-                        loginResult.UserID)
+                    Return CustomerManager.Find(userID)
 
                 Case Else
                     Return Nothing

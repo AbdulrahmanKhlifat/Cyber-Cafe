@@ -242,7 +242,7 @@ Public Class AdminRepo
                                 .Password = CType(reader("PasswordHash"), String)
                                 .IsDeleted = CType(reader("IsDeleted"), Boolean)
                                 .HireDate = CType(reader("HireDate"), Date)
-                                .RoleType = 1
+                                .RoleType = CType(reader("RoleType"), UserRoleType)
                             End With
 
                             Return admin
@@ -264,4 +264,7 @@ Public Class AdminRepo
         Return UserRepo.IsUserExistsByID(UserID)
     End Function
 
+    Public Shared Function IsUsernameTaken(username As String) As Boolean
+        Return UserRepo.IsUsernameTaken(username)
+    End Function
 End Class

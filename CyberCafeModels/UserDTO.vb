@@ -19,7 +19,7 @@
         Public Property Name As String
         Public Property Username As String
         Public Property Password As String
-        Public Property RoleType As Byte
+        Public Property RoleType As UserRoleType
         Public Property IsDeleted As Boolean
         Public Property Email As String
         Public Property Phone As String

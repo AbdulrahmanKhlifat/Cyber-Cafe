@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports CyberCafe_DataAccess.CyberCafe.DAL
 Imports CyberCafeModels.CyberCafe.Models
 
@@ -260,7 +259,7 @@ Public Class CustomerRepo
                                 .Credit = CType(reader("Credit"), Decimal)
                                 .TotalHoursRes = CType(reader("TotalHoursRes"), Integer)
                                 .CreatedByAdminID = CType(reader("CreatedByAdminID"), Integer)
-                                .RoleType = 2
+                                .RoleType = CType(reader("RoleType"), UserRoleType)
                             End With
 
                             Return customer
@@ -280,6 +279,10 @@ Public Class CustomerRepo
 
     Public Shared Function IsCustomerExistsByID(UserID As Integer) As Boolean
         Return UserRepo.IsUserExistsByID(UserID)
+    End Function
+
+    Public Shared Function IsUsernameTaken(username As String) As Boolean
+        Return UserRepo.IsUsernameTaken(username)
     End Function
 
 End Class
