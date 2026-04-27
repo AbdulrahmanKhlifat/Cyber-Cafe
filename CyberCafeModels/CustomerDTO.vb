@@ -12,8 +12,9 @@
 
         End Sub
 
-        Public Property CreatedAt As Date
+        Public Property CreatedAt As DateTime
         Public Property Credit As Decimal
         Public Property TotalHoursRes As Integer
+        Public Property CreatedByAdminID As Integer
     End Class
 End Namespace

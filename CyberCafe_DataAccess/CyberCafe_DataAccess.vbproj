@@ -64,6 +64,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminRepo.vb" />
+    <Compile Include="CustomerRepo.vb" />
     <Compile Include="DataAccessSettings.vb" />
     <Compile Include="UserRepo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
