@@ -43,10 +43,10 @@ Public Class frmDashboard
     Private Sub btnDevices_Click(sender As Object, e As EventArgs) Handles btnDevices.Click
         DisplayForm(New frmDevices())
     End Sub
-    Private Sub btnCutomers_Click(sender As Object, e As EventArgs) Handles btnCutomers.Click
+    Private Sub btnCutomers_Click(sender As Object, e As EventArgs) Handles btnCustomers.Click
         DisplayForm(New frmCustomers())
     End Sub
-    Private Sub btnTrans_Click(sender As Object, e As EventArgs) Handles btnTrans.Click
+    Private Sub btnTrans_Click(sender As Object, e As EventArgs) Handles btnTransactions.Click
         DisplayForm(New frmTransactions())
     End Sub
     Private Sub btnSessions_Click(sender As Object, e As EventArgs) Handles btnSessions.Click
