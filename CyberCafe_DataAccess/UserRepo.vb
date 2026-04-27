@@ -4,22 +4,18 @@ Imports CyberCafeModels.CyberCafe.Models
 Namespace CyberCafe.DAL
     Public Class UserRepo
 
-        Public Shared Function CheckCredentials(username As String, passwordHash As String) As LoginResultDTO
-            Dim results As New LoginResultDTO With {
-                .UserID = Nothing,
-                .Role = UserRoleType.None,
-                .IsDeleted = False
-                }
+        Public Shared Function GetLoginInfoByUsername(username As String) As UserDTO
+            Dim userDTO As New UserDTO
 
             Using conn As SqlConnection = New SqlConnection(DataAccessSettings.connectionString)
 
-                Dim query As String = "Select Users.UserID, Users.RoleType,Users.IsDeleted From Users
-                                        Where Users.Username = @username
-                                        AND Users.PasswordHash = @passwordHash"
+                Dim query As String = "Select Users.UserID,
+                Users.RoleType, Users.IsDeleted,
+                Users.PasswordHash From Users
+                Where Users.Username = @username"
 
                 Using cmd As SqlCommand = New SqlCommand(query, conn)
                     cmd.Parameters.Add("@username", SqlDbType.NVarChar, 20).Value = username
-                    cmd.Parameters.Add("@passwordHash", SqlDbType.NVarChar, 255).Value = passwordHash
 
                     Try
                         conn.Open()
@@ -28,28 +24,27 @@ Namespace CyberCafe.DAL
 
                             If reader.Read() Then
 
-                                results.UserID = CType(reader("UserID"), Integer)
-                                results.Role = CType(reader("RoleType"), UserRoleType)
-                                results.IsDeleted = CType(reader("IsDeleted"), Boolean)
+                                userDTO.UserID = CType(reader("UserID"), Integer)
+                                userDTO.RoleType = CType(reader("RoleType"), UserRoleType)
+                                userDTO.IsDeleted = CType(reader("IsDeleted"), Boolean)
+                                userDTO.Password = CType(reader("PasswordHash"), String)
                             Else
-                                results.UserID = Nothing
-                                results.Role = UserRoleType.None
-                                results.IsDeleted = False
+
+                                userDTO = Nothing
                             End If
 
                         End Using
 
                     Catch ex As Exception
-                        results.UserID = Nothing
-                        results.Role = UserRoleType.None
-                        results.IsDeleted = True
+
+                        userDTO = Nothing
                     End Try
 
                 End Using
 
             End Using
 
-            Return results
+            Return userDTO
 
         End Function
 

@@ -5,13 +5,20 @@ Imports CyberCafeModels.CyberCafe.Models
 Imports Guna.UI2.WinForms
 
 Public Class frmLogin
-    Private _loginTries As Integer = 5
+    Private Const LOGIN_TRIES_LIMIT As Integer = 5
+    Private _loginTries As Integer = LOGIN_TRIES_LIMIT
     Const RELATIVE_FILE_PATH As String = "LocalSession.txt"
 
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         pnlBrand.EnableDragging()
         pnlLoginCard.EnableDragging()
+
+        'Clicking Enter triggers the btnLogin event
+        Me.AcceptButton = btnLogin
+
         _LoadCredentialsFromFile()
+
     End Sub
 
     Private Sub _LoadCredentialsFromFile()
@@ -40,14 +47,24 @@ Public Class frmLogin
         Return String.IsNullOrEmpty(txtPassword.Text) OrElse String.IsNullOrEmpty(txtUsername.Text)
     End Function
 
-    Private Sub _HandleFailedLogin()
+    Private Sub _HandleFailedLogin(loginResults As LoginResultDTO)
         _loginTries -= 1
 
         txtPassword.Clear()
         txtUsername.Clear()
         txtUsername.Focus()
 
-        lblTries.Text = "Wrong Username or Password" & vbCrLf & "   Number of Tries Left: " & _loginTries.ToString() & " Left"
+        If loginResults.IsDeleted Then
+            MessageBox.Show(
+                loginResults.Message & " Please Conatct Your Admin",
+                "Unauthorized Access",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error)
+
+            Application.Exit()
+        End If
+
+        lblTries.Text = loginResults.Message & Environment.NewLine & "   Number of Tries Left: " & _loginTries.ToString() & " Left"
 
         If _loginTries = 0 Then
 
@@ -75,7 +92,7 @@ Public Class frmLogin
     Private Sub _HandleSuccessfulLogin()
         DialogResult = DialogResult.OK
 
-        _loginTries = 5
+        _loginTries = LOGIN_TRIES_LIMIT
 
         If chkRememberMe.Checked Then
             _StoreLocalSession()
@@ -83,26 +100,22 @@ Public Class frmLogin
             _ClearFile()
         End If
 
-
-
         Close()
     End Sub
 
     Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
         Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
+            .caption = caption,
             .Text = message,
             .Parent = System.Windows.Forms.Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
+            .icon = icon,
             .Buttons = MessageDialogButtons.OK
         }
         guna.Show()
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        'Dim frm As New frmDashboard()
-        'frm.ShowDialog()
         If areTextBoxesEmpty() Then
             _ShowGunaMessage("Please Enter Your Username and Password First!", "Invalid Credential", MessageDialogIcon.Warning)
             Return
@@ -110,18 +123,12 @@ Public Class frmLogin
 
         Dim loginResult As LoginResultDTO = UserManager.AuthenticateUser(txtUsername.Text, txtPassword.Text)
 
-        If loginResult.UserID Is Nothing Then
-            _HandleFailedLogin()
+        If Not loginResult.IsAuthenticated Then
+            _HandleFailedLogin(loginResult)
             Return
         End If
 
-        If loginResult.IsDeleted Then
-            _ShowGunaMessage("Cannot login. User is deleted. Please contact your admin.", "Unauthorized Access", MessageDialogIcon.Error)
-            Application.Exit()
-            Return
-        End If
-
-        LoggedInUser.CurrentUser = UserManager.LoadUser(loginResult)
+        LoggedInUser.CurrentUser = UserManager.LoadUser(loginResult.UserID, loginResult.Role)
 
         _HandleSuccessfulLogin()
     End Sub

@@ -4,17 +4,18 @@ Imports CyberCafeModels.CyberCafe.Models
 Public Class frmDashboard
     Private _admin As AdminDTO
 
+    Private _LastButtonClicked As Button
+
     Public Sub New(admin As AdminDTO)
         InitializeComponent()
-
+        _LastButtonClicked = New Button()
         _admin = admin
     End Sub
 
-    'This will be removed
-    Public Sub New()
-        InitializeComponent()
-
-        _admin = Nothing
+    Private Sub _UpdateButtonColor(btn As Button)
+        _LastButtonClicked.BackColor = Color.FromArgb(28, 33, 40)
+        _LastButtonClicked = btn
+        btn.BackColor = Color.FromArgb(0, 200, 160)
     End Sub
 
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
