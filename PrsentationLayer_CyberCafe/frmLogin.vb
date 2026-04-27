@@ -53,7 +53,17 @@ Public Class frmLogin
         txtUsername.Clear()
         txtUsername.Focus()
 
-        lblTries.Text = loginResults.Message & vbCrLf & "   Number of Tries Left: " & _loginTries.ToString() & " Left"
+        If loginResults.IsDeleted Then
+            MessageBox.Show(
+                loginResults.Message & " Please Conatct Your Admin",
+                "Unauthorized Access",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error)
+
+            Application.Exit()
+        End If
+
+        lblTries.Text = loginResults.Message & Environment.NewLine & "   Number of Tries Left: " & _loginTries.ToString() & " Left"
 
         If _loginTries = 0 Then
 
@@ -109,7 +119,7 @@ Public Class frmLogin
 
         Dim loginResult As LoginResultDTO = UserManager.AuthenticateUser(txtUsername.Text, txtPassword.Text)
 
-        If loginResult.UserID Is Nothing Then
+        If Not loginResult.IsAuthenticated Then
             _HandleFailedLogin(loginResult)
             Return
         End If

@@ -67,6 +67,7 @@
     <Compile Include="AdminRepo.vb" />
     <Compile Include="CustomerRepo.vb" />
     <Compile Include="DataAccessSettings.vb" />
+    <Compile Include="TransactionRepo.vb" />
     <Compile Include="UserRepo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

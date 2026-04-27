@@ -20,6 +20,7 @@ Namespace CyberCafe.BusinessLayer
 
                 loginResults.IsAuthenticated = False
                 loginResults.Message = "Account is disabled"
+                loginResults.IsDeleted = True
 
                 Return loginResults
             End If
@@ -35,7 +36,7 @@ Namespace CyberCafe.BusinessLayer
             loginResults.IsAuthenticated = True
             loginResults.UserID = user.UserID
             loginResults.Role = user.RoleType
-
+            loginResults.IsDeleted = False
             Return loginResults
 
         End Function

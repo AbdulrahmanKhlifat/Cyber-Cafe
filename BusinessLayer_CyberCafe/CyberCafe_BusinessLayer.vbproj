@@ -84,6 +84,7 @@
     <Compile Include="CustomerManager.vb" />
     <Compile Include="HashUtility.vb" />
     <Compile Include="LoggedInUser.vb" />
+    <Compile Include="TransactionManager.vb" />
     <Compile Include="UserManager.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

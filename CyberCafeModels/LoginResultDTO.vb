@@ -6,6 +6,9 @@
 
         Public Property IsAuthenticated As Boolean
 
+        Public Property IsDeleted As Boolean
+
         Public Property Message As String
+
     End Class
 End Namespace
