@@ -22,16 +22,16 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
-        Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
-        Me.pnlFilter = New Guna.UI2.WinForms.Guna2Panel()
+        Me.pnlTop = New System.Windows.Forms.Panel()
+        Me.pnlFilter = New System.Windows.Forms.Panel()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.cmbStatus = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
-        Me.cboTypeFilter = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.cboStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.pnlDeviceDetail = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Guna2NumericUpDown1 = New Guna.UI2.WinForms.Guna2NumericUpDown()
+        Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
+        Me.cmbDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.pnlDeviceDetail = New System.Windows.Forms.Panel()
+        Me.nUpDownPrice = New Guna.UI2.WinForms.Guna2NumericUpDown()
         Me.lblDetailTitle = New System.Windows.Forms.Label()
         Me.pnlDivider = New System.Windows.Forms.Panel()
         Me.lblDevNameF = New System.Windows.Forms.Label()
@@ -43,60 +43,44 @@ Partial Class frmDevices
         Me.btnDeleteDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.FlowLayoutPaneldev = New System.Windows.Forms.FlowLayoutPanel()
-        Me.pnlHeader.SuspendLayout()
+        Me.pnlTop.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
-        CType(Me.Guna2NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDownPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'pnlHeader
-        '
-        Me.pnlHeader.Controls.Add(Me.lblTitle)
-        Me.pnlHeader.Controls.Add(Me.btnAddDevice)
-        Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlHeader.Location = New System.Drawing.Point(0, 59)
-        Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1408, 74)
-        Me.pnlHeader.TabIndex = 5
         '
         'lblTitle
         '
         Me.lblTitle.BackColor = System.Drawing.Color.Transparent
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(23, 19)
+        Me.lblTitle.Location = New System.Drawing.Point(12, 19)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(343, 32)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "🖥  Devices Management"
         '
-        'btnAddDevice
+        'pnlTop
         '
-        Me.btnAddDevice.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.btnAddDevice.BorderRadius = 8
-        Me.btnAddDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.btnAddDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnAddDevice.ForeColor = System.Drawing.Color.White
-        Me.btnAddDevice.Location = New System.Drawing.Point(1212, 6)
-        Me.btnAddDevice.Name = "btnAddDevice"
-        Me.btnAddDevice.Size = New System.Drawing.Size(165, 46)
-        Me.btnAddDevice.TabIndex = 1
-        Me.btnAddDevice.Text = "+  Add Device"
+        Me.pnlTop.Controls.Add(Me.lblTitle)
+        Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlTop.Location = New System.Drawing.Point(0, 0)
+        Me.pnlTop.Name = "pnlTop"
+        Me.pnlTop.Size = New System.Drawing.Size(1458, 66)
+        Me.pnlTop.TabIndex = 7
         '
         'pnlFilter
         '
         Me.pnlFilter.Controls.Add(Me.txtSearch)
+        Me.pnlFilter.Controls.Add(Me.cmbStatus)
         Me.pnlFilter.Controls.Add(Me.btnSearch)
-        Me.pnlFilter.Controls.Add(Me.cboTypeFilter)
-        Me.pnlFilter.Controls.Add(Me.cboStatusFilter)
+        Me.pnlFilter.Controls.Add(Me.btnAddDevice)
+        Me.pnlFilter.Controls.Add(Me.cmbDeviceType)
         Me.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.pnlFilter.Location = New System.Drawing.Point(0, 0)
+        Me.pnlFilter.Location = New System.Drawing.Point(0, 66)
         Me.pnlFilter.Name = "pnlFilter"
-        Me.pnlFilter.Size = New System.Drawing.Size(1408, 59)
-        Me.pnlFilter.TabIndex = 4
+        Me.pnlFilter.Size = New System.Drawing.Size(1458, 64)
+        Me.pnlFilter.TabIndex = 8
         '
         'txtSearch
         '
@@ -108,13 +92,31 @@ Partial Class frmDevices
         Me.txtSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtSearch.Location = New System.Drawing.Point(12, 11)
+        Me.txtSearch.Location = New System.Drawing.Point(18, 8)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.PlaceholderText = "🔍  Search by device name or IP..."
         Me.txtSearch.SelectedText = ""
         Me.txtSearch.Size = New System.Drawing.Size(343, 43)
-        Me.txtSearch.TabIndex = 0
+        Me.txtSearch.TabIndex = 4
+        '
+        'cmbStatus
+        '
+        Me.cmbStatus.BackColor = System.Drawing.Color.Transparent
+        Me.cmbStatus.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.cmbStatus.BorderRadius = 8
+        Me.cmbStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbStatus.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.cmbStatus.FocusedColor = System.Drawing.Color.Empty
+        Me.cmbStatus.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbStatus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.cmbStatus.ItemHeight = 30
+        Me.cmbStatus.Items.AddRange(New Object() {"All Status", "Available", "In Use", "Maintenance"})
+        Me.cmbStatus.Location = New System.Drawing.Point(367, 12)
+        Me.cmbStatus.Name = "cmbStatus"
+        Me.cmbStatus.Size = New System.Drawing.Size(177, 36)
+        Me.cmbStatus.TabIndex = 8
         '
         'btnSearch
         '
@@ -123,53 +125,47 @@ Partial Class frmDevices
         Me.btnSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnSearch.Location = New System.Drawing.Point(377, 9)
+        Me.btnSearch.Location = New System.Drawing.Point(768, 8)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(109, 43)
-        Me.btnSearch.TabIndex = 1
+        Me.btnSearch.TabIndex = 6
         Me.btnSearch.Text = "Search"
         '
-        'cboTypeFilter
+        'btnAddDevice
         '
-        Me.cboTypeFilter.BackColor = System.Drawing.Color.Transparent
-        Me.cboTypeFilter.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.cboTypeFilter.BorderRadius = 8
-        Me.cboTypeFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboTypeFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboTypeFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.cboTypeFilter.FocusedColor = System.Drawing.Color.Empty
-        Me.cboTypeFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cboTypeFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.cboTypeFilter.ItemHeight = 30
-        Me.cboTypeFilter.Items.AddRange(New Object() {"All Types", "PC", "PS4", "PS5"})
-        Me.cboTypeFilter.Location = New System.Drawing.Point(498, 13)
-        Me.cboTypeFilter.Name = "cboTypeFilter"
-        Me.cboTypeFilter.Size = New System.Drawing.Size(182, 36)
-        Me.cboTypeFilter.TabIndex = 2
+        Me.btnAddDevice.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.btnAddDevice.BorderRadius = 8
+        Me.btnAddDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.btnAddDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.btnAddDevice.ForeColor = System.Drawing.Color.White
+        Me.btnAddDevice.Location = New System.Drawing.Point(1246, 6)
+        Me.btnAddDevice.Name = "btnAddDevice"
+        Me.btnAddDevice.Size = New System.Drawing.Size(165, 46)
+        Me.btnAddDevice.TabIndex = 5
+        Me.btnAddDevice.Text = "+  Add Device"
         '
-        'cboStatusFilter
+        'cmbDeviceType
         '
-        Me.cboStatusFilter.BackColor = System.Drawing.Color.Transparent
-        Me.cboStatusFilter.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.cboStatusFilter.BorderRadius = 8
-        Me.cboStatusFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboStatusFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.cboStatusFilter.FocusedColor = System.Drawing.Color.Empty
-        Me.cboStatusFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cboStatusFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.cboStatusFilter.ItemHeight = 30
-        Me.cboStatusFilter.Items.AddRange(New Object() {"All Status", "Available", "In Use", "Maintenance"})
-        Me.cboStatusFilter.Location = New System.Drawing.Point(694, 13)
-        Me.cboStatusFilter.Name = "cboStatusFilter"
-        Me.cboStatusFilter.Size = New System.Drawing.Size(177, 36)
-        Me.cboStatusFilter.TabIndex = 3
+        Me.cmbDeviceType.BackColor = System.Drawing.Color.Transparent
+        Me.cmbDeviceType.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.cmbDeviceType.BorderRadius = 8
+        Me.cmbDeviceType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbDeviceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbDeviceType.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.cmbDeviceType.FocusedColor = System.Drawing.Color.Empty
+        Me.cmbDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.cmbDeviceType.ItemHeight = 30
+        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "PS4", "PS5"})
+        Me.cmbDeviceType.Location = New System.Drawing.Point(559, 12)
+        Me.cmbDeviceType.Name = "cmbDeviceType"
+        Me.cmbDeviceType.Size = New System.Drawing.Size(182, 36)
+        Me.cmbDeviceType.TabIndex = 7
         '
         'pnlDeviceDetail
         '
-        Me.pnlDeviceDetail.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.pnlDeviceDetail.BorderThickness = 1
-        Me.pnlDeviceDetail.Controls.Add(Me.Guna2NumericUpDown1)
+        Me.pnlDeviceDetail.Controls.Add(Me.nUpDownPrice)
         Me.pnlDeviceDetail.Controls.Add(Me.lblDetailTitle)
         Me.pnlDeviceDetail.Controls.Add(Me.pnlDivider)
         Me.pnlDeviceDetail.Controls.Add(Me.lblDevNameF)
@@ -181,61 +177,61 @@ Partial Class frmDevices
         Me.pnlDeviceDetail.Controls.Add(Me.btnDeleteDevice)
         Me.pnlDeviceDetail.Controls.Add(Me.btnCancelDevice)
         Me.pnlDeviceDetail.Dock = System.Windows.Forms.DockStyle.Right
-        Me.pnlDeviceDetail.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlDeviceDetail.Location = New System.Drawing.Point(1000, 133)
+        Me.pnlDeviceDetail.Location = New System.Drawing.Point(1049, 130)
         Me.pnlDeviceDetail.Name = "pnlDeviceDetail"
-        Me.pnlDeviceDetail.Size = New System.Drawing.Size(408, 558)
-        Me.pnlDeviceDetail.TabIndex = 0
+        Me.pnlDeviceDetail.Size = New System.Drawing.Size(409, 640)
+        Me.pnlDeviceDetail.TabIndex = 10
         Me.pnlDeviceDetail.Visible = False
         '
-        'Guna2NumericUpDown1
+        'nUpDownPrice
         '
-        Me.Guna2NumericUpDown1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2NumericUpDown1.BorderRadius = 5
-        Me.Guna2NumericUpDown1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.Guna2NumericUpDown1.BorderThickness = 0
-        Me.Guna2NumericUpDown1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.Guna2NumericUpDown1.DecimalPlaces = 2
-        Me.Guna2NumericUpDown1.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.Guna2NumericUpDown1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.Guna2NumericUpDown1.ForeColor = System.Drawing.Color.White
-        Me.Guna2NumericUpDown1.Location = New System.Drawing.Point(22, 322)
-        Me.Guna2NumericUpDown1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Guna2NumericUpDown1.Name = "Guna2NumericUpDown1"
-        Me.Guna2NumericUpDown1.Size = New System.Drawing.Size(360, 48)
-        Me.Guna2NumericUpDown1.TabIndex = 7
-        Me.Guna2NumericUpDown1.UpDownButtonFillColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Guna2NumericUpDown1.UpDownButtonForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Guna2NumericUpDown1.Value = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.nUpDownPrice.BackColor = System.Drawing.Color.Transparent
+        Me.nUpDownPrice.BorderRadius = 5
+        Me.nUpDownPrice.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom
+        Me.nUpDownPrice.BorderThickness = 0
+        Me.nUpDownPrice.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.nUpDownPrice.DecimalPlaces = 2
+        Me.nUpDownPrice.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
+        Me.nUpDownPrice.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.nUpDownPrice.ForeColor = System.Drawing.Color.White
+        Me.nUpDownPrice.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.nUpDownPrice.Location = New System.Drawing.Point(16, 317)
+        Me.nUpDownPrice.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.nUpDownPrice.Name = "nUpDownPrice"
+        Me.nUpDownPrice.Size = New System.Drawing.Size(360, 48)
+        Me.nUpDownPrice.TabIndex = 18
+        Me.nUpDownPrice.UpDownButtonFillColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.nUpDownPrice.UpDownButtonForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.nUpDownPrice.Value = New Decimal(New Integer() {5, 0, 0, 65536})
         '
         'lblDetailTitle
         '
         Me.lblDetailTitle.BackColor = System.Drawing.Color.Transparent
         Me.lblDetailTitle.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
         Me.lblDetailTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblDetailTitle.Location = New System.Drawing.Point(17, 16)
+        Me.lblDetailTitle.Location = New System.Drawing.Point(15, 11)
         Me.lblDetailTitle.Name = "lblDetailTitle"
         Me.lblDetailTitle.Size = New System.Drawing.Size(377, 32)
-        Me.lblDetailTitle.TabIndex = 0
+        Me.lblDetailTitle.TabIndex = 8
         Me.lblDetailTitle.Text = "Device Details"
         '
         'pnlDivider
         '
         Me.pnlDivider.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.pnlDivider.Location = New System.Drawing.Point(0, 57)
+        Me.pnlDivider.Location = New System.Drawing.Point(-2, 52)
         Me.pnlDivider.Name = "pnlDivider"
         Me.pnlDivider.Size = New System.Drawing.Size(411, 1)
-        Me.pnlDivider.TabIndex = 1
+        Me.pnlDivider.TabIndex = 10
         '
         'lblDevNameF
         '
         Me.lblDevNameF.BackColor = System.Drawing.Color.Transparent
         Me.lblDevNameF.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblDevNameF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblDevNameF.Location = New System.Drawing.Point(18, 89)
+        Me.lblDevNameF.Location = New System.Drawing.Point(14, 84)
         Me.lblDevNameF.Name = "lblDevNameF"
         Me.lblDevNameF.Size = New System.Drawing.Size(229, 19)
-        Me.lblDevNameF.TabIndex = 2
+        Me.lblDevNameF.TabIndex = 12
         Me.lblDevNameF.Text = "DEVICE NAME"
         '
         'txtDeviceName
@@ -247,23 +243,23 @@ Partial Class frmDevices
         Me.txtDeviceName.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.txtDeviceName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtDeviceName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtDeviceName.Location = New System.Drawing.Point(17, 131)
+        Me.txtDeviceName.Location = New System.Drawing.Point(14, 126)
         Me.txtDeviceName.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.txtDeviceName.Name = "txtDeviceName"
         Me.txtDeviceName.PlaceholderText = ""
         Me.txtDeviceName.SelectedText = ""
-        Me.txtDeviceName.Size = New System.Drawing.Size(377, 43)
-        Me.txtDeviceName.TabIndex = 0
+        Me.txtDeviceName.Size = New System.Drawing.Size(365, 43)
+        Me.txtDeviceName.TabIndex = 9
         '
         'lblDevTypeF
         '
         Me.lblDevTypeF.BackColor = System.Drawing.Color.Transparent
         Me.lblDevTypeF.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblDevTypeF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblDevTypeF.Location = New System.Drawing.Point(17, 200)
+        Me.lblDevTypeF.Location = New System.Drawing.Point(15, 195)
         Me.lblDevTypeF.Name = "lblDevTypeF"
         Me.lblDevTypeF.Size = New System.Drawing.Size(229, 19)
-        Me.lblDevTypeF.TabIndex = 3
+        Me.lblDevTypeF.TabIndex = 13
         Me.lblDevTypeF.Text = "DEVICE TYPE"
         '
         'cboDeviceType
@@ -279,20 +275,20 @@ Partial Class frmDevices
         Me.cboDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.cboDeviceType.ItemHeight = 30
         Me.cboDeviceType.Items.AddRange(New Object() {"PC", "PS4", "PS5"})
-        Me.cboDeviceType.Location = New System.Drawing.Point(17, 222)
+        Me.cboDeviceType.Location = New System.Drawing.Point(15, 217)
         Me.cboDeviceType.Name = "cboDeviceType"
-        Me.cboDeviceType.Size = New System.Drawing.Size(377, 36)
-        Me.cboDeviceType.TabIndex = 1
+        Me.cboDeviceType.Size = New System.Drawing.Size(365, 36)
+        Me.cboDeviceType.TabIndex = 11
         '
         'lblStatusF
         '
         Me.lblStatusF.BackColor = System.Drawing.Color.Transparent
         Me.lblStatusF.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblStatusF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblStatusF.Location = New System.Drawing.Point(18, 295)
+        Me.lblStatusF.Location = New System.Drawing.Point(15, 290)
         Me.lblStatusF.Name = "lblStatusF"
         Me.lblStatusF.Size = New System.Drawing.Size(229, 19)
-        Me.lblStatusF.TabIndex = 5
+        Me.lblStatusF.TabIndex = 15
         Me.lblStatusF.Text = "Price Per Hour"
         '
         'btnSaveDevice
@@ -301,10 +297,10 @@ Partial Class frmDevices
         Me.btnSaveDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnSaveDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSaveDevice.ForeColor = System.Drawing.Color.White
-        Me.btnSaveDevice.Location = New System.Drawing.Point(18, 382)
+        Me.btnSaveDevice.Location = New System.Drawing.Point(16, 377)
         Me.btnSaveDevice.Name = "btnSaveDevice"
-        Me.btnSaveDevice.Size = New System.Drawing.Size(377, 45)
-        Me.btnSaveDevice.TabIndex = 4
+        Me.btnSaveDevice.Size = New System.Drawing.Size(364, 45)
+        Me.btnSaveDevice.TabIndex = 14
         Me.btnSaveDevice.Text = "Save Changes"
         '
         'btnDeleteDevice
@@ -315,10 +311,10 @@ Partial Class frmDevices
         Me.btnDeleteDevice.FillColor = System.Drawing.Color.DimGray
         Me.btnDeleteDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnDeleteDevice.ForeColor = System.Drawing.Color.White
-        Me.btnDeleteDevice.Location = New System.Drawing.Point(20, 437)
+        Me.btnDeleteDevice.Location = New System.Drawing.Point(18, 432)
         Me.btnDeleteDevice.Name = "btnDeleteDevice"
         Me.btnDeleteDevice.Size = New System.Drawing.Size(181, 43)
-        Me.btnDeleteDevice.TabIndex = 5
+        Me.btnDeleteDevice.TabIndex = 16
         Me.btnDeleteDevice.Text = "Clear"
         '
         'btnCancelDevice
@@ -328,49 +324,49 @@ Partial Class frmDevices
         Me.btnCancelDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.btnCancelDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancelDevice.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.btnCancelDevice.Location = New System.Drawing.Point(215, 437)
+        Me.btnCancelDevice.Location = New System.Drawing.Point(213, 432)
         Me.btnCancelDevice.Name = "btnCancelDevice"
-        Me.btnCancelDevice.Size = New System.Drawing.Size(181, 43)
-        Me.btnCancelDevice.TabIndex = 6
+        Me.btnCancelDevice.Size = New System.Drawing.Size(167, 43)
+        Me.btnCancelDevice.TabIndex = 17
         Me.btnCancelDevice.Text = "Cancel"
         '
         'FlowLayoutPaneldev
         '
-        Me.FlowLayoutPaneldev.AutoScroll = True
         Me.FlowLayoutPaneldev.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPaneldev.Location = New System.Drawing.Point(0, 133)
+        Me.FlowLayoutPaneldev.Location = New System.Drawing.Point(0, 130)
         Me.FlowLayoutPaneldev.Name = "FlowLayoutPaneldev"
-        Me.FlowLayoutPaneldev.Size = New System.Drawing.Size(1000, 558)
-        Me.FlowLayoutPaneldev.TabIndex = 6
+        Me.FlowLayoutPaneldev.Size = New System.Drawing.Size(1049, 640)
+        Me.FlowLayoutPaneldev.TabIndex = 11
         '
         'frmDevices
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1408, 691)
+        Me.ClientSize = New System.Drawing.Size(1458, 770)
         Me.Controls.Add(Me.FlowLayoutPaneldev)
         Me.Controls.Add(Me.pnlDeviceDetail)
-        Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlFilter)
+        Me.Controls.Add(Me.pnlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmDevices"
         Me.Text = "frmDevices"
-        Me.pnlHeader.ResumeLayout(False)
+        Me.pnlTop.ResumeLayout(False)
         Me.pnlFilter.ResumeLayout(False)
         Me.pnlDeviceDetail.ResumeLayout(False)
-        CType(Me.Guna2NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDownPrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Private WithEvents pnlHeader As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblTitle As Label
-    Private WithEvents btnAddDevice As Guna.UI2.WinForms.Guna2Button
-    Private WithEvents pnlFilter As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents pnlTop As Panel
+    Friend WithEvents pnlFilter As Panel
     Private WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
+    Private WithEvents cmbStatus As Guna.UI2.WinForms.Guna2ComboBox
     Private WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
-    Private WithEvents cboTypeFilter As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents cboStatusFilter As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents pnlDeviceDetail As Guna.UI2.WinForms.Guna2Panel
+    Private WithEvents btnAddDevice As Guna.UI2.WinForms.Guna2Button
+    Private WithEvents cmbDeviceType As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents pnlDeviceDetail As Panel
+    Friend WithEvents nUpDownPrice As Guna.UI2.WinForms.Guna2NumericUpDown
     Private WithEvents lblDetailTitle As Label
     Private WithEvents pnlDivider As Panel
     Private WithEvents lblDevNameF As Label
@@ -381,6 +377,5 @@ Partial Class frmDevices
     Private WithEvents btnSaveDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnDeleteDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnCancelDevice As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2NumericUpDown1 As Guna.UI2.WinForms.Guna2NumericUpDown
     Friend WithEvents FlowLayoutPaneldev As FlowLayoutPanel
 End Class
