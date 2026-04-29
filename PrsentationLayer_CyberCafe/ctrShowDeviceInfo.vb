@@ -5,6 +5,8 @@ Public Class ctrDeviceInfo
     Private ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
     Private ReadOnly ColorInUse As Color = Color.Red
 
+    Public Property DeviceID As Integer
+
     Public Property Status As String
         Get
             Return lblStatus.Text
@@ -17,6 +19,7 @@ Public Class ctrDeviceInfo
     End Property
 
     Public Sub LoadData(deviceInfo As DeviceDTO)
+        DeviceID = deviceInfo.DeviceID
         lblDeviceName.Text = deviceInfo.DeviceName
         lblDeviceType.Text = deviceInfo.DeviceTypeName
         lblStatus.Text = deviceInfo.Status.ToString()

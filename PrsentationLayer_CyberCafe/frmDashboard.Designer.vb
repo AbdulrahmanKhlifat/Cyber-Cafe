@@ -133,7 +133,7 @@ Partial Class frmDashboard
         Me.lblUserName.Location = New System.Drawing.Point(13, 2)
         Me.lblUserName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblUserName.Name = "lblUserName"
-        Me.lblUserName.Size = New System.Drawing.Size(123, 23)
+        Me.lblUserName.Size = New System.Drawing.Size(102, 19)
         Me.lblUserName.TabIndex = 0
         Me.lblUserName.Text = "Administrator"
         '
@@ -146,7 +146,7 @@ Partial Class frmDashboard
         Me.lblUserRole.Location = New System.Drawing.Point(13, 19)
         Me.lblUserRole.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblUserRole.Name = "lblUserRole"
-        Me.lblUserRole.Size = New System.Drawing.Size(49, 19)
+        Me.lblUserRole.Size = New System.Drawing.Size(40, 13)
         Me.lblUserRole.TabIndex = 1
         Me.lblUserRole.Text = "Admin"
         '

@@ -21,11 +21,13 @@ Public Class frmDevices
     End Property
 
     Private Sub ApplyFilters()
-        flpDevices.SuspendLayout()
+        Guna2Transition1.HideSync(flpDevices)
 
         Dim searchText As String = txtSearch.Text.ToLower().Trim()
         Dim selectedStatus As String = cmbStatus.Text.ToLower()
         Dim selectedType As String = cmbDeviceType.Text.ToLower()
+
+        flpDevices.SuspendLayout()
 
         For Each control As Control In flpDevices.Controls
 
@@ -33,23 +35,27 @@ Public Class frmDevices
 
             If device IsNot Nothing Then
 
-                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) Or
-                    device.lblDeviceName.Text.ToLower().Contains(searchText)
+                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) OrElse
+            device.lblDeviceName.Text.ToLower().Contains(searchText)
 
-                Dim matchesStatus = String.IsNullOrEmpty(cmbStatus.Text) Or
-                    cmbStatus.Text = "All Status" Or
-                    device.Status.ToLower().Contains(selectedStatus)
+                Dim matchesStatus As Boolean = String.IsNullOrEmpty(cmbStatus.Text) OrElse
+            cmbStatus.Text = "All Status" OrElse
+            device.Status.ToLower().Contains(selectedStatus)
 
-                Dim matchesType = String.IsNullOrEmpty(cmbDeviceType.Text) Or
-                    cmbDeviceType.Text = "All Types" Or
-                    device.lblDeviceType.Text.ToLower().Contains(selectedType)
+                Dim matchesType As Boolean = String.IsNullOrEmpty(cmbDeviceType.Text) OrElse
+            cmbDeviceType.Text = "All Types" OrElse
+            device.lblDeviceType.Text.ToLower().Contains(selectedType)
 
-                device.Visible = matchesName And matchesStatus And matchesType
+                Dim isMatch As Boolean = matchesName AndAlso matchesStatus AndAlso matchesType
+
+                device.Visible = isMatch
+
             End If
-
         Next
 
         flpDevices.ResumeLayout()
+
+        Guna2Transition1.ShowSync(flpDevices)
     End Sub
 
     Private Sub FillComboBox()
@@ -115,7 +121,7 @@ Public Class frmDevices
         flpDevices.Controls.Clear()
         flpDevices.SuspendLayout()
 
-        Dim devicesList = GetAllDevicesList()
+        Dim devicesList As List(Of DeviceDTO) = GetAllDevicesList()
 
         For Each device In devicesList
             AddDeviceToFlowLayout(device)
@@ -125,11 +131,11 @@ Public Class frmDevices
     End Sub
     Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
         Dim guna As New Guna2MessageDialog With {
-            .caption = caption,
+            .Caption = caption,
             .Text = message,
             .Parent = System.Windows.Forms.Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
-            .icon = icon,
+            .Icon = icon,
             .Buttons = MessageDialogButtons.OK
         }
         guna.Show()
