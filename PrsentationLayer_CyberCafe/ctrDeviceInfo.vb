@@ -54,4 +54,11 @@ Public Class ctrDeviceInfo
     End Property
 
 
+    Private Sub gnCard_MouseHover(sender As Object, e As EventArgs) Handles gnCard.MouseHover
+        gnCard.FillColor = Color.FromArgb(14, 17, 23)
+    End Sub
+
+    Private Sub gnCard_MouseLeave(sender As Object, e As EventArgs) Handles gnCard.MouseLeave
+        gnCard.FillColor = Color.FromArgb(22, 30, 42)
+    End Sub
 End Class

@@ -27,7 +27,6 @@ Partial Class frmDevices
         Me.pnlFilter = New System.Windows.Forms.Panel()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.cmbStatus = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
         Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.cmbDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.pnlDeviceDetail = New System.Windows.Forms.Panel()
@@ -76,7 +75,6 @@ Partial Class frmDevices
         Me.pnlFilter.BackColor = System.Drawing.Color.FromArgb(CType(CType(7, Byte), Integer), CType(CType(13, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.pnlFilter.Controls.Add(Me.txtSearch)
         Me.pnlFilter.Controls.Add(Me.cmbStatus)
-        Me.pnlFilter.Controls.Add(Me.btnSearch)
         Me.pnlFilter.Controls.Add(Me.btnAddDevice)
         Me.pnlFilter.Controls.Add(Me.cmbDeviceType)
         Me.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top
@@ -87,7 +85,7 @@ Partial Class frmDevices
         '
         'txtSearch
         '
-        Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(7, Byte), Integer), CType(CType(13, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.txtSearch.BorderRadius = 12
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
@@ -121,19 +119,6 @@ Partial Class frmDevices
         Me.cmbStatus.Size = New System.Drawing.Size(177, 36)
         Me.cmbStatus.StartIndex = 0
         Me.cmbStatus.TabIndex = 8
-        '
-        'btnSearch
-        '
-        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnSearch.BorderRadius = 15
-        Me.btnSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.btnSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnSearch.Location = New System.Drawing.Point(768, 8)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(109, 43)
-        Me.btnSearch.TabIndex = 6
-        Me.btnSearch.Text = "Search"
         '
         'btnAddDevice
         '
@@ -387,7 +372,6 @@ Partial Class frmDevices
     Friend WithEvents pnlFilter As Panel
     Private WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents cmbStatus As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnAddDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents cmbDeviceType As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents pnlDeviceDetail As Panel

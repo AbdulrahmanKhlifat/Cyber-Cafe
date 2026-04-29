@@ -280,9 +280,9 @@ Partial Class frmTransactions
         'frmTransactions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1393, 652)
+        Me.ClientSize = New System.Drawing.Size(1341, 721)
         Me.Controls.Add(Me.dgvTrans)
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlTop)
