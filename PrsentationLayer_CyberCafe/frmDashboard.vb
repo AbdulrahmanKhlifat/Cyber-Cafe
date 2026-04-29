@@ -6,7 +6,7 @@ Public Class frmDashboard
 
     Private _LastButtonClicked As Button
 
-    Public Sub New() 'admin As AdminDTO)
+    Public Sub New(admin As AdminDTO)
         InitializeComponent()
         _LastButtonClicked = New Button()
         '_admin = admin
@@ -56,4 +56,5 @@ Public Class frmDashboard
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
         DisplayForm(New frmMainForm())
     End Sub
+
 End Class

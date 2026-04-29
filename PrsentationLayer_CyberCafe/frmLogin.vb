@@ -146,4 +146,5 @@ Public Class frmLogin
         btnExit.BackColor = ColorTranslator.FromHtml("#1F2937")
     End Sub
 
+
 End Class
