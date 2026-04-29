@@ -121,14 +121,14 @@ Public Class frmLogin
             Return
         End If
 
-        Dim loginResult As LoginResultDTO = UserManager.AuthenticateUser(txtUsername.Text, txtPassword.Text)
+        Dim loginResult As LoginResultDTO = UserServices.AuthenticateUser(txtUsername.Text, txtPassword.Text)
 
         If Not loginResult.IsAuthenticated Then
             _HandleFailedLogin(loginResult)
             Return
         End If
 
-        LoggedInUser.CurrentUser = UserManager.LoadUser(loginResult.UserID, loginResult.Role)
+        LoggedInUser.CurrentUser = UserServices.LoadUser(loginResult.UserID, loginResult.Role)
 
         _HandleSuccessfulLogin()
     End Sub

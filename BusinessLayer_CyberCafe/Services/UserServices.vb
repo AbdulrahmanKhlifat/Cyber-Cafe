@@ -2,7 +2,7 @@
 Imports CyberCafeModels.CyberCafe.Models
 
 Namespace CyberCafe.BusinessLayer
-    Public Class UserManager
+    Public Class UserServices
 
         Public Shared Function AuthenticateUser(username As String, password As String) As LoginResultDTO
             Dim user As UserDTO = UserRepo.GetLoginInfoByUsername(username)
@@ -46,10 +46,10 @@ Namespace CyberCafe.BusinessLayer
             Select Case role
 
                 Case UserRoleType.Admin
-                    Return AdminManager.Find(userID)
+                    Return AdminServices.Find(userID)
 
                 Case UserRoleType.Customer
-                    Return CustomerManager.Find(userID)
+                    Return CustomerServices.Find(userID)
 
                 Case Else
                     Return Nothing

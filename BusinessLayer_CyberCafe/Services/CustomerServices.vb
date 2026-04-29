@@ -1,7 +1,7 @@
 ﻿Imports CyberCafe_DataAccess
 Imports CyberCafeModels.CyberCafe.Models
 
-Public Class CustomerManager
+Public Class CustomerServices
 
     Public Shared Function AddCustomer(customerDTO As CustomerDTO) As Boolean
 

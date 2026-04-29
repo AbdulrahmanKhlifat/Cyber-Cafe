@@ -1,8 +1,8 @@
 ﻿Imports CyberCafe_DataAccess
 
-Public Class DeviceGameManager
+Public Class DeviceGameService
 
-    Public Shared Function AddGameToDevice(deviceID As Integer, gameID As Integer) As Boolean
+    Public Shared Function Assign(deviceID As Integer, gameID As Integer) As Boolean
         If deviceID <= 0 OrElse gameID <= 0 Then
             Return False
         End If
@@ -20,24 +20,23 @@ Public Class DeviceGameManager
         End If
         Return DeviceGameRepo.RemoveGameFromDevice(deviceID, gameID)
     End Function
+
     Public Shared Function GetGamesByDeviceID(deviceID As Integer) As DataTable
+
         If deviceID <= 0 Then
-            Return New DataTable()
+            Return Nothing
         End If
+
         Return DeviceGameRepo.GetGamesByDeviceID(deviceID)
     End Function
 
-    Public Shared Function GetAllDeviceGames(deviceID As Integer) As DataTable
-        Return DeviceGameRepo.GetGamesByDeviceID(deviceID)
-    End Function
-
-    Public Shared Function UpdateDeviceGames(deviceID As Integer, selectedGameIDs As List(Of Integer)) As Boolean
+    Public Shared Function SetDeviceGames(deviceID As Integer, selectedGameIDs As List(Of Integer)) As Boolean
         If deviceID <= 0 Then Return False
 
         If selectedGameIDs Is Nothing Then
             Return False
         End If
 
-        Return DeviceGameRepo.UpdateDeviceGamesWithTransaction(deviceID, selectedGameIDs)
+        Return DeviceGameRepo.UpdateDeviceGames(deviceID, selectedGameIDs)
     End Function
 End Class

@@ -1,6 +1,5 @@
 ﻿Imports System.Data.SqlClient
 Imports CyberCafeModels
-Imports CyberCafeModels.CyberCafe.Models
 
 Public Class GameRepo
     Public Shared Function AddNewGame(gameDTO As GameDTO) As Integer
@@ -31,25 +30,36 @@ Public Class GameRepo
 
 
     Public Shared Function GetGameByID(gameID As Integer) As GameDTO
+
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
             Dim query As String = "SELECT GameID, GameName, GameDescription FROM Games WHERE GameID = @GameID"
+
             Using cmd As New SqlCommand(query, conn)
+
                 cmd.Parameters.Add("@GameID", SqlDbType.Int).Value = gameID
                 Try
+
                     conn.Open()
+
                     Using reader As SqlDataReader = cmd.ExecuteReader()
+
                         If reader.Read() Then
+
                             Return New GameDTO() With {
                                 .GameID = CType(reader("GameID"), Integer),
                                 .GameName = CType(reader("GameName"), String),
                                 .GameDescription = If(reader("GameDescription") Is DBNull.Value, "", CType(reader("GameDescription"), String))
                             }
+
                         End If
                     End Using
+
                 Catch ex As Exception
                 End Try
             End Using
         End Using
+
         Return Nothing
     End Function
 
@@ -69,18 +79,18 @@ Public Class GameRepo
         Return dt
     End Function
     Public Shared Function IsGameExists(gameName As String) As Boolean
-        Dim Isexists As Boolean = False
+        Dim isFound As Boolean = False
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "SELECT 1 FROM Games WHERE GameName = @GameName"
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@GameName", SqlDbType.NVarChar, 50).Value = gameName
                 Try
                     conn.Open()
-                    Isexists = (cmd.ExecuteScalar() IsNot Nothing)
+                    isFound = (cmd.ExecuteScalar() IsNot Nothing)
                 Catch ex As Exception
                 End Try
             End Using
         End Using
-        Return Isexists
+        Return isFound
     End Function
 End Class

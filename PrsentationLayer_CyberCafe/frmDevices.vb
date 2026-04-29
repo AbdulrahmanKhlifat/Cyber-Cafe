@@ -16,7 +16,7 @@ Public Class frmDevices
 
 
     Private Sub FillComboBox()
-        Dim dt As DataTable = DeviceTypeManager.GetAllDeviceTypes()
+        Dim dt As DataTable = DeviceTypeServices.GetAllDeviceTypes()
         cboDeviceType.DataSource = dt
         cboDeviceType.ValueMember = "DeviceTypeID"
         cboDeviceType.DisplayMember = "DeviceTypeName"
@@ -51,7 +51,7 @@ Public Class frmDevices
 
     Private Function GetAllDevicesList() As List(Of DeviceDTO)
         Dim list As New List(Of DeviceDTO)
-        Dim dtDevices As DataTable = DeviceManager.GetAllDevices()
+        Dim dtDevices As DataTable = DeviceServices.GetAllDevices()
 
         For Each row As DataRow In dtDevices.Rows
             list.Add(New DeviceDTO With {
@@ -124,7 +124,7 @@ Public Class frmDevices
             .PricePerHour = nUpDownPrice.Value
         }
 
-        If DeviceManager.AddDevice(newDevice) Then
+        If DeviceServices.AddDevice(newDevice) Then
             _ShowGunaMessage("Device added successfully!", "Success", MessageDialogIcon.Information)
             ClearAddDeviceDetails()
             pnlDeviceDetail.Visible = False

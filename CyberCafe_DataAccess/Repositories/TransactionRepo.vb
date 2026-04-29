@@ -50,56 +50,6 @@ Public Class TransactionRepo
         Return transactionID
     End Function
 
-    Public Shared Function UpdateTransaction(transaction As TransactionDTO) As Boolean
-        Dim isUpdated As Boolean = False
-
-        Using conn As SqlConnection = New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "UPDATE Transactions 
-                                   SET CustomerID = @CustomerID, 
-                                       ProcessedByAdminID = @ProcessedByAdminID, 
-                                       TransactionType = @TransactionType, 
-                                       TransactionDate = @TransactionDate, 
-                                       TransactionNotes = @TransactionNotes, 
-                                       SessionID = @SessionID,
-                                       IsDeleted = @IsDeleted
-                                   WHERE TransactionID = @TransactionID;"
-
-            Using cmd As SqlCommand = New SqlCommand(query, conn)
-                cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = transaction.TransactionID
-                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = transaction.CustomerID
-                cmd.Parameters.Add("@ProcessedByAdminID", SqlDbType.Int).Value = transaction.ProcessedByAdminID
-                cmd.Parameters.Add("@TransactionType", SqlDbType.Int).Value = Convert.ToInt32(transaction.TransactionType)
-                cmd.Parameters.Add("@TransactionDate", SqlDbType.DateTime).Value = transaction.TransactionDate
-                cmd.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = transaction.IsDeleted
-
-
-                If String.IsNullOrEmpty(transaction.TransactionNotes) Then
-                    cmd.Parameters.Add("@TransactionNotes", SqlDbType.NVarChar, -1).Value = DBNull.Value
-                Else
-                    cmd.Parameters.Add("@TransactionNotes", SqlDbType.NVarChar, -1).Value = transaction.TransactionNotes
-                End If
-
-
-                If transaction.SessionID.HasValue Then
-                    cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = transaction.SessionID.Value
-                Else
-                    cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = DBNull.Value
-                End If
-
-                Try
-                    conn.Open()
-                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
-                    isUpdated = (rowsAffected > 0)
-                Catch ex As Exception
-                    ' Log exception here
-                    isUpdated = False
-                End Try
-            End Using
-        End Using
-
-        Return isUpdated
-    End Function
-
     Public Shared Function DeleteTransaction(transactionID As Integer) As Boolean
         Dim isDeleted As Boolean = False
 

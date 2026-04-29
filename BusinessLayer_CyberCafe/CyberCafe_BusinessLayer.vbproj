@@ -80,16 +80,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminManager.vb" />
-    <Compile Include="CustomerManager.vb" />
-    <Compile Include="DeviceGameManager.vb" />
-    <Compile Include="DeviceManager.vb" />
-    <Compile Include="DeviceTypeManager.vb" />
-    <Compile Include="GameManager.vb" />
-    <Compile Include="HashUtility.vb" />
-    <Compile Include="LoggedInUser.vb" />
-    <Compile Include="TransactionManager.vb" />
-    <Compile Include="UserManager.vb" />
+    <Compile Include="Services\AdminServices.vb" />
+    <Compile Include="Services\CustomerServices.vb" />
+    <Compile Include="Services\DeviceGameService.vb" />
+    <Compile Include="Services\DeviceServices.vb" />
+    <Compile Include="Services\DeviceTypeServices.vb" />
+    <Compile Include="Services\GameServices.vb" />
+    <Compile Include="Utilities\HashUtility.vb" />
+    <Compile Include="Session Context\LoggedInUser.vb" />
+    <Compile Include="Services\TransactionServices.vb" />
+    <Compile Include="Services\UserServices.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
