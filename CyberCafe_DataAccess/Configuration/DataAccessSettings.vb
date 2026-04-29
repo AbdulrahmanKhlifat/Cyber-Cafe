@@ -1,5 +1,4 @@
-﻿
-Imports System.Configuration
+﻿Imports System.Configuration
 
 Public Class DataAccessSettings
     Public Shared ReadOnly connectionString As String =

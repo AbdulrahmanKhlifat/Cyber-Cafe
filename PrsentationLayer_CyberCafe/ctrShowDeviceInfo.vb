@@ -1,9 +1,20 @@
 ﻿Imports CyberCafeModels
 
-Public Class ctrShowDeviceInfo
+Public Class ctrDeviceInfo
 
     Private ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
     Private ReadOnly ColorInUse As Color = Color.Red
+
+    Public Property Status As String
+        Get
+            Return lblStatus.Text
+        End Get
+
+        Set(value As String)
+            lblStatus.Text = value
+        End Set
+
+    End Property
 
     Public Sub LoadData(deviceInfo As DeviceDTO)
         lblDeviceName.Text = deviceInfo.DeviceName
