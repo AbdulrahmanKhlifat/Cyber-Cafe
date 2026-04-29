@@ -33,7 +33,11 @@ Public Class frmDevices
     End Sub
 
     Private Sub btnAddDevice_Click(sender As Object, e As EventArgs) Handles btnAddDevice.Click
-        pnlDeviceDetail.Visible = True
+
+        If Not pnlDeviceDetail.Visible Then
+            pnlDeviceDetail.Visible = True
+        End If
+
     End Sub
     Private Sub ClearAddDeviceDetails()
         txtDeviceName.Text = ""
@@ -109,13 +113,19 @@ Public Class frmDevices
 
     Private Function IsValidData() As Boolean
         If String.IsNullOrWhiteSpace(txtDeviceName.Text) OrElse cboDeviceType.SelectedValue Is Nothing Then
+
             _ShowGunaMessage("Please fill in all required fields.", "Validation Error", MessageDialogIcon.Warning)
             Return False
+
         End If
+
         Return True
+
     End Function
     Private Sub btnSaveDevice_Click(sender As Object, e As EventArgs) Handles btnSaveDevice.Click
-        If Not IsValidData() Then Return
+        If Not IsValidData() Then
+            Return
+        End If
 
         Dim newDevice As New DeviceDTO With {
             .DeviceName = txtDeviceName.Text.Trim(),
@@ -130,7 +140,11 @@ Public Class frmDevices
             pnlDeviceDetail.Visible = False
             LoadDevices()
         Else
+
             _ShowGunaMessage("Failed to add device.", "Error", MessageDialogIcon.Error)
+
         End If
+
     End Sub
+
 End Class

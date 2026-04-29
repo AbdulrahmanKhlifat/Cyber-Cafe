@@ -14,14 +14,18 @@ Public Class DeviceTypeRepo
                 Try
                     conn.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
+
                         If reader.HasRows Then
                             dt.Load(reader)
                         End If
+
                     End Using
+
                 Catch ex As Exception
 
                 End Try
             End Using
+
         End Using
 
         Return dt
@@ -30,6 +34,7 @@ Public Class DeviceTypeRepo
 
     Public Shared Function GetDeviceTypeByID(deviceTypeID As Integer) As DeviceTypeDTO
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
             Dim query As String = "SELECT DeviceTypeID, DeviceName, DeviceDescription 
                                    FROM DeviceType 
                                    WHERE DeviceTypeID = @DeviceTypeID"
@@ -40,7 +45,9 @@ Public Class DeviceTypeRepo
                 Try
                     conn.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
+
                         If reader.Read() Then
+
                             Dim deviceType As New DeviceTypeDTO()
                             With deviceType
                                 .DeviceTypeID = CType(reader("DeviceTypeID"), Integer)
@@ -48,12 +55,17 @@ Public Class DeviceTypeRepo
                                 .DeviceDescription = If(reader("DeviceDescription") Is DBNull.Value,
                                                        "", CType(reader("DeviceDescription"), String))
                             End With
+
                             Return deviceType
+
                         End If
+
                     End Using
+
                 Catch ex As Exception
 
                 End Try
+
             End Using
         End Using
 

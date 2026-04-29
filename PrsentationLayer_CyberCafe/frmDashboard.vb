@@ -2,26 +2,34 @@
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class frmDashboard
+
     Private _admin As AdminDTO
 
     Private _LastButtonClicked As Button
 
     Public Sub New(admin As AdminDTO)
+
         InitializeComponent()
         _LastButtonClicked = New Button()
-        '_admin = admin
+        _admin = admin
+
     End Sub
 
     Private Sub _UpdateButtonColor(btn As Button)
+
         _LastButtonClicked.BackColor = Color.FromArgb(28, 33, 40)
         _LastButtonClicked = btn
         btn.BackColor = Color.FromArgb(0, 200, 160)
+
     End Sub
 
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         tmrClock.Start()
         pnlTopBar.EnableDragging()
         ChangeForm(New frmMainForm())
+        lblClock.Text = DateTime.Now.ToString("HH:mm:ss   ddd, MMM dd yyyy")
+
     End Sub
 
     Private Sub tmrClock_Tick(sender As Object, e As EventArgs) Handles tmrClock.Tick
@@ -70,11 +78,4 @@ Public Class frmDashboard
 
     End Sub
 
-    Private Sub pnlTopBar_Paint(sender As Object, e As PaintEventArgs) Handles pnlTopBar.Paint
-
-    End Sub
-
-    Private Sub lblLogoIcon_Click(sender As Object, e As EventArgs) Handles lblLogoIcon.Click
-
-    End Sub
 End Class

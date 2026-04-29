@@ -81,15 +81,19 @@ Public Class GameRepo
     Public Shared Function IsGameExists(gameName As String) As Boolean
         Dim isFound As Boolean = False
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
             Dim query As String = "SELECT 1 FROM Games WHERE GameName = @GameName"
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@GameName", SqlDbType.NVarChar, 50).Value = gameName
+
                 Try
                     conn.Open()
                     isFound = (cmd.ExecuteScalar() IsNot Nothing)
                 Catch ex As Exception
+
                 End Try
             End Using
+
         End Using
         Return isFound
     End Function

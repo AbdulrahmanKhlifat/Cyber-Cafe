@@ -1,5 +1,5 @@
 ﻿
-Imports System.Configuration ' لازم تضيف هاد الـ Reference للمشروع
+Imports System.Configuration
 
 Public Class DataAccessSettings
     Public Shared ReadOnly connectionString As String =

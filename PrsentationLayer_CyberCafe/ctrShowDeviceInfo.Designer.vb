@@ -23,11 +23,11 @@ Partial Class ctrShowDeviceInfo
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gnCard = New Guna.UI2.WinForms.Guna2Panel()
+        Me.pbStatusDot = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.gnSeparator = New Guna.UI2.WinForms.Guna2Separator()
         Me.lblDeviceType = New System.Windows.Forms.Label()
         Me.lblDeviceName = New System.Windows.Forms.Label()
-        Me.pbStatusDot = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         Me.pbDeviceIcon = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.gnCard.SuspendLayout()
         CType(Me.pbStatusDot, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,13 +47,24 @@ Partial Class ctrShowDeviceInfo
         Me.gnCard.Controls.Add(Me.lblDeviceName)
         Me.gnCard.Controls.Add(Me.pbDeviceIcon)
         Me.gnCard.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gnCard.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.gnCard.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.gnCard.Location = New System.Drawing.Point(0, 0)
         Me.gnCard.Name = "gnCard"
         Me.gnCard.ShadowDecoration.BorderRadius = 18
         Me.gnCard.ShadowDecoration.Enabled = True
         Me.gnCard.Size = New System.Drawing.Size(220, 210)
         Me.gnCard.TabIndex = 0
+        '
+        'pbStatusDot
+        '
+        Me.pbStatusDot.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.pbStatusDot.ImageRotate = 0!
+        Me.pbStatusDot.Location = New System.Drawing.Point(22, 170)
+        Me.pbStatusDot.Name = "pbStatusDot"
+        Me.pbStatusDot.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
+        Me.pbStatusDot.Size = New System.Drawing.Size(12, 12)
+        Me.pbStatusDot.TabIndex = 5
+        Me.pbStatusDot.TabStop = False
         '
         'lblStatus
         '
@@ -95,17 +106,6 @@ Partial Class ctrShowDeviceInfo
         Me.lblDeviceName.TabIndex = 2
         Me.lblDeviceName.Text = "PC-01"
         Me.lblDeviceName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'pbStatusDot
-        '
-        Me.pbStatusDot.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.pbStatusDot.ImageRotate = 0!
-        Me.pbStatusDot.Location = New System.Drawing.Point(22, 170)
-        Me.pbStatusDot.Name = "pbStatusDot"
-        Me.pbStatusDot.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
-        Me.pbStatusDot.Size = New System.Drawing.Size(12, 12)
-        Me.pbStatusDot.TabIndex = 5
-        Me.pbStatusDot.TabStop = False
         '
         'pbDeviceIcon
         '

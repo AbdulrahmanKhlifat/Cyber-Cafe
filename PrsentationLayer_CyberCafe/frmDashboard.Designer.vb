@@ -53,7 +53,7 @@ Partial Class frmDashboard
         Me.btnMinWin.FillColor = System.Drawing.Color.FromArgb(CType(CType(63, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.btnMinWin.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnMinWin.ForeColor = System.Drawing.Color.White
-        Me.btnMinWin.Location = New System.Drawing.Point(1586, 20)
+        Me.btnMinWin.Location = New System.Drawing.Point(1622, 20)
         Me.btnMinWin.Margin = New System.Windows.Forms.Padding(2)
         Me.btnMinWin.Name = "btnMinWin"
         Me.btnMinWin.Size = New System.Drawing.Size(23, 17)
@@ -72,7 +72,7 @@ Partial Class frmDashboard
         Me.pnlTopBar.Location = New System.Drawing.Point(0, 0)
         Me.pnlTopBar.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlTopBar.Name = "pnlTopBar"
-        Me.pnlTopBar.Size = New System.Drawing.Size(1664, 56)
+        Me.pnlTopBar.Size = New System.Drawing.Size(1700, 56)
         Me.pnlTopBar.TabIndex = 0
         '
         'lblLogoIcon
@@ -105,7 +105,7 @@ Partial Class frmDashboard
         Me.lblClock.BackColor = System.Drawing.Color.Transparent
         Me.lblClock.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.lblClock.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblClock.Location = New System.Drawing.Point(190, 13)
+        Me.lblClock.Location = New System.Drawing.Point(191, 13)
         Me.lblClock.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblClock.Name = "lblClock"
         Me.lblClock.Size = New System.Drawing.Size(189, 25)
@@ -118,10 +118,10 @@ Partial Class frmDashboard
         Me.pnlUserBadge.BackColor = System.Drawing.Color.Transparent
         Me.pnlUserBadge.Controls.Add(Me.lblUserName)
         Me.pnlUserBadge.Controls.Add(Me.lblUserRole)
-        Me.pnlUserBadge.Location = New System.Drawing.Point(1219, 6)
+        Me.pnlUserBadge.Location = New System.Drawing.Point(1249, 6)
         Me.pnlUserBadge.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlUserBadge.Name = "pnlUserBadge"
-        Me.pnlUserBadge.Size = New System.Drawing.Size(167, 46)
+        Me.pnlUserBadge.Size = New System.Drawing.Size(173, 46)
         Me.pnlUserBadge.TabIndex = 2
         '
         'lblUserName
@@ -157,7 +157,7 @@ Partial Class frmDashboard
         Me.btnCloseWin.FillColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(73, Byte), Integer))
         Me.btnCloseWin.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnCloseWin.ForeColor = System.Drawing.Color.White
-        Me.btnCloseWin.Location = New System.Drawing.Point(1619, 21)
+        Me.btnCloseWin.Location = New System.Drawing.Point(1655, 21)
         Me.btnCloseWin.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCloseWin.Name = "btnCloseWin"
         Me.btnCloseWin.Size = New System.Drawing.Size(21, 17)
@@ -180,7 +180,7 @@ Partial Class frmDashboard
         Me.pnlNav.Location = New System.Drawing.Point(0, 56)
         Me.pnlNav.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlNav.Name = "pnlNav"
-        Me.pnlNav.Size = New System.Drawing.Size(182, 675)
+        Me.pnlNav.Size = New System.Drawing.Size(182, 694)
         Me.pnlNav.TabIndex = 2
         '
         'btnTransactions
@@ -189,10 +189,10 @@ Partial Class frmDashboard
         Me.btnTransactions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTransactions.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnTransactions.ForeColor = System.Drawing.Color.White
-        Me.btnTransactions.Location = New System.Drawing.Point(-2, 236)
+        Me.btnTransactions.Location = New System.Drawing.Point(-3, 323)
         Me.btnTransactions.Margin = New System.Windows.Forms.Padding(2)
         Me.btnTransactions.Name = "btnTransactions"
-        Me.btnTransactions.Size = New System.Drawing.Size(182, 56)
+        Me.btnTransactions.Size = New System.Drawing.Size(182, 78)
         Me.btnTransactions.TabIndex = 0
         Me.btnTransactions.Text = "Transactions"
         '
@@ -205,7 +205,7 @@ Partial Class frmDashboard
         Me.btnDashboard.Location = New System.Drawing.Point(-2, 0)
         Me.btnDashboard.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDashboard.Name = "btnDashboard"
-        Me.btnDashboard.Size = New System.Drawing.Size(182, 56)
+        Me.btnDashboard.Size = New System.Drawing.Size(182, 78)
         Me.btnDashboard.TabIndex = 1
         Me.btnDashboard.Text = "Dashboard"
         '
@@ -216,10 +216,10 @@ Partial Class frmDashboard
         Me.btnSessions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSessions.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSessions.ForeColor = System.Drawing.Color.White
-        Me.btnSessions.Location = New System.Drawing.Point(-1, 174)
+        Me.btnSessions.Location = New System.Drawing.Point(-1, 243)
         Me.btnSessions.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSessions.Name = "btnSessions"
-        Me.btnSessions.Size = New System.Drawing.Size(182, 56)
+        Me.btnSessions.Size = New System.Drawing.Size(182, 78)
         Me.btnSessions.TabIndex = 11
         Me.btnSessions.Text = "Sessions"
         Me.btnSessions.UseVisualStyleBackColor = False
@@ -231,10 +231,10 @@ Partial Class frmDashboard
         Me.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCustomers.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCustomers.ForeColor = System.Drawing.Color.White
-        Me.btnCustomers.Location = New System.Drawing.Point(0, 114)
+        Me.btnCustomers.Location = New System.Drawing.Point(-4, 162)
         Me.btnCustomers.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCustomers.Name = "btnCustomers"
-        Me.btnCustomers.Size = New System.Drawing.Size(182, 56)
+        Me.btnCustomers.Size = New System.Drawing.Size(182, 78)
         Me.btnCustomers.TabIndex = 10
         Me.btnCustomers.Text = "Customers"
         Me.btnCustomers.UseVisualStyleBackColor = False
@@ -245,7 +245,7 @@ Partial Class frmDashboard
         Me.btnLogout.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(73, Byte), Integer))
-        Me.btnLogout.Location = New System.Drawing.Point(0, 619)
+        Me.btnLogout.Location = New System.Drawing.Point(0, 638)
         Me.btnLogout.Margin = New System.Windows.Forms.Padding(2)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Size = New System.Drawing.Size(182, 56)
@@ -259,10 +259,10 @@ Partial Class frmDashboard
         Me.btnDevices.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDevices.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDevices.ForeColor = System.Drawing.Color.White
-        Me.btnDevices.Location = New System.Drawing.Point(1, 58)
+        Me.btnDevices.Location = New System.Drawing.Point(-2, 81)
         Me.btnDevices.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDevices.Name = "btnDevices"
-        Me.btnDevices.Size = New System.Drawing.Size(182, 56)
+        Me.btnDevices.Size = New System.Drawing.Size(182, 78)
         Me.btnDevices.TabIndex = 8
         Me.btnDevices.Text = "Devices"
         Me.btnDevices.UseVisualStyleBackColor = False
@@ -273,14 +273,14 @@ Partial Class frmDashboard
         Me.pnlMain.Location = New System.Drawing.Point(182, 56)
         Me.pnlMain.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(1482, 675)
+        Me.pnlMain.Size = New System.Drawing.Size(1518, 694)
         Me.pnlMain.TabIndex = 3
         '
         'frmDashboard
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1664, 731)
+        Me.ClientSize = New System.Drawing.Size(1700, 750)
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.pnlNav)
         Me.Controls.Add(Me.pnlTopBar)
