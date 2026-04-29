@@ -82,6 +82,10 @@
   <ItemGroup>
     <Compile Include="AdminManager.vb" />
     <Compile Include="CustomerManager.vb" />
+    <Compile Include="DeviceGameManager.vb" />
+    <Compile Include="DeviceManager.vb" />
+    <Compile Include="DeviceTypeManager.vb" />
+    <Compile Include="GameManager.vb" />
     <Compile Include="HashUtility.vb" />
     <Compile Include="LoggedInUser.vb" />
     <Compile Include="TransactionManager.vb" />

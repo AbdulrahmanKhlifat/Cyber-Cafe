@@ -6,10 +6,10 @@ Public Class frmDashboard
 
     Private _LastButtonClicked As Button
 
-    Public Sub New(admin As AdminDTO)
+    Public Sub New() 'admin As AdminDTO)
         InitializeComponent()
         _LastButtonClicked = New Button()
-        _admin = admin
+        '_admin = admin
     End Sub
 
     Private Sub _UpdateButtonColor(btn As Button)

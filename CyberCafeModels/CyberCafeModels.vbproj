@@ -66,6 +66,12 @@
   <ItemGroup>
     <Compile Include="AdminDTO.vb" />
     <Compile Include="CustomerDTO.vb" />
+    <Compile Include="DeviceDTO.vb" />
+    <Compile Include="DeviceGameDTO.vb" />
+    <Compile Include="DeviceStatus.vb" />
+    <Compile Include="DeviceType.vb" />
+    <Compile Include="DeviceTypeDTO.vb" />
+    <Compile Include="GamesDTO.vb" />
     <Compile Include="LoginResultDTO.vb" />
     <Compile Include="TransactionDTO.vb" />
     <Compile Include="TransactionResults.vb" />

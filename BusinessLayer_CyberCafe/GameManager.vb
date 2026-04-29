@@ -1,0 +1,25 @@
+﻿Imports CyberCafe_DataAccess
+Imports CyberCafeModels
+Imports CyberCafeModels.CyberCafe.Models
+
+Public Class GameManager
+
+
+    Public Shared Function AddGame(gameDTO As GameDTO) As Boolean
+        If GameRepo.IsGameExists(gameDTO.GameName) Then
+            Throw New Exception("Game already Exists")
+        End If
+
+        Dim newID = GameRepo.AddNewGame(gameDTO)
+        Return newID <> -1
+    End Function
+
+    Public Shared Function Find(gameID As Integer) As GameDTO
+        Return GameRepo.GetGameByID(gameID)
+    End Function
+
+    Public Shared Function GetAllGames() As DataTable
+        Return GameRepo.GetAllGames()
+    End Function
+
+End Class
