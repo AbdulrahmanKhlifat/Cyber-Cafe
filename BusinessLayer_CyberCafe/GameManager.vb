@@ -15,6 +15,9 @@ Public Class GameManager
     End Function
 
     Public Shared Function Find(gameID As Integer) As GameDTO
+        If gameID <= 0 Then
+            Return Nothing
+        End If
         Return GameRepo.GetGameByID(gameID)
     End Function
 

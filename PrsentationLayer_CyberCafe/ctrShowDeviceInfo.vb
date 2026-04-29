@@ -1,36 +1,38 @@
-﻿Public Class ctrShowDeviceInfo
+﻿Imports CyberCafeModels
 
-    Public Sub New()
-        InitializeComponent()
-    End Sub
-    Public Sub LoadTestData(name As String, type As String, status As String)
-        lblDeviceName.Text = name
-        lblDeviceType.Text = type
-        lblStatus.Text = status
+Public Class ctrShowDeviceInfo
 
-        ' Test image logic
-        If type = "PC" Then
-            pbDeviceIcon.Image = My.Resources.imac
-        Else
-            pbDeviceIcon.Image = My.Resources.games
-        End If
+    Private ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
+    Private ReadOnly ColorInUse As Color = Color.Red
+
+    Public Sub LoadData(deviceInfo As DeviceDTO)
+        lblDeviceName.Text = deviceInfo.DeviceName
+        lblDeviceType.Text = deviceInfo.DeviceTypeName
+        lblStatus.Text = deviceInfo.Status.ToString()
+
+        UpdateUI(deviceInfo.DeviceTypeName, deviceInfo.Status)
     End Sub
-    Public Sub CheckStatusDot(status As String)
-        Select Case status
-            Case "Available"
-                pbStatusDot.FillColor = Color.Green
-                lblStatus.ForeColor = Color.Green
-            Case "In Use"
-                pbStatusDot.FillColor = Color.DarkRed
-                lblStatus.ForeColor = Color.Red
-            Case "Maintenance"
-                pbStatusDot.FillColor = Color.Orange
-                lblStatus.ForeColor = Color.Orange
+
+    Private Sub UpdateUI(typeName As String, status As enDeviceStatus)
+        Dim isAvailable As Boolean = (status = enDeviceStatus.Available)
+
+        Dim statusColor As Color = If(isAvailable, ColorAvailable, ColorInUse)
+        pbStatusDot.FillColor = statusColor
+        lblStatus.ForeColor = statusColor
+
+        pbDeviceIcon.Image = GetDeviceImage(typeName, isAvailable)
+    End Sub
+
+    Private Function GetDeviceImage(typeName As String, isAvailable As Boolean) As Image
+        Select Case typeName.ToUpper()
+            Case "PC"
+                Return If(isAvailable, My.Resources.images__1__removebg_preview, My.Resources.imac)
+            Case "PS4", "PS5"
+                Return If(isAvailable, My.Resources.games, My.Resources.games)
             Case Else
-                pbStatusDot.FillColor = Color.Gray
-                lblStatus.ForeColor = Color.Gray
+                Return My.Resources.imac
         End Select
-    End Sub
+    End Function
 
     Protected Overrides ReadOnly Property CreateParams As CreateParams
         Get
@@ -39,4 +41,5 @@
             Return cp
         End Get
     End Property
+
 End Class

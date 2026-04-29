@@ -8,7 +8,7 @@ Public Class DeviceTypeRepo
         Dim dt As New DataTable()
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT DeviceTypeID, DeviceName, DeviceDescription FROM DeviceType"
+            Dim query As String = "SELECT DeviceTypeID, DeviceTypeName, DeviceDescription FROM DeviceType"
 
             Using cmd As New SqlCommand(query, conn)
                 Try

@@ -147,11 +147,11 @@ Partial Class frmLogin
         '
         Me.lblTries.AutoSize = True
         Me.lblTries.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.lblTries.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTries.Font = New System.Drawing.Font("Segoe UI", 9.2!)
         Me.lblTries.ForeColor = System.Drawing.Color.Red
         Me.lblTries.Location = New System.Drawing.Point(557, 450)
         Me.lblTries.Name = "lblTries"
-        Me.lblTries.Size = New System.Drawing.Size(240, 46)
+        Me.lblTries.Size = New System.Drawing.Size(222, 42)
         Me.lblTries.TabIndex = 45
         Me.lblTries.Tag = "5"
         Me.lblTries.Text = "Wrong Username or Password" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "       Number of Tries Left: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)

@@ -42,7 +42,8 @@ Partial Class frmDevices
         Me.btnSaveDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDeleteDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
-        Me.FlowLayoutPaneldev = New System.Windows.Forms.FlowLayoutPanel()
+        Me.flpDevices = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Guna2VScrollBar1 = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.pnlTop.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
@@ -330,20 +331,37 @@ Partial Class frmDevices
         Me.btnCancelDevice.TabIndex = 17
         Me.btnCancelDevice.Text = "Cancel"
         '
-        'FlowLayoutPaneldev
+        'flpDevices
         '
-        Me.FlowLayoutPaneldev.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPaneldev.Location = New System.Drawing.Point(0, 130)
-        Me.FlowLayoutPaneldev.Name = "FlowLayoutPaneldev"
-        Me.FlowLayoutPaneldev.Size = New System.Drawing.Size(1049, 640)
-        Me.FlowLayoutPaneldev.TabIndex = 11
+        Me.flpDevices.AutoScroll = True
+        Me.flpDevices.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpDevices.Location = New System.Drawing.Point(0, 130)
+        Me.flpDevices.Name = "flpDevices"
+        Me.flpDevices.Size = New System.Drawing.Size(1049, 640)
+        Me.flpDevices.TabIndex = 11
+        '
+        'Guna2VScrollBar1
+        '
+        Me.Guna2VScrollBar1.BindingContainer = Me.flpDevices
+        Me.Guna2VScrollBar1.FillColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Guna2VScrollBar1.InUpdate = False
+        Me.Guna2VScrollBar1.LargeChange = 640
+        Me.Guna2VScrollBar1.Location = New System.Drawing.Point(1037, 130)
+        Me.Guna2VScrollBar1.Maximum = 645
+        Me.Guna2VScrollBar1.Name = "Guna2VScrollBar1"
+        Me.Guna2VScrollBar1.ScrollbarSize = 5
+        Me.Guna2VScrollBar1.Size = New System.Drawing.Size(5, 640)
+        Me.Guna2VScrollBar1.SmallChange = 5
+        Me.Guna2VScrollBar1.TabIndex = 0
+        Me.Guna2VScrollBar1.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(29, Byte), Integer))
         '
         'frmDevices
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1458, 770)
-        Me.Controls.Add(Me.FlowLayoutPaneldev)
+        Me.Controls.Add(Me.Guna2VScrollBar1)
+        Me.Controls.Add(Me.flpDevices)
         Me.Controls.Add(Me.pnlDeviceDetail)
         Me.Controls.Add(Me.pnlFilter)
         Me.Controls.Add(Me.pnlTop)
@@ -377,5 +395,6 @@ Partial Class frmDevices
     Private WithEvents btnSaveDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnDeleteDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnCancelDevice As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents FlowLayoutPaneldev As FlowLayoutPanel
+    Friend WithEvents flpDevices As FlowLayoutPanel
+    Friend WithEvents Guna2VScrollBar1 As Guna.UI2.WinForms.Guna2VScrollBar
 End Class
