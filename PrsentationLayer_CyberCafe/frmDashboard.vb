@@ -24,10 +24,6 @@ Public Class frmDashboard
         ChangeForm(New frmMainForm())
     End Sub
 
-    Private Sub tmrClock_Tick(sender As Object, e As EventArgs) Handles tmrClock.Tick
-        lblClock.Text = DateTime.Now.ToString("HH:mm:ss   ddd, MMM dd yyyy")
-    End Sub
-
     Private Sub btnCloseWin_Click(sender As Object, e As EventArgs) Handles btnCloseWin.Click
         Me.Close()
     End Sub
@@ -70,11 +66,4 @@ Public Class frmDashboard
 
     End Sub
 
-    Private Sub pnlTopBar_Paint(sender As Object, e As PaintEventArgs) Handles pnlTopBar.Paint
-
-    End Sub
-
-    Private Sub lblLogoIcon_Click(sender As Object, e As EventArgs) Handles lblLogoIcon.Click
-
-    End Sub
 End Class

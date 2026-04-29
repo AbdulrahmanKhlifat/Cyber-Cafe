@@ -60,7 +60,7 @@ Partial Class frmCustomers
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.pnlHeader.Location = New System.Drawing.Point(0, 48)
-        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlHeader.Name = "pnlHeader"
         Me.pnlHeader.Size = New System.Drawing.Size(1045, 56)
         Me.pnlHeader.TabIndex = 3
@@ -91,7 +91,7 @@ Partial Class frmCustomers
         Me.dgvCustomers.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvCustomers.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.dgvCustomers.Location = New System.Drawing.Point(3, 60)
-        Me.dgvCustomers.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dgvCustomers.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvCustomers.MultiSelect = False
         Me.dgvCustomers.Name = "dgvCustomers"
         Me.dgvCustomers.ReadOnly = True
@@ -141,10 +141,10 @@ Partial Class frmCustomers
         Me.btnAddCustomer.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnAddCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddCustomer.ForeColor = System.Drawing.Color.White
-        Me.btnAddCustomer.Location = New System.Drawing.Point(891, 13)
-        Me.btnAddCustomer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAddCustomer.Location = New System.Drawing.Point(863, 13)
+        Me.btnAddCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddCustomer.Name = "btnAddCustomer"
-        Me.btnAddCustomer.Size = New System.Drawing.Size(137, 33)
+        Me.btnAddCustomer.Size = New System.Drawing.Size(165, 33)
         Me.btnAddCustomer.TabIndex = 0
         Me.btnAddCustomer.Text = "+  Add Customer"
         '
@@ -155,7 +155,7 @@ Partial Class frmCustomers
         Me.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.pnlFilter.Location = New System.Drawing.Point(0, 0)
-        Me.pnlFilter.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlFilter.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlFilter.Name = "pnlFilter"
         Me.pnlFilter.Size = New System.Drawing.Size(1045, 48)
         Me.pnlFilter.TabIndex = 4
@@ -184,7 +184,7 @@ Partial Class frmCustomers
         Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnSearch.Location = New System.Drawing.Point(334, 7)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(86, 35)
         Me.btnSearch.TabIndex = 1
@@ -210,7 +210,7 @@ Partial Class frmCustomers
         Me.pnlCustomerDetail.Controls.Add(Me.btnCancelCustomer)
         Me.pnlCustomerDetail.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.pnlCustomerDetail.Location = New System.Drawing.Point(719, 106)
-        Me.pnlCustomerDetail.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlCustomerDetail.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlCustomerDetail.Name = "pnlCustomerDetail"
         Me.pnlCustomerDetail.Size = New System.Drawing.Size(326, 424)
         Me.pnlCustomerDetail.TabIndex = 2
@@ -263,7 +263,7 @@ Partial Class frmCustomers
         '
         Me.pnlDivider.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlDivider.Location = New System.Drawing.Point(0, 46)
-        Me.pnlDivider.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlDivider.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlDivider.Name = "pnlDivider"
         Me.pnlDivider.Size = New System.Drawing.Size(326, 1)
         Me.pnlDivider.TabIndex = 1
@@ -366,7 +366,7 @@ Partial Class frmCustomers
         Me.btnSaveCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSaveCustomer.ForeColor = System.Drawing.Color.White
         Me.btnSaveCustomer.Location = New System.Drawing.Point(13, 323)
-        Me.btnSaveCustomer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnSaveCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSaveCustomer.Name = "btnSaveCustomer"
         Me.btnSaveCustomer.Size = New System.Drawing.Size(300, 37)
         Me.btnSaveCustomer.TabIndex = 6
@@ -381,7 +381,7 @@ Partial Class frmCustomers
         Me.btnDeleteCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnDeleteCustomer.ForeColor = System.Drawing.Color.White
         Me.btnDeleteCustomer.Location = New System.Drawing.Point(13, 372)
-        Me.btnDeleteCustomer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnDeleteCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDeleteCustomer.Name = "btnDeleteCustomer"
         Me.btnDeleteCustomer.Size = New System.Drawing.Size(142, 35)
         Me.btnDeleteCustomer.TabIndex = 7
@@ -395,7 +395,7 @@ Partial Class frmCustomers
         Me.btnCancelCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancelCustomer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.btnCancelCustomer.Location = New System.Drawing.Point(170, 372)
-        Me.btnCancelCustomer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnCancelCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCancelCustomer.Name = "btnCancelCustomer"
         Me.btnCancelCustomer.Size = New System.Drawing.Size(142, 35)
         Me.btnCancelCustomer.TabIndex = 8
@@ -411,7 +411,7 @@ Partial Class frmCustomers
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmCustomers"
         Me.Text = "frmCustomers"
         Me.pnlHeader.ResumeLayout(False)

@@ -3,8 +3,15 @@ Imports CyberCafeModels
 Imports Guna.UI2.WinForms
 
 Public Class frmDevices
+    Private Property isInitializing As Boolean
+    Public Sub New()
+        isInitializing = True
+        ' This call is required by the designer.
+        InitializeComponent()
 
-
+        ' Add any initialization after the InitializeComponent() call.
+        isInitializing = False
+    End Sub
     Protected Overrides ReadOnly Property CreateParams As CreateParams
         Get
             Dim cp As CreateParams = MyBase.CreateParams
@@ -13,7 +20,37 @@ Public Class frmDevices
         End Get
     End Property
 
+    Private Sub ApplyFilters()
+        flpDevices.SuspendLayout()
 
+        Dim searchText As String = txtSearch.Text.ToLower().Trim()
+        Dim selectedStatus As String = cmbStatus.Text.ToLower()
+        Dim selectedType As String = cmbDeviceType.Text.ToLower()
+
+        For Each control As Control In flpDevices.Controls
+
+            Dim device As ctrDeviceInfo = TryCast(control, ctrDeviceInfo)
+
+            If device IsNot Nothing Then
+
+                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) Or
+                    device.lblDeviceName.Text.ToLower().Contains(searchText)
+
+                Dim matchesStatus = String.IsNullOrEmpty(cmbStatus.Text) Or
+                    cmbStatus.Text = "All Status" Or
+                    device.Status.ToLower().Contains(selectedStatus)
+
+                Dim matchesType = String.IsNullOrEmpty(cmbDeviceType.Text) Or
+                    cmbDeviceType.Text = "All Types" Or
+                    device.lblDeviceType.Text.ToLower().Contains(selectedType)
+
+                device.Visible = matchesName And matchesStatus And matchesType
+            End If
+
+        Next
+
+        flpDevices.ResumeLayout()
+    End Sub
 
     Private Sub FillComboBox()
         Dim dt As DataTable = DeviceTypeServices.GetAllDeviceTypes()
@@ -65,7 +102,7 @@ Public Class frmDevices
     End Function
 
     Private Sub AddDeviceToFlowLayout(device As DeviceDTO)
-        Dim ctrl As New ctrShowDeviceInfo()
+        Dim ctrl As New ctrDeviceInfo()
         ctrl.LoadData(device)
         flpDevices.Controls.Add(ctrl)
     End Sub
@@ -131,6 +168,31 @@ Public Class frmDevices
             LoadDevices()
         Else
             _ShowGunaMessage("Failed to add device.", "Error", MessageDialogIcon.Error)
+        End If
+    End Sub
+
+    Private Sub cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStatus.SelectedIndexChanged
+        If Not isInitializing Then
+
+            ApplyFilters()
+
+        End If
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+
+        If Not isInitializing Then
+
+            ApplyFilters()
+
+        End If
+    End Sub
+
+    Private Sub cmbDeviceType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDeviceType.SelectedIndexChanged
+        If Not isInitializing Then
+
+            ApplyFilters()
+
         End If
     End Sub
 End Class

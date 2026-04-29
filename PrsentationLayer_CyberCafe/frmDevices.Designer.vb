@@ -63,6 +63,7 @@ Partial Class frmDevices
         '
         'pnlTop
         '
+        Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(33, Byte), Integer))
         Me.pnlTop.Controls.Add(Me.lblTitle)
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 0)
@@ -72,6 +73,7 @@ Partial Class frmDevices
         '
         'pnlFilter
         '
+        Me.pnlFilter.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.pnlFilter.Controls.Add(Me.txtSearch)
         Me.pnlFilter.Controls.Add(Me.cmbStatus)
         Me.pnlFilter.Controls.Add(Me.btnSearch)
@@ -85,7 +87,7 @@ Partial Class frmDevices
         '
         'txtSearch
         '
-        Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.txtSearch.BorderRadius = 12
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
@@ -117,11 +119,12 @@ Partial Class frmDevices
         Me.cmbStatus.Location = New System.Drawing.Point(367, 12)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(177, 36)
+        Me.cmbStatus.StartIndex = 0
         Me.cmbStatus.TabIndex = 8
         '
         'btnSearch
         '
-        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.btnSearch.BorderRadius = 15
         Me.btnSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
@@ -135,12 +138,12 @@ Partial Class frmDevices
         'btnAddDevice
         '
         Me.btnAddDevice.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.btnAddDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.btnAddDevice.BorderRadius = 8
         Me.btnAddDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnAddDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddDevice.ForeColor = System.Drawing.Color.White
-        Me.btnAddDevice.Location = New System.Drawing.Point(1246, 6)
+        Me.btnAddDevice.Location = New System.Drawing.Point(1260, 8)
         Me.btnAddDevice.Name = "btnAddDevice"
         Me.btnAddDevice.Size = New System.Drawing.Size(165, 46)
         Me.btnAddDevice.TabIndex = 5
@@ -158,10 +161,11 @@ Partial Class frmDevices
         Me.cmbDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.cmbDeviceType.ItemHeight = 30
-        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "PS4", "PS5"})
+        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "Playstation 5", "Xbox", "Virtual Reality"})
         Me.cmbDeviceType.Location = New System.Drawing.Point(559, 12)
         Me.cmbDeviceType.Name = "cmbDeviceType"
         Me.cmbDeviceType.Size = New System.Drawing.Size(182, 36)
+        Me.cmbDeviceType.StartIndex = 0
         Me.cmbDeviceType.TabIndex = 7
         '
         'pnlDeviceDetail
