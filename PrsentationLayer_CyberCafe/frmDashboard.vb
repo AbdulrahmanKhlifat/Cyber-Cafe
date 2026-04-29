@@ -21,7 +21,7 @@ Public Class frmDashboard
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tmrClock.Start()
         pnlTopBar.EnableDragging()
-        DisplayForm(New frmMainForm())
+        ChangeForm(New frmMainForm())
     End Sub
 
     Private Sub tmrClock_Tick(sender As Object, e As EventArgs) Handles tmrClock.Tick
@@ -31,29 +31,42 @@ Public Class frmDashboard
     Private Sub btnCloseWin_Click(sender As Object, e As EventArgs) Handles btnCloseWin.Click
         Me.Close()
     End Sub
-    Private Sub DisplayForm(ByRef childForm As Form)
-        pnlMain.Controls.Clear()
-        childForm.TopLevel = False
-        childForm.FormBorderStyle = FormBorderStyle.None
-        childForm.Dock = DockStyle.Fill
-        pnlMain.Controls.Add(childForm)
-        childForm.BringToFront()
-        childForm.Show()
+
+    Private Sub ChangeForm(frm As Form)
+        If pnlMain.Controls.Count > 0 Then
+            pnlMain.Controls.RemoveAt(0)
+        End If
+
+        frm.TopLevel = False
+        frm.Dock = DockStyle.Fill
+
+        pnlMain.Controls.Add(frm)
+
+        frm.Show()
     End Sub
     Private Sub btnDevices_Click(sender As Object, e As EventArgs) Handles btnDevices.Click
-        DisplayForm(New frmDevices())
+        ChangeForm(New frmDevices())
+        _UpdateButtonColor(btnDevices)
     End Sub
     Private Sub btnCutomers_Click(sender As Object, e As EventArgs) Handles btnCustomers.Click
-        DisplayForm(New frmCustomers())
+        ChangeForm(New frmCustomers())
+        _UpdateButtonColor(btnCustomers)
+
     End Sub
     Private Sub btnTrans_Click(sender As Object, e As EventArgs) Handles btnTransactions.Click
-        DisplayForm(New frmTransactions())
+        ChangeForm(New frmTransactions())
+        _UpdateButtonColor(btnTransactions)
+
     End Sub
     Private Sub btnSessions_Click(sender As Object, e As EventArgs) Handles btnSessions.Click
-        DisplayForm(New frmSessions())
+        ChangeForm(New frmSessions())
+        _UpdateButtonColor(btnSessions)
+
     End Sub
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        DisplayForm(New frmMainForm())
+        ChangeForm(New frmMainForm())
+        _UpdateButtonColor(btnDashboard)
+
     End Sub
 End Class
