@@ -47,12 +47,12 @@ Public Class DeviceGameRepo
         Dim result As Boolean = False
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            conn.Open()
             '
             Dim transaction As SqlTransaction = conn.BeginTransaction()
 
             Try
 
+                conn.Open()
                 Dim deleteQuery As String = "DELETE FROM DeviceGames WHERE DeviceID = @DeviceID"
                 Using deleteCmd As New SqlCommand(deleteQuery, conn, transaction)
                     deleteCmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
