@@ -64,20 +64,19 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminDTO.vb" />
-    <Compile Include="CustomerDTO.vb" />
-    <Compile Include="DeviceDTO.vb" />
-    <Compile Include="DeviceGameDTO.vb" />
-    <Compile Include="DeviceStatus.vb" />
-    <Compile Include="DeviceType.vb" />
-    <Compile Include="DeviceTypeDTO.vb" />
-    <Compile Include="GamesDTO.vb" />
-    <Compile Include="LoginResultDTO.vb" />
-    <Compile Include="TransactionDTO.vb" />
-    <Compile Include="TransactionResults.vb" />
-    <Compile Include="TransactionType .vb" />
-    <Compile Include="UserRoleType.vb" />
-    <Compile Include="UserDTO.vb" />
+    <Compile Include="DTOs\AdminDTO.vb" />
+    <Compile Include="DTOs\CustomerDTO.vb" />
+    <Compile Include="DTOs\DeviceDTO.vb" />
+    <Compile Include="Enums\DeviceStatus.vb" />
+    <Compile Include="Enums\DeviceType.vb" />
+    <Compile Include="DTOs\DeviceTypeDTO.vb" />
+    <Compile Include="DTOs\GamesDTO.vb" />
+    <Compile Include="DTOs\LoginResultDTO.vb" />
+    <Compile Include="DTOs\TransactionDTO.vb" />
+    <Compile Include="Enums\TransactionResults.vb" />
+    <Compile Include="Enums\TransactionType .vb" />
+    <Compile Include="Enums\UserRoleType.vb" />
+    <Compile Include="DTOs\UserDTO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -113,5 +112,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

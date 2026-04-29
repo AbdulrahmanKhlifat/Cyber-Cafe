@@ -64,15 +64,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminRepo.vb" />
-    <Compile Include="CustomerRepo.vb" />
-    <Compile Include="DataAccessSettings.vb" />
-    <Compile Include="DeviceGameRepo.vb" />
-    <Compile Include="DeviceRepo.vb" />
-    <Compile Include="DeviceTypeRepo.vb" />
-    <Compile Include="GameRepo.vb" />
-    <Compile Include="TransactionRepo.vb" />
-    <Compile Include="UserRepo.vb" />
+    <Compile Include="Repositories\AdminRepo.vb" />
+    <Compile Include="Repositories\CustomerRepo.vb" />
+    <Compile Include="Configuration\DataAccessSettings.vb" />
+    <Compile Include="Repositories\DeviceGameRepo.vb" />
+    <Compile Include="Repositories\DeviceRepo.vb" />
+    <Compile Include="Repositories\DeviceTypeRepo.vb" />
+    <Compile Include="Repositories\GameRepo.vb" />
+    <Compile Include="Repositories\TransactionRepo.vb" />
+    <Compile Include="Repositories\UserRepo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -114,5 +114,6 @@
       <Name>CyberCafeModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -5,20 +5,26 @@ Imports CyberCafeModels.CyberCafe.Models
 Public Class DeviceRepo
 
     Public Shared Function AddNewDevice(dto As DeviceDTO) As Integer
+
         Dim deviceID As Integer = -1
+
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
             Dim query As String = "INSERT INTO Devices (DeviceName,DeviceTypeID, Status, PricePerHour) 
                                    VALUES (@DeviceName,@DeviceTypeID, @Status, @PricePerHour);
                                    SELECT SCOPE_IDENTITY();"
+
             Using cmd As New SqlCommand(query, conn)
+
                 cmd.Parameters.Add("@DeviceName", SqlDbType.NVarChar).Value = dto.DeviceName
                 cmd.Parameters.Add("@DeviceTypeID", SqlDbType.Int).Value = dto.DeviceTypeID
                 cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = dto.Status
                 cmd.Parameters.Add("@PricePerHour", SqlDbType.Decimal).Value = dto.PricePerHour
+
                 Try
                     conn.Open()
                     deviceID = Convert.ToInt32(cmd.ExecuteScalar())
-                Catch
+                Catch ex As Exception
 
                 End Try
             End Using

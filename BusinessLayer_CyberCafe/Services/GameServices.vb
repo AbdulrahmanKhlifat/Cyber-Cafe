@@ -2,10 +2,14 @@
 Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
-Public Class GameManager
+Public Class GameServices
 
 
     Public Shared Function AddGame(gameDTO As GameDTO) As Boolean
+        If gameDTO Is Nothing Then
+            Return False
+        End If
+
         If GameRepo.IsGameExists(gameDTO.GameName) Then
             Throw New Exception("Game already Exists")
         End If
@@ -18,6 +22,7 @@ Public Class GameManager
         If gameID <= 0 Then
             Return Nothing
         End If
+
         Return GameRepo.GetGameByID(gameID)
     End Function
 

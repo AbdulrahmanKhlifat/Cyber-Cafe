@@ -43,41 +43,75 @@ Public Class DeviceGameRepo
         End Using
         Return rowsAffected > 0
     End Function
-    Public Shared Function UpdateDeviceGamesWithTransaction(deviceID As Integer, gameIDs As List(Of Integer)) As Boolean
-        Dim result As Boolean = False
+    Public Shared Function UpdateDeviceGames(deviceID As Integer, gameIDs As List(Of Integer)) As Boolean
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            conn.Open()
-            '
-            Dim transaction As SqlTransaction = conn.BeginTransaction()
+
+            Dim transaction As SqlTransaction = Nothing
 
             Try
 
-                Dim deleteQuery As String = "DELETE FROM DeviceGames WHERE DeviceID = @DeviceID"
+                conn.Open()
+
+                transaction = conn.BeginTransaction()
+                ' Delete existing
+                Dim deleteQuery =
+            "DELETE FROM DeviceGames
+                 WHERE DeviceID = @DeviceID"
+
                 Using deleteCmd As New SqlCommand(deleteQuery, conn, transaction)
+
                     deleteCmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
                     deleteCmd.ExecuteNonQuery()
-                End Using
-                Dim insertQuery As String = "INSERT INTO DeviceGames (DeviceID, GameID) VALUES (@DeviceID, @GameID)"
-                For Each gameID In gameIDs
-                    If gameID > 0 Then
-                        Using insertCmd As New SqlCommand(insertQuery, conn, transaction)
-                            insertCmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
-                            insertCmd.Parameters.Add("@GameID", SqlDbType.Int).Value = gameID
-                            insertCmd.ExecuteNonQuery()
-                        End Using
-                    End If
-                Next
-                transaction.Commit()
-                result = True
 
-            Catch ex As Exception
+                End Using
+
+
+                ' Create table for bulk insert
+                Dim table As New DataTable()
+
+                table.Columns.Add("DeviceID", GetType(Integer))
+                table.Columns.Add("GameID", GetType(Integer))
+
+                For Each gameID In gameIDs
+
+                    If gameID > 0 Then
+                        table.Rows.Add(deviceID, gameID)
+                    End If
+
+                Next
+
+
+                ' Bulk insert
+                Using bulk As New SqlBulkCopy(
+                conn,
+                SqlBulkCopyOptions.Default,
+                transaction)
+
+                    bulk.DestinationTableName = "DeviceGames"
+
+                    bulk.ColumnMappings.Add("DeviceID", "DeviceID")
+                    bulk.ColumnMappings.Add("GameID", "GameID")
+
+                    bulk.WriteToServer(table)
+
+                End Using
+
+                transaction.Commit()
+
+                Return True
+
+            Catch
+
                 transaction.Rollback()
-                result = False
+
+                Return False
+
             End Try
+
         End Using
 
-        Return result
+
     End Function
     Public Shared Function IsGameExistInDevice(deviceID As Integer, gameID As Integer) As Boolean
         Dim isFound As Boolean = False

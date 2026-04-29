@@ -1,7 +1,7 @@
 ﻿Imports CyberCafeModels.CyberCafe.Models
 Imports CyberCafe_DataAccess
 
-Public Class AdminManager
+Public Class AdminServices
     Public Shared Function AddAdmin(adminDTO As AdminDTO) As Boolean
 
         If AdminRepo.IsUsernameTaken(adminDTO.Username) Then
