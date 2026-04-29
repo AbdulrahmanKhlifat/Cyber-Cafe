@@ -1,4 +1,6 @@
-﻿Public Class DataAccessSettings
-    Public Shared Property connectionString As String = "Server=.;DataBase=CyberCafe;Integrated Security=True;TrustServerCertificate=True;"
-    'Public Shared Property connectionString As String = "Server=.\MSSQLSERVER01;DataBase=CyberCafe;Integrated Security=True;TrustServerCertificate=True;"
+﻿Imports System.Configuration ' لازم تضيف هاد الـ Reference للمشروع
+
+Public Class DataAccessSettings
+    Public Shared ReadOnly connectionString As String =
+        ConfigurationManager.ConnectionStrings("MyDbConn").ConnectionString
 End Class

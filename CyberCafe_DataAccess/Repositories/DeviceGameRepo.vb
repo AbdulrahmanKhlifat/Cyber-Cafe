@@ -46,14 +46,13 @@ Public Class DeviceGameRepo
     Public Shared Function UpdateDeviceGames(deviceID As Integer, gameIDs As List(Of Integer)) As Boolean
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim transaction As SqlTransaction = conn.BeginTransaction()
-            Dim transaction As SqlTransaction = conn.BeginTransaction()
-            Dim transaction As SqlTransaction = conn.BeginTransaction()
+
 
             Dim transaction As SqlTransaction = Nothing
 
             Try
-
+                conn.Open()
+                transaction = conn.BeginTransaction()
                 Dim deleteQuery As String = "DELETE FROM DeviceGames WHERE DeviceID = @DeviceID"
                 Using deleteCmd As New SqlCommand(deleteQuery, conn, transaction)
 
