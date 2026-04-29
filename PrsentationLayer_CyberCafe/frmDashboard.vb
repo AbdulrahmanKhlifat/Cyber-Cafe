@@ -70,4 +70,11 @@ Public Class frmDashboard
 
     End Sub
 
+    Private Sub pnlTopBar_Paint(sender As Object, e As PaintEventArgs) Handles pnlTopBar.Paint
+
+    End Sub
+
+    Private Sub lblLogoIcon_Click(sender As Object, e As EventArgs) Handles lblLogoIcon.Click
+
+    End Sub
 End Class
