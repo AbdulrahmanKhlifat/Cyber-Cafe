@@ -16,7 +16,9 @@ Public Class DeviceGameRepo
                 Try
                     conn.Open()
                     rowsAffected = cmd.ExecuteNonQuery()
+
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -40,7 +42,8 @@ Public Class DeviceGameRepo
                 Try
                     conn.Open()
                     rowsAffected = cmd.ExecuteNonQuery()
-                Catch
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -100,7 +103,9 @@ Public Class DeviceGameRepo
 
                 Return True
 
-            Catch
+            Catch ex As Exception
+
+                CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 transaction.Rollback()
 
@@ -130,6 +135,7 @@ Public Class DeviceGameRepo
                         isFound = True
                     End If
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -155,7 +161,8 @@ Public Class DeviceGameRepo
                     conn.Open()
                     dt.Load(cmd.ExecuteReader())
 
-                Catch
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
 
@@ -180,7 +187,8 @@ Public Class DeviceGameRepo
                 Try
                     conn.Open()
                     rowsAffected = cmd.ExecuteNonQuery()
-                Catch
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using

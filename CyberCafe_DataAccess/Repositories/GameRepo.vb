@@ -21,6 +21,7 @@ Public Class GameRepo
                         gameID = Convert.ToInt32(result)
                     End If
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -56,6 +57,7 @@ Public Class GameRepo
                     End Using
 
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                 End Try
             End Using
         End Using
@@ -70,13 +72,20 @@ Public Class GameRepo
             Dim query As String = "SELECT GameID, GameName, GameDescription FROM Games"
             Using cmd As New SqlCommand(query, conn)
                 Try
+
                     conn.Open()
                     dt.Load(cmd.ExecuteReader())
+
                 Catch ex As Exception
+
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                 End Try
             End Using
         End Using
+
         Return dt
+
     End Function
     Public Shared Function IsGameExists(gameName As String) As Boolean
         Dim isFound As Boolean = False
@@ -90,6 +99,7 @@ Public Class GameRepo
                     conn.Open()
                     isFound = (cmd.ExecuteScalar() IsNot Nothing)
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using

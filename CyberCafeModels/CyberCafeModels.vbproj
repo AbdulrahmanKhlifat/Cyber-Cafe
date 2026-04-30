@@ -77,6 +77,7 @@
     <Compile Include="Enums\TransactionType .vb" />
     <Compile Include="Enums\UserRoleType.vb" />
     <Compile Include="DTOs\UserDTO.vb" />
+    <Compile Include="ErrorLogger.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

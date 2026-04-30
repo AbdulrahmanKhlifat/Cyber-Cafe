@@ -53,7 +53,7 @@ Public Class CustomerRepo
 
                 Return userID
 
-            Catch ex As Exception
+            Catch ex As Exception : CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                 'Check if transaction started before attempting rollback
                 If tran IsNot Nothing Then
                     Try
@@ -122,7 +122,7 @@ Public Class CustomerRepo
                 tran.Commit()
                 isUpdated = True
 
-            Catch ex As Exception
+            Catch ex As Exception : CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                 'Rollback safely on failure
                 If tran IsNot Nothing Then
                     Try
@@ -174,7 +174,7 @@ Public Class CustomerRepo
 
                     End Using
 
-                Catch ex As Exception
+                Catch ex As Exception : CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -213,7 +213,7 @@ Public Class CustomerRepo
 
                     End Using
 
-                Catch ex As Exception
+                Catch ex As Exception : CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -268,7 +268,7 @@ Public Class CustomerRepo
 
                     End Using
 
-                Catch ex As Exception
+                Catch ex As Exception : CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                     Return Nothing
                 End Try
 

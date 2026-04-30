@@ -36,7 +36,7 @@ Partial Class ctrDeviceInfo
         '
         'gnCard
         '
-        Me.gnCard.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.gnCard.BackColor = System.Drawing.Color.Transparent
         Me.gnCard.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(59, Byte), Integer))
         Me.gnCard.BorderRadius = 18
         Me.gnCard.BorderThickness = 1
