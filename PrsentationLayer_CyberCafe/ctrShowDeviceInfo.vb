@@ -2,8 +2,8 @@
 
 Public Class ctrDeviceInfo
 
-    Private ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
-    Private ReadOnly ColorInUse As Color = Color.Red
+    Private Shared ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
+    Private Shared ReadOnly ColorInUse As Color = Color.Red
 
     Public Property DeviceID As Integer
 
@@ -17,6 +17,21 @@ Public Class ctrDeviceInfo
         End Set
 
     End Property
+
+    Private Shared ReadOnly ImgPCAvailable As Image = My.Resources.images__1__removebg_preview
+    Private Shared ReadOnly ImgPCInUse As Image = My.Resources.imac
+    Private Shared ReadOnly ImgConsole As Image = My.Resources.games
+
+    Private Function GetDeviceImage(typeName As String, isAvailable As Boolean) As Image
+        Select Case typeName.ToUpper()
+            Case "PC"
+                Return If(isAvailable, ImgPCAvailable, ImgPCInUse)
+            Case "PS4", "PS5", "XBOX"
+                Return ImgConsole ' Same icon for both states based on your code
+            Case Else
+                Return ImgPCInUse
+        End Select
+    End Function
 
     Public Sub LoadData(deviceInfo As DeviceDTO)
         DeviceID = deviceInfo.DeviceID
@@ -36,25 +51,5 @@ Public Class ctrDeviceInfo
 
         pbDeviceIcon.Image = GetDeviceImage(typeName, isAvailable)
     End Sub
-
-    Private Function GetDeviceImage(typeName As String, isAvailable As Boolean) As Image
-        Select Case typeName.ToUpper()
-            Case "PC"
-                Return If(isAvailable, My.Resources.images__1__removebg_preview, My.Resources.imac)
-            Case "PS4", "PS5"
-                Return If(isAvailable, My.Resources.games, My.Resources.games)
-            Case Else
-                Return My.Resources.imac
-        End Select
-    End Function
-
-    Protected Overrides ReadOnly Property CreateParams As CreateParams
-        Get
-            Dim cp As CreateParams = MyBase.CreateParams
-            cp.ExStyle = cp.ExStyle Or &H2000000
-            Return cp
-        End Get
-    End Property
-
 
 End Class

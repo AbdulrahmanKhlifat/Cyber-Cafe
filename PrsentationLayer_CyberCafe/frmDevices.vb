@@ -8,9 +8,9 @@ Public Class frmDevices
         isInitializing = True
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
         isInitializing = False
+
     End Sub
     Protected Overrides ReadOnly Property CreateParams As CreateParams
         Get
