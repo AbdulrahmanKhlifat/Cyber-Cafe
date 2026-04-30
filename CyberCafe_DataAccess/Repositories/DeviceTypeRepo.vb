@@ -22,6 +22,7 @@ Public Class DeviceTypeRepo
                     End Using
 
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -63,6 +64,7 @@ Public Class DeviceTypeRepo
                     End Using
 
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
 

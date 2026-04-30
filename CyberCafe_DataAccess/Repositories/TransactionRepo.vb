@@ -36,13 +36,21 @@ Public Class TransactionRepo
 
                 Try
                     conn.Open()
+
                     Dim result As Object = cmd.ExecuteScalar()
+
                     If result IsNot Nothing AndAlso Integer.TryParse(result.ToString(), transactionID) Then
+
                         Return transactionID
+
                     End If
+
                 Catch ex As Exception
-                    ' Log exception here
+
+                    ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                     Return -1
+
                 End Try
             End Using
         End Using
@@ -65,7 +73,8 @@ Public Class TransactionRepo
                     Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
                     isDeleted = (rowsAffected > 0)
                 Catch ex As Exception
-                    ' Log exception here
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                     isDeleted = False
                 End Try
             End Using
@@ -114,7 +123,8 @@ Public Class TransactionRepo
                         End If
                     End Using
                 Catch ex As Exception
-                    ' Log exception here
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                     Return Nothing
                 End Try
             End Using
@@ -146,7 +156,8 @@ Public Class TransactionRepo
 
                     End Using
                 Catch ex As Exception
-                    ' Log exception here
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                 End Try
             End Using
         End Using
@@ -176,7 +187,8 @@ Public Class TransactionRepo
 
                     End Using
                 Catch ex As Exception
-                    ' Log exception here
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                 End Try
             End Using
         End Using

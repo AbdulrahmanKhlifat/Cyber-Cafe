@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports CyberCafeModels
-Imports CyberCafeModels.CyberCafe.Models
+
 
 Public Class DeviceRepo
 
@@ -25,6 +25,7 @@ Public Class DeviceRepo
                     conn.Open()
                     deviceID = Convert.ToInt32(cmd.ExecuteScalar())
                 Catch ex As Exception
+                    ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -48,7 +49,10 @@ Public Class DeviceRepo
                 Try
                     conn.Open()
                     rowsAffected = cmd.ExecuteNonQuery()
-                Catch : End Try
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
+                End Try
             End Using
         End Using
         Return rowsAffected > 0
@@ -69,6 +73,7 @@ Public Class DeviceRepo
                     conn.Open()
                     rowsAffected = cmd.ExecuteNonQuery()
                 Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using
@@ -89,7 +94,8 @@ Public Class DeviceRepo
                 Try
                     conn.Open()
                     dt.Load(cmd.ExecuteReader())
-                Catch
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                 End Try
             End Using
         End Using
@@ -113,7 +119,8 @@ Public Class DeviceRepo
                             }
                         End If
                     End Using
-                Catch
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                 End Try
             End Using

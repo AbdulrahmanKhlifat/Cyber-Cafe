@@ -37,6 +37,8 @@ Namespace CyberCafe.DAL
 
                     Catch ex As Exception
 
+                        CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                         userDTO = Nothing
                     End Try
 
@@ -78,7 +80,10 @@ Namespace CyberCafe.DAL
                             isFound = reader.HasRows
                         End Using
 
-                    Catch
+                    Catch ex As Exception
+
+                        CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                         isFound = False
                     End Try
                 End Using
@@ -100,8 +105,8 @@ Namespace CyberCafe.DAL
                             isFound = reader.HasRows
                         End Using
 
-                    Catch
-                        isFound = False
+                    Catch ex As Exception
+                        CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                     End Try
                 End Using
             End Using

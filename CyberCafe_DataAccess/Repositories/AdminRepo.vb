@@ -2,7 +2,7 @@
 Imports System.Reflection
 Imports CyberCafe_DataAccess.CyberCafe.DAL
 Imports CyberCafeModels.CyberCafe.Models
-Imports Microsoft.VisualBasic.ApplicationServices
+
 
 Public Class AdminRepo
     Public Shared Function AddAdmin(admin As AdminDTO) As Integer
@@ -52,6 +52,8 @@ Public Class AdminRepo
                 Return userID
 
             Catch ex As Exception
+
+                CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                 'Check if transaction started before attempting rollback
                 If tran IsNot Nothing Then
                     Try
@@ -115,6 +117,8 @@ Public Class AdminRepo
                 isUpdated = True
 
             Catch ex As Exception
+
+                CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
                 'Rollback safely on failure
                 If tran IsNot Nothing Then
                     Try
@@ -165,6 +169,9 @@ Public Class AdminRepo
 
                 Catch ex As Exception
 
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, MethodBase.GetCurrentMethod().Name)
+
+                    Return Nothing
                 End Try
             End Using
         End Using
@@ -200,6 +207,10 @@ Public Class AdminRepo
                     End Using
 
                 Catch ex As Exception
+
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    Return Nothing
 
                 End Try
             End Using
@@ -252,6 +263,9 @@ Public Class AdminRepo
                     End Using
 
                 Catch ex As Exception
+
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
                     Return Nothing
                 End Try
 
