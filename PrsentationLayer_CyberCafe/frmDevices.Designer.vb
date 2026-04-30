@@ -172,7 +172,7 @@ Partial Class frmDevices
         Me.cmbDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.cmbDeviceType.ItemHeight = 30
-        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "Playstation 5", "Xbox", "Virtual Reality"})
+        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "Playstation 5", "Xbox", "Virtual Reality", "Racing Simulator"})
         Me.cmbDeviceType.Location = New System.Drawing.Point(559, 12)
         Me.cmbDeviceType.Name = "cmbDeviceType"
         Me.cmbDeviceType.Size = New System.Drawing.Size(182, 36)
@@ -401,7 +401,7 @@ Partial Class frmDevices
         Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
         Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
         Animation1.MosaicSize = 0
-        Animation1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        Animation1.Padding = New System.Windows.Forms.Padding(0)
         Animation1.RotateCoeff = 0!
         Animation1.RotateLimit = 0!
         Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
