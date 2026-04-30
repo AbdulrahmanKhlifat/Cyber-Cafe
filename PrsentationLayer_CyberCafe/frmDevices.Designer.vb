@@ -22,6 +22,8 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDevices))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
         Me.pnlFilter = New System.Windows.Forms.Panel()
@@ -43,6 +45,7 @@ Partial Class frmDevices
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.flpDevices = New System.Windows.Forms.FlowLayoutPanel()
         Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
+        Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
         Me.pnlTop.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
@@ -52,6 +55,7 @@ Partial Class frmDevices
         'lblTitle
         '
         Me.lblTitle.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Transition1.SetDecoration(Me.lblTitle, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblTitle.Location = New System.Drawing.Point(12, 19)
@@ -64,6 +68,7 @@ Partial Class frmDevices
         '
         Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(33, Byte), Integer))
         Me.pnlTop.Controls.Add(Me.lblTitle)
+        Me.Guna2Transition1.SetDecoration(Me.pnlTop, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 0)
         Me.pnlTop.Name = "pnlTop"
@@ -77,6 +82,7 @@ Partial Class frmDevices
         Me.pnlFilter.Controls.Add(Me.cmbStatus)
         Me.pnlFilter.Controls.Add(Me.btnAddDevice)
         Me.pnlFilter.Controls.Add(Me.cmbDeviceType)
+        Me.Guna2Transition1.SetDecoration(Me.pnlFilter, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlFilter.Location = New System.Drawing.Point(0, 66)
         Me.pnlFilter.Name = "pnlFilter"
@@ -89,6 +95,7 @@ Partial Class frmDevices
         Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.txtSearch.BorderRadius = 12
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Guna2Transition1.SetDecoration(Me.txtSearch, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.txtSearch.DefaultText = ""
         Me.txtSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
@@ -106,6 +113,7 @@ Partial Class frmDevices
         Me.cmbStatus.BackColor = System.Drawing.Color.Transparent
         Me.cmbStatus.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.cmbStatus.BorderRadius = 8
+        Me.Guna2Transition1.SetDecoration(Me.cmbStatus, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.cmbStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbStatus.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -120,11 +128,26 @@ Partial Class frmDevices
         Me.cmbStatus.StartIndex = 0
         Me.cmbStatus.TabIndex = 8
         '
+        'btnSearch
+        '
+        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.btnSearch.BorderRadius = 15
+        Me.Guna2Transition1.SetDecoration(Me.btnSearch, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.btnSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.btnSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.btnSearch.Location = New System.Drawing.Point(768, 8)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(109, 43)
+        Me.btnSearch.TabIndex = 6
+        Me.btnSearch.Text = "Search"
+        '
         'btnAddDevice
         '
         Me.btnAddDevice.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAddDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.btnAddDevice.BorderRadius = 8
+        Me.Guna2Transition1.SetDecoration(Me.btnAddDevice, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.btnAddDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnAddDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddDevice.ForeColor = System.Drawing.Color.White
@@ -139,6 +162,7 @@ Partial Class frmDevices
         Me.cmbDeviceType.BackColor = System.Drawing.Color.Transparent
         Me.cmbDeviceType.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.cmbDeviceType.BorderRadius = 8
+        Me.Guna2Transition1.SetDecoration(Me.cmbDeviceType, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.cmbDeviceType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cmbDeviceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbDeviceType.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -166,6 +190,7 @@ Partial Class frmDevices
         Me.pnlDeviceDetail.Controls.Add(Me.btnSaveDevice)
         Me.pnlDeviceDetail.Controls.Add(Me.btnDeleteDevice)
         Me.pnlDeviceDetail.Controls.Add(Me.btnCancelDevice)
+        Me.Guna2Transition1.SetDecoration(Me.pnlDeviceDetail, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.pnlDeviceDetail.Dock = System.Windows.Forms.DockStyle.Right
         Me.pnlDeviceDetail.Location = New System.Drawing.Point(932, 130)
         Me.pnlDeviceDetail.Name = "pnlDeviceDetail"
@@ -181,6 +206,7 @@ Partial Class frmDevices
         Me.nUpDownPrice.BorderThickness = 0
         Me.nUpDownPrice.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.nUpDownPrice.DecimalPlaces = 2
+        Me.Guna2Transition1.SetDecoration(Me.nUpDownPrice, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.nUpDownPrice.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.nUpDownPrice.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.nUpDownPrice.ForeColor = System.Drawing.Color.White
@@ -197,6 +223,7 @@ Partial Class frmDevices
         'lblDetailTitle
         '
         Me.lblDetailTitle.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Transition1.SetDecoration(Me.lblDetailTitle, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.lblDetailTitle.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
         Me.lblDetailTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblDetailTitle.Location = New System.Drawing.Point(15, 11)
@@ -208,6 +235,7 @@ Partial Class frmDevices
         'pnlDivider
         '
         Me.pnlDivider.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.Guna2Transition1.SetDecoration(Me.pnlDivider, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.pnlDivider.Location = New System.Drawing.Point(-2, 52)
         Me.pnlDivider.Name = "pnlDivider"
         Me.pnlDivider.Size = New System.Drawing.Size(411, 1)
@@ -216,6 +244,7 @@ Partial Class frmDevices
         'lblDevNameF
         '
         Me.lblDevNameF.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Transition1.SetDecoration(Me.lblDevNameF, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.lblDevNameF.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblDevNameF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblDevNameF.Location = New System.Drawing.Point(14, 84)
@@ -229,6 +258,7 @@ Partial Class frmDevices
         Me.txtDeviceName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.txtDeviceName.BorderRadius = 8
         Me.txtDeviceName.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Guna2Transition1.SetDecoration(Me.txtDeviceName, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.txtDeviceName.DefaultText = ""
         Me.txtDeviceName.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.txtDeviceName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
@@ -244,6 +274,7 @@ Partial Class frmDevices
         'lblDevTypeF
         '
         Me.lblDevTypeF.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Transition1.SetDecoration(Me.lblDevTypeF, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.lblDevTypeF.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblDevTypeF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblDevTypeF.Location = New System.Drawing.Point(15, 195)
@@ -257,6 +288,7 @@ Partial Class frmDevices
         Me.cboDeviceType.BackColor = System.Drawing.Color.Transparent
         Me.cboDeviceType.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.cboDeviceType.BorderRadius = 8
+        Me.Guna2Transition1.SetDecoration(Me.cboDeviceType, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.cboDeviceType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cboDeviceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboDeviceType.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
@@ -273,6 +305,7 @@ Partial Class frmDevices
         'lblStatusF
         '
         Me.lblStatusF.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Transition1.SetDecoration(Me.lblStatusF, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.lblStatusF.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblStatusF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblStatusF.Location = New System.Drawing.Point(15, 290)
@@ -284,6 +317,7 @@ Partial Class frmDevices
         'btnSaveDevice
         '
         Me.btnSaveDevice.BorderRadius = 8
+        Me.Guna2Transition1.SetDecoration(Me.btnSaveDevice, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.btnSaveDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnSaveDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSaveDevice.ForeColor = System.Drawing.Color.White
@@ -298,6 +332,7 @@ Partial Class frmDevices
         Me.btnDeleteDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnDeleteDevice.BorderColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(73, Byte), Integer))
         Me.btnDeleteDevice.BorderRadius = 12
+        Me.Guna2Transition1.SetDecoration(Me.btnDeleteDevice, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.btnDeleteDevice.FillColor = System.Drawing.Color.DimGray
         Me.btnDeleteDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnDeleteDevice.ForeColor = System.Drawing.Color.White
@@ -311,6 +346,7 @@ Partial Class frmDevices
         '
         Me.btnCancelDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnCancelDevice.BorderRadius = 8
+        Me.Guna2Transition1.SetDecoration(Me.btnCancelDevice, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.btnCancelDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.btnCancelDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancelDevice.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
@@ -323,6 +359,7 @@ Partial Class frmDevices
         'flpDevices
         '
         Me.flpDevices.AutoScroll = True
+        Me.Guna2Transition1.SetDecoration(Me.flpDevices, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.flpDevices.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpDevices.Location = New System.Drawing.Point(0, 130)
         Me.flpDevices.Name = "flpDevices"
@@ -332,9 +369,11 @@ Partial Class frmDevices
         'ScrollBar
         '
         Me.ScrollBar.BindingContainer = Me.flpDevices
-        Me.ScrollBar.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.ScrollBar.BorderRadius = 10
+        Me.Guna2Transition1.SetDecoration(Me.ScrollBar, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.ScrollBar.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ScrollBar.HighlightOnWheel = True
-        Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(14, Byte), Integer))
+        Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
         Me.ScrollBar.InUpdate = False
         Me.ScrollBar.LargeChange = 591
         Me.ScrollBar.Location = New System.Drawing.Point(911, 130)
@@ -345,7 +384,32 @@ Partial Class frmDevices
         Me.ScrollBar.Size = New System.Drawing.Size(21, 591)
         Me.ScrollBar.SmallChange = 5
         Me.ScrollBar.TabIndex = 0
-        Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
+        '
+        'Guna2Transition1
+        '
+        Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
+        Me.Guna2Transition1.Cursor = Nothing
+        Animation1.AnimateOnlyDifferences = True
+        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
+        Animation1.LeafCoeff = 0!
+        Animation1.MaxTime = 1.0!
+        Animation1.MinTime = 0!
+        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
+        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
+        Animation1.MosaicSize = 0
+        Animation1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        Animation1.RotateCoeff = 0!
+        Animation1.RotateLimit = 0!
+        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
+        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
+        Animation1.TimeCoeff = 0!
+        Animation1.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation1
+        Me.Guna2Transition1.Interval = 1
+        Me.Guna2Transition1.MaxAnimationTime = 300
+        Me.Guna2Transition1.TimeStep = 0.05!
         '
         'frmDevices
         '
@@ -357,6 +421,7 @@ Partial Class frmDevices
         Me.Controls.Add(Me.pnlDeviceDetail)
         Me.Controls.Add(Me.pnlFilter)
         Me.Controls.Add(Me.pnlTop)
+        Me.Guna2Transition1.SetDecoration(Me, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmDevices"
         Me.Text = "frmDevices"
@@ -388,4 +453,5 @@ Partial Class frmDevices
     Private WithEvents btnCancelDevice As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents flpDevices As FlowLayoutPanel
     Friend WithEvents ScrollBar As Guna.UI2.WinForms.Guna2VScrollBar
+    Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
 End Class

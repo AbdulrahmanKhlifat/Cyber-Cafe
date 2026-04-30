@@ -99,8 +99,8 @@ Partial Class ctrDeviceInfo
         '
         'gnCard
         '
-        Me.gnCard.BackColor = System.Drawing.Color.Transparent
-        Me.gnCard.BorderColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.gnCard.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.gnCard.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(59, Byte), Integer))
         Me.gnCard.BorderRadius = 18
         Me.gnCard.BorderThickness = 1
         Me.gnCard.Controls.Add(Me.pbStatusDot)
@@ -118,13 +118,75 @@ Partial Class ctrDeviceInfo
         Me.gnCard.Size = New System.Drawing.Size(220, 210)
         Me.gnCard.TabIndex = 0
         '
-        'ctrDeviceInfo
+        'pbStatusDot
+        '
+        Me.pbStatusDot.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.pbStatusDot.ImageRotate = 0!
+        Me.pbStatusDot.Location = New System.Drawing.Point(22, 170)
+        Me.pbStatusDot.Name = "pbStatusDot"
+        Me.pbStatusDot.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
+        Me.pbStatusDot.Size = New System.Drawing.Size(12, 12)
+        Me.pbStatusDot.TabIndex = 5
+        Me.pbStatusDot.TabStop = False
+        '
+        'lblStatus
+        '
+        Me.lblStatus.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStatus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lblStatus.Location = New System.Drawing.Point(40, 162)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(100, 28)
+        Me.lblStatus.TabIndex = 6
+        Me.lblStatus.Text = "Available"
+        Me.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'gnSeparator
+        '
+        Me.gnSeparator.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(59, Byte), Integer))
+        Me.gnSeparator.Location = New System.Drawing.Point(15, 145)
+        Me.gnSeparator.Name = "gnSeparator"
+        Me.gnSeparator.Size = New System.Drawing.Size(190, 10)
+        Me.gnSeparator.TabIndex = 4
+        '
+        'lblDeviceType
+        '
+        Me.lblDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(135, Byte), Integer))
+        Me.lblDeviceType.Location = New System.Drawing.Point(18, 115)
+        Me.lblDeviceType.Name = "lblDeviceType"
+        Me.lblDeviceType.Size = New System.Drawing.Size(150, 25)
+        Me.lblDeviceType.TabIndex = 3
+        Me.lblDeviceType.Text = "Type"
+        Me.lblDeviceType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblDeviceName
+        '
+        Me.lblDeviceName.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.lblDeviceName.ForeColor = System.Drawing.Color.White
+        Me.lblDeviceName.Location = New System.Drawing.Point(15, 75)
+        Me.lblDeviceName.Name = "lblDeviceName"
+        Me.lblDeviceName.Size = New System.Drawing.Size(190, 40)
+        Me.lblDeviceName.TabIndex = 2
+        Me.lblDeviceName.Text = "PC-01"
+        Me.lblDeviceName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'pbDeviceIcon
+        '
+        Me.pbDeviceIcon.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.images__1__removebg_preview
+        Me.pbDeviceIcon.ImageRotate = 0!
+        Me.pbDeviceIcon.Location = New System.Drawing.Point(20, 20)
+        Me.pbDeviceIcon.Name = "pbDeviceIcon"
+        Me.pbDeviceIcon.Size = New System.Drawing.Size(45, 45)
+        Me.pbDeviceIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbDeviceIcon.TabIndex = 0
+        Me.pbDeviceIcon.TabStop = False
+        '
+        'ctrShowDeviceInfo
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.Controls.Add(Me.gnCard)
-        Me.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.Name = "ctrDeviceInfo"
+        Me.Name = "ctrShowDeviceInfo"
         Me.Size = New System.Drawing.Size(220, 210)
         CType(Me.pbDeviceIcon, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbStatusDot, System.ComponentModel.ISupportInitialize).EndInit()

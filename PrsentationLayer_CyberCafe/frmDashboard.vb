@@ -74,4 +74,7 @@ Public Class frmDashboard
 
     End Sub
 
+    Private Sub btnMinWin_Click(sender As Object, e As EventArgs) Handles btnMinWin.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
 End Class
