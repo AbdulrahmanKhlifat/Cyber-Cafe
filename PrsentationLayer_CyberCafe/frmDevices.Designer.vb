@@ -130,17 +130,7 @@ Partial Class frmDevices
         '
         'btnSearch
         '
-        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnSearch.BorderRadius = 15
-        Me.Guna2Transition1.SetDecoration(Me.btnSearch, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.btnSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.btnSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnSearch.Location = New System.Drawing.Point(768, 8)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(109, 43)
-        Me.btnSearch.TabIndex = 6
-        Me.btnSearch.Text = "Search"
+
         '
         'btnAddDevice
         '
