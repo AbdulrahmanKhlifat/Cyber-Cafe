@@ -3,7 +3,7 @@
 
     End Sub
 
-    Private Sub pnlHeader_Paint(sender As Object, e As PaintEventArgs) Handles pnlHeader.Paint
+    Private Sub pnlHeader_Paint(sender As Object, e As PaintEventArgs) Handles pnlFilter.Paint
 
     End Sub
 
@@ -11,7 +11,7 @@
 
     End Sub
 
-    Private Sub pnlFilter_Paint(sender As Object, e As PaintEventArgs) Handles pnlFilter.Paint
+    Private Sub pnlFilter_Paint(sender As Object, e As PaintEventArgs) Handles pnlHeader.Paint
 
     End Sub
 End Class

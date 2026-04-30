@@ -133,7 +133,7 @@ Partial Class frmDashboard
         Me.lblUserName.Location = New System.Drawing.Point(13, 2)
         Me.lblUserName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblUserName.Name = "lblUserName"
-        Me.lblUserName.Size = New System.Drawing.Size(102, 19)
+        Me.lblUserName.Size = New System.Drawing.Size(123, 23)
         Me.lblUserName.TabIndex = 0
         Me.lblUserName.Text = "Administrator"
         '
@@ -146,7 +146,7 @@ Partial Class frmDashboard
         Me.lblUserRole.Location = New System.Drawing.Point(13, 19)
         Me.lblUserRole.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblUserRole.Name = "lblUserRole"
-        Me.lblUserRole.Size = New System.Drawing.Size(40, 13)
+        Me.lblUserRole.Size = New System.Drawing.Size(49, 19)
         Me.lblUserRole.TabIndex = 1
         Me.lblUserRole.Text = "Admin"
         '
@@ -231,7 +231,7 @@ Partial Class frmDashboard
         Me.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCustomers.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCustomers.ForeColor = System.Drawing.Color.White
-        Me.btnCustomers.Location = New System.Drawing.Point(-4, 162)
+        Me.btnCustomers.Location = New System.Drawing.Point(-3, 162)
         Me.btnCustomers.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCustomers.Name = "btnCustomers"
         Me.btnCustomers.Size = New System.Drawing.Size(182, 78)

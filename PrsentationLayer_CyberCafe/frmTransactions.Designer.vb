@@ -22,10 +22,7 @@ Partial Class frmTransactions
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.dtpFrom = New Guna.UI2.WinForms.Guna2DateTimePicker()
-        Me.dtpTo = New Guna.UI2.WinForms.Guna2DateTimePicker()
-        Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
-        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.pnlFilter = New Guna.UI2.WinForms.Guna2Panel()
         Me.pnlTop = New System.Windows.Forms.Panel()
         Me.pnlTotalRev = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblMoney = New System.Windows.Forms.Label()
@@ -36,93 +33,56 @@ Partial Class frmTransactions
         Me.pnlPenPay = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblPenPayNum = New System.Windows.Forms.Label()
         Me.lblPayTItle = New System.Windows.Forms.Label()
-        Me.pnlFilter = New Guna.UI2.WinForms.Guna2Panel()
-        Me.cboStatus = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnFilter = New Guna.UI2.WinForms.Guna2Button()
+        Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.dgvTrans = New System.Windows.Forms.DataGridView()
-        Me.pnlHeader.SuspendLayout()
+        Me.dtpFrom = New Guna.UI2.WinForms.Guna2DateTimePicker()
+        Me.dtpTo = New Guna.UI2.WinForms.Guna2DateTimePicker()
+        Me.cboStatus = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.pnlFilter.SuspendLayout()
         Me.pnlTop.SuspendLayout()
         Me.pnlTotalRev.SuspendLayout()
         Me.pnlTotalTrans.SuspendLayout()
         Me.pnlPenPay.SuspendLayout()
-        Me.pnlFilter.SuspendLayout()
+        Me.pnlHeader.SuspendLayout()
         CType(Me.dgvTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'dtpFrom
+        'pnlFilter
         '
-        Me.dtpFrom.BorderRadius = 8
-        Me.dtpFrom.Checked = True
-        Me.dtpFrom.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.dtpFrom.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.dtpFrom.ForeColor = System.Drawing.Color.White
-        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
-        Me.dtpFrom.Location = New System.Drawing.Point(23, 4)
-        Me.dtpFrom.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
-        Me.dtpFrom.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
-        Me.dtpFrom.Name = "dtpFrom"
-        Me.dtpFrom.Size = New System.Drawing.Size(206, 43)
-        Me.dtpFrom.TabIndex = 0
-        Me.dtpFrom.Value = New Date(2026, 4, 16, 12, 13, 57, 24)
-        '
-        'dtpTo
-        '
-        Me.dtpTo.BorderRadius = 8
-        Me.dtpTo.Checked = True
-        Me.dtpTo.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.dtpTo.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.dtpTo.ForeColor = System.Drawing.Color.White
-        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
-        Me.dtpTo.Location = New System.Drawing.Point(240, 4)
-        Me.dtpTo.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
-        Me.dtpTo.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
-        Me.dtpTo.Name = "dtpTo"
-        Me.dtpTo.Size = New System.Drawing.Size(206, 43)
-        Me.dtpTo.TabIndex = 1
-        Me.dtpTo.Value = New Date(2026, 4, 16, 12, 13, 57, 40)
-        '
-        'pnlHeader
-        '
-        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.pnlHeader.Controls.Add(Me.lblTitle)
-        Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.pnlHeader.Location = New System.Drawing.Point(0, 12)
-        Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1392, 69)
-        Me.pnlHeader.TabIndex = 7
-        '
-        'lblTitle
-        '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.BackColor = System.Drawing.Color.Transparent
-        Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(23, 19)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(292, 32)
-        Me.lblTitle.TabIndex = 0
-        Me.lblTitle.Text = "💳  Transactions & Billing"
+        Me.pnlFilter.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.pnlFilter.Controls.Add(Me.dtpFrom)
+        Me.pnlFilter.Controls.Add(Me.dtpTo)
+        Me.pnlFilter.Controls.Add(Me.cboStatus)
+        Me.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.pnlFilter.Location = New System.Drawing.Point(0, 165)
+        Me.pnlFilter.Name = "pnlFilter"
+        Me.pnlFilter.Size = New System.Drawing.Size(1341, 69)
+        Me.pnlFilter.TabIndex = 7
         '
         'pnlTop
         '
-        Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.pnlTop.Controls.Add(Me.pnlTotalRev)
         Me.pnlTop.Controls.Add(Me.pnlTotalTrans)
         Me.pnlTop.Controls.Add(Me.pnlPenPay)
-        Me.pnlTop.Location = New System.Drawing.Point(0, 84)
+        Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlTop.Location = New System.Drawing.Point(0, 63)
         Me.pnlTop.Name = "pnlTop"
-        Me.pnlTop.Size = New System.Drawing.Size(1393, 108)
+        Me.pnlTop.Size = New System.Drawing.Size(1341, 102)
         Me.pnlTop.TabIndex = 6
         '
         'pnlTotalRev
         '
+        Me.pnlTotalRev.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.pnlTotalRev.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlTotalRev.BorderRadius = 12
         Me.pnlTotalRev.BorderThickness = 1
         Me.pnlTotalRev.Controls.Add(Me.lblMoney)
         Me.pnlTotalRev.Controls.Add(Me.lblTitleRev)
         Me.pnlTotalRev.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlTotalRev.Location = New System.Drawing.Point(23, 16)
+        Me.pnlTotalRev.Location = New System.Drawing.Point(23, 15)
         Me.pnlTotalRev.Name = "pnlTotalRev"
         Me.pnlTotalRev.Size = New System.Drawing.Size(297, 79)
         Me.pnlTotalRev.TabIndex = 0
@@ -145,7 +105,7 @@ Partial Class frmTransactions
         Me.lblTitleRev.BackColor = System.Drawing.Color.Transparent
         Me.lblTitleRev.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitleRev.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblTitleRev.Location = New System.Drawing.Point(17, 41)
+        Me.lblTitleRev.Location = New System.Drawing.Point(17, 39)
         Me.lblTitleRev.Name = "lblTitleRev"
         Me.lblTitleRev.Size = New System.Drawing.Size(222, 28)
         Me.lblTitleRev.TabIndex = 1
@@ -153,13 +113,14 @@ Partial Class frmTransactions
         '
         'pnlTotalTrans
         '
+        Me.pnlTotalTrans.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.pnlTotalTrans.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlTotalTrans.BorderRadius = 12
         Me.pnlTotalTrans.BorderThickness = 1
         Me.pnlTotalTrans.Controls.Add(Me.lblTransNum)
         Me.pnlTotalTrans.Controls.Add(Me.lblTransTitle)
         Me.pnlTotalTrans.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlTotalTrans.Location = New System.Drawing.Point(343, 16)
+        Me.pnlTotalTrans.Location = New System.Drawing.Point(343, 14)
         Me.pnlTotalTrans.Name = "pnlTotalTrans"
         Me.pnlTotalTrans.Size = New System.Drawing.Size(297, 79)
         Me.pnlTotalTrans.TabIndex = 1
@@ -190,13 +151,14 @@ Partial Class frmTransactions
         '
         'pnlPenPay
         '
+        Me.pnlPenPay.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.pnlPenPay.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlPenPay.BorderRadius = 12
         Me.pnlPenPay.BorderThickness = 1
         Me.pnlPenPay.Controls.Add(Me.lblPenPayNum)
         Me.pnlPenPay.Controls.Add(Me.lblPayTItle)
         Me.pnlPenPay.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlPenPay.Location = New System.Drawing.Point(663, 16)
+        Me.pnlPenPay.Location = New System.Drawing.Point(663, 14)
         Me.pnlPenPay.Name = "pnlPenPay"
         Me.pnlPenPay.Size = New System.Drawing.Size(297, 79)
         Me.pnlPenPay.TabIndex = 2
@@ -225,17 +187,60 @@ Partial Class frmTransactions
         Me.lblPayTItle.TabIndex = 1
         Me.lblPayTItle.Text = "Pending Payments"
         '
-        'pnlFilter
+        'pnlHeader
         '
-        Me.pnlFilter.Controls.Add(Me.dtpFrom)
-        Me.pnlFilter.Controls.Add(Me.dtpTo)
-        Me.pnlFilter.Controls.Add(Me.cboStatus)
-        Me.pnlFilter.Controls.Add(Me.btnFilter)
-        Me.pnlFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.pnlFilter.Location = New System.Drawing.Point(0, 193)
-        Me.pnlFilter.Name = "pnlFilter"
-        Me.pnlFilter.Size = New System.Drawing.Size(1393, 53)
-        Me.pnlFilter.TabIndex = 5
+        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.pnlHeader.Controls.Add(Me.lblTitle)
+        Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeader.Name = "pnlHeader"
+        Me.pnlHeader.Size = New System.Drawing.Size(1341, 63)
+        Me.pnlHeader.TabIndex = 5
+        '
+        'dgvTrans
+        '
+        Me.dgvTrans.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvTrans.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvTrans.Location = New System.Drawing.Point(0, 234)
+        Me.dgvTrans.Name = "dgvTrans"
+        Me.dgvTrans.RowHeadersWidth = 51
+        Me.dgvTrans.RowTemplate.Height = 24
+        Me.dgvTrans.Size = New System.Drawing.Size(1341, 487)
+        Me.dgvTrans.TabIndex = 8
+        '
+        'dtpFrom
+        '
+        Me.dtpFrom.BorderRadius = 8
+        Me.dtpFrom.Checked = True
+        Me.dtpFrom.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.dtpFrom.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.dtpFrom.ForeColor = System.Drawing.Color.White
+        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.dtpFrom.Location = New System.Drawing.Point(18, 9)
+        Me.dtpFrom.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.dtpFrom.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.dtpFrom.Name = "dtpFrom"
+        Me.dtpFrom.Size = New System.Drawing.Size(206, 43)
+        Me.dtpFrom.TabIndex = 5
+        Me.dtpFrom.Value = New Date(2026, 4, 16, 12, 13, 57, 24)
+        '
+        'dtpTo
+        '
+        Me.dtpTo.BorderRadius = 8
+        Me.dtpTo.Checked = True
+        Me.dtpTo.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.dtpTo.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.dtpTo.ForeColor = System.Drawing.Color.White
+        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.dtpTo.Location = New System.Drawing.Point(235, 9)
+        Me.dtpTo.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.dtpTo.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.dtpTo.Name = "dtpTo"
+        Me.dtpTo.Size = New System.Drawing.Size(206, 43)
+        Me.dtpTo.TabIndex = 6
+        Me.dtpTo.Value = New Date(2026, 4, 16, 12, 13, 57, 40)
         '
         'cboStatus
         '
@@ -249,49 +254,36 @@ Partial Class frmTransactions
         Me.cboStatus.ForeColor = System.Drawing.Color.White
         Me.cboStatus.ItemHeight = 30
         Me.cboStatus.Items.AddRange(New Object() {"All Statuses", "Paid", "Pending", "Cancelled"})
-        Me.cboStatus.Location = New System.Drawing.Point(461, 5)
+        Me.cboStatus.Location = New System.Drawing.Point(456, 10)
         Me.cboStatus.Name = "cboStatus"
         Me.cboStatus.Size = New System.Drawing.Size(159, 36)
-        Me.cboStatus.TabIndex = 3
+        Me.cboStatus.TabIndex = 7
         '
-        'btnFilter
+        'lblTitle
         '
-        Me.btnFilter.BorderRadius = 8
-        Me.btnFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.btnFilter.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnFilter.ForeColor = System.Drawing.Color.White
-        Me.btnFilter.Location = New System.Drawing.Point(628, 4)
-        Me.btnFilter.Name = "btnFilter"
-        Me.btnFilter.Size = New System.Drawing.Size(114, 41)
-        Me.btnFilter.TabIndex = 4
-        Me.btnFilter.Text = "Filter"
-        '
-        'dgvTrans
-        '
-        Me.dgvTrans.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.dgvTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTrans.Location = New System.Drawing.Point(-7, 246)
-        Me.dgvTrans.Name = "dgvTrans"
-        Me.dgvTrans.RowHeadersWidth = 51
-        Me.dgvTrans.RowTemplate.Height = 24
-        Me.dgvTrans.Size = New System.Drawing.Size(1394, 422)
-        Me.dgvTrans.TabIndex = 8
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.BackColor = System.Drawing.Color.Transparent
+        Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.lblTitle.Location = New System.Drawing.Point(17, 11)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(292, 32)
+        Me.lblTitle.TabIndex = 1
+        Me.lblTitle.Text = "💳  Transactions & Billing"
         '
         'frmTransactions
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1341, 721)
         Me.Controls.Add(Me.dgvTrans)
-        Me.Controls.Add(Me.pnlHeader)
-        Me.Controls.Add(Me.pnlTop)
         Me.Controls.Add(Me.pnlFilter)
+        Me.Controls.Add(Me.pnlTop)
+        Me.Controls.Add(Me.pnlHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmTransactions"
         Me.Text = "frmTransactions"
-        Me.pnlHeader.ResumeLayout(False)
-        Me.pnlHeader.PerformLayout()
+        Me.pnlFilter.ResumeLayout(False)
         Me.pnlTop.ResumeLayout(False)
         Me.pnlTotalRev.ResumeLayout(False)
         Me.pnlTotalRev.PerformLayout()
@@ -299,15 +291,13 @@ Partial Class frmTransactions
         Me.pnlTotalTrans.PerformLayout()
         Me.pnlPenPay.ResumeLayout(False)
         Me.pnlPenPay.PerformLayout()
-        Me.pnlFilter.ResumeLayout(False)
+        Me.pnlHeader.ResumeLayout(False)
+        Me.pnlHeader.PerformLayout()
         CType(Me.dgvTrans, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Private WithEvents dtpFrom As Guna.UI2.WinForms.Guna2DateTimePicker
-    Private WithEvents dtpTo As Guna.UI2.WinForms.Guna2DateTimePicker
-    Private WithEvents pnlHeader As Guna.UI2.WinForms.Guna2Panel
-    Private WithEvents lblTitle As Label
+    Private WithEvents pnlFilter As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents pnlTop As Panel
     Private WithEvents pnlTotalRev As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblMoney As Label
@@ -318,8 +308,10 @@ Partial Class frmTransactions
     Private WithEvents pnlPenPay As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblPenPayNum As Label
     Private WithEvents lblPayTItle As Label
-    Private WithEvents pnlFilter As Guna.UI2.WinForms.Guna2Panel
-    Private WithEvents cboStatus As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents btnFilter As Guna.UI2.WinForms.Guna2Button
+    Private WithEvents pnlHeader As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents dgvTrans As DataGridView
+    Private WithEvents dtpFrom As Guna.UI2.WinForms.Guna2DateTimePicker
+    Private WithEvents dtpTo As Guna.UI2.WinForms.Guna2DateTimePicker
+    Private WithEvents cboStatus As Guna.UI2.WinForms.Guna2ComboBox
+    Private WithEvents lblTitle As Label
 End Class
