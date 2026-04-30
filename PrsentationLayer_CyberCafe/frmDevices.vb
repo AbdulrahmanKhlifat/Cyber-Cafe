@@ -114,6 +114,7 @@ Public Class frmDevices
     Private Sub AddDeviceToFlowLayout(device As DeviceDTO)
         Dim ctrl As New ctrDeviceInfo()
         ctrl.LoadData(device)
+        ctrl.ContextMenuStrip = DeviceContextMenu
         flpDevices.Controls.Add(ctrl)
     End Sub
 
@@ -197,7 +198,32 @@ Public Class frmDevices
 
         End If
     End Sub
+    Private Sub tsShowDetails_Click(sender As Object, e As EventArgs) Handles tsShowDetails.Click
+        ' 1. بنمسك المنيو نفسها
+        Dim menu = DeviceContextMenu
 
+        ' 2. بنعرف مين الكنترول اللي "استدعى" المنيو
+        Dim sourceCtrl = menu.SourceControl
+
+        ' 3. بنطلع للأب لحتى نوصل لليوزر كونترول (الكارد)
+        ' هاد الكود بيضمن إنك لو ضغطت يمين على الصورة أو الليبل يلقط الكارد برضه
+        Dim card As ctrDeviceInfo = Nothing
+        Dim tempCtrl = sourceCtrl
+
+        While tempCtrl IsNot Nothing
+            If TypeOf tempCtrl Is ctrDeviceInfo Then
+                card = DirectCast(tempCtrl, ctrDeviceInfo)
+                Exit While
+            End If
+            tempCtrl = tempCtrl.Parent
+        End While
+
+        ' 4. هسا صار معك الكارد.. تقدر تسحب منه الـ ID وتعمل اللي بدك اياه
+        If card IsNot Nothing Then
+
+            MessageBox.Show("Selected Device ID: " & card.DeviceID)
+        End If
+    End Sub
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
 
         If Not isInitializing Then
@@ -214,4 +240,6 @@ Public Class frmDevices
 
         End If
     End Sub
+
+
 End Class

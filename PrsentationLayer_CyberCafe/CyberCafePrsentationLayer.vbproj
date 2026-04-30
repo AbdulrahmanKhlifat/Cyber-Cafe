@@ -79,10 +79,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ctrShowDeviceInfo.Designer.vb">
-      <DependentUpon>ctrShowDeviceInfo.vb</DependentUpon>
+    <Compile Include="ctrDeviceInfo.Designer.vb">
+      <DependentUpon>ctrDeviceInfo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ctrShowDeviceInfo.vb">
+    <Compile Include="ctrDeviceInfo.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DragHelper.vb" />
@@ -154,8 +154,8 @@
     <Compile Include="Program.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ctrShowDeviceInfo.resx">
-      <DependentUpon>ctrShowDeviceInfo.vb</DependentUpon>
+    <EmbeddedResource Include="ctrDeviceInfo.resx">
+      <DependentUpon>ctrDeviceInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerMain.resx">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>

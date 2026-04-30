@@ -3,6 +3,7 @@
 Public Class ctrDeviceInfo
 
     Private Shared ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
+    Private Shared ReadOnly CyanHoverColor As Color = Color.FromArgb(23, 209, 172)
     Private Shared ReadOnly ColorInUse As Color = Color.Red
 
     Public Property DeviceID As Integer
@@ -18,18 +19,21 @@ Public Class ctrDeviceInfo
 
     End Property
 
-    Private Shared ReadOnly ImgPCAvailable As Image = My.Resources.images__1__removebg_preview
-    Private Shared ReadOnly ImgPCInUse As Image = My.Resources.imac
+    'Private Shared ReadOnly ImgPCAvailable As Image = My.Resources.images__1__removebg_preview
+    Private Shared ReadOnly ImgPC As Image = My.Resources.imac
     Private Shared ReadOnly ImgConsole As Image = My.Resources.games
 
     Private Function GetDeviceImage(typeName As String, isAvailable As Boolean) As Image
         Select Case typeName.ToUpper()
             Case "PC"
-                Return If(isAvailable, ImgPCAvailable, ImgPCInUse)
+                Return If(isAvailable, ImgPC, ImgPC)
+
             Case "PS4", "PS5", "XBOX"
-                Return ImgConsole ' Same icon for both states based on your code
+                Return ImgConsole
+
             Case Else
-                Return ImgPCInUse
+                Return ImgPC
+
         End Select
     End Function
 
@@ -50,6 +54,27 @@ Public Class ctrDeviceInfo
         lblStatus.ForeColor = statusColor
 
         pbDeviceIcon.Image = GetDeviceImage(typeName, isAvailable)
+        pnlDevice.Cursor = Cursors.Hand
     End Sub
+
+
+    Private Sub pnlDevice_MouseEnter(sender As Object, e As EventArgs) Handles pnlDevice.MouseEnter, pbDeviceIcon.MouseEnter, lblStatus.MouseEnter, lblDeviceName.MouseEnter
+
+        lblDeviceName.ForeColor = CyanHoverColor
+
+    End Sub
+
+
+    Private Sub pnlDevice_MouseLeave(sender As Object, e As EventArgs) Handles pnlDevice.MouseLeave, pbDeviceIcon.MouseLeave, lblStatus.MouseLeave, lblDeviceName.MouseLeave
+
+        Dim mousePos = pnlDevice.PointToClient(Control.MousePosition)
+
+        If Not pnlDevice.ClientRectangle.Contains(mousePos) Then
+
+            lblDeviceName.ForeColor = Color.White
+        End If
+
+    End Sub
+
 
 End Class
