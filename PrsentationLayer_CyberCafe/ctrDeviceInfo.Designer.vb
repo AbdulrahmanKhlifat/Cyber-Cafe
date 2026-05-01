@@ -52,6 +52,7 @@ Partial Class ctrDeviceInfo
         '
         'pbStatusDot
         '
+        Me.pbStatusDot.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.pbStatusDot.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.pbStatusDot.ImageRotate = 0!
         Me.pbStatusDot.Location = New System.Drawing.Point(22, 170)
@@ -109,7 +110,7 @@ Partial Class ctrDeviceInfo
         'pbDeviceIcon
         '
         Me.pbDeviceIcon.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.pbDeviceIcon.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.imac
+        Me.pbDeviceIcon.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.VR_icon_removebg_preview
         Me.pbDeviceIcon.ImageRotate = 0!
         Me.pbDeviceIcon.Location = New System.Drawing.Point(20, 20)
         Me.pbDeviceIcon.Name = "pbDeviceIcon"

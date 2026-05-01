@@ -64,6 +64,7 @@ Module Program
 
             End Using
         Loop While LoggedInUser.CurrentUser Is Nothing
+
     End Sub
 
     <System.Runtime.InteropServices.DllImport("user32.dll")>
