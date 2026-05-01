@@ -274,5 +274,11 @@
   <ItemGroup>
     <None Include="Resources\VR_icon-removebg-preview.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-solid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money-bills-solid.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

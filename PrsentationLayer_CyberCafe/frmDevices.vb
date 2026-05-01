@@ -254,11 +254,11 @@ Public Class frmDevices
     Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
 
         Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
+            .caption = caption,
             .Text = message,
             .Parent = System.Windows.Forms.Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
+            .icon = icon,
             .Buttons = MessageDialogButtons.OK
         }
 
