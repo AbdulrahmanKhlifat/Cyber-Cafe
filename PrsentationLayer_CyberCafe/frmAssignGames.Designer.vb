@@ -34,6 +34,7 @@ Partial Class frmAssignGames
         Me.btnSave = New Guna.UI2.WinForms.Guna2Button()
         Me.btnClose = New Guna.UI2.WinForms.Guna2Button()
         Me.flpGames = New System.Windows.Forms.FlowLayoutPanel()
+        Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.pnlHeader.SuspendLayout()
         Me.pnlToolbar.SuspendLayout()
         Me.SuspendLayout()
@@ -59,7 +60,7 @@ Partial Class frmAssignGames
         Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(251, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.lblTitle.Location = New System.Drawing.Point(16, 9)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(262, 41)
+        Me.lblTitle.Size = New System.Drawing.Size(214, 32)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "🎮 Assign Games"
         '
@@ -80,7 +81,7 @@ Partial Class frmAssignGames
         Me.lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(140, Byte), Integer), CType(CType(145, Byte), Integer), CType(CType(155, Byte), Integer))
         Me.lblSubtitle.Location = New System.Drawing.Point(20, 53)
         Me.lblSubtitle.Name = "lblSubtitle"
-        Me.lblSubtitle.Size = New System.Drawing.Size(252, 20)
+        Me.lblSubtitle.Size = New System.Drawing.Size(199, 15)
         Me.lblSubtitle.TabIndex = 2
         Me.lblSubtitle.Text = "Select games to assign to this device"
         '
@@ -208,16 +209,36 @@ Partial Class frmAssignGames
         Me.flpGames.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.flpGames.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpGames.Location = New System.Drawing.Point(0, 135)
+        Me.flpGames.Margin = New System.Windows.Forms.Padding(5)
         Me.flpGames.Name = "flpGames"
         Me.flpGames.Padding = New System.Windows.Forms.Padding(15)
         Me.flpGames.Size = New System.Drawing.Size(1100, 565)
         Me.flpGames.TabIndex = 2
+        '
+        'ScrollBar
+        '
+        Me.ScrollBar.BindingContainer = Me.flpGames
+        Me.ScrollBar.BorderRadius = 10
+        Me.ScrollBar.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ScrollBar.HighlightOnWheel = True
+        Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
+        Me.ScrollBar.InUpdate = False
+        Me.ScrollBar.LargeChange = 10
+        Me.ScrollBar.Location = New System.Drawing.Point(1082, 135)
+        Me.ScrollBar.Margin = New System.Windows.Forms.Padding(1)
+        Me.ScrollBar.Name = "ScrollBar"
+        Me.ScrollBar.ScrollbarSize = 18
+        Me.ScrollBar.Size = New System.Drawing.Size(18, 565)
+        Me.ScrollBar.TabIndex = 10
+        Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
         '
         'frmAssignGames
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1100, 700)
+        Me.Controls.Add(Me.ScrollBar)
         Me.Controls.Add(Me.flpGames)
         Me.Controls.Add(Me.pnlToolbar)
         Me.Controls.Add(Me.pnlHeader)
@@ -244,4 +265,5 @@ Partial Class frmAssignGames
     Friend WithEvents btnSave As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnClose As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents flpGames As FlowLayoutPanel
+    Friend WithEvents ScrollBar As Guna.UI2.WinForms.Guna2VScrollBar
 End Class

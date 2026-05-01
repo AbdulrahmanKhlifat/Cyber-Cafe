@@ -64,21 +64,21 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\AdminDTO.vb" />
-    <Compile Include="DTOs\CustomerDTO.vb" />
-    <Compile Include="DTOs\DailyTransactionsSummaryDTO.vb" />
-    <Compile Include="DTOs\DashboardKpiDTO.vb" />
-    <Compile Include="DTOs\DeviceDTO.vb" />
+    <Compile Include="Entity DTOs\AdminDTO.vb" />
+    <Compile Include="Entity DTOs\CustomerDTO.vb" />
+    <Compile Include="ResponseDTOs\DailyTransactionsSummaryDTO.vb" />
+    <Compile Include="ResponseDTOs\DashboardKpiDTO.vb" />
+    <Compile Include="Entity DTOs\DeviceDTO.vb" />
     <Compile Include="Enums\DeviceStatus.vb" />
     <Compile Include="Enums\DeviceType.vb" />
-    <Compile Include="DTOs\DeviceTypeDTO.vb" />
-    <Compile Include="DTOs\GamesDTO.vb" />
-    <Compile Include="DTOs\LoginResultDTO.vb" />
-    <Compile Include="DTOs\TransactionDTO.vb" />
+    <Compile Include="Entity DTOs\DeviceTypeDTO.vb" />
+    <Compile Include="Entity DTOs\GamesDTO.vb" />
+    <Compile Include="ResponseDTOs\LoginResultDTO.vb" />
+    <Compile Include="Entity DTOs\TransactionDTO.vb" />
     <Compile Include="Enums\TransactionResults.vb" />
     <Compile Include="Enums\TransactionType .vb" />
     <Compile Include="Enums\UserRoleType.vb" />
-    <Compile Include="DTOs\UserDTO.vb" />
+    <Compile Include="Entity DTOs\UserDTO.vb" />
     <Compile Include="ErrorLogger.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

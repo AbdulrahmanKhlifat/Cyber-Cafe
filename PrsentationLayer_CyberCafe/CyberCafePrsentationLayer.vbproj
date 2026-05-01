@@ -110,10 +110,10 @@
     <Compile Include="frmCustomers.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDashboard.Designer.vb">
-      <DependentUpon>frmDashboard.vb</DependentUpon>
+    <Compile Include="frmAdminMain.Designer.vb">
+      <DependentUpon>frmAdminMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDashboard.vb">
+    <Compile Include="frmAdminMain.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDevices.Designer.vb">
@@ -129,10 +129,10 @@
       <DependentUpon>frmLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMainForm.Designer.vb">
-      <DependentUpon>frmMainForm.vb</DependentUpon>
+    <Compile Include="frmDashboard.Designer.vb">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmMainForm.vb">
+    <Compile Include="frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSessions.Designer.vb">
@@ -187,8 +187,8 @@
     <EmbeddedResource Include="frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDashboard.resx">
-      <DependentUpon>frmDashboard.vb</DependentUpon>
+    <EmbeddedResource Include="frmAdminMain.resx">
+      <DependentUpon>frmAdminMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevices.resx">
       <DependentUpon>frmDevices.vb</DependentUpon>
@@ -196,8 +196,8 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMainForm.resx">
-      <DependentUpon>frmMainForm.vb</DependentUpon>
+    <EmbeddedResource Include="frmDashboard.resx">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSessions.resx">
       <DependentUpon>frmSessions.vb</DependentUpon>

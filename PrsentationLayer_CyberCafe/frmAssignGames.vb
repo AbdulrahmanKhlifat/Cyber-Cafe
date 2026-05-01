@@ -62,7 +62,7 @@ Public Class frmAssignGames
 
         EnableDoubleBuffering(flpGames)
         LoadDummyGames()
-
+        pnlHeader.EnableDragging()
     End Sub
 
     Private Function CreateDummyDataTable() As DataTable
@@ -142,7 +142,7 @@ Public Class frmAssignGames
 
             Dim card As New ctrGameCard()
             card.LoadGameData(gID, gName, gPath, _thumbnailCache)
-
+            card.Margin = New Padding(5)
             AddHandler card.SelectionChanged, AddressOf OnGameSelectionChanged
 
 

@@ -121,7 +121,7 @@ Public Class DeviceRepo
 
                         If reader.Read() Then
                             device = New DeviceDTO() With {
-                           .deviceID = CInt(reader("DeviceID")),
+                           .DeviceID = CInt(reader("DeviceID")),
                            .DeviceName = If(reader("DeviceName") Is DBNull.Value, "", reader("DeviceName").ToString()),
                            .DeviceTypeID = CInt(reader("DeviceTypeID")),
                            .DeviceTypeName = If(reader("DeviceTypeName") Is DBNull.Value, "Unknown", reader("DeviceTypeName").ToString()),
@@ -138,7 +138,7 @@ Public Class DeviceRepo
             End Using
         End Using
 
-        Return Nothing
+        Return device
 
     End Function
 

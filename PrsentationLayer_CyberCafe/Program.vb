@@ -43,7 +43,7 @@ Module Program
                                   AdminDTO)
 
                         Application.Run(
-                            New frmDashboard(admin)
+                            New frmAdminMain(admin)
                         )
 
                     Case UserRoleType.Customer
