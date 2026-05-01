@@ -4,14 +4,16 @@ Imports Guna.UI2.WinForms
 
 Public Class frmDevices
     Private Property isInitializing As Boolean
+
+    Private _SelectedDeviceID As Integer = -1
     Public Sub New()
+
         isInitializing = True
-        ' This call is required by the designer.
         InitializeComponent()
-        ' Add any initialization after the InitializeComponent() call.
         isInitializing = False
 
     End Sub
+
     Protected Overrides ReadOnly Property CreateParams As CreateParams
         Get
             Dim cp As CreateParams = MyBase.CreateParams
@@ -20,83 +22,45 @@ Public Class frmDevices
         End Get
     End Property
 
-    Private Sub ApplyFilters()
-        Guna2Transition1.HideSync(flpDevices)
 
-        Dim searchText As String = txtSearch.Text.ToLower().Trim()
-        Dim selectedStatus As String = cmbStatus.Text.ToLower()
-        Dim selectedType As String = cmbDeviceType.Text.ToLower()
+    Private Sub frmDevices_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        flpDevices.SuspendLayout()
+        LoadDevices()
+        FillComboBox()
 
-        For Each control As Control In flpDevices.Controls
-
-            Dim device As ctrDeviceInfo = TryCast(control, ctrDeviceInfo)
-
-            If device IsNot Nothing Then
-
-                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) OrElse
-            device.lblDeviceName.Text.ToLower().Contains(searchText)
-
-                Dim matchesStatus As Boolean = String.IsNullOrEmpty(cmbStatus.Text) OrElse
-            cmbStatus.Text = "All Status" OrElse
-            device.Status.ToLower().Contains(selectedStatus)
-
-                Dim matchesType As Boolean = String.IsNullOrEmpty(cmbDeviceType.Text) OrElse
-            cmbDeviceType.Text = "All Types" OrElse
-            device.lblDeviceType.Text.ToLower().Contains(selectedType)
-
-                Dim isMatch As Boolean = matchesName AndAlso matchesStatus AndAlso matchesType
-
-                device.Visible = isMatch
-
-            End If
-        Next
-
-        flpDevices.ResumeLayout()
-
-        Guna2Transition1.ShowSync(flpDevices)
     End Sub
 
     Private Sub FillComboBox()
+
         Dim dt As DataTable = DeviceTypeServices.GetAllDeviceTypes()
         cboDeviceType.DataSource = dt
         cboDeviceType.ValueMember = "DeviceTypeID"
         cboDeviceType.DisplayMember = "DeviceTypeName"
         cboDeviceType.SelectedIndex = -1
+
     End Sub
 
+    Private Sub LoadDevices()
 
-    Private Sub frmDevices_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadDevices()
-        FillComboBox()
-    End Sub
-    Private Sub btnExit_Click(sender As Object, e As EventArgs)
-        Me.Close()
-    End Sub
+        flpDevices.Controls.Clear()
+        flpDevices.SuspendLayout()
 
-    Private Sub btnAddDevice_Click(sender As Object, e As EventArgs) Handles btnAddDevice.Click
+        Dim devicesList As List(Of DeviceDTO) = GetAllDevicesList()
 
-        pnlDeviceDetail.Visible = Not pnlDeviceDetail.Visible
-    End Sub
-    Private Sub ClearAddDeviceDetails()
-        txtDeviceName.Text = ""
-        cboDeviceType.SelectedIndex = -1
-    End Sub
-    Private Sub btnCancelDevice_Click(sender As Object, e As EventArgs) Handles btnCancelDevice.Click
-        ClearAddDeviceDetails()
-        pnlDeviceDetail.Visible = False
-    End Sub
+        For Each device In devicesList
+            AddDeviceToFlowLayout(device)
+        Next
 
-    Private Sub btnClearDeviceInfo_Click(sender As Object, e As EventArgs) Handles btnDeleteDevice.Click
-        ClearAddDeviceDetails()
+        flpDevices.ResumeLayout()
     End Sub
 
     Private Sub AddDeviceToFlowLayout(device As DeviceDTO)
+
         Dim ctrl As New ctrDeviceInfo()
         ctrl.LoadData(device)
         ctrl.ContextMenuStrip = DeviceContextMenu
         flpDevices.Controls.Add(ctrl)
+
     End Sub
 
     Private Sub LoadDevices()
@@ -105,122 +69,219 @@ Public Class frmDevices
 
         Dim devicesList As List(Of DeviceDTO) = DeviceServices.GetAllDevicesList()
 
-        For Each device In devicesList
-            AddDeviceToFlowLayout(device)
-        Next
+        _SelectedDeviceID = -1
+        ClearAddDeviceDetails()
+        btnSaveDevice.Text = "Add Device"
+        pnlDeviceDetail.Visible = True
 
-        flpDevices.ResumeLayout()
-    End Sub
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
-        Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
-            .Text = message,
-            .Parent = System.Windows.Forms.Application.OpenForms(0),
-            .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
-        guna.Show()
     End Sub
 
-    Private Function GetNewDeviceInfo() As DeviceDTO
-        If String.IsNullOrWhiteSpace(txtDeviceName.Text) OrElse cboDeviceType.SelectedValue Is Nothing Then
-            Return Nothing
-        End If
 
-        Dim dto As New DeviceDTO()
-        dto.DeviceName = txtDeviceName.Text
-        dto.DeviceTypeID = cboDeviceType.SelectedValue
-        dto.Status = enDeviceStatus.Available
-        dto.PricePerHour = nUpDownPrice.Value
-        Return dto
-    End Function
+    Public Sub PrepareForEdit(DeviceID As Integer)
 
-    Private Function IsValidData() As Boolean
-        If String.IsNullOrWhiteSpace(txtDeviceName.Text) OrElse cboDeviceType.SelectedValue Is Nothing Then
+        Dim device = DeviceServices.Find(DeviceID)
 
-            _ShowGunaMessage("Please fill in all required fields.", "Validation Error", MessageDialogIcon.Warning)
-            Return False
+        If device IsNot Nothing Then
+
+            _SelectedDeviceID = DeviceID
+            txtDeviceName.Text = device.DeviceName
+            cboDeviceType.SelectedValue = device.DeviceTypeID
+            nUpDownPrice.Value = device.PricePerHour
+            btnSaveDevice.Text = "Save Changes"
+            pnlDeviceDetail.Visible = True
 
         End If
 
-        Return True
+    End Sub
 
-    End Function
-    Private Sub btnSaveDevice_Click(sender As Object, e As EventArgs) Handles btnSaveDevice.Click
-        If Not IsValidData() Then
-            Return
-        End If
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSaveDevice.Click
+        If Not IsValidData() Then Return
 
-        Dim newDevice As New DeviceDTO With {
+        Dim device As New DeviceDTO With {
             .DeviceName = txtDeviceName.Text.Trim(),
-            .DeviceTypeID = CInt(cboDeviceType.SelectedValue),
-            .Status = enDeviceStatus.Available,
-            .PricePerHour = nUpDownPrice.Value
+            .DeviceTypeID = Convert.ToInt32(cboDeviceType.SelectedValue),
+            .PricePerHour = nUpDownPrice.Value,
+            .Status = enDeviceStatus.Available
         }
 
-        If DeviceServices.AddDevice(newDevice) Then
-            _ShowGunaMessage("Device added successfully!", "Success", MessageDialogIcon.Information)
-            ClearAddDeviceDetails()
-            pnlDeviceDetail.Visible = False
-            LoadDevices()
+        Dim result As Boolean = False
+
+        If _SelectedDeviceID = -1 Then
+
+            result = DeviceServices.AddDevice(device)
         Else
 
-            _ShowGunaMessage("Failed to add device.", "Error", MessageDialogIcon.Error)
+            device.DeviceID = _SelectedDeviceID
+            result = DeviceServices.UpdateDevice(device)
 
         End If
 
-    End Sub
+        If result Then
 
-    Private Sub cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStatus.SelectedIndexChanged
-        If Not isInitializing Then
+            _ShowGunaMessage("Saved successfully!", "Success", MessageDialogIcon.Information)
+            pnlDeviceDetail.Visible = False
+            LoadDevices()
 
-            ApplyFilters()
+        Else
+
+            _ShowGunaMessage("An error occurred during the save process.", "Error", MessageDialogIcon.Error)
 
         End If
     End Sub
-    Private Sub tsShowDetails_Click(sender As Object, e As EventArgs) Handles tsShowDetails.Click
-        ' 1. بنمسك المنيو نفسها
-        Dim menu = DeviceContextMenu
 
-        ' 2. بنعرف مين الكنترول اللي "استدعى" المنيو
-        Dim sourceCtrl = menu.SourceControl
+    Private Sub btnAddDevice_Click(sender As Object, e As EventArgs) Handles btnAddDevice.Click
 
-        ' 3. بنطلع للأب لحتى نوصل لليوزر كونترول (الكارد)
-        ' هاد الكود بيضمن إنك لو ضغطت يمين على الصورة أو الليبل يلقط الكارد برضه
+        PrepareForAdd()
+
+    End Sub
+
+
+    Private Sub tsEditDevice_Click(sender As Object, e As EventArgs) Handles tsUpdateDevice.Click
+        Dim sourceCtrl = DeviceContextMenu.SourceControl
         Dim card As ctrDeviceInfo = Nothing
         Dim tempCtrl = sourceCtrl
 
         While tempCtrl IsNot Nothing
+
             If TypeOf tempCtrl Is ctrDeviceInfo Then
                 card = DirectCast(tempCtrl, ctrDeviceInfo)
                 Exit While
             End If
+
             tempCtrl = tempCtrl.Parent
         End While
 
-        ' 4. هسا صار معك الكارد.. تقدر تسحب منه الـ ID وتعمل اللي بدك اياه
         If card IsNot Nothing Then
-
-            MessageBox.Show("Selected Device ID: " & card.DeviceID)
+            PrepareForEdit(card.DeviceID)
         End If
+
     End Sub
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
 
-        If Not isInitializing Then
+    Private Sub tsShowDetails_Click(sender As Object, e As EventArgs) Handles tsShowDetails.Click
 
-            ApplyFilters()
+        Dim sourceCtrl = DeviceContextMenu.SourceControl
+        Dim card As ctrDeviceInfo = Nothing
+        Dim tempCtrl = sourceCtrl
 
+        While tempCtrl IsNot Nothing
+
+            If TypeOf tempCtrl Is ctrDeviceInfo Then
+                card = DirectCast(tempCtrl, ctrDeviceInfo)
+                Exit While
+            End If
+
+            tempCtrl = tempCtrl.Parent
+        End While
+
+        If card IsNot Nothing Then
+            Using detailsForm As New frmShowDeviceDetails(card.DeviceID)
+                detailsForm.ShowDialog()
+            End Using
         End If
+
+    End Sub
+
+    Private Sub btnCancelDevice_Click(sender As Object, e As EventArgs) Handles btnCancelDevice.Click
+        pnlDeviceDetail.Visible = False
+        ClearAddDeviceDetails()
+    End Sub
+
+    Private Sub btnDeleteDevice_Click(sender As Object, e As EventArgs) Handles btnDeleteDevice.Click
+
+        ClearAddDeviceDetails()
+
+    End Sub
+
+
+    Private Sub ApplyFilters()
+        Guna2Transition1.HideSync(flpDevices)
+        Dim searchText As String = txtSearch.Text.ToLower().Trim()
+        Dim selectedStatus As String = cmbStatus.Text.ToLower()
+        Dim selectedType As String = cmbDeviceType.Text.ToLower()
+
+        flpDevices.SuspendLayout()
+
+        For Each control As Control In flpDevices.Controls
+            Dim device As ctrDeviceInfo = TryCast(control, ctrDeviceInfo)
+            If device IsNot Nothing Then
+
+                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) OrElse device.lblDeviceName.Text.ToLower().Contains(searchText)
+
+                Dim matchesStatus As Boolean = String.IsNullOrEmpty(cmbStatus.Text) OrElse cmbStatus.Text = "All Status" OrElse device.Status.ToLower().Contains(selectedStatus)
+
+                Dim matchesType As Boolean = String.IsNullOrEmpty(cmbDeviceType.Text) OrElse cmbDeviceType.Text = "All Types" OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType)
+
+                device.Visible = matchesName AndAlso matchesStatus AndAlso matchesType
+            End If
+        Next
+
+        flpDevices.ResumeLayout()
+        Guna2Transition1.ShowSync(flpDevices)
+    End Sub
+
+    Private Sub ClearAddDeviceDetails()
+        txtDeviceName.Clear()
+        cboDeviceType.SelectedIndex = -1
+        nUpDownPrice.Value = 0.5
+    End Sub
+
+    Private Function IsValidData() As Boolean
+
+        If String.IsNullOrWhiteSpace(txtDeviceName.Text) OrElse cboDeviceType.SelectedValue Is Nothing Then
+            _ShowGunaMessage("Please fill in all required fields.", "Validation Error", MessageDialogIcon.Warning)
+            Return False
+        End If
+
+        Return True
+    End Function
+
+    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
+
+        Dim guna As New Guna2MessageDialog With {
+            .caption = caption,
+            .Text = message,
+            .Parent = System.Windows.Forms.Application.OpenForms(0),
+            .Style = MessageDialogStyle.Dark,
+            .icon = icon,
+            .Buttons = MessageDialogButtons.OK
+        }
+
+        guna.Show()
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        If Not isInitializing Then ApplyFilters()
+    End Sub
+
+    Private Sub cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStatus.SelectedIndexChanged
+        If Not isInitializing Then ApplyFilters()
     End Sub
 
     Private Sub cmbDeviceType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDeviceType.SelectedIndexChanged
-        If Not isInitializing Then
-
-            ApplyFilters()
-
-        End If
+        If Not isInitializing Then ApplyFilters()
     End Sub
 
+    Private Sub tsAssignGames_Click(sender As Object, e As EventArgs) Handles tsAssignGames.Click
+        Dim sourceCtrl = DeviceContextMenu.SourceControl
+        Dim card As ctrDeviceInfo = Nothing
+        Dim tempCtrl = sourceCtrl
+
+        While tempCtrl IsNot Nothing
+
+            If TypeOf tempCtrl Is ctrDeviceInfo Then
+                card = DirectCast(tempCtrl, ctrDeviceInfo)
+                Exit While
+            End If
+
+            tempCtrl = tempCtrl.Parent
+        End While
+
+        If card IsNot Nothing Then
+            Using assignForm As New frmAssignGames(card.DeviceID)
+                assignForm.ShowDialog()
+            End Using
+        End If
+
+    End Sub
 
 End Class

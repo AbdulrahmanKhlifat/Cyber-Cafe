@@ -3,8 +3,16 @@
 Public Class ctrDeviceInfo
 
     Private Shared ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
-    Private Shared ReadOnly CyanHoverColor As Color = Color.FromArgb(23, 209, 172)
+    Private Shared ReadOnly CyanHoverColor As Color = Color.FromArgb(35, 44, 51)
     Private Shared ReadOnly ColorInUse As Color = Color.Red
+
+    Private Shared ReadOnly ImgPC As Image = My.Resources._771247
+    Private Shared ReadOnly ImgPS4 As Image = My.Resources.PlayStationIcon
+    Private Shared ReadOnly ImgPS5 As Image = My.Resources.PS5_icon
+    Private Shared ReadOnly ImgXbox As Image = My.Resources.XBOX
+    Private Shared ReadOnly ImgVR As Image = My.Resources.VR_icon_removebg_preview
+
+
 
     Public Property DeviceID As Integer
 
@@ -19,21 +27,21 @@ Public Class ctrDeviceInfo
 
     End Property
 
-    'Private Shared ReadOnly ImgPCAvailable As Image = My.Resources.images__1__removebg_preview
-    Private Shared ReadOnly ImgPC As Image = My.Resources.imac
-    Private Shared ReadOnly ImgConsole As Image = My.Resources.games
-
     Private Function GetDeviceImage(typeName As String, isAvailable As Boolean) As Image
         Select Case typeName.ToUpper()
             Case "PC"
-                Return If(isAvailable, ImgPC, ImgPC)
-
-            Case "PS4", "PS5", "XBOX"
-                Return ImgConsole
-
+                Return ImgPC
+            Case "PS4"
+                Return ImgPS4
+            Case "PS5"
+                pbDeviceIcon.BackColor = Color.White
+                Return ImgPS5
+            Case "XBOX"
+                Return ImgXbox
+            Case "VIRTUAL REALITY"
+                Return ImgVR
             Case Else
                 Return ImgPC
-
         End Select
     End Function
 
@@ -75,6 +83,4 @@ Public Class ctrDeviceInfo
         End If
 
     End Sub
-
-
 End Class

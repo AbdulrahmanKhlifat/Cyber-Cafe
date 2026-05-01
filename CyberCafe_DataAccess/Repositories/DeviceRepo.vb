@@ -105,14 +105,18 @@ Public Class DeviceRepo
     Public Shared Function GetDeviceInfoByID(deviceID As Integer) As DeviceDTO
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "SELECT * FROM Devices WHERE DeviceID = @ID"
+
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@ID", SqlDbType.Int).Value = deviceID
+
                 Try
                     conn.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
+
                         If reader.Read() Then
                             Return New DeviceDTO() With {
-                                .deviceID = deviceID,
+                                .DeviceID = deviceID,
+                                .DeviceName = reader("DeviceName").ToString(),
                                 .DeviceTypeID = CType(reader("DeviceTypeID"), Integer),
                                 .Status = CType(reader("Status"), enDeviceStatus),
                                 .PricePerHour = CType(reader("PricePerHour"), Decimal)

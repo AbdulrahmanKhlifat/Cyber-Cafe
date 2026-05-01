@@ -45,12 +45,12 @@ Partial Class frmDevices
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.flpDevices = New System.Windows.Forms.FlowLayoutPanel()
         Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
-        Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
         Me.DeviceContextMenu = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
         Me.tsShowDetails = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsUpdateDevice = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsAssignGames = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsDeleteDevice = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
         Me.pnlTop.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
@@ -162,7 +162,7 @@ Partial Class frmDevices
         Me.cmbDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.cmbDeviceType.ItemHeight = 30
-        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "Playstation 5", "Xbox", "Virtual Reality", "Racing Simulator"})
+        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "PS4", "PS5", "XBOX", "Virtual Reality"})
         Me.cmbDeviceType.Location = New System.Drawing.Point(559, 12)
         Me.cmbDeviceType.Name = "cmbDeviceType"
         Me.cmbDeviceType.Size = New System.Drawing.Size(182, 36)
@@ -425,8 +425,8 @@ Partial Class frmDevices
         '
         'tsShowDetails
         '
-        Me.tsShowDetails.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!)
-        Me.tsShowDetails.Image = CType(resources.GetObject("tsShowDetails.Image"), System.Drawing.Image)
+        Me.tsShowDetails.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsShowDetails.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.info_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40
         Me.tsShowDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.tsShowDetails.Name = "tsShowDetails"
         Me.tsShowDetails.Size = New System.Drawing.Size(190, 26)
@@ -434,16 +434,16 @@ Partial Class frmDevices
         '
         'tsUpdateDevice
         '
-        Me.tsUpdateDevice.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!)
-        Me.tsUpdateDevice.Image = CType(resources.GetObject("tsUpdateDevice.Image"), System.Drawing.Image)
+        Me.tsUpdateDevice.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsUpdateDevice.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._3567018
         Me.tsUpdateDevice.Name = "tsUpdateDevice"
         Me.tsUpdateDevice.Size = New System.Drawing.Size(190, 26)
         Me.tsUpdateDevice.Text = "Update Device"
         '
         'tsAssignGames
         '
-        Me.tsAssignGames.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!)
-        Me.tsAssignGames.Image = CType(resources.GetObject("tsAssignGames.Image"), System.Drawing.Image)
+        Me.tsAssignGames.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsAssignGames.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._771247
         Me.tsAssignGames.Name = "tsAssignGames"
         Me.tsAssignGames.Padding = New System.Windows.Forms.Padding(4)
         Me.tsAssignGames.Size = New System.Drawing.Size(198, 32)
@@ -451,12 +451,36 @@ Partial Class frmDevices
         '
         'tsDeleteDevice
         '
-        Me.tsDeleteDevice.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!)
-        Me.tsDeleteDevice.ForeColor = System.Drawing.Color.Maroon
-        Me.tsDeleteDevice.Image = CType(resources.GetObject("tsDeleteDevice.Image"), System.Drawing.Image)
+        Me.tsDeleteDevice.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsDeleteDevice.ForeColor = System.Drawing.Color.GreenYellow
+        Me.tsDeleteDevice.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.start_icon_start_website_button_on_white_background_HYCG99_removebg_preview
         Me.tsDeleteDevice.Name = "tsDeleteDevice"
         Me.tsDeleteDevice.Size = New System.Drawing.Size(190, 26)
         Me.tsDeleteDevice.Text = "Start Session"
+        '
+        'Guna2Transition1
+        '
+        Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
+        Me.Guna2Transition1.Cursor = Nothing
+        Animation1.AnimateOnlyDifferences = True
+        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
+        Animation1.LeafCoeff = 0!
+        Animation1.MaxTime = 1.0!
+        Animation1.MinTime = 0!
+        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
+        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
+        Animation1.MosaicSize = 0
+        Animation1.Padding = New System.Windows.Forms.Padding(0)
+        Animation1.RotateCoeff = 0!
+        Animation1.RotateLimit = 0!
+        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
+        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
+        Animation1.TimeCoeff = 0!
+        Animation1.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation1
+        Me.Guna2Transition1.Interval = 1
+        Me.Guna2Transition1.MaxAnimationTime = 300
+        Me.Guna2Transition1.TimeStep = 0.05!
         '
         'frmDevices
         '
@@ -501,10 +525,10 @@ Partial Class frmDevices
     Private WithEvents btnCancelDevice As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents flpDevices As FlowLayoutPanel
     Friend WithEvents ScrollBar As Guna.UI2.WinForms.Guna2VScrollBar
-    Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
     Friend WithEvents DeviceContextMenu As Guna.UI2.WinForms.Guna2ContextMenuStrip
     Friend WithEvents tsShowDetails As ToolStripMenuItem
     Friend WithEvents tsUpdateDevice As ToolStripMenuItem
     Friend WithEvents tsAssignGames As ToolStripMenuItem
     Friend WithEvents tsDeleteDevice As ToolStripMenuItem
+    Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
 End Class

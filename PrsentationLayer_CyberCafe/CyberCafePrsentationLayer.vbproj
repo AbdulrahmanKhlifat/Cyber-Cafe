@@ -85,6 +85,18 @@
     <Compile Include="ctrDeviceInfo.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ctrGameCard.Designer.vb">
+      <DependentUpon>ctrGameCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctrGameCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="frmAssignGames.Designer.vb">
+      <DependentUpon>frmAssignGames.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAssignGames.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DragHelper.vb" />
     <Compile Include="frmCustomerMain.Designer.vb">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>
@@ -129,6 +141,12 @@
     <Compile Include="frmSessions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmShowDeviceDetails.Designer.vb">
+      <DependentUpon>frmShowDeviceDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowDeviceDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTransactions.Designer.vb">
       <DependentUpon>frmTransactions.vb</DependentUpon>
     </Compile>
@@ -157,6 +175,12 @@
     <EmbeddedResource Include="ctrDeviceInfo.resx">
       <DependentUpon>ctrDeviceInfo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrGameCard.resx">
+      <DependentUpon>ctrGameCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAssignGames.resx">
+      <DependentUpon>frmAssignGames.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerMain.resx">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSessions.resx">
       <DependentUpon>frmSessions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowDeviceDetails.resx">
+      <DependentUpon>frmShowDeviceDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
@@ -212,25 +239,40 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\joystic.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\4239781-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\free-computer-icon-956-thumb.png" />
+    <None Include="Resources\info_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\games.png" />
+    <None Include="Resources\3567018.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\imac.png" />
+    <None Include="Resources\771247.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\images %281%29.png" />
+    <None Include="Resources\start-icon-start-website-button-on-white-background-HYCG99-removebg-preview.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\images__1_-removebg-preview.png" />
+    <None Include="Resources\PCIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayStationIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS5 icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VR icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\XBOX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VR_icon-removebg-preview.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\list-solid.png" />
