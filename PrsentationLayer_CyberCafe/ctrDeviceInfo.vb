@@ -10,7 +10,7 @@ Public Class ctrDeviceInfo
     Private Shared ReadOnly ImgPS4 As Image = My.Resources.PlayStationIcon
     Private Shared ReadOnly ImgPS5 As Image = My.Resources.PS5_icon
     Private Shared ReadOnly ImgXbox As Image = My.Resources.XBOX
-    Private Shared ReadOnly ImgVR As Image = My.Resources.VR_icon_removebg_preview
+    Private Shared ReadOnly ImgVR As Image = My.Resources.VR_icon
 
 
 

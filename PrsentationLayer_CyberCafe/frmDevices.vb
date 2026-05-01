@@ -190,9 +190,17 @@ Public Class frmDevices
         End While
 
         If card IsNot Nothing Then
-            Using detailsForm As New frmShowDeviceDetails(card.DeviceID)
-                detailsForm.ShowDialog()
-            End Using
+
+            Dim devInfo = DeviceServices.Find(card.DeviceID)
+
+            If devInfo IsNot Nothing Then
+                Using detailsForm As New frmShowDeviceDetails(devInfo)
+                    detailsForm.ShowDialog()
+                End Using
+            Else
+
+                _ShowGunaMessage("Could not load device details. Check your database connection.", "Error", MessageDialogIcon.Error)
+            End If
         End If
 
     End Sub

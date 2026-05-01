@@ -110,7 +110,7 @@ Partial Class ctrDeviceInfo
         'pbDeviceIcon
         '
         Me.pbDeviceIcon.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.pbDeviceIcon.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.VR_icon_removebg_preview
+        Me.pbDeviceIcon.Image = My.Resources.VR_icon
         Me.pbDeviceIcon.ImageRotate = 0!
         Me.pbDeviceIcon.Location = New System.Drawing.Point(20, 20)
         Me.pbDeviceIcon.Name = "pbDeviceIcon"
