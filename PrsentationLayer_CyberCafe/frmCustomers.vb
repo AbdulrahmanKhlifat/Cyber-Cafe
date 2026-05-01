@@ -6,4 +6,6 @@
     Private Sub btnAddCustomer_Click(sender As Object, e As EventArgs) Handles btnAddCustomer.Click
         pnlCustomerDetail.Visible = True
     End Sub
+
+
 End Class

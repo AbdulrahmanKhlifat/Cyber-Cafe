@@ -47,10 +47,37 @@ Public Class frmTransactions
 
     End Sub
 
+    Private Function GetDummyTransactions() As DataTable
+        Dim dt As New DataTable()
+
+
+        dt.Columns.Add("TransactionID", GetType(Integer))
+        dt.Columns.Add("Customer Name", GetType(String))
+        dt.Columns.Add("CreatedByAdmin", GetType(String))
+        dt.Columns.Add("TransactionType", GetType(String))
+        dt.Columns.Add("PaidAmount", GetType(Decimal))
+        dt.Columns.Add("TransactionDate", GetType(DateTime))
+
+        ' إضافة صفوف وهمية
+        dt.Rows.Add(101, "أحمد محمد", "Admin_Sara", "Gaming Session", 15.5, DateTime.Now.AddHours(-2))
+        dt.Rows.Add(102, "خالد علوان", "Admin_Sara", "Drinks/Snacks", 5.0, DateTime.Now.AddHours(-1))
+        dt.Rows.Add(103, "عمر حسن", "Admin_Joe", "VIP Room", 50.0, DateTime.Now.AddMinutes(-30))
+        dt.Rows.Add(104, "لينا كمال", "Admin_Joe", "Gaming Session", 12.0, DateTime.Now.AddMinutes(-10))
+        dt.Rows.Add(105, "ياسين فهد", "Admin_Sara", "Printing", 2.25, DateTime.Now)
+
+        Return dt
+    End Function
+
+
+
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         styleDataGridView()
         dgvTrans.DataSource = TransactionServices.GetAllTransactions()
         LoadTransactionsSummaryInPanels()
+
+        'For testing without database, comment out the two lines
+        dgvTrans.DataSource = GetDummyTransactions()
+
     End Sub
 
     Private Sub pnlDetails_Paint(sender As Object, e As PaintEventArgs) Handles pnlDetails.Paint
