@@ -41,7 +41,7 @@ Partial Class frmDevices
         Me.cboDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.lblStatusF = New System.Windows.Forms.Label()
         Me.btnSaveDevice = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnDeleteDevice = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnClearDeviceInfo = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.flpDevices = New System.Windows.Forms.FlowLayoutPanel()
         Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
@@ -180,7 +180,7 @@ Partial Class frmDevices
         Me.pnlDeviceDetail.Controls.Add(Me.cboDeviceType)
         Me.pnlDeviceDetail.Controls.Add(Me.lblStatusF)
         Me.pnlDeviceDetail.Controls.Add(Me.btnSaveDevice)
-        Me.pnlDeviceDetail.Controls.Add(Me.btnDeleteDevice)
+        Me.pnlDeviceDetail.Controls.Add(Me.btnClearDeviceInfo)
         Me.pnlDeviceDetail.Controls.Add(Me.btnCancelDevice)
         Me.Guna2Transition1.SetDecoration(Me.pnlDeviceDetail, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.pnlDeviceDetail.Dock = System.Windows.Forms.DockStyle.Right
@@ -319,20 +319,20 @@ Partial Class frmDevices
         Me.btnSaveDevice.TabIndex = 14
         Me.btnSaveDevice.Text = "Save Changes"
         '
-        'btnDeleteDevice
+        'btnClearDeviceInfo
         '
-        Me.btnDeleteDevice.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.btnDeleteDevice.BorderColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(73, Byte), Integer))
-        Me.btnDeleteDevice.BorderRadius = 12
-        Me.Guna2Transition1.SetDecoration(Me.btnDeleteDevice, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.btnDeleteDevice.FillColor = System.Drawing.Color.DimGray
-        Me.btnDeleteDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.btnDeleteDevice.ForeColor = System.Drawing.Color.White
-        Me.btnDeleteDevice.Location = New System.Drawing.Point(18, 432)
-        Me.btnDeleteDevice.Name = "btnDeleteDevice"
-        Me.btnDeleteDevice.Size = New System.Drawing.Size(181, 43)
-        Me.btnDeleteDevice.TabIndex = 16
-        Me.btnDeleteDevice.Text = "Clear"
+        Me.btnClearDeviceInfo.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.btnClearDeviceInfo.BorderColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(73, Byte), Integer))
+        Me.btnClearDeviceInfo.BorderRadius = 12
+        Me.Guna2Transition1.SetDecoration(Me.btnClearDeviceInfo, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.btnClearDeviceInfo.FillColor = System.Drawing.Color.DimGray
+        Me.btnClearDeviceInfo.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.btnClearDeviceInfo.ForeColor = System.Drawing.Color.White
+        Me.btnClearDeviceInfo.Location = New System.Drawing.Point(18, 432)
+        Me.btnClearDeviceInfo.Name = "btnClearDeviceInfo"
+        Me.btnClearDeviceInfo.Size = New System.Drawing.Size(181, 43)
+        Me.btnClearDeviceInfo.TabIndex = 16
+        Me.btnClearDeviceInfo.Text = "Clear"
         '
         'btnCancelDevice
         '
@@ -521,7 +521,7 @@ Partial Class frmDevices
     Private WithEvents cboDeviceType As Guna.UI2.WinForms.Guna2ComboBox
     Private WithEvents lblStatusF As Label
     Private WithEvents btnSaveDevice As Guna.UI2.WinForms.Guna2Button
-    Private WithEvents btnDeleteDevice As Guna.UI2.WinForms.Guna2Button
+    Private WithEvents btnClearDeviceInfo As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnCancelDevice As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents flpDevices As FlowLayoutPanel
     Friend WithEvents ScrollBar As Guna.UI2.WinForms.Guna2VScrollBar

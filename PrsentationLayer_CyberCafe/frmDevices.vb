@@ -135,22 +135,26 @@ Public Class frmDevices
 
     End Sub
 
+    Private Function GetSelectedDeviceInfoCard() As ctrDeviceInfo
 
-    Private Sub tsEditDevice_Click(sender As Object, e As EventArgs) Handles tsUpdateDevice.Click
         Dim sourceCtrl = DeviceContextMenu.SourceControl
-        Dim card As ctrDeviceInfo = Nothing
         Dim tempCtrl = sourceCtrl
 
         While tempCtrl IsNot Nothing
 
             If TypeOf tempCtrl Is ctrDeviceInfo Then
-                card = DirectCast(tempCtrl, ctrDeviceInfo)
-                Exit While
+                Return DirectCast(tempCtrl, ctrDeviceInfo)
             End If
 
             tempCtrl = tempCtrl.Parent
+
         End While
 
+        Return Nothing
+    End Function
+    Private Sub tsEditDevice_Click(sender As Object, e As EventArgs) Handles tsUpdateDevice.Click
+
+        Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
         If card IsNot Nothing Then
             PrepareForEdit(card.DeviceID)
         End If
@@ -159,24 +163,20 @@ Public Class frmDevices
 
     Private Sub tsShowDetails_Click(sender As Object, e As EventArgs) Handles tsShowDetails.Click
 
-        Dim sourceCtrl = DeviceContextMenu.SourceControl
-        Dim card As ctrDeviceInfo = Nothing
-        Dim tempCtrl = sourceCtrl
-
-        While tempCtrl IsNot Nothing
-
-            If TypeOf tempCtrl Is ctrDeviceInfo Then
-                card = DirectCast(tempCtrl, ctrDeviceInfo)
-                Exit While
-            End If
-
-            tempCtrl = tempCtrl.Parent
-        End While
+        Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
 
         If card IsNot Nothing Then
-            Using detailsForm As New frmShowDeviceDetails(card.DeviceID)
-                detailsForm.ShowDialog()
-            End Using
+
+            Dim devInfo = DeviceServices.Find(card.DeviceID)
+
+            If devInfo IsNot Nothing Then
+                Using detailsForm As New frmShowDeviceDetails(devInfo)
+                    detailsForm.ShowDialog()
+                End Using
+            Else
+
+                _ShowGunaMessage("Could not load device details. Check your database connection.", "Error", MessageDialogIcon.Error)
+            End If
         End If
 
     End Sub
@@ -186,7 +186,7 @@ Public Class frmDevices
         ClearAddDeviceDetails()
     End Sub
 
-    Private Sub btnDeleteDevice_Click(sender As Object, e As EventArgs) Handles btnDeleteDevice.Click
+    Private Sub btnClearDeviceInfo_Click(sender As Object, e As EventArgs) Handles btnClearDeviceInfo.Click
 
         ClearAddDeviceDetails()
 
@@ -262,19 +262,7 @@ Public Class frmDevices
     End Sub
 
     Private Sub tsAssignGames_Click(sender As Object, e As EventArgs) Handles tsAssignGames.Click
-        Dim sourceCtrl = DeviceContextMenu.SourceControl
-        Dim card As ctrDeviceInfo = Nothing
-        Dim tempCtrl = sourceCtrl
-
-        While tempCtrl IsNot Nothing
-
-            If TypeOf tempCtrl Is ctrDeviceInfo Then
-                card = DirectCast(tempCtrl, ctrDeviceInfo)
-                Exit While
-            End If
-
-            tempCtrl = tempCtrl.Parent
-        End While
+        Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
 
         If card IsNot Nothing Then
             Using assignForm As New frmAssignGames(card.DeviceID)

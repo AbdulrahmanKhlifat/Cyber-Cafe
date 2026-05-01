@@ -103,29 +103,37 @@ Public Class DeviceRepo
     End Function
 
     Public Shared Function GetDeviceInfoByID(deviceID As Integer) As DeviceDTO
+        Dim device As DeviceDTO = Nothing
+
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT * FROM Devices WHERE DeviceID = @ID"
+
+            Dim query As String = "SELECT D.*, DT.DeviceTypeName " &
+            "FROM Devices D " &
+            "LEFT JOIN DeviceType DT ON D.DeviceTypeID = DT.DeviceTypeID " &
+            "WHERE D.DeviceID = @DeviceID"
 
             Using cmd As New SqlCommand(query, conn)
-                cmd.Parameters.Add("@ID", SqlDbType.Int).Value = deviceID
+                cmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
 
                 Try
                     conn.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
 
                         If reader.Read() Then
-                            Return New DeviceDTO() With {
-                                .DeviceID = deviceID,
-                                .DeviceName = reader("DeviceName").ToString(),
-                                .DeviceTypeID = CType(reader("DeviceTypeID"), Integer),
-                                .Status = CType(reader("Status"), enDeviceStatus),
-                                .PricePerHour = CType(reader("PricePerHour"), Decimal)
-                            }
+                            device = New DeviceDTO() With {
+                           .deviceID = CInt(reader("DeviceID")),
+                           .DeviceName = If(reader("DeviceName") Is DBNull.Value, "", reader("DeviceName").ToString()),
+                           .DeviceTypeID = CInt(reader("DeviceTypeID")),
+                           .DeviceTypeName = If(reader("DeviceTypeName") Is DBNull.Value, "Unknown", reader("DeviceTypeName").ToString()),
+                           .PricePerHour = CDec(reader("PricePerHour")),
+                           .Status = DirectCast(CInt(reader("Status")), enDeviceStatus)
+                         }
                         End If
+
                     End Using
                 Catch ex As Exception
+                    MsgBox(ex.Message)
                     CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
-
                 End Try
             End Using
         End Using

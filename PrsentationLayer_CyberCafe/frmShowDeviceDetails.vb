@@ -4,24 +4,23 @@ Imports Guna.UI2.WinForms
 
 Public Class frmShowDeviceDetails
 
-    Dim _DeviceID As Integer
-    Public Sub New(DeviceID As Integer)
+    Dim _device As DeviceDTO
+    Public Sub New(device As DeviceDTO)
 
         InitializeComponent()
 
-        _DeviceID = DeviceID
-        LoadDeviceDetails(_DeviceID)
+        _device = device
+        LoadDeviceDetails(_device)
     End Sub
 
-    Public Sub LoadDeviceDetails(DeviceID As Integer)
+    Public Sub LoadDeviceDetails(device As DeviceDTO)
 
-        Dim devInfo = DeviceServices.Find(DeviceID)
-        If devInfo Is Nothing Then
+        If device Is Nothing Then
             _ShowGunaMessage("Device not found!", "Error", MessageDialogIcon.Error)
             Return
         End If
 
-        lblDeviceName.Text = devInfo.DeviceName
+        lblDeviceName.Text = device.DeviceName
         Dim isAvailable As Boolean = True
         If isAvailable Then
             lblStatus.Text = "Available"
@@ -41,9 +40,12 @@ Public Class frmShowDeviceDetails
 
 
         'I suggest to keep it +تقعدش تعيط like this for now, since we don't have real data to show. 
-        lblIPValue.Text = "192.168.1." & (100 + DeviceID).ToString()
-        lblMACValue.Text = "00:1A:2B:3C:4D:" & DeviceID.ToString("X2")
-        Select Case devInfo.DeviceTypeName.ToUpper()
+        lblIPValue.Text = "192.168.1." & (100 + device.DeviceID).ToString()
+        lblMACValue.Text = "00:1A:2B:3C:4D:" & device.DeviceID.ToString("X2")
+
+        Dim deviceType As String = If(device.DeviceTypeName, "").ToUpper()
+
+        Select Case deviceType
             Case "PC"
                 lblCPUValue.Text = "Intel Core i5-11400F"
                 lblRAMValue.Text = "16 GB DDR4"
@@ -72,14 +74,15 @@ Public Class frmShowDeviceDetails
     Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
 
         Dim guna As New Guna2MessageDialog With {
-            .caption = caption,
+            .Caption = caption,
             .Text = message,
             .Parent = System.Windows.Forms.Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
-            .icon = icon,
+            .Icon = icon,
             .Buttons = MessageDialogButtons.OK
         }
 
         guna.Show()
     End Sub
+
 End Class
