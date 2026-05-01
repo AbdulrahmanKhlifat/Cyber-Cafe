@@ -62,7 +62,7 @@ Partial Class frmCustomers
         Me.pnlHeader.Location = New System.Drawing.Point(0, 48)
         Me.pnlHeader.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1045, 56)
+        Me.pnlHeader.Size = New System.Drawing.Size(1341, 56)
         Me.pnlHeader.TabIndex = 3
         '
         'dgvCustomers
@@ -141,7 +141,7 @@ Partial Class frmCustomers
         Me.btnAddCustomer.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnAddCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddCustomer.ForeColor = System.Drawing.Color.White
-        Me.btnAddCustomer.Location = New System.Drawing.Point(863, 13)
+        Me.btnAddCustomer.Location = New System.Drawing.Point(1159, 13)
         Me.btnAddCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddCustomer.Name = "btnAddCustomer"
         Me.btnAddCustomer.Size = New System.Drawing.Size(165, 33)
@@ -157,7 +157,7 @@ Partial Class frmCustomers
         Me.pnlFilter.Location = New System.Drawing.Point(0, 0)
         Me.pnlFilter.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlFilter.Name = "pnlFilter"
-        Me.pnlFilter.Size = New System.Drawing.Size(1045, 48)
+        Me.pnlFilter.Size = New System.Drawing.Size(1341, 48)
         Me.pnlFilter.TabIndex = 4
         '
         'txtSearch
@@ -209,10 +209,10 @@ Partial Class frmCustomers
         Me.pnlCustomerDetail.Controls.Add(Me.btnDeleteCustomer)
         Me.pnlCustomerDetail.Controls.Add(Me.btnCancelCustomer)
         Me.pnlCustomerDetail.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlCustomerDetail.Location = New System.Drawing.Point(719, 106)
+        Me.pnlCustomerDetail.Location = New System.Drawing.Point(1015, 108)
         Me.pnlCustomerDetail.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlCustomerDetail.Name = "pnlCustomerDetail"
-        Me.pnlCustomerDetail.Size = New System.Drawing.Size(326, 424)
+        Me.pnlCustomerDetail.Size = New System.Drawing.Size(326, 439)
         Me.pnlCustomerDetail.TabIndex = 2
         Me.pnlCustomerDetail.Visible = False
         '
@@ -406,7 +406,7 @@ Partial Class frmCustomers
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1045, 530)
+        Me.ClientSize = New System.Drawing.Size(1341, 721)
         Me.Controls.Add(Me.pnlCustomerDetail)
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlFilter)

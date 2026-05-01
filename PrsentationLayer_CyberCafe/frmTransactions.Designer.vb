@@ -77,7 +77,7 @@ Partial Class frmTransactions
         Me.dgvTrans.ReadOnly = True
         Me.dgvTrans.RowHeadersWidth = 51
         Me.dgvTrans.RowTemplate.Height = 24
-        Me.dgvTrans.Size = New System.Drawing.Size(1180, 528)
+        Me.dgvTrans.Size = New System.Drawing.Size(1003, 428)
         Me.dgvTrans.TabIndex = 8
         '
         'pnlDetails
@@ -98,9 +98,9 @@ Partial Class frmTransactions
         Me.pnlDetails.CustomBorderThickness = New System.Windows.Forms.Padding(1, 0, 0, 0)
         Me.pnlDetails.Dock = System.Windows.Forms.DockStyle.Right
         Me.pnlDetails.FillColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.pnlDetails.Location = New System.Drawing.Point(1180, 266)
+        Me.pnlDetails.Location = New System.Drawing.Point(1003, 266)
         Me.pnlDetails.Name = "pnlDetails"
-        Me.pnlDetails.Size = New System.Drawing.Size(338, 528)
+        Me.pnlDetails.Size = New System.Drawing.Size(338, 428)
         Me.pnlDetails.TabIndex = 9
         '
         'txtAdmin
@@ -407,7 +407,7 @@ Partial Class frmTransactions
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 164)
         Me.pnlTop.Name = "pnlTop"
-        Me.pnlTop.Size = New System.Drawing.Size(1518, 102)
+        Me.pnlTop.Size = New System.Drawing.Size(1341, 102)
         Me.pnlTop.TabIndex = 6
         '
         'Guna2Panel1
@@ -420,7 +420,7 @@ Partial Class frmTransactions
         Me.Guna2Panel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Guna2Panel1.Name = "Guna2Panel1"
-        Me.Guna2Panel1.Size = New System.Drawing.Size(1518, 164)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(1341, 164)
         Me.Guna2Panel1.TabIndex = 10
         '
         'Guna2CustomGradientPanel2
@@ -436,7 +436,7 @@ Partial Class frmTransactions
         Me.Guna2CustomGradientPanel2.FillColor4 = System.Drawing.Color.FromArgb(CType(CType(56, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.Guna2CustomGradientPanel2.Location = New System.Drawing.Point(17, 48)
         Me.Guna2CustomGradientPanel2.Name = "Guna2CustomGradientPanel2"
-        Me.Guna2CustomGradientPanel2.Size = New System.Drawing.Size(734, 98)
+        Me.Guna2CustomGradientPanel2.Size = New System.Drawing.Size(636, 98)
         Me.Guna2CustomGradientPanel2.TabIndex = 12
         '
         'Guna2PictureBox2
@@ -475,9 +475,9 @@ Partial Class frmTransactions
         Me.Guna2CustomGradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(56, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.Guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Guna2CustomGradientPanel1.FillColor4 = System.Drawing.Color.FromArgb(CType(CType(56, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.Guna2CustomGradientPanel1.Location = New System.Drawing.Point(774, 48)
+        Me.Guna2CustomGradientPanel1.Location = New System.Drawing.Point(686, 48)
         Me.Guna2CustomGradientPanel1.Name = "Guna2CustomGradientPanel1"
-        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(732, 98)
+        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(643, 98)
         Me.Guna2CustomGradientPanel1.TabIndex = 11
         '
         'Guna2PictureBox1
@@ -509,7 +509,7 @@ Partial Class frmTransactions
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1518, 794)
+        Me.ClientSize = New System.Drawing.Size(1341, 694)
         Me.Controls.Add(Me.dgvTrans)
         Me.Controls.Add(Me.pnlDetails)
         Me.Controls.Add(Me.pnlTop)

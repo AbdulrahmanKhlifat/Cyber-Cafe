@@ -92,22 +92,6 @@ Public Class frmDevices
         ClearAddDeviceDetails()
     End Sub
 
-
-    Private Function GetAllDevicesList() As List(Of DeviceDTO)
-        Dim list As New List(Of DeviceDTO)
-        Dim dtDevices As DataTable = DeviceServices.GetAllDevices()
-
-        For Each row As DataRow In dtDevices.Rows
-            list.Add(New DeviceDTO With {
-            .DeviceID = Convert.ToInt32(row("DeviceID")),
-            .DeviceName = row("DeviceName").ToString(),
-            .DeviceTypeName = row("DeviceTypeName").ToString(),
-            .Status = CType(CByte(row("Status")), enDeviceStatus)
-        })
-        Next
-        Return list
-    End Function
-
     Private Sub AddDeviceToFlowLayout(device As DeviceDTO)
         Dim ctrl As New ctrDeviceInfo()
         ctrl.LoadData(device)
@@ -119,7 +103,7 @@ Public Class frmDevices
         flpDevices.Controls.Clear()
         flpDevices.SuspendLayout()
 
-        Dim devicesList As List(Of DeviceDTO) = GetAllDevicesList()
+        Dim devicesList As List(Of DeviceDTO) = DeviceServices.GetAllDevicesList()
 
         For Each device In devicesList
             AddDeviceToFlowLayout(device)

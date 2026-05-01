@@ -22,7 +22,7 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDevices))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
@@ -367,12 +367,14 @@ Partial Class frmDevices
         Me.ScrollBar.HighlightOnWheel = True
         Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
         Me.ScrollBar.InUpdate = False
-        Me.ScrollBar.LargeChange = 10
-        Me.ScrollBar.Location = New System.Drawing.Point(911, 130)
+        Me.ScrollBar.LargeChange = 591
+        Me.ScrollBar.Location = New System.Drawing.Point(914, 130)
         Me.ScrollBar.Margin = New System.Windows.Forms.Padding(1)
+        Me.ScrollBar.Maximum = 592
         Me.ScrollBar.Name = "ScrollBar"
-        Me.ScrollBar.ScrollbarSize = 21
-        Me.ScrollBar.Size = New System.Drawing.Size(21, 591)
+        Me.ScrollBar.ScrollbarSize = 18
+        Me.ScrollBar.Size = New System.Drawing.Size(18, 591)
+        Me.ScrollBar.SmallChange = 5
         Me.ScrollBar.TabIndex = 0
         Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
@@ -381,22 +383,22 @@ Partial Class frmDevices
         '
         Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
         Me.Guna2Transition1.Cursor = Nothing
-        Animation2.AnimateOnlyDifferences = True
-        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
-        Animation2.LeafCoeff = 0!
-        Animation2.MaxTime = 1.0!
-        Animation2.MinTime = 0!
-        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
-        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
-        Animation2.MosaicSize = 0
-        Animation2.Padding = New System.Windows.Forms.Padding(0)
-        Animation2.RotateCoeff = 0!
-        Animation2.RotateLimit = 0!
-        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
-        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
-        Animation2.TimeCoeff = 0!
-        Animation2.TransparencyCoeff = 1.0!
-        Me.Guna2Transition1.DefaultAnimation = Animation2
+        Animation1.AnimateOnlyDifferences = True
+        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
+        Animation1.LeafCoeff = 0!
+        Animation1.MaxTime = 1.0!
+        Animation1.MinTime = 0!
+        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
+        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
+        Animation1.MosaicSize = 0
+        Animation1.Padding = New System.Windows.Forms.Padding(0)
+        Animation1.RotateCoeff = 0!
+        Animation1.RotateLimit = 0!
+        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
+        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
+        Animation1.TimeCoeff = 0!
+        Animation1.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation1
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.MaxAnimationTime = 300
         Me.Guna2Transition1.TimeStep = 0.05!
@@ -419,7 +421,7 @@ Partial Class frmDevices
         Me.DeviceContextMenu.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
         Me.DeviceContextMenu.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.DeviceContextMenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-        Me.DeviceContextMenu.Size = New System.Drawing.Size(219, 138)
+        Me.DeviceContextMenu.Size = New System.Drawing.Size(191, 114)
         '
         'tsShowDetails
         '
@@ -427,7 +429,7 @@ Partial Class frmDevices
         Me.tsShowDetails.Image = CType(resources.GetObject("tsShowDetails.Image"), System.Drawing.Image)
         Me.tsShowDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.tsShowDetails.Name = "tsShowDetails"
-        Me.tsShowDetails.Size = New System.Drawing.Size(218, 32)
+        Me.tsShowDetails.Size = New System.Drawing.Size(190, 26)
         Me.tsShowDetails.Text = "Show Details"
         '
         'tsUpdateDevice
@@ -435,7 +437,7 @@ Partial Class frmDevices
         Me.tsUpdateDevice.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!)
         Me.tsUpdateDevice.Image = CType(resources.GetObject("tsUpdateDevice.Image"), System.Drawing.Image)
         Me.tsUpdateDevice.Name = "tsUpdateDevice"
-        Me.tsUpdateDevice.Size = New System.Drawing.Size(218, 32)
+        Me.tsUpdateDevice.Size = New System.Drawing.Size(190, 26)
         Me.tsUpdateDevice.Text = "Update Device"
         '
         'tsAssignGames
@@ -444,7 +446,7 @@ Partial Class frmDevices
         Me.tsAssignGames.Image = CType(resources.GetObject("tsAssignGames.Image"), System.Drawing.Image)
         Me.tsAssignGames.Name = "tsAssignGames"
         Me.tsAssignGames.Padding = New System.Windows.Forms.Padding(4)
-        Me.tsAssignGames.Size = New System.Drawing.Size(226, 38)
+        Me.tsAssignGames.Size = New System.Drawing.Size(198, 32)
         Me.tsAssignGames.Text = "Assign Games"
         '
         'tsDeleteDevice
@@ -453,7 +455,7 @@ Partial Class frmDevices
         Me.tsDeleteDevice.ForeColor = System.Drawing.Color.Maroon
         Me.tsDeleteDevice.Image = CType(resources.GetObject("tsDeleteDevice.Image"), System.Drawing.Image)
         Me.tsDeleteDevice.Name = "tsDeleteDevice"
-        Me.tsDeleteDevice.Size = New System.Drawing.Size(218, 32)
+        Me.tsDeleteDevice.Size = New System.Drawing.Size(190, 26)
         Me.tsDeleteDevice.Text = "Start Session"
         '
         'frmDevices

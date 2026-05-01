@@ -129,4 +129,39 @@ Public Class DeviceRepo
         Return Nothing
 
     End Function
+
+    Public Shared Function GetAllDevicesList() As List(Of DeviceDTO)
+        Dim list As New List(Of DeviceDTO)()
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, " &
+                                  "d.Status, d.PricePerHour " &
+                                  "FROM Devices d " &
+                                  "JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID"
+
+            Using cmd As New SqlCommand(query, conn)
+                Try
+                    conn.Open()
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                        While reader.Read()
+                            list.Add(New DeviceDTO With {
+                                .DeviceID = Convert.ToInt32(reader("DeviceID")),
+                                .DeviceName = reader("DeviceName").ToString(),
+                                .DeviceTypeName = reader("DeviceTypeName").ToString(),
+                                .Status = CType(CByte(reader("Status")), enDeviceStatus)
+                        })
+                        End While
+                    End Using
+
+                Catch ex As Exception
+
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                End Try
+            End Using
+        End Using
+
+        Return list
+    End Function
 End Class

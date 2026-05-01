@@ -41,4 +41,8 @@ Public Class DeviceServices
         Return DeviceRepo.UpdateDeviceStatus(deviceID, CInt(newStatus))
     End Function
 
+    Public Shared Function GetAllDevicesList() As List(Of DeviceDTO)
+        Return DeviceRepo.GetAllDevicesList()
+    End Function
+
 End Class
