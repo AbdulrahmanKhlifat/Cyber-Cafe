@@ -367,15 +367,41 @@ Partial Class frmDevices
         Me.ScrollBar.HighlightOnWheel = True
         Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
         Me.ScrollBar.InUpdate = False
-        Me.ScrollBar.LargeChange = 10
-        Me.ScrollBar.Location = New System.Drawing.Point(911, 130)
+        Me.ScrollBar.LargeChange = 591
+        Me.ScrollBar.Location = New System.Drawing.Point(914, 130)
         Me.ScrollBar.Margin = New System.Windows.Forms.Padding(1)
+        Me.ScrollBar.Maximum = 592
         Me.ScrollBar.Name = "ScrollBar"
-        Me.ScrollBar.ScrollbarSize = 21
-        Me.ScrollBar.Size = New System.Drawing.Size(21, 591)
+        Me.ScrollBar.ScrollbarSize = 18
+        Me.ScrollBar.Size = New System.Drawing.Size(18, 591)
+        Me.ScrollBar.SmallChange = 5
         Me.ScrollBar.TabIndex = 0
         Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
+        '
+        'Guna2Transition1
+        '
+        Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
+        Me.Guna2Transition1.Cursor = Nothing
+        Animation1.AnimateOnlyDifferences = True
+        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
+        Animation1.LeafCoeff = 0!
+        Animation1.MaxTime = 1.0!
+        Animation1.MinTime = 0!
+        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
+        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
+        Animation1.MosaicSize = 0
+        Animation1.Padding = New System.Windows.Forms.Padding(0)
+        Animation1.RotateCoeff = 0!
+        Animation1.RotateLimit = 0!
+        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
+        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
+        Animation1.TimeCoeff = 0!
+        Animation1.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation1
+        Me.Guna2Transition1.Interval = 1
+        Me.Guna2Transition1.MaxAnimationTime = 300
+        Me.Guna2Transition1.TimeStep = 0.05!
         '
         'DeviceContextMenu
         '
@@ -394,8 +420,8 @@ Partial Class frmDevices
         Me.DeviceContextMenu.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
         Me.DeviceContextMenu.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
         Me.DeviceContextMenu.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.DeviceContextMenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias
-        Me.DeviceContextMenu.Size = New System.Drawing.Size(225, 138)
+        Me.DeviceContextMenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+        Me.DeviceContextMenu.Size = New System.Drawing.Size(191, 114)
         '
         'tsShowDetails
         '
@@ -403,7 +429,7 @@ Partial Class frmDevices
         Me.tsShowDetails.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.info_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40
         Me.tsShowDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.tsShowDetails.Name = "tsShowDetails"
-        Me.tsShowDetails.Size = New System.Drawing.Size(224, 32)
+        Me.tsShowDetails.Size = New System.Drawing.Size(190, 26)
         Me.tsShowDetails.Text = "Show Details"
         '
         'tsUpdateDevice
@@ -411,7 +437,7 @@ Partial Class frmDevices
         Me.tsUpdateDevice.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tsUpdateDevice.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._3567018
         Me.tsUpdateDevice.Name = "tsUpdateDevice"
-        Me.tsUpdateDevice.Size = New System.Drawing.Size(224, 32)
+        Me.tsUpdateDevice.Size = New System.Drawing.Size(190, 26)
         Me.tsUpdateDevice.Text = "Update Device"
         '
         'tsAssignGames
@@ -420,7 +446,7 @@ Partial Class frmDevices
         Me.tsAssignGames.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._771247
         Me.tsAssignGames.Name = "tsAssignGames"
         Me.tsAssignGames.Padding = New System.Windows.Forms.Padding(4)
-        Me.tsAssignGames.Size = New System.Drawing.Size(232, 38)
+        Me.tsAssignGames.Size = New System.Drawing.Size(198, 32)
         Me.tsAssignGames.Text = "Assign Games"
         '
         'tsDeleteDevice
@@ -429,7 +455,7 @@ Partial Class frmDevices
         Me.tsDeleteDevice.ForeColor = System.Drawing.Color.GreenYellow
         Me.tsDeleteDevice.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.start_icon_start_website_button_on_white_background_HYCG99_removebg_preview
         Me.tsDeleteDevice.Name = "tsDeleteDevice"
-        Me.tsDeleteDevice.Size = New System.Drawing.Size(224, 32)
+        Me.tsDeleteDevice.Size = New System.Drawing.Size(190, 26)
         Me.tsDeleteDevice.Text = "Start Session"
         '
         'Guna2Transition1

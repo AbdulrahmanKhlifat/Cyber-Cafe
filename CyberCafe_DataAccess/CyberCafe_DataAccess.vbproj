@@ -68,6 +68,7 @@
     <Compile Include="Repositories\AdminRepo.vb" />
     <Compile Include="Repositories\CustomerRepo.vb" />
     <Compile Include="Configuration\DataAccessSettings.vb" />
+    <Compile Include="Repositories\DashboardRepo.vb" />
     <Compile Include="Repositories\DeviceGameRepo.vb" />
     <Compile Include="Repositories\DeviceRepo.vb" />
     <Compile Include="Repositories\DeviceTypeRepo.vb" />

@@ -103,9 +103,9 @@ Public Class DeviceRepo
     End Function
 
     Public Shared Function GetDeviceInfoByID(deviceID As Integer) As DeviceDTO
-    Dim device As DeviceDTO = Nothing
+        Dim device As DeviceDTO = Nothing
 
-    Using conn As New SqlConnection(DataAccessSettings.connectionString)
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
             Dim query As String = "SELECT D.*, DT.DeviceTypeName " &
             "FROM Devices D " &
@@ -113,32 +113,67 @@ Public Class DeviceRepo
             "WHERE D.DeviceID = @DeviceID"
 
             Using cmd As New SqlCommand(query, conn)
-            cmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
+                cmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
 
-            Try
-                conn.Open()
-                Using reader As SqlDataReader = cmd.ExecuteReader()
+                Try
+                    conn.Open()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
 
-                    If reader.Read() Then
-                         device = New DeviceDTO() With {
-                        .DeviceID = CInt(reader("DeviceID")),
-                        .DeviceName = If(reader("DeviceName") Is DBNull.Value, "", reader("DeviceName").ToString()),
-                        .DeviceTypeID = CInt(reader("DeviceTypeID")),
-                        .DeviceTypeName = If(reader("DeviceTypeName") Is DBNull.Value, "Unknown", reader("DeviceTypeName").ToString()),
-                        .PricePerHour = CDec(reader("PricePerHour")),
-                        .Status = DirectCast(CInt(reader("Status")), enDeviceStatus)
-                    }
-                    End If
+                        If reader.Read() Then
+                            device = New DeviceDTO() With {
+                           .deviceID = CInt(reader("DeviceID")),
+                           .DeviceName = If(reader("DeviceName") Is DBNull.Value, "", reader("DeviceName").ToString()),
+                           .DeviceTypeID = CInt(reader("DeviceTypeID")),
+                           .DeviceTypeName = If(reader("DeviceTypeName") Is DBNull.Value, "Unknown", reader("DeviceTypeName").ToString()),
+                           .PricePerHour = CDec(reader("PricePerHour")),
+                           .Status = DirectCast(CInt(reader("Status")), enDeviceStatus)
+                         }
+                        End If
 
-                End Using
-            Catch ex As Exception
+                    End Using
+                Catch ex As Exception
                     MsgBox(ex.Message)
                     CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
-            End Try
-        End Using
-    End Using
+                End Try
+            End Using
+        End Using
 
-    Return device
-End Function
+        Return Nothing
 
+    End Function
+
+    Public Shared Function GetAllDevicesList() As List(Of DeviceDTO)
+        Dim list As New List(Of DeviceDTO)()
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, " &
+                                  "d.Status, d.PricePerHour " &
+                                  "FROM Devices d " &
+                                  "JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID"
+
+            Using cmd As New SqlCommand(query, conn)
+                Try
+                    conn.Open()
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                        While reader.Read()
+                            list.Add(New DeviceDTO With {
+                                .DeviceID = Convert.ToInt32(reader("DeviceID")),
+                                .DeviceName = reader("DeviceName").ToString(),
+                                .DeviceTypeName = reader("DeviceTypeName").ToString(),
+                                .Status = CType(CByte(reader("Status")), enDeviceStatus)
+                        })
+                        End While
+                    End Using
+
+                Catch ex As Exception
+
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                End Try
+            End Using
+        End Using
+
+        Return list
+    End Function
 End Class

@@ -12,14 +12,23 @@ Public Class frmDashboard
         InitializeComponent()
         _LastButtonClicked = New Button()
         _admin = admin
-
+        _UpdateButtonColor(btnDashboard)
     End Sub
 
     Private Sub _UpdateButtonColor(btn As Button)
 
-        _LastButtonClicked.BackColor = Color.FromArgb(28, 33, 40)
-        _LastButtonClicked = btn
+        ' 1. Reset the previously clicked button (Only if it exists to prevent a crash)
+        If _LastButtonClicked IsNot Nothing Then
+            _LastButtonClicked.BackColor = Color.FromArgb(28, 33, 40)
+            _LastButtonClicked.ForeColor = Color.FromArgb(148, 163, 184) ' Slate Gray Text
+        End If
+
+        ' 2. Highlight the newly clicked button
         btn.BackColor = Color.FromArgb(0, 200, 160)
+        btn.ForeColor = Color.FromArgb(15, 23, 42) ' Dark Slate Text for contrast
+
+        ' 3. Update the tracker
+        _LastButtonClicked = btn
 
     End Sub
 
