@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="DTOs\AdminDTO.vb" />
     <Compile Include="DTOs\CustomerDTO.vb" />
+    <Compile Include="DTOs\DailyTransactionsSummaryDTO.vb" />
     <Compile Include="DTOs\DeviceDTO.vb" />
     <Compile Include="Enums\DeviceStatus.vb" />
     <Compile Include="Enums\DeviceType.vb" />

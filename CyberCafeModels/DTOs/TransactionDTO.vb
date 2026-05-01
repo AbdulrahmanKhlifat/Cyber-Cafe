@@ -13,5 +13,4 @@
 
     Public Property SessionID As Integer?
 
-    Public Property IsDeleted As Integer
 End Class

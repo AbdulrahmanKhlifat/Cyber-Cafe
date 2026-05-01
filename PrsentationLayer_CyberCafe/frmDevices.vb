@@ -77,10 +77,7 @@ Public Class frmDevices
 
     Private Sub btnAddDevice_Click(sender As Object, e As EventArgs) Handles btnAddDevice.Click
 
-        If Not pnlDeviceDetail.Visible Then
-            pnlDeviceDetail.Visible = True
-        End If
-
+        pnlDeviceDetail.Visible = Not pnlDeviceDetail.Visible
     End Sub
     Private Sub ClearAddDeviceDetails()
         txtDeviceName.Text = ""

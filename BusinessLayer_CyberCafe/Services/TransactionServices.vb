@@ -1,7 +1,7 @@
 ﻿Imports CyberCafe_DataAccess
 Imports CyberCafeModels
 
-Public Class TransactionManager
+Public Class TransactionServices
 
     Public Shared Function AddTransaction(transactionDTO As TransactionDTO) As TransactionResults
 
@@ -27,22 +27,12 @@ Public Class TransactionManager
         Return TransactionRepo.GetTransactionByID(transactionID)
     End Function
 
-    Public Shared Function DeleteTransaction(transactionID As Integer) As Boolean
-        Dim isDeleted As Boolean = TransactionRepo.DeleteTransaction(transactionID)
-
-        If Not isDeleted Then
-            Throw New InvalidOperationException("Transaction does not exist or has already been deleted!")
-        End If
-
-        Return True
-    End Function
-
-    Public Shared Function GetAllActiveTransactions() As DataTable
-        Return TransactionRepo.GetAllActiveTransactions()
-    End Function
-
     Public Shared Function GetAllTransactions() As DataTable
         Return TransactionRepo.GetAllTransactions()
+    End Function
+
+    Public Shared Function GetTransactionSummary() As DailyTransactionsSummaryDTO
+        Return TransactionRepo.GetDailyTransactionSummary()
     End Function
 
 End Class

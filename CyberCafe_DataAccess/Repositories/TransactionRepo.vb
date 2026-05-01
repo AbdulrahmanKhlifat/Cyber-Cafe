@@ -8,9 +8,9 @@ Public Class TransactionRepo
 
         Using conn As SqlConnection = New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "INSERT INTO Transactions 
-                                  (CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID, IsDeleted) 
+                                  (CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID) 
                                   VALUES 
-                                  (@CustomerID, @ProcessedByAdminID, @TransactionType, @TransactionDate, @TransactionNotes, @SessionID, @IsDeleted);
+                                  (@CustomerID, @ProcessedByAdminID, @TransactionType, @TransactionDate, @TransactionNotes, @SessionID);
                                   SELECT SCOPE_IDENTITY();"
 
             Using cmd As SqlCommand = New SqlCommand(query, conn)
@@ -18,7 +18,6 @@ Public Class TransactionRepo
                 cmd.Parameters.Add("@ProcessedByAdminID", SqlDbType.Int).Value = transaction.ProcessedByAdminID
                 cmd.Parameters.Add("@TransactionType", SqlDbType.Int).Value = Convert.ToInt32(transaction.TransactionType)
                 cmd.Parameters.Add("@TransactionDate", SqlDbType.DateTime).Value = transaction.TransactionDate
-                cmd.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = transaction.IsDeleted
 
 
                 If String.IsNullOrEmpty(transaction.TransactionNotes) Then
@@ -58,36 +57,11 @@ Public Class TransactionRepo
         Return transactionID
     End Function
 
-    Public Shared Function DeleteTransaction(transactionID As Integer) As Boolean
-        Dim isDeleted As Boolean = False
-
-
-        Using conn As SqlConnection = New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "UPDATE Transactions SET IsDeleted = 1 WHERE TransactionID = @TransactionID;"
-
-            Using cmd As SqlCommand = New SqlCommand(query, conn)
-                cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = transactionID
-
-                Try
-                    conn.Open()
-                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
-                    isDeleted = (rowsAffected > 0)
-                Catch ex As Exception
-                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
-
-                    isDeleted = False
-                End Try
-            End Using
-        End Using
-
-        Return isDeleted
-    End Function
-
     Public Shared Function GetTransactionByID(transactionID As Integer) As TransactionDTO
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT TransactionID, CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID, IsDeleted 
+            Dim query As String = "SELECT TransactionID, CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID
                                    FROM Transactions 
-                                   WHERE TransactionID = @TransactionID AND IsDeleted = 0;"
+                                   WHERE TransactionID = @TransactionID;"
 
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = transactionID
@@ -97,12 +71,11 @@ Public Class TransactionRepo
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             Dim transaction As New TransactionDTO With {
-                                .transactionID = CType(reader("TransactionID"), Integer),
+                                .TransactionID = CType(reader("TransactionID"), Integer),
                                 .CustomerID = CType(reader("CustomerID"), Integer),
                                 .ProcessedByAdminID = CType(reader("ProcessedByAdminID"), Integer),
                                 .TransactionType = CType(reader("TransactionType"), Integer),
-                                .TransactionDate = CType(reader("TransactionDate"), DateTime),
-                                .IsDeleted = CType(reader("IsDeleted"), Boolean)
+                                .TransactionDate = CType(reader("TransactionDate"), DateTime)
                             }
 
 
@@ -123,7 +96,8 @@ Public Class TransactionRepo
                         End If
                     End Using
                 Catch ex As Exception
-                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
                     Return Nothing
                 End Try
@@ -133,13 +107,11 @@ Public Class TransactionRepo
         Return Nothing
     End Function
 
-    Public Shared Function GetAllActiveTransactions() As DataTable
+    Public Shared Function GetAllTransactions() As DataTable
         Dim dt As New DataTable()
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT TransactionID, CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID, IsDeleted 
-                                   FROM Transactions 
-                                   WHERE IsDeleted = 0
+            Dim query As String = "SELECT * FROM vw_Transactions_Details 
                                    ORDER BY TransactionDate DESC;"
 
             Using cmd As New SqlCommand(query, conn)
@@ -153,7 +125,7 @@ Public Class TransactionRepo
                             dt.Load(reader)
 
                         End If
-
+                        dt.Load(reader)
                     End Using
                 Catch ex As Exception
                     CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
@@ -165,35 +137,42 @@ Public Class TransactionRepo
         Return dt
     End Function
 
-    Public Shared Function GetAllTransactions() As DataTable
-        Dim dt As New DataTable()
+    Public Shared Function GetDailyTransactionSummary() As DailyTransactionsSummaryDTO
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT TransactionID, CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID, IsDeleted 
-                                   FROM Transactions 
-                                   ORDER BY TransactionDate DESC;"
+
+            Dim query As String = "SELECT COUNT(TransactionID) AS TotalTransactions, 
+                                      ISNULL(SUM(PaidAmount), 0) AS TotalRevenue
+                               FROM Transactions 
+                               WHERE CAST(TransactionDate AS DATE) = CAST(GETDATE() AS DATE);"
 
             Using cmd As New SqlCommand(query, conn)
+
                 Try
+
                     conn.Open()
-
                     Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            Dim summary As New DailyTransactionsSummaryDTO With {
+                                .TotalTransactions = CType(reader("TotalTransactions"), Integer),
+                                .TotalRevenue = CType(reader("TotalRevenue"), Decimal)
+                            }
 
-                        If reader.HasRows Then
-
-                            dt.Load(reader)
-
+                            Return summary
                         End If
-
                     End Using
-                Catch ex As Exception
-                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
 
+                Catch ex As Exception
+
+                    ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    Return Nothing
                 End Try
             End Using
         End Using
 
-        Return dt
+        Return Nothing
+
     End Function
 
 End Class
