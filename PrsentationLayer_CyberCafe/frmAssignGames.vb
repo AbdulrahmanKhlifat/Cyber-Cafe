@@ -145,6 +145,7 @@ Public Class frmAssignGames
 
             AddHandler card.SelectionChanged, AddressOf OnGameSelectionChanged
 
+
             flpGames.Controls.Add(card)
 
         Next
