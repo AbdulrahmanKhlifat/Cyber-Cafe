@@ -189,6 +189,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdminMain.resx">
       <DependentUpon>frmAdminMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevices.resx">
       <DependentUpon>frmDevices.vb</DependentUpon>
