@@ -298,4 +298,5 @@ Public Class frmDevices
         End If
 
     End Sub
+
 End Class

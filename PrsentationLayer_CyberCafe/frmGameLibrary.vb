@@ -29,6 +29,23 @@ Public Class frmGameLibrary
         RefreshFlowLayoutPanel(_allGames)
     End Sub
 
+    Private Sub DisableCard(card As ctrGameCard)
+        Dim btn = card.btnGameCard
+
+        btn.Enabled = False
+
+        Dim clr = Color.FromArgb(22, 27, 34)
+
+        btn.FillColor = clr
+        btn.DisabledState.FillColor = clr
+
+        btn.DisabledState.ForeColor = Color.Gray
+        btn.DisabledState.BorderColor = clr
+
+
+        btn.HoverState.FillColor = clr
+        btn.PressedColor = clr
+    End Sub
     Private Sub RefreshFlowLayoutPanel(games As List(Of GameDTO))
         flpGames.SuspendLayout()
 
@@ -43,11 +60,13 @@ Public Class frmGameLibrary
             For Each game In games
                 Dim card As New ctrGameCard()
                 card.LoadGameData(game.GameID, game.GameName, "", _thumbnailCache)
-
                 Dim targetBtn = card.btnGameCard
+                card.chkSelected.Enabled = False
+                card.chkSelected.Hide()
+                DisableCard(card)
 
 
-                targetBtn.ContextMenuStrip = cmsGameMenu
+                card.ContextMenuStrip = cmsGameMenu
                 AddHandler targetBtn.MouseDown,
                     Sub(s, e)
                         If e.Button = MouseButtons.Right Then
@@ -177,5 +196,6 @@ Public Class frmGameLibrary
 
         _thumbnailCache.Clear()
     End Sub
+
 
 End Class

@@ -10,55 +10,43 @@ Public Class frmShowDeviceDetails
         InitializeComponent()
 
         _device = DeviceServices.Find(deviceID)
-        LoadDeviceDetails(_device)
     End Sub
 
-    Public Sub LoadDeviceDetails(device As DeviceDTO)
+    Private Sub frmShowDeviceDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadDeviceGames()
+    End Sub
+    Private Sub LoadDeviceGames()
 
-        If device Is Nothing Then
-            _ShowGunaMessage("Device not found!", "Error", MessageDialogIcon.Error)
+        flpDeviceGames.SuspendLayout()
+        flpDeviceGames.Controls.Clear()
+        If _device Is Nothing Then
+            MessageBox.Show("Device is NULL")
             Return
         End If
+        Dim games = DeviceGameService.GetGamesByDeviceID(_device.DeviceID)
+        lblDeviceName.Text = _device.DeviceName
+        lblDeviceName.ForeColor = Color.FromArgb(0, 251, 255)
+        If games IsNot Nothing Then
 
-        lblDeviceName.Text = device.DeviceName
-        Dim isAvailable As Boolean = True
-        If isAvailable Then
-            lblStatus.Text = "Available"
-            lblStatus.ForeColor = Color.LightGray
-            pbStatusDot.FillColor = Color.LimeGreen
-        Else
-            lblStatus.Text = "In Use"
-            lblStatus.ForeColor = Color.DarkGray
-            pbStatusDot.FillColor = Color.Crimson
+            Dim panelWidth = flpDeviceGames.ClientSize.Width
+            Dim cardWidth = (panelWidth \ 3) - 15
+
+            For Each game In games
+
+                Dim card As New ctrGameCard()
+                card.LoadGameData(game.GameID, game.GameName, "", Nothing)
+
+                card.Width = cardWidth
+                card.Height = 180
+
+                flpDeviceGames.Controls.Add(card)
+
+            Next
+
         End If
 
-        pbDeviceIcon.Image = My.Resources._771247 'I'm not handeled with icons yet, so using a placeholder 
+        flpDeviceGames.ResumeLayout()
 
-        lblRevenueValue.Text = "$125.50"
-        lblTimeValue.Text = "14 Hrs"
-        lblSessionsValue.Text = "8"
-
-
-        'I suggest to keep it +تقعدش تعيط like this for now, since we don't have real data to show. 
-        lblIPValue.Text = "192.168.1." & (100 + device.DeviceID).ToString()
-        lblMACValue.Text = "00:1A:2B:3C:4D:" & device.DeviceID.ToString("X2")
-
-        Dim deviceType As String = If(device.DeviceTypeName, "").ToUpper()
-
-        Select Case deviceType
-            Case "PC"
-                lblCPUValue.Text = "Intel Core i5-11400F"
-                lblRAMValue.Text = "16 GB DDR4"
-            Case "PS5"
-                lblCPUValue.Text = "Custom Zen 2"
-                lblRAMValue.Text = "16 GB GDDR6"
-            Case Else
-                lblCPUValue.Text = "N/A"
-                lblRAMValue.Text = "N/A"
-        End Select
-
-
-        SetupActiveSessionsGrid()
     End Sub
 
     Private Sub SetupActiveSessionsGrid()
@@ -84,5 +72,6 @@ Public Class frmShowDeviceDetails
 
         guna.Show()
     End Sub
+
 
 End Class

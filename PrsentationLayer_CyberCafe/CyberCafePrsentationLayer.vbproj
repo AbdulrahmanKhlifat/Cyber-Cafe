@@ -147,6 +147,12 @@
     <Compile Include="frmShowDeviceDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmShowCustomerDetails.Designer.vb">
+      <DependentUpon>frmShowCustomerDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowCustomerDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTransactions.Designer.vb">
       <DependentUpon>frmTransactions.vb</DependentUpon>
     </Compile>
@@ -217,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowDeviceDetails.resx">
       <DependentUpon>frmShowDeviceDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowCustomerDetails.resx">
+      <DependentUpon>frmShowCustomerDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
@@ -311,6 +320,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

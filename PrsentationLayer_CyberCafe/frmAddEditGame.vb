@@ -1,4 +1,5 @@
 Imports System.IO
+Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
 Imports Guna.UI2.WinForms
 
@@ -26,17 +27,25 @@ Public Class frmAddEditGame
 
     Private Sub PopulatePlatforms()
         flpPlatforms.Controls.Clear()
-        For Each deviceType In [Enum].GetValues(GetType(enDeviceType))
-            Dim chk As New Guna2CheckBox()
-            chk.Text = deviceType.ToString()
-            chk.Tag = deviceType
-            chk.ForeColor = Color.FromArgb(230, 237, 243)
-            chk.CheckedState.FillColor = Color.FromArgb(0, 200, 160)
-            chk.UncheckedState.BorderColor = Color.FromArgb(0, 150, 120)
-            chk.Margin = New Padding(5)
-            chk.AutoSize = True
-            flpPlatforms.Controls.Add(chk)
-        Next
+
+        Dim dtDeviceTypes As DataTable = DeviceTypeServices.GetAllDeviceTypes()
+
+        If dtDeviceTypes IsNot Nothing AndAlso dtDeviceTypes.Rows.Count > 0 Then
+            For Each row As DataRow In dtDeviceTypes.Rows
+                Dim chk As New Guna2CheckBox()
+
+                chk.Text = row("DeviceTypeName").ToString()
+                chk.Tag = row("DeviceTypeID")
+
+                chk.ForeColor = Color.FromArgb(230, 237, 243)
+                chk.CheckedState.FillColor = Color.FromArgb(0, 200, 160)
+                chk.UncheckedState.BorderColor = Color.FromArgb(0, 150, 120)
+                chk.Margin = New Padding(5)
+                chk.AutoSize = True
+
+                flpPlatforms.Controls.Add(chk)
+            Next
+        End If
     End Sub
 
     Private Sub LoadGameData()
@@ -65,6 +74,7 @@ Public Class frmAddEditGame
         End Using
 
     End Sub
+
     Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
 
         Dim guna As New Guna2MessageDialog With {

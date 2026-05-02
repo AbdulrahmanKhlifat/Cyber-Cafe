@@ -115,7 +115,7 @@ Public Class frmLogin
         guna.Show()
     End Sub
 
-    Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+    Private  Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         If areTextBoxesEmpty() Then
             _ShowGunaMessage("Please Enter Your Username and Password First!", "Invalid Credential", MessageDialogIcon.Warning)
             Return
@@ -145,6 +145,5 @@ Public Class frmLogin
     Private Sub btnExit_MouseLeave(sender As Object, e As EventArgs) Handles btnExit.MouseLeave
         btnExit.BackColor = ColorTranslator.FromHtml("#1F2937")
     End Sub
-
 
 End Class

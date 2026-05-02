@@ -22,31 +22,39 @@ Partial Class frmCustomers
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnAddCustomer = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlFilter = New Guna.UI2.WinForms.Guna2Panel()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlCustomerDetail = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtEmail = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblPassword = New System.Windows.Forms.Label()
         Me.txtPassword = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblDetailTitle = New System.Windows.Forms.Label()
         Me.pnlDivider = New System.Windows.Forms.Panel()
         Me.lblFirstName = New System.Windows.Forms.Label()
-        Me.txtFirstName = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.txtName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblLastName = New System.Windows.Forms.Label()
-        Me.txtLastName = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.txtUserName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblPhone = New System.Windows.Forms.Label()
         Me.txtPhone = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnSaveCustomer = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDeleteCustomer = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelCustomer = New Guna.UI2.WinForms.Guna2Button()
-        Me.dgvCustomers = New System.Windows.Forms.DataGridView()
+        Me.dgvCustomers = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.cmsCustomer = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
+        Me.tsShowDetails = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsUpdateCustomer = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlHeader.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlCustomerDetail.SuspendLayout()
         CType(Me.dgvCustomers, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsCustomer.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlHeader
@@ -58,7 +66,7 @@ Partial Class frmCustomers
         Me.pnlHeader.Location = New System.Drawing.Point(0, 48)
         Me.pnlHeader.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1045, 56)
+        Me.pnlHeader.Size = New System.Drawing.Size(1341, 56)
         Me.pnlHeader.TabIndex = 3
         '
         'lblTitle
@@ -80,7 +88,7 @@ Partial Class frmCustomers
         Me.btnAddCustomer.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnAddCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddCustomer.ForeColor = System.Drawing.Color.White
-        Me.btnAddCustomer.Location = New System.Drawing.Point(863, 13)
+        Me.btnAddCustomer.Location = New System.Drawing.Point(1159, 13)
         Me.btnAddCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddCustomer.Name = "btnAddCustomer"
         Me.btnAddCustomer.Size = New System.Drawing.Size(165, 33)
@@ -90,13 +98,12 @@ Partial Class frmCustomers
         'pnlFilter
         '
         Me.pnlFilter.Controls.Add(Me.txtSearch)
-        Me.pnlFilter.Controls.Add(Me.btnSearch)
         Me.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.pnlFilter.Location = New System.Drawing.Point(0, 0)
         Me.pnlFilter.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlFilter.Name = "pnlFilter"
-        Me.pnlFilter.Size = New System.Drawing.Size(1045, 48)
+        Me.pnlFilter.Size = New System.Drawing.Size(1341, 48)
         Me.pnlFilter.TabIndex = 4
         '
         'txtSearch
@@ -116,32 +123,21 @@ Partial Class frmCustomers
         Me.txtSearch.Size = New System.Drawing.Size(308, 35)
         Me.txtSearch.TabIndex = 0
         '
-        'btnSearch
-        '
-        Me.btnSearch.BorderRadius = 8
-        Me.btnSearch.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.btnSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnSearch.Location = New System.Drawing.Point(334, 7)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(86, 35)
-        Me.btnSearch.TabIndex = 1
-        Me.btnSearch.Text = "Search"
-        '
         'pnlCustomerDetail
         '
         Me.pnlCustomerDetail.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.pnlCustomerDetail.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlCustomerDetail.BorderThickness = 1
+        Me.pnlCustomerDetail.Controls.Add(Me.Label1)
+        Me.pnlCustomerDetail.Controls.Add(Me.txtEmail)
         Me.pnlCustomerDetail.Controls.Add(Me.lblPassword)
         Me.pnlCustomerDetail.Controls.Add(Me.txtPassword)
         Me.pnlCustomerDetail.Controls.Add(Me.lblDetailTitle)
         Me.pnlCustomerDetail.Controls.Add(Me.pnlDivider)
         Me.pnlCustomerDetail.Controls.Add(Me.lblFirstName)
-        Me.pnlCustomerDetail.Controls.Add(Me.txtFirstName)
+        Me.pnlCustomerDetail.Controls.Add(Me.txtName)
         Me.pnlCustomerDetail.Controls.Add(Me.lblLastName)
-        Me.pnlCustomerDetail.Controls.Add(Me.txtLastName)
+        Me.pnlCustomerDetail.Controls.Add(Me.txtUserName)
         Me.pnlCustomerDetail.Controls.Add(Me.lblPhone)
         Me.pnlCustomerDetail.Controls.Add(Me.txtPhone)
         Me.pnlCustomerDetail.Controls.Add(Me.btnSaveCustomer)
@@ -149,24 +145,54 @@ Partial Class frmCustomers
         Me.pnlCustomerDetail.Controls.Add(Me.btnCancelCustomer)
         Me.pnlCustomerDetail.Dock = System.Windows.Forms.DockStyle.Right
         Me.pnlCustomerDetail.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlCustomerDetail.Location = New System.Drawing.Point(719, 104)
+        Me.pnlCustomerDetail.Location = New System.Drawing.Point(1015, 104)
         Me.pnlCustomerDetail.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlCustomerDetail.Name = "pnlCustomerDetail"
-        Me.pnlCustomerDetail.Size = New System.Drawing.Size(326, 426)
+        Me.pnlCustomerDetail.Size = New System.Drawing.Size(326, 611)
         Me.pnlCustomerDetail.TabIndex = 2
         Me.pnlCustomerDetail.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(15, 314)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(172, 15)
+        Me.Label1.TabIndex = 12
+        Me.Label1.Text = "Email"
+        '
+        'txtEmail
+        '
+        Me.txtEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.txtEmail.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.txtEmail.BorderRadius = 8
+        Me.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtEmail.DefaultText = ""
+        Me.txtEmail.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txtEmail.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.txtEmail.Location = New System.Drawing.Point(15, 332)
+        Me.txtEmail.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
+        Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.PlaceholderText = ""
+        Me.txtEmail.SelectedText = ""
+        Me.txtEmail.Size = New System.Drawing.Size(300, 35)
+        Me.txtEmail.TabIndex = 11
         '
         'lblPassword
         '
         Me.lblPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblPassword.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
+        Me.lblPassword.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblPassword.Location = New System.Drawing.Point(13, 178)
         Me.lblPassword.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPassword.Name = "lblPassword"
         Me.lblPassword.Size = New System.Drawing.Size(172, 15)
         Me.lblPassword.TabIndex = 10
-        Me.lblPassword.Text = "PASSWORD"
+        Me.lblPassword.Text = "Password"
         '
         'txtPassword
         '
@@ -211,37 +237,37 @@ Partial Class frmCustomers
         'lblFirstName
         '
         Me.lblFirstName.BackColor = System.Drawing.Color.Transparent
-        Me.lblFirstName.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
+        Me.lblFirstName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFirstName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblFirstName.Location = New System.Drawing.Point(13, 56)
         Me.lblFirstName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblFirstName.Name = "lblFirstName"
         Me.lblFirstName.Size = New System.Drawing.Size(172, 15)
         Me.lblFirstName.TabIndex = 2
-        Me.lblFirstName.Text = "NAME"
+        Me.lblFirstName.Text = "Name"
         '
-        'txtFirstName
+        'txtName
         '
-        Me.txtFirstName.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.txtFirstName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.txtFirstName.BorderRadius = 8
-        Me.txtFirstName.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtFirstName.DefaultText = ""
-        Me.txtFirstName.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.txtFirstName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtFirstName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtFirstName.Location = New System.Drawing.Point(13, 75)
-        Me.txtFirstName.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
-        Me.txtFirstName.Name = "txtFirstName"
-        Me.txtFirstName.PlaceholderText = ""
-        Me.txtFirstName.SelectedText = ""
-        Me.txtFirstName.Size = New System.Drawing.Size(300, 35)
-        Me.txtFirstName.TabIndex = 0
+        Me.txtName.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.txtName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.txtName.BorderRadius = 8
+        Me.txtName.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtName.DefaultText = ""
+        Me.txtName.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txtName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.txtName.Location = New System.Drawing.Point(13, 75)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
+        Me.txtName.Name = "txtName"
+        Me.txtName.PlaceholderText = ""
+        Me.txtName.SelectedText = ""
+        Me.txtName.Size = New System.Drawing.Size(300, 35)
+        Me.txtName.TabIndex = 0
         '
         'lblLastName
         '
         Me.lblLastName.BackColor = System.Drawing.Color.Transparent
-        Me.lblLastName.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
+        Me.lblLastName.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblLastName.Location = New System.Drawing.Point(13, 118)
         Me.lblLastName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
@@ -250,35 +276,35 @@ Partial Class frmCustomers
         Me.lblLastName.TabIndex = 3
         Me.lblLastName.Text = "Username"
         '
-        'txtLastName
+        'txtUserName
         '
-        Me.txtLastName.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.txtLastName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.txtLastName.BorderRadius = 8
-        Me.txtLastName.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtLastName.DefaultText = ""
-        Me.txtLastName.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.txtLastName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtLastName.Location = New System.Drawing.Point(13, 136)
-        Me.txtLastName.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
-        Me.txtLastName.Name = "txtLastName"
-        Me.txtLastName.PlaceholderText = ""
-        Me.txtLastName.SelectedText = ""
-        Me.txtLastName.Size = New System.Drawing.Size(300, 35)
-        Me.txtLastName.TabIndex = 1
+        Me.txtUserName.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.txtUserName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.txtUserName.BorderRadius = 8
+        Me.txtUserName.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtUserName.DefaultText = ""
+        Me.txtUserName.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txtUserName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtUserName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.txtUserName.Location = New System.Drawing.Point(13, 136)
+        Me.txtUserName.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
+        Me.txtUserName.Name = "txtUserName"
+        Me.txtUserName.PlaceholderText = ""
+        Me.txtUserName.SelectedText = ""
+        Me.txtUserName.Size = New System.Drawing.Size(300, 35)
+        Me.txtUserName.TabIndex = 1
         '
         'lblPhone
         '
         Me.lblPhone.BackColor = System.Drawing.Color.Transparent
-        Me.lblPhone.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
+        Me.lblPhone.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblPhone.Location = New System.Drawing.Point(14, 240)
         Me.lblPhone.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPhone.Name = "lblPhone"
         Me.lblPhone.Size = New System.Drawing.Size(172, 15)
         Me.lblPhone.TabIndex = 4
-        Me.lblPhone.Text = "PHONE"
+        Me.lblPhone.Text = "Phone"
         '
         'txtPhone
         '
@@ -305,7 +331,7 @@ Partial Class frmCustomers
         Me.btnSaveCustomer.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnSaveCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSaveCustomer.ForeColor = System.Drawing.Color.White
-        Me.btnSaveCustomer.Location = New System.Drawing.Point(13, 323)
+        Me.btnSaveCustomer.Location = New System.Drawing.Point(15, 401)
         Me.btnSaveCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSaveCustomer.Name = "btnSaveCustomer"
         Me.btnSaveCustomer.Size = New System.Drawing.Size(300, 37)
@@ -320,7 +346,7 @@ Partial Class frmCustomers
         Me.btnDeleteCustomer.FillColor = System.Drawing.Color.DimGray
         Me.btnDeleteCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnDeleteCustomer.ForeColor = System.Drawing.Color.White
-        Me.btnDeleteCustomer.Location = New System.Drawing.Point(13, 372)
+        Me.btnDeleteCustomer.Location = New System.Drawing.Point(15, 450)
         Me.btnDeleteCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDeleteCustomer.Name = "btnDeleteCustomer"
         Me.btnDeleteCustomer.Size = New System.Drawing.Size(142, 35)
@@ -334,7 +360,7 @@ Partial Class frmCustomers
         Me.btnCancelCustomer.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.btnCancelCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancelCustomer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.btnCancelCustomer.Location = New System.Drawing.Point(170, 372)
+        Me.btnCancelCustomer.Location = New System.Drawing.Point(172, 450)
         Me.btnCancelCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCancelCustomer.Name = "btnCancelCustomer"
         Me.btnCancelCustomer.Size = New System.Drawing.Size(142, 35)
@@ -343,23 +369,131 @@ Partial Class frmCustomers
         '
         'dgvCustomers
         '
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.dgvCustomers.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvCustomers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvCustomers.ColumnHeadersHeight = 4
+        Me.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvCustomers.ContextMenuStrip = Me.cmsCustomer
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.25!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvCustomers.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvCustomers.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvCustomers.Location = New System.Drawing.Point(0, 104)
-        Me.dgvCustomers.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvCustomers.Name = "dgvCustomers"
-        Me.dgvCustomers.RowHeadersWidth = 51
-        Me.dgvCustomers.RowTemplate.Height = 24
-        Me.dgvCustomers.Size = New System.Drawing.Size(719, 426)
+        Me.dgvCustomers.ReadOnly = True
+        Me.dgvCustomers.RowHeadersVisible = False
+        Me.dgvCustomers.Size = New System.Drawing.Size(1015, 611)
         Me.dgvCustomers.TabIndex = 5
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
+        Me.dgvCustomers.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvCustomers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.Height = 4
+        Me.dgvCustomers.ThemeStyle.ReadOnly = True
+        Me.dgvCustomers.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvCustomers.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvCustomers.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvCustomers.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvCustomers.ThemeStyle.RowsStyle.Height = 22
+        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvCustomers.BackgroundColor = Color.FromArgb(15, 23, 42)
+        Me.dgvCustomers.GridColor = Color.FromArgb(30, 41, 59)
+
+        Me.dgvCustomers.ColumnHeadersHeight = 45
+        Me.dgvCustomers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 41, 59)
+        Me.dgvCustomers.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(248, 250, 252)
+        Me.dgvCustomers.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10.5, FontStyle.Bold)
+        Me.dgvCustomers.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+
+        Me.dgvCustomers.DefaultCellStyle.BackColor = Color.FromArgb(15, 23, 42)
+        Me.dgvCustomers.DefaultCellStyle.ForeColor = Color.FromArgb(226, 232, 240)
+        Me.dgvCustomers.DefaultCellStyle.Padding = New Padding(10, 0, 10, 0)
+
+
+        Me.dgvCustomers.DefaultCellStyle.SelectionBackColor = Color.FromArgb(16, 185, 129)
+        Me.dgvCustomers.DefaultCellStyle.SelectionForeColor = Color.White
+
+
+        Me.dgvCustomers.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(22, 32, 51)
+
+
+        Me.dgvCustomers.RowTemplate.Height = 45
+        Me.dgvCustomers.AllowUserToResizeRows = False
+        Me.dgvCustomers.BorderStyle = BorderStyle.None
+        Me.dgvCustomers.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvCustomers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+
+
+        Me.dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvCustomers.RowHeadersVisible = False
+        '
+        'cmsCustomer
+        '
+        Me.cmsCustomer.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsCustomer.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
+        Me.cmsCustomer.ForeColor = System.Drawing.Color.White
+        Me.cmsCustomer.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.cmsCustomer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsShowDetails, Me.tsUpdateCustomer})
+        Me.cmsCustomer.Name = "DeviceContextMenu"
+        Me.cmsCustomer.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
+        Me.cmsCustomer.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsCustomer.RenderStyle.ColorTable = Nothing
+        Me.cmsCustomer.RenderStyle.RoundedEdges = True
+        Me.cmsCustomer.RenderStyle.SelectionArrowColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsCustomer.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
+        Me.cmsCustomer.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
+        Me.cmsCustomer.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsCustomer.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+        Me.cmsCustomer.Size = New System.Drawing.Size(217, 78)
+        '
+        'tsShowDetails
+        '
+        Me.tsShowDetails.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsShowDetails.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.info_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40
+        Me.tsShowDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.tsShowDetails.Name = "tsShowDetails"
+        Me.tsShowDetails.Size = New System.Drawing.Size(216, 26)
+        Me.tsShowDetails.Text = "Show Details"
+        '
+        'tsUpdateCustomer
+        '
+        Me.tsUpdateCustomer.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsUpdateCustomer.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.edit_user
+        Me.tsUpdateCustomer.Name = "tsUpdateCustomer"
+        Me.tsUpdateCustomer.Size = New System.Drawing.Size(216, 26)
+        Me.tsUpdateCustomer.Text = "Update Customer"
         '
         'frmCustomers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1045, 530)
+        Me.ClientSize = New System.Drawing.Size(1341, 715)
         Me.Controls.Add(Me.dgvCustomers)
         Me.Controls.Add(Me.pnlCustomerDetail)
         Me.Controls.Add(Me.pnlHeader)
@@ -372,6 +506,7 @@ Partial Class frmCustomers
         Me.pnlFilter.ResumeLayout(False)
         Me.pnlCustomerDetail.ResumeLayout(False)
         CType(Me.dgvCustomers, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsCustomer.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -380,14 +515,13 @@ Partial Class frmCustomers
     Private WithEvents btnAddCustomer As Guna.UI2.WinForms.Guna2Button
     Private WithEvents pnlFilter As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
-    Private WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
     Private WithEvents pnlCustomerDetail As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblDetailTitle As Label
     Private WithEvents pnlDivider As Panel
     Private WithEvents lblFirstName As Label
-    Private WithEvents txtFirstName As Guna.UI2.WinForms.Guna2TextBox
+    Private WithEvents txtName As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents lblLastName As Label
-    Private WithEvents txtLastName As Guna.UI2.WinForms.Guna2TextBox
+    Private WithEvents txtUserName As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents lblPhone As Label
     Private WithEvents txtPhone As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents btnSaveCustomer As Guna.UI2.WinForms.Guna2Button
@@ -395,5 +529,10 @@ Partial Class frmCustomers
     Private WithEvents btnCancelCustomer As Guna.UI2.WinForms.Guna2Button
     Private WithEvents lblPassword As Label
     Private WithEvents txtPassword As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents dgvCustomers As DataGridView
+    Private WithEvents Label1 As Label
+    Private WithEvents txtEmail As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents dgvCustomers As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents cmsCustomer As Guna.UI2.WinForms.Guna2ContextMenuStrip
+    Friend WithEvents tsShowDetails As ToolStripMenuItem
+    Friend WithEvents tsUpdateCustomer As ToolStripMenuItem
 End Class

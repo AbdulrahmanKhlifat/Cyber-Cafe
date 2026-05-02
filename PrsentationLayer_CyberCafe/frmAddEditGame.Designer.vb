@@ -35,10 +35,11 @@ Partial Class frmAddEditGame
         '
         Me.pnlHeader.Controls.Add(Me.lblTitle)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeader.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(500, 60)
+        Me.pnlHeader.Size = New System.Drawing.Size(375, 49)
         Me.pnlHeader.TabIndex = 0
         '
         'lblTitle
@@ -47,9 +48,10 @@ Partial Class frmAddEditGame
         Me.lblTitle.BackColor = System.Drawing.Color.Transparent
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblTitle.ForeColor = System.Drawing.Color.White
-        Me.lblTitle.Location = New System.Drawing.Point(20, 15)
+        Me.lblTitle.Location = New System.Drawing.Point(15, 12)
+        Me.lblTitle.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(155, 25)
+        Me.lblTitle.Size = New System.Drawing.Size(147, 25)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "Add/Edit Game"
         '
@@ -64,13 +66,13 @@ Partial Class frmAddEditGame
         Me.txtGameName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtGameName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.txtGameName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.txtGameName.Location = New System.Drawing.Point(26, 106)
+        Me.txtGameName.Location = New System.Drawing.Point(20, 86)
+        Me.txtGameName.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtGameName.Name = "txtGameName"
-        Me.txtGameName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtGameName.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.txtGameName.PlaceholderText = "Enter game name..."
         Me.txtGameName.SelectedText = ""
-        Me.txtGameName.Size = New System.Drawing.Size(448, 40)
+        Me.txtGameName.Size = New System.Drawing.Size(336, 32)
         Me.txtGameName.TabIndex = 1
         '
         'lblGameName
@@ -78,7 +80,8 @@ Partial Class frmAddEditGame
         Me.lblGameName.AutoSize = True
         Me.lblGameName.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.lblGameName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblGameName.Location = New System.Drawing.Point(22, 80)
+        Me.lblGameName.Location = New System.Drawing.Point(16, 65)
+        Me.lblGameName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblGameName.Name = "lblGameName"
         Me.lblGameName.Size = New System.Drawing.Size(86, 19)
         Me.lblGameName.TabIndex = 2
@@ -91,9 +94,10 @@ Partial Class frmAddEditGame
         Me.pbGameImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbGameImage.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.pbGameImage.ImageRotate = 0!
-        Me.pbGameImage.Location = New System.Drawing.Point(26, 162)
+        Me.pbGameImage.Location = New System.Drawing.Point(20, 132)
+        Me.pbGameImage.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.pbGameImage.Name = "pbGameImage"
-        Me.pbGameImage.Size = New System.Drawing.Size(150, 180)
+        Me.pbGameImage.Size = New System.Drawing.Size(113, 147)
         Me.pbGameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbGameImage.TabIndex = 3
         Me.pbGameImage.TabStop = False
@@ -105,9 +109,10 @@ Partial Class frmAddEditGame
         Me.btnBrowse.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.btnBrowse.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnBrowse.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnBrowse.Location = New System.Drawing.Point(26, 348)
+        Me.btnBrowse.Location = New System.Drawing.Point(20, 283)
+        Me.btnBrowse.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnBrowse.Name = "btnBrowse"
-        Me.btnBrowse.Size = New System.Drawing.Size(150, 35)
+        Me.btnBrowse.Size = New System.Drawing.Size(112, 28)
         Me.btnBrowse.TabIndex = 4
         Me.btnBrowse.Text = "Browse Image"
         '
@@ -116,17 +121,19 @@ Partial Class frmAddEditGame
         Me.lblPlatforms.AutoSize = True
         Me.lblPlatforms.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.lblPlatforms.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblPlatforms.Location = New System.Drawing.Point(198, 162)
+        Me.lblPlatforms.Location = New System.Drawing.Point(148, 132)
+        Me.lblPlatforms.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPlatforms.Name = "lblPlatforms"
-        Me.lblPlatforms.Size = New System.Drawing.Size(137, 19)
+        Me.lblPlatforms.Size = New System.Drawing.Size(138, 19)
         Me.lblPlatforms.TabIndex = 5
         Me.lblPlatforms.Text = "Supported Platforms"
         '
         'flpPlatforms
         '
-        Me.flpPlatforms.Location = New System.Drawing.Point(202, 188)
+        Me.flpPlatforms.Location = New System.Drawing.Point(152, 153)
+        Me.flpPlatforms.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.flpPlatforms.Name = "flpPlatforms"
-        Me.flpPlatforms.Size = New System.Drawing.Size(272, 195)
+        Me.flpPlatforms.Size = New System.Drawing.Size(204, 158)
         Me.flpPlatforms.TabIndex = 6
         '
         'btnSave
@@ -136,9 +143,10 @@ Partial Class frmAddEditGame
         Me.btnSave.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnSave.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(254, 420)
+        Me.btnSave.Location = New System.Drawing.Point(190, 341)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(100, 45)
+        Me.btnSave.Size = New System.Drawing.Size(75, 37)
         Me.btnSave.TabIndex = 7
         Me.btnSave.Text = "Save"
         '
@@ -149,18 +157,19 @@ Partial Class frmAddEditGame
         Me.btnCancel.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(374, 420)
+        Me.btnCancel.Location = New System.Drawing.Point(280, 341)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(100, 45)
+        Me.btnCancel.Size = New System.Drawing.Size(75, 37)
         Me.btnCancel.TabIndex = 8
         Me.btnCancel.Text = "Cancel"
         '
         'frmAddEditGame
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(500, 500)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(375, 406)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.flpPlatforms)
@@ -171,6 +180,7 @@ Partial Class frmAddEditGame
         Me.Controls.Add(Me.txtGameName)
         Me.Controls.Add(Me.pnlHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmAddEditGame"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmAddEditGame"

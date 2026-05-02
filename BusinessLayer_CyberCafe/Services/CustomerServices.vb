@@ -1,7 +1,9 @@
-﻿Imports CyberCafe_DataAccess
+﻿Imports System.ComponentModel.Design
+Imports CyberCafe_DataAccess
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class CustomerServices
+
 
     Public Shared Function AddCustomer(customerDTO As CustomerDTO) As Boolean
 
