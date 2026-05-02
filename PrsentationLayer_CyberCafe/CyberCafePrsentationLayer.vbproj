@@ -110,10 +110,10 @@
     <Compile Include="frmCustomers.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDashboard.Designer.vb">
-      <DependentUpon>frmDashboard.vb</DependentUpon>
+    <Compile Include="frmAdminMain.Designer.vb">
+      <DependentUpon>frmAdminMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDashboard.vb">
+    <Compile Include="frmAdminMain.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDevices.Designer.vb">
@@ -129,10 +129,10 @@
       <DependentUpon>frmLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMainForm.Designer.vb">
-      <DependentUpon>frmMainForm.vb</DependentUpon>
+    <Compile Include="frmDashboard.Designer.vb">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmMainForm.vb">
+    <Compile Include="frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSessions.Designer.vb">
@@ -169,6 +169,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="frmAddEditGame.Designer.vb">
+      <DependentUpon>frmAddEditGame.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditGame.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGameLibrary.Designer.vb">
+      <DependentUpon>frmGameLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGameLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -187,8 +199,8 @@
     <EmbeddedResource Include="frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDashboard.resx">
-      <DependentUpon>frmDashboard.vb</DependentUpon>
+    <EmbeddedResource Include="frmAdminMain.resx">
+      <DependentUpon>frmAdminMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevices.resx">
       <DependentUpon>frmDevices.vb</DependentUpon>
@@ -196,8 +208,8 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMainForm.resx">
-      <DependentUpon>frmMainForm.vb</DependentUpon>
+    <EmbeddedResource Include="frmDashboard.resx">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSessions.resx">
       <DependentUpon>frmSessions.vb</DependentUpon>
@@ -207,6 +219,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditGame.resx">
+      <DependentUpon>frmAddEditGame.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGameLibrary.resx">
+      <DependentUpon>frmGameLibrary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -282,6 +300,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\money-bills-solid1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\latest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pen %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -12,7 +12,7 @@ Public Class GameRepo
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@GameName", SqlDbType.NVarChar, 50).Value = gameDTO.GameName
                 cmd.Parameters.Add("@GameDescription", SqlDbType.NVarChar, 200).Value =
-                    If(String.IsNullOrEmpty(gameDTO.GameDescription), DBNull.Value, gameDTO.GameDescription)
+                    If(String.IsNullOrEmpty(gameDTO.ImagePath), DBNull.Value, gameDTO.ImagePath)
 
                 Try
                     conn.Open()
@@ -50,7 +50,7 @@ Public Class GameRepo
                             Return New GameDTO() With {
                                 .GameID = CType(reader("GameID"), Integer),
                                 .GameName = CType(reader("GameName"), String),
-                                .GameDescription = If(reader("GameDescription") Is DBNull.Value, "", CType(reader("GameDescription"), String))
+                                .ImagePath = If(reader("ImagePath") Is DBNull.Value, "", CType(reader("ImagePath"), String))
                             }
 
                         End If
@@ -66,26 +66,39 @@ Public Class GameRepo
     End Function
 
 
-    Public Shared Function GetAllGames() As DataTable
-        Dim dt As New DataTable()
+    Public Shared Function GetAllGames() As List(Of GameDTO)
+
+        Dim gamesList As New List(Of GameDTO)
+
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "SELECT GameID, GameName, GameDescription FROM Games"
+
             Using cmd As New SqlCommand(query, conn)
                 Try
-
                     conn.Open()
-                    dt.Load(cmd.ExecuteReader())
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+
+                            Dim game As New GameDTO With {
+                            .GameID = Convert.ToInt32(reader("GameID")),
+                            .GameName = reader("GameName").ToString(),
+                            .ImagePath = If(reader("ImagePath") Is DBNull.Value, "", reader("ImagePath").ToString())
+                        }
+
+                            gamesList.Add(game)
+                        End While
+                    End Using
 
                 Catch ex As Exception
 
                     CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
-
                 End Try
             End Using
         End Using
 
-        Return dt
 
+        Return gamesList
     End Function
     Public Shared Function IsGameExists(gameName As String) As Boolean
         Dim isFound As Boolean = False

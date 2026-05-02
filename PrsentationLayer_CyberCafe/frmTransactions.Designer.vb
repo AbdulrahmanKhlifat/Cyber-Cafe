@@ -344,7 +344,7 @@ Partial Class frmTransactions
         Me.cmb.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmb.ForeColor = System.Drawing.Color.White
         Me.cmb.ItemHeight = 30
-        Me.cmb.Items.AddRange(New Object() {"All Types", "AddCredit", "SessionStart", "SessionSnackPurchase", "", "WalkInPurchase"})
+        Me.cmb.Items.AddRange(New Object() {"All Types", "AddCredit", "SessionStart", "SessionSnackPurchase", "WalkInPurchase"})
         Me.cmb.Location = New System.Drawing.Point(155, 29)
         Me.cmb.Name = "cmb"
         Me.cmb.Size = New System.Drawing.Size(159, 36)

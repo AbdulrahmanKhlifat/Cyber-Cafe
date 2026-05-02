@@ -138,7 +138,7 @@ Public Class DeviceRepo
             End Using
         End Using
 
-        Return Nothing
+        Return device
 
     End Function
 

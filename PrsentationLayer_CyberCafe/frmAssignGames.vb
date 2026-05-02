@@ -1,4 +1,4 @@
-Imports System.Reflection
+﻿Imports System.Reflection
 Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
 Imports Guna.UI2.WinForms
@@ -16,7 +16,7 @@ Public Class frmAssignGames
     Private ReadOnly _thumbnailCache As New Dictionary(Of Integer, Image)
 
 
-    Private _allGames As DataTable
+    Private _allGames As List(Of GameDTO)
 
     Private _selectedGamesCount As Integer = 0
 
@@ -65,11 +65,8 @@ Public Class frmAssignGames
 
     End Sub
 
-    Private Function CreateDummyDataTable() As DataTable
-        Dim dt As New DataTable()
-        dt.Columns.Add("GameID", GetType(Integer))
-        dt.Columns.Add("GameName", GetType(String))
-        dt.Columns.Add("ImagePath", GetType(String))
+    Private Function CreateDummyList() As List(Of GameDTO)
+        Dim gamesList As New List(Of GameDTO)
 
         Dim gameNames() As String = {
             "Cyberpunk 2077", "GTA V", "Red Dead Redemption 2",
@@ -92,18 +89,20 @@ Public Class frmAssignGames
         }
 
         For i As Integer = 0 To gameNames.Length - 1
-
-            dt.Rows.Add(i + 1, gameNames(i), "")
-
+            gamesList.Add(New GameDTO With {
+            .GameID = i + 1,
+            .GameName = gameNames(i),
+            .ImagePath = ""
+        })
         Next
 
-        Return dt
+        Return gamesList
     End Function
 
     Private Sub LoadAllGames()
         _allGames = GameServices.GetAllGames()
         If _allGames IsNot Nothing Then
-            LoadGamesFromDataTable(_allGames)
+            LoadGamesToUI(_allGames)
         Else
             _ShowGunaMessage("Error loading games.", "Error", MessageDialogIcon.Error)
         End If
@@ -112,7 +111,7 @@ Public Class frmAssignGames
     Private Sub LoadAssignedGames()
         Dim assignedGames As DataTable = DeviceGameService.GetGamesByDeviceID(_currentDeviceID)
         If assignedGames IsNot Nothing Then
-            LoadGamesFromDataTable(assignedGames)
+            LoadGamesToUI(_allGames)
         Else
             _ShowGunaMessage("Error loading assigned games.", "Error", MessageDialogIcon.Error)
         End If
@@ -120,38 +119,39 @@ Public Class frmAssignGames
 
     Private Sub LoadDummyGames()
 
-        _allGames = CreateDummyDataTable()
-        LoadGamesFromDataTable(_allGames)
-
+        _allGames = CreateDummyList()
+        LoadGamesToUI(_allGames)
     End Sub
 
-    Public Sub LoadGamesFromDataTable(dt As DataTable)
+    Public Sub LoadGamesToUI(gamesList As List(Of GameDTO))
         flpGames.SuspendLayout()
 
+        ' تنظيف الكنترولات السابقة بشكل صحيح
         For Each ctrl As Control In flpGames.Controls
+            RemoveHandler DirectCast(ctrl, ctrGameCard).SelectionChanged, AddressOf OnGameSelectionChanged
             ctrl.Dispose()
         Next
-
         flpGames.Controls.Clear()
 
-        For Each row As DataRow In dt.Rows
+        If gamesList Is Nothing Then Return
 
-            Dim gID As Integer = If(row("GameID") Is DBNull.Value, 0, CInt(row("GameID")))
-            Dim gName As String = If(row("GameName") Is DBNull.Value, "Unknown", CStr(row("GameName")))
-            Dim gPath As String = If(row("ImagePath") Is DBNull.Value, "", CStr(row("ImagePath")))
+        For Each game In gamesList
+
+            Dim gID As Integer = game.GameID
+            Dim gName As String = If(String.IsNullOrEmpty(game.GameName), "Unknown", game.GameName)
+            Dim gPath As String = "" ' مسار الصورة حالياً فارغ
 
             Dim card As New ctrGameCard()
             card.LoadGameData(gID, gName, gPath, _thumbnailCache)
 
+            ' ربط الحدث لمعرفة عدد الألعاب المختارة
             AddHandler card.SelectionChanged, AddressOf OnGameSelectionChanged
 
-
             flpGames.Controls.Add(card)
-
         Next
 
         flpGames.ResumeLayout(True)
-
+        lblCounter.Text = $"0 / {flpGames.Controls.Count} selected"
     End Sub
 
 

@@ -1,89 +1,104 @@
-﻿Imports System.Runtime.CompilerServices
-Imports CyberCafeModels.CyberCafe.Models
+﻿Imports BusinessLayer_CyberCafe
+Imports CyberCafeModels
 
 Public Class frmDashboard
 
-    Private _admin As AdminDTO
+    Private deviceToolTip As New ToolTip()
 
-    Private _LastButtonClicked As Button
-
-    Public Sub New(admin As AdminDTO)
-
-        InitializeComponent()
-        _LastButtonClicked = New Button()
-        _admin = admin
-        _UpdateButtonColor(btnDashboard)
+    Private Sub frmMainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadDeviceGrid()
+        LoadDashboardKpis()
     End Sub
 
-    Private Sub _UpdateButtonColor(btn As Button)
+    Private Sub LoadDeviceGrid()
+        FlowLayoutPanel1.Controls.Clear()
 
-        ' 1. Reset the previously clicked button (Only if it exists to prevent a crash)
-        If _LastButtonClicked IsNot Nothing Then
-            _LastButtonClicked.BackColor = Color.FromArgb(28, 33, 40)
-            _LastButtonClicked.ForeColor = Color.FromArgb(148, 163, 184) ' Slate Gray Text
-        End If
+        Dim deviceList As List(Of DeviceDTO) = DeviceServices.GetAllDevicesList()
 
-        ' 2. Highlight the newly clicked button
-        btn.BackColor = Color.FromArgb(0, 200, 160)
-        btn.ForeColor = Color.FromArgb(15, 23, 42) ' Dark Slate Text for contrast
 
-        ' 3. Update the tracker
-        _LastButtonClicked = btn
+        For Each device As DeviceDTO In deviceList
+            Dim btn As New Guna.UI2.WinForms.Guna2Button()
 
+
+            btn.Name = "DeviceBtn_" & device.DeviceID
+            btn.Size = New Size(50, 50)
+            btn.Margin = New Padding(5)
+            btn.BorderRadius = 10
+            btn.Text = ""
+            btn.Cursor = Cursors.Hand
+
+            Select Case device.Status
+                Case enDeviceStatus.Available
+                    btn.FillColor = Color.MediumSeaGreen
+
+                Case enDeviceStatus.InUse
+                    btn.FillColor = Color.Orange
+
+                Case enDeviceStatus.Maintenance
+                    btn.FillColor = Color.Crimson
+
+                Case Else
+                    btn.FillColor = Color.Gray
+            End Select
+
+            btn.Tag = device.DeviceID
+
+            deviceToolTip.SetToolTip(btn, $"{device.DeviceName} ({device.DeviceTypeName})")
+
+            AddHandler btn.Click, AddressOf DeviceButton_Click
+
+            FlowLayoutPanel1.Controls.Add(btn)
+        Next
     End Sub
 
-    Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub LoadDashboardKpis()
 
-        tmrClock.Start()
-        pnlTopBar.EnableDragging()
-        ChangeForm(New frmMainForm())
-        lblClock.Text = DateTime.Now.ToString("HH:mm:ss   ddd, MMM dd yyyy")
+        Try
 
-    End Sub
+            Dim kpis As DashboardKpiDTO =
+            DashboardServices.GetDashboardKpis()
 
-    Private Sub btnCloseWin_Click(sender As Object, e As EventArgs) Handles btnCloseWin.Click
-        Me.Close()
-    End Sub
+            If kpis Is Nothing Then
+                Exit Sub
+            End If
 
-    Private Sub ChangeForm(frm As Form)
-        If pnlMain.Controls.Count > 0 Then
-            pnlMain.Controls.RemoveAt(0)
-        End If
+            ' Total Customers
+            lblCustNum.Text =
+            kpis.TotalCustomers.ToString("N0")
 
-        frm.TopLevel = False
-        frm.Dock = DockStyle.Fill
+            ' Devices (In Use / Total)
+            lblDevNum.Text =
+            $"{kpis.InUseDevices} / {kpis.TotalDevices}"
 
-        pnlMain.Controls.Add(frm)
+            ' Active Sessions
+            lblSessNum.Text =
+            kpis.ActiveSessions.ToString("N0")
 
-        frm.Show()
-    End Sub
-    Private Sub btnDevices_Click(sender As Object, e As EventArgs) Handles btnDevices.Click
-        ChangeForm(New frmDevices())
-        _UpdateButtonColor(btnDevices)
-    End Sub
-    Private Sub btnCutomers_Click(sender As Object, e As EventArgs) Handles btnCustomers.Click
-        ChangeForm(New frmCustomers())
-        _UpdateButtonColor(btnCustomers)
+            ' Today's Revenue
+            lblRevNum.Text =
+            kpis.TodayRevenue.ToString("C0")
 
-    End Sub
-    Private Sub btnTrans_Click(sender As Object, e As EventArgs) Handles btnTransactions.Click
-        ChangeForm(New frmTransactions())
-        _UpdateButtonColor(btnTransactions)
+            'Progress bar
+            If kpis.TotalDevices >= 0 Then
 
-    End Sub
-    Private Sub btnSessions_Click(sender As Object, e As EventArgs) Handles btnSessions.Click
-        ChangeForm(New frmSessions())
-        _UpdateButtonColor(btnSessions)
+                pbDevicesInUse.Value = kpis.ActiveDevices / kpis.TotalDevices
 
-    End Sub
+            End If
+        Catch ex As Exception
 
-    Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        ChangeForm(New frmMainForm())
-        _UpdateButtonColor(btnDashboard)
+            ErrorLogger.LogErrorToFile(
+            ex,
+            System.Reflection.MethodBase.
+            GetCurrentMethod().Name
+        )
+
+        End Try
 
     End Sub
+    Private Sub DeviceButton_Click(sender As Object, e As EventArgs)
+        Dim clickedBtn As Guna.UI2.WinForms.Guna2Button = CType(sender, Guna.UI2.WinForms.Guna2Button)
+        Dim deviceId As Integer = Convert.ToInt32(clickedBtn.Tag)
 
-    Private Sub btnMinWin_Click(sender As Object, e As EventArgs) Handles btnMinWin.Click
-        Me.WindowState = FormWindowState.Minimized
+        MessageBox.Show("Opening session for Device ID: " & deviceId)
     End Sub
 End Class

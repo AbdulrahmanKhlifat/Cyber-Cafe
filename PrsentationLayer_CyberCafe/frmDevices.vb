@@ -54,6 +54,26 @@ Public Class frmDevices
         flpDevices.ResumeLayout()
     End Sub
 
+    Private Function GetAllDevicesList() As List(Of DeviceDTO)
+
+        Dim list As New List(Of DeviceDTO)
+        Dim dtDevices As DataTable = DeviceServices.GetAllDevices()
+
+        For Each row As DataRow In dtDevices.Rows
+
+            list.Add(New DeviceDTO With {
+                .DeviceID = Convert.ToInt32(row("DeviceID")),
+                .DeviceName = row("DeviceName").ToString(),
+                .DeviceTypeName = row("DeviceTypeName").ToString(),
+                .Status = CType(CByte(row("Status")), enDeviceStatus)
+            })
+
+        Next
+
+        Return list
+
+    End Function
+
     Private Sub AddDeviceToFlowLayout(device As DeviceDTO)
 
         Dim ctrl As New ctrDeviceInfo()
@@ -63,15 +83,21 @@ Public Class frmDevices
 
     End Sub
 
-    Private Sub LoadDevices()
-        flpDevices.Controls.Clear()
-        flpDevices.SuspendLayout()
+    Public Sub PrepareForAdd()
 
-        Dim devicesList As List(Of DeviceDTO) = DeviceServices.GetAllDevicesList()
+        If pnlDeviceDetail.Visible Then
+
+            pnlDeviceDetail.Visible = False
+
+            Return
+        End If
 
         _SelectedDeviceID = -1
+
         ClearAddDeviceDetails()
+
         btnSaveDevice.Text = "Add Device"
+
         pnlDeviceDetail.Visible = True
 
     End Sub
@@ -140,15 +166,15 @@ Public Class frmDevices
         Dim sourceCtrl = DeviceContextMenu.SourceControl
         Dim tempCtrl = sourceCtrl
 
-        While tempCtrl IsNot Nothing
+        'While tempCtrl IsNot Nothing
 
-            If TypeOf tempCtrl Is ctrDeviceInfo Then
-                Return DirectCast(tempCtrl, ctrDeviceInfo)
-            End If
+        If TypeOf tempCtrl Is ctrDeviceInfo Then
+            Return DirectCast(tempCtrl, ctrDeviceInfo)
+        End If
 
-            tempCtrl = tempCtrl.Parent
+        '    tempCtrl = tempCtrl.Parent
 
-        End While
+        'End While
 
         Return Nothing
     End Function
@@ -205,11 +231,16 @@ Public Class frmDevices
             Dim device As ctrDeviceInfo = TryCast(control, ctrDeviceInfo)
             If device IsNot Nothing Then
 
-                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) OrElse device.lblDeviceName.Text.ToLower().Contains(searchText)
+                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) _
+                    OrElse device.lblDeviceName.Text.ToLower().Contains(searchText)
 
-                Dim matchesStatus As Boolean = String.IsNullOrEmpty(cmbStatus.Text) OrElse cmbStatus.Text = "All Status" OrElse device.Status.ToLower().Contains(selectedStatus)
+                Dim matchesStatus As Boolean = String.IsNullOrEmpty(cmbStatus.Text) _
+                    OrElse cmbStatus.Text = "All Status" _
+                    OrElse device.Status.ToLower().Contains(selectedStatus)
 
-                Dim matchesType As Boolean = String.IsNullOrEmpty(cmbDeviceType.Text) OrElse cmbDeviceType.Text = "All Types" OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType)
+                Dim matchesType As Boolean = String.IsNullOrEmpty(cmbDeviceType.Text) _
+                    OrElse cmbDeviceType.Text = "All Types" _
+                    OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType)
 
                 device.Visible = matchesName AndAlso matchesStatus AndAlso matchesType
             End If
@@ -238,11 +269,11 @@ Public Class frmDevices
     Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
 
         Dim guna As New Guna2MessageDialog With {
-            .caption = caption,
+            .Caption = caption,
             .Text = message,
             .Parent = System.Windows.Forms.Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
-            .icon = icon,
+            .Icon = icon,
             .Buttons = MessageDialogButtons.OK
         }
 
@@ -271,5 +302,4 @@ Public Class frmDevices
         End If
 
     End Sub
-
 End Class
