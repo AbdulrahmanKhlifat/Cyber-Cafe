@@ -14,7 +14,7 @@ Public Class GameServices
             Throw New Exception("Game already Exists")
         End If
 
-        Dim newID = GameRepo.AddNewGame(gameDTO)
+        Dim newID = GameRepo.AddGame(gameDTO)
         Return newID <> -1
     End Function
 

@@ -22,34 +22,9 @@ Partial Class ctrGameCard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.btnGameCard = New Guna.UI2.WinForms.Guna2Button()
         Me.chkSelected = New Guna.UI2.WinForms.Guna2CustomCheckBox()
+        Me.btnGameCard = New Guna.UI2.WinForms.Guna2Button()
         Me.SuspendLayout()
-        '
-        'btnGameCard
-        '
-        Me.btnGameCard.Animated = True
-        Me.btnGameCard.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(55, Byte), Integer))
-        Me.btnGameCard.BorderRadius = 12
-        Me.btnGameCard.BorderThickness = 1
-        Me.btnGameCard.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.btnGameCard.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnGameCard.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(36, Byte), Integer))
-        Me.btnGameCard.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnGameCard.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.btnGameCard.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.btnGameCard.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnGameCard.HoverState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(251, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnGameCard.ImageOffset = New System.Drawing.Point(0, -15)
-        Me.btnGameCard.ImageSize = New System.Drawing.Size(140, 150)
-        Me.btnGameCard.Location = New System.Drawing.Point(0, 1)
-        Me.btnGameCard.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnGameCard.Name = "btnGameCard"
-        Me.btnGameCard.PressedColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(125, Byte), Integer))
-        Me.btnGameCard.Size = New System.Drawing.Size(160, 220)
-        Me.btnGameCard.TabIndex = 0
-        Me.btnGameCard.Text = "Game Name"
-        Me.btnGameCard.TextOffset = New System.Drawing.Point(0, 80)
         '
         'chkSelected
         '
@@ -68,6 +43,32 @@ Partial Class ctrGameCard
         Me.chkSelected.UncheckedState.BorderRadius = 4
         Me.chkSelected.UncheckedState.BorderThickness = 2
         Me.chkSelected.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(30, Byte), Integer))
+        '
+        'btnGameCard
+        '
+        Me.btnGameCard.Animated = True
+        Me.btnGameCard.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.btnGameCard.BorderRadius = 12
+        Me.btnGameCard.BorderThickness = 1
+        Me.btnGameCard.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.btnGameCard.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnGameCard.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(36, Byte), Integer))
+        Me.btnGameCard.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.btnGameCard.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(230, Byte), Integer))
+        Me.btnGameCard.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.btnGameCard.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnGameCard.HoverState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(251, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnGameCard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnGameCard.ImageOffset = New System.Drawing.Point(15, -10)
+        Me.btnGameCard.ImageSize = New System.Drawing.Size(109, 144)
+        Me.btnGameCard.Location = New System.Drawing.Point(0, 1)
+        Me.btnGameCard.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnGameCard.Name = "btnGameCard"
+        Me.btnGameCard.PressedColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(125, Byte), Integer))
+        Me.btnGameCard.Size = New System.Drawing.Size(160, 220)
+        Me.btnGameCard.TabIndex = 0
+        Me.btnGameCard.Text = "Game Name"
+        Me.btnGameCard.TextOffset = New System.Drawing.Point(0, 80)
         '
         'ctrGameCard
         '

@@ -99,6 +99,8 @@ Public Class frmDashboard
         Dim clickedBtn As Guna.UI2.WinForms.Guna2Button = CType(sender, Guna.UI2.WinForms.Guna2Button)
         Dim deviceId As Integer = Convert.ToInt32(clickedBtn.Tag)
 
-        MessageBox.Show("Opening session for Device ID: " & deviceId)
+        Using frm As frmShowDeviceDetails = New frmShowDeviceDetails(deviceId)
+            frm.ShowDialog()
+        End Using
     End Sub
 End Class

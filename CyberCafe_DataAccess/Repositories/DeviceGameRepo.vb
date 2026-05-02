@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class DeviceGameRepo
@@ -144,25 +145,59 @@ Public Class DeviceGameRepo
         Return isFound
     End Function
 
-    Public Shared Function GetGamesByDeviceID(deviceID As Integer) As DataTable
-        Dim dt As New DataTable()
+    Public Shared Function GetGamesByDeviceID(deviceID As Integer) As List(Of GameDTO)
+
+        Dim games As New List(Of GameDTO)
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "SELECT g.GameID, g.GameName, g.GameDescription 
-                                   FROM Games g
-                                   INNER JOIN DeviceGames dg ON g.GameID = dg.GameID
-                                   WHERE dg.DeviceID = @DeviceID"
+            Dim query As String =
+            "SELECT g.GameID,
+                    g.GameName,
+                    g.ImagePath
+             FROM Games g
+             INNER JOIN DeviceGames dg
+                 ON g.GameID = dg.GameID
+             WHERE dg.DeviceID = @DeviceID"
 
             Using cmd As New SqlCommand(query, conn)
 
                 cmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
+
                 Try
+
                     conn.Open()
-                    dt.Load(cmd.ExecuteReader())
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                        While reader.Read()
+
+                            Dim game As New GameDTO()
+
+                            game.GameID =
+                            CType(reader("GameID"), Integer)
+
+                            game.GameName =
+                            CType(reader("GameName"), String)
+
+                            game.ImagePath =
+                            If(
+                                reader("ImagePath") Is DBNull.Value,
+                                Nothing,
+                                CType(reader("ImagePath"), String))
+
+                            games.Add(game)
+
+                        End While
+
+                    End Using
 
                 Catch ex As Exception
-                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(
+                    ex,
+                    System.Reflection.MethodBase.
+                    GetCurrentMethod().Name)
 
                 End Try
 
@@ -170,7 +205,8 @@ Public Class DeviceGameRepo
 
         End Using
 
-        Return dt
+        Return games
+
     End Function
 
 

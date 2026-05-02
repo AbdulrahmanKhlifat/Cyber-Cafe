@@ -109,13 +109,70 @@ Public Class frmAssignGames
         End If
     End Sub
 
+    Public Sub LoadGamesFromList(games As List(Of GameDTO))
+
+        flpGames.SuspendLayout()
+
+        For Each ctrl As Control In flpGames.Controls
+            ctrl.Dispose()
+        Next
+
+        flpGames.Controls.Clear()
+
+        For Each game In games
+
+            Dim gID As Integer = game.GameID
+
+
+            Dim gName As String =
+            If(String.IsNullOrWhiteSpace(game.GameName),
+               "Unknown",
+               game.GameName)
+
+            Dim gPath As String =
+            If(String.IsNullOrWhiteSpace(game.ImagePath),
+               "",
+               game.ImagePath)
+
+            Dim card As New ctrGameCard()
+
+            card.LoadGameData(
+            gID,
+            gName,
+            gPath,
+            _thumbnailCache)
+
+            card.Margin = New Padding(5)
+
+            AddHandler card.SelectionChanged,
+                   AddressOf OnGameSelectionChanged
+
+            flpGames.Controls.Add(card)
+
+        Next
+
+        flpGames.ResumeLayout(True)
+
+    End Sub
+
     Private Sub LoadAssignedGames()
-        Dim assignedGames As DataTable = DeviceGameService.GetGamesByDeviceID(_currentDeviceID)
+
+        Dim assignedGames As List(Of GameDTO) =
+        DeviceGameService.GetGamesByDeviceID(_currentDeviceID)
+
         If assignedGames IsNot Nothing Then
-            LoadGamesFromDataTable(assignedGames)
+
+            LoadGamesFromList(assignedGames)
+
         Else
-            _ShowGunaMessage("Error loading assigned games.", "Error", MessageDialogIcon.Error)
+
+            _ShowGunaMessage(
+            "Error loading assigned games.",
+            "Error",
+            MessageDialogIcon.Error)
+
         End If
+
     End Sub
 
     Private Sub LoadDummyGames()

@@ -24,10 +24,8 @@ Partial Class frmDashboard
     Private Sub InitializeComponent()
         Me.Guna2CustomGradientPanel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Guna2CircleButton3 = New Guna.UI2.WinForms.Guna2CircleButton()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -35,10 +33,13 @@ Partial Class frmDashboard
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Guna2CircleButton1 = New Guna.UI2.WinForms.Guna2CircleButton()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.pbDevicesInUse = New Guna.UI2.WinForms.Guna2CircleProgressBar()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.tbllay = New System.Windows.Forms.TableLayoutPanel()
         Me.pnlCustomers = New Guna.UI2.WinForms.Guna2Panel()
@@ -59,7 +60,6 @@ Partial Class frmDashboard
         Me.lblRevTitle = New System.Windows.Forms.Label()
         Me.lblHomeSubtitle = New System.Windows.Forms.Label()
         Me.lblHomeGreeting = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.Guna2CustomGradientPanel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
@@ -95,39 +95,6 @@ Partial Class frmDashboard
         Me.Panel3.Size = New System.Drawing.Size(1341, 503)
         Me.Panel3.TabIndex = 2
         '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(7, 16)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(125, 25)
-        Me.Label6.TabIndex = 25
-        Me.Label6.Text = "DEVICE MAP"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(12, 16)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(85, 25)
-        Me.Label5.TabIndex = 24
-        Me.Label5.Text = "LEGEND"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(13, 17)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(141, 25)
-        Me.Label4.TabIndex = 23
-        Me.Label4.Text = "SYSTEM LOAD"
-        '
         'Guna2Panel3
         '
         Me.Guna2Panel3.BorderRadius = 25
@@ -143,6 +110,17 @@ Partial Class frmDashboard
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.Size = New System.Drawing.Size(340, 441)
         Me.Guna2Panel3.TabIndex = 22
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.Label5.Location = New System.Drawing.Point(12, 16)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(85, 25)
+        Me.Label5.TabIndex = 24
+        Me.Label5.Text = "LEGEND"
         '
         'Label3
         '
@@ -229,10 +207,21 @@ Partial Class frmDashboard
         Me.Guna2Panel1.Controls.Add(Me.ScrollBar)
         Me.Guna2Panel1.Controls.Add(Me.FlowLayoutPanel1)
         Me.Guna2Panel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Guna2Panel1.Location = New System.Drawing.Point(460, 33)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(488, 33)
         Me.Guna2Panel1.Name = "Guna2Panel1"
-        Me.Guna2Panel1.Size = New System.Drawing.Size(397, 441)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(322, 441)
         Me.Guna2Panel1.TabIndex = 11
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(7, 16)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(125, 25)
+        Me.Label6.TabIndex = 25
+        Me.Label6.Text = "DEVICE MAP"
         '
         'ScrollBar
         '
@@ -272,6 +261,17 @@ Partial Class frmDashboard
         Me.Guna2Panel2.Size = New System.Drawing.Size(340, 441)
         Me.Guna2Panel2.TabIndex = 10
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Silver
+        Me.Label7.Location = New System.Drawing.Point(98, 323)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(138, 25)
+        Me.Label7.TabIndex = 24
+        Me.Label7.Text = "Devices In Use"
+        '
         'pbDevicesInUse
         '
         Me.pbDevicesInUse.FillColor = System.Drawing.Color.Silver
@@ -290,6 +290,17 @@ Partial Class frmDashboard
         Me.pbDevicesInUse.TabIndex = 8
         Me.pbDevicesInUse.Text = "Guna2CircleProgressBar1"
         Me.pbDevicesInUse.Value = 20
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(13, 17)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(141, 25)
+        Me.Label4.TabIndex = 23
+        Me.Label4.Text = "SYSTEM LOAD"
         '
         'Panel1
         '
@@ -567,18 +578,7 @@ Partial Class frmDashboard
         Me.lblHomeGreeting.TabIndex = 15
         Me.lblHomeGreeting.Text = "👋 Welcome Back, Administrator!"
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Silver
-        Me.Label7.Location = New System.Drawing.Point(98, 323)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(138, 25)
-        Me.Label7.TabIndex = 24
-        Me.Label7.Text = "Devices In Use"
-        '
-        'frmMainForm
+        'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -587,7 +587,7 @@ Partial Class frmDashboard
         Me.Controls.Add(Me.Guna2CustomGradientPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "frmMainForm"
+        Me.Name = "frmDashboard"
         Me.Text = "frmMainForm"
         Me.Guna2CustomGradientPanel1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
