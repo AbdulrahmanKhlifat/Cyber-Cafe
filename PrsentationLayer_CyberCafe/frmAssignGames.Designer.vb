@@ -209,7 +209,7 @@ Partial Class frmAssignGames
         Me.flpGames.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.flpGames.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpGames.Location = New System.Drawing.Point(0, 135)
-        Me.flpGames.Margin = New System.Windows.Forms.Padding(5)
+        Me.flpGames.Margin = New System.Windows.Forms.Padding(0)
         Me.flpGames.Name = "flpGames"
         Me.flpGames.Padding = New System.Windows.Forms.Padding(15)
         Me.flpGames.Size = New System.Drawing.Size(1100, 565)
@@ -223,13 +223,15 @@ Partial Class frmAssignGames
         Me.ScrollBar.HighlightOnWheel = True
         Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
         Me.ScrollBar.InUpdate = False
-        Me.ScrollBar.LargeChange = 10
+        Me.ScrollBar.LargeChange = 565
         Me.ScrollBar.Location = New System.Drawing.Point(1082, 135)
         Me.ScrollBar.Margin = New System.Windows.Forms.Padding(1)
+        Me.ScrollBar.Maximum = 566
         Me.ScrollBar.Name = "ScrollBar"
         Me.ScrollBar.ScrollbarSize = 18
         Me.ScrollBar.Size = New System.Drawing.Size(18, 565)
-        Me.ScrollBar.TabIndex = 10
+        Me.ScrollBar.SmallChange = 5
+        Me.ScrollBar.TabIndex = 1
         Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
         '

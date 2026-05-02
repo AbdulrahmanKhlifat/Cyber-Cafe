@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmCustomers
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,20 +20,16 @@ Partial Class frmCustomers
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
-        Me.dgvCustomers = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnAddCustomer = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlFilter = New Guna.UI2.WinForms.Guna2Panel()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlCustomerDetail = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblPassword = New System.Windows.Forms.Label()
         Me.txtPassword = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblDetailTitle = New System.Windows.Forms.Label()
         Me.pnlDivider = New System.Windows.Forms.Panel()
@@ -46,15 +42,15 @@ Partial Class frmCustomers
         Me.btnSaveCustomer = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDeleteCustomer = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelCustomer = New Guna.UI2.WinForms.Guna2Button()
+        Me.dgvCustomers = New System.Windows.Forms.DataGridView()
         Me.pnlHeader.SuspendLayout()
-        CType(Me.dgvCustomers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlFilter.SuspendLayout()
         Me.pnlCustomerDetail.SuspendLayout()
+        CType(Me.dgvCustomers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlHeader
         '
-        Me.pnlHeader.Controls.Add(Me.dgvCustomers)
         Me.pnlHeader.Controls.Add(Me.lblTitle)
         Me.pnlHeader.Controls.Add(Me.btnAddCustomer)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
@@ -62,65 +58,8 @@ Partial Class frmCustomers
         Me.pnlHeader.Location = New System.Drawing.Point(0, 48)
         Me.pnlHeader.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(1341, 56)
+        Me.pnlHeader.Size = New System.Drawing.Size(1045, 56)
         Me.pnlHeader.TabIndex = 3
-        '
-        'dgvCustomers
-        '
-        Me.dgvCustomers.AllowUserToAddRows = False
-        Me.dgvCustomers.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.dgvCustomers.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvCustomers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvCustomers.ColumnHeadersHeight = 42
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvCustomers.DefaultCellStyle = DataGridViewCellStyle3
-        Me.dgvCustomers.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.dgvCustomers.Location = New System.Drawing.Point(3, 60)
-        Me.dgvCustomers.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgvCustomers.MultiSelect = False
-        Me.dgvCustomers.Name = "dgvCustomers"
-        Me.dgvCustomers.ReadOnly = True
-        Me.dgvCustomers.RowHeadersVisible = False
-        Me.dgvCustomers.RowHeadersWidth = 51
-        Me.dgvCustomers.RowTemplate.Height = 40
-        Me.dgvCustomers.Size = New System.Drawing.Size(1028, 421)
-        Me.dgvCustomers.TabIndex = 1
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
-        Me.dgvCustomers.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.Height = 42
-        Me.dgvCustomers.ThemeStyle.ReadOnly = True
-        Me.dgvCustomers.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvCustomers.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-        Me.dgvCustomers.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.RowsStyle.Height = 40
-        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         '
         'lblTitle
         '
@@ -141,7 +80,7 @@ Partial Class frmCustomers
         Me.btnAddCustomer.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnAddCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddCustomer.ForeColor = System.Drawing.Color.White
-        Me.btnAddCustomer.Location = New System.Drawing.Point(1159, 13)
+        Me.btnAddCustomer.Location = New System.Drawing.Point(863, 13)
         Me.btnAddCustomer.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddCustomer.Name = "btnAddCustomer"
         Me.btnAddCustomer.Size = New System.Drawing.Size(165, 33)
@@ -157,7 +96,7 @@ Partial Class frmCustomers
         Me.pnlFilter.Location = New System.Drawing.Point(0, 0)
         Me.pnlFilter.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlFilter.Name = "pnlFilter"
-        Me.pnlFilter.Size = New System.Drawing.Size(1341, 48)
+        Me.pnlFilter.Size = New System.Drawing.Size(1045, 48)
         Me.pnlFilter.TabIndex = 4
         '
         'txtSearch
@@ -195,7 +134,7 @@ Partial Class frmCustomers
         Me.pnlCustomerDetail.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.pnlCustomerDetail.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlCustomerDetail.BorderThickness = 1
-        Me.pnlCustomerDetail.Controls.Add(Me.Label1)
+        Me.pnlCustomerDetail.Controls.Add(Me.lblPassword)
         Me.pnlCustomerDetail.Controls.Add(Me.txtPassword)
         Me.pnlCustomerDetail.Controls.Add(Me.lblDetailTitle)
         Me.pnlCustomerDetail.Controls.Add(Me.pnlDivider)
@@ -208,25 +147,26 @@ Partial Class frmCustomers
         Me.pnlCustomerDetail.Controls.Add(Me.btnSaveCustomer)
         Me.pnlCustomerDetail.Controls.Add(Me.btnDeleteCustomer)
         Me.pnlCustomerDetail.Controls.Add(Me.btnCancelCustomer)
+        Me.pnlCustomerDetail.Dock = System.Windows.Forms.DockStyle.Right
         Me.pnlCustomerDetail.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.pnlCustomerDetail.Location = New System.Drawing.Point(1015, 108)
+        Me.pnlCustomerDetail.Location = New System.Drawing.Point(719, 104)
         Me.pnlCustomerDetail.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlCustomerDetail.Name = "pnlCustomerDetail"
-        Me.pnlCustomerDetail.Size = New System.Drawing.Size(326, 439)
+        Me.pnlCustomerDetail.Size = New System.Drawing.Size(326, 426)
         Me.pnlCustomerDetail.TabIndex = 2
         Me.pnlCustomerDetail.Visible = False
         '
-        'Label1
+        'lblPassword
         '
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(13, 178)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(172, 15)
-        Me.Label1.TabIndex = 10
-        Me.Label1.Text = "PASSWORD"
+        Me.lblPassword.BackColor = System.Drawing.Color.Transparent
+        Me.lblPassword.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
+        Me.lblPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        Me.lblPassword.Location = New System.Drawing.Point(13, 178)
+        Me.lblPassword.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblPassword.Name = "lblPassword"
+        Me.lblPassword.Size = New System.Drawing.Size(172, 15)
+        Me.lblPassword.TabIndex = 10
+        Me.lblPassword.Text = "PASSWORD"
         '
         'txtPassword
         '
@@ -401,12 +341,26 @@ Partial Class frmCustomers
         Me.btnCancelCustomer.TabIndex = 8
         Me.btnCancelCustomer.Text = "Cancel"
         '
+        'dgvCustomers
+        '
+        Me.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvCustomers.Location = New System.Drawing.Point(0, 104)
+        Me.dgvCustomers.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgvCustomers.Name = "dgvCustomers"
+        Me.dgvCustomers.RowHeadersWidth = 51
+        Me.dgvCustomers.RowTemplate.Height = 24
+        Me.dgvCustomers.Size = New System.Drawing.Size(719, 426)
+        Me.dgvCustomers.TabIndex = 5
+        '
         'frmCustomers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1341, 721)
+        Me.ClientSize = New System.Drawing.Size(1045, 530)
+        Me.Controls.Add(Me.dgvCustomers)
         Me.Controls.Add(Me.pnlCustomerDetail)
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlFilter)
@@ -415,9 +369,9 @@ Partial Class frmCustomers
         Me.Name = "frmCustomers"
         Me.Text = "frmCustomers"
         Me.pnlHeader.ResumeLayout(False)
-        CType(Me.dgvCustomers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlFilter.ResumeLayout(False)
         Me.pnlCustomerDetail.ResumeLayout(False)
+        CType(Me.dgvCustomers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -427,7 +381,6 @@ Partial Class frmCustomers
     Private WithEvents pnlFilter As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
-    Private WithEvents dgvCustomers As Guna.UI2.WinForms.Guna2DataGridView
     Private WithEvents pnlCustomerDetail As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblDetailTitle As Label
     Private WithEvents pnlDivider As Panel
@@ -440,6 +393,7 @@ Partial Class frmCustomers
     Private WithEvents btnSaveCustomer As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnDeleteCustomer As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnCancelCustomer As Guna.UI2.WinForms.Guna2Button
-    Private WithEvents Label1 As Label
+    Private WithEvents lblPassword As Label
     Private WithEvents txtPassword As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents dgvCustomers As DataGridView
 End Class

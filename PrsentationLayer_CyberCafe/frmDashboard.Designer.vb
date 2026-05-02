@@ -578,7 +578,7 @@ Partial Class frmDashboard
         Me.lblHomeGreeting.TabIndex = 15
         Me.lblHomeGreeting.Text = "👋 Welcome Back, Administrator!"
         '
-        'frmDashboard
+        'frmMainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font

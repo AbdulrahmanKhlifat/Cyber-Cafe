@@ -34,6 +34,7 @@ Partial Class frmAdminMain
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.pnlNav = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.btnTransactions = New System.Windows.Forms.Button()
         Me.btnDashboard = New System.Windows.Forms.Button()
         Me.btnSessions = New System.Windows.Forms.Button()
@@ -170,6 +171,7 @@ Partial Class frmAdminMain
         'pnlNav
         '
         Me.pnlNav.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.pnlNav.Controls.Add(Me.Button1)
         Me.pnlNav.Controls.Add(Me.btnTransactions)
         Me.pnlNav.Controls.Add(Me.btnDashboard)
         Me.pnlNav.Controls.Add(Me.btnSessions)
@@ -183,13 +185,28 @@ Partial Class frmAdminMain
         Me.pnlNav.Size = New System.Drawing.Size(182, 715)
         Me.pnlNav.TabIndex = 2
         '
+        'Button1
+        '
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(-1, 408)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
+        Me.Button1.Size = New System.Drawing.Size(182, 78)
+        Me.Button1.TabIndex = 12
+        Me.Button1.Text = "🕹 Games Library"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'btnTransactions
         '
         Me.btnTransactions.FlatAppearance.BorderSize = 0
         Me.btnTransactions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTransactions.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnTransactions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnTransactions.Location = New System.Drawing.Point(0, 326)
+        Me.btnTransactions.Location = New System.Drawing.Point(-1, 326)
         Me.btnTransactions.Margin = New System.Windows.Forms.Padding(2)
         Me.btnTransactions.Name = "btnTransactions"
         Me.btnTransactions.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
@@ -204,13 +221,13 @@ Partial Class frmAdminMain
         Me.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDashboard.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnDashboard.Location = New System.Drawing.Point(0, 4)
+        Me.btnDashboard.Location = New System.Drawing.Point(-1, 4)
         Me.btnDashboard.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDashboard.Name = "btnDashboard"
         Me.btnDashboard.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
         Me.btnDashboard.Size = New System.Drawing.Size(182, 78)
         Me.btnDashboard.TabIndex = 1
-        Me.btnDashboard.Text = "📊 Dashboard"
+        Me.btnDashboard.Text = " 📊 Dashboard"
         Me.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'btnSessions
@@ -220,13 +237,13 @@ Partial Class frmAdminMain
         Me.btnSessions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSessions.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSessions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnSessions.Location = New System.Drawing.Point(0, 244)
+        Me.btnSessions.Location = New System.Drawing.Point(-1, 244)
         Me.btnSessions.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSessions.Name = "btnSessions"
         Me.btnSessions.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
         Me.btnSessions.Size = New System.Drawing.Size(182, 78)
         Me.btnSessions.TabIndex = 11
-        Me.btnSessions.Text = "⏱ Sessions"
+        Me.btnSessions.Text = " ⏱ Sessions"
         Me.btnSessions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSessions.UseVisualStyleBackColor = False
         '
@@ -237,13 +254,13 @@ Partial Class frmAdminMain
         Me.btnCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCustomers.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCustomers.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnCustomers.Location = New System.Drawing.Point(0, 162)
+        Me.btnCustomers.Location = New System.Drawing.Point(-1, 162)
         Me.btnCustomers.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCustomers.Name = "btnCustomers"
         Me.btnCustomers.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
         Me.btnCustomers.Size = New System.Drawing.Size(182, 78)
         Me.btnCustomers.TabIndex = 10
-        Me.btnCustomers.Text = "👥 Customers"
+        Me.btnCustomers.Text = " 👥 Customers"
         Me.btnCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCustomers.UseVisualStyleBackColor = False
         '
@@ -267,13 +284,13 @@ Partial Class frmAdminMain
         Me.btnDevices.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDevices.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDevices.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnDevices.Location = New System.Drawing.Point(0, 80)
+        Me.btnDevices.Location = New System.Drawing.Point(-1, 80)
         Me.btnDevices.Margin = New System.Windows.Forms.Padding(2)
         Me.btnDevices.Name = "btnDevices"
         Me.btnDevices.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
         Me.btnDevices.Size = New System.Drawing.Size(182, 78)
         Me.btnDevices.TabIndex = 8
-        Me.btnDevices.Text = "🖥 Devices"
+        Me.btnDevices.Text = "  🖥 Devices"
         Me.btnDevices.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDevices.UseVisualStyleBackColor = False
         '
@@ -286,7 +303,7 @@ Partial Class frmAdminMain
         Me.pnlMain.Size = New System.Drawing.Size(1341, 715)
         Me.pnlMain.TabIndex = 3
         '
-        'frmDashboard
+        'frmAdminMain
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
@@ -296,7 +313,7 @@ Partial Class frmAdminMain
         Me.Controls.Add(Me.pnlTopBar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "frmDashboard"
+        Me.Name = "frmAdminMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmDashboard"
         Me.pnlTopBar.ResumeLayout(False)
@@ -325,4 +342,5 @@ Partial Class frmAdminMain
     Friend WithEvents btnSessions As Button
     Friend WithEvents btnDashboard As Button
     Friend WithEvents btnTransactions As Button
+    Friend WithEvents Button1 As Button
 End Class

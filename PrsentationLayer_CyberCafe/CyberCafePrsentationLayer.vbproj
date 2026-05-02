@@ -169,6 +169,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="frmAddEditGame.Designer.vb">
+      <DependentUpon>frmAddEditGame.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditGame.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGameLibrary.Designer.vb">
+      <DependentUpon>frmGameLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGameLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +220,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditGame.resx">
+      <DependentUpon>frmAddEditGame.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGameLibrary.resx">
+      <DependentUpon>frmGameLibrary.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -283,6 +302,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\money-bills-solid1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\latest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pen %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

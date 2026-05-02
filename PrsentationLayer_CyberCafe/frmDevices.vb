@@ -169,14 +169,14 @@ Public Class frmDevices
         'While tempCtrl IsNot Nothing
 
         If TypeOf tempCtrl Is ctrDeviceInfo Then
-                Return DirectCast(tempCtrl, ctrDeviceInfo)
-            End If
+            Return DirectCast(tempCtrl, ctrDeviceInfo)
+        End If
 
-            '    tempCtrl = tempCtrl.Parent
+        tempCtrl = tempCtrl.Parent
 
-            'End While
+        'End While
 
-            Return Nothing
+        Return Nothing
     End Function
     Private Sub tsEditDevice_Click(sender As Object, e As EventArgs) Handles tsUpdateDevice.Click
 
@@ -298,5 +298,4 @@ Public Class frmDevices
         End If
 
     End Sub
-
 End Class
