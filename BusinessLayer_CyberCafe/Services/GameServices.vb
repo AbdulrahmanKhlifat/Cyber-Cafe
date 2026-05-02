@@ -26,7 +26,7 @@ Public Class GameServices
         Return GameRepo.GetGameByID(gameID)
     End Function
 
-    Public Shared Function GetAllGames() As List(Of GameDTO)
+    Public Shared Function GetAllGames() As DataTable
         Return GameRepo.GetAllGames()
     End Function
 

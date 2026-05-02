@@ -16,7 +16,7 @@ Public Class GameRepo
                 transaction = conn.BeginTransaction()
 
                 Dim gameID As Integer =
-                        InsertGame(gameDTO, conn, transaction)
+                    InsertGame(gameDTO, conn, transaction)
 
                 If gameID <= 0 Then
 
@@ -26,11 +26,11 @@ Public Class GameRepo
                 End If
 
                 Dim success As Boolean =
-                        InsertGameDeviceType(
-                            gameID,
-                            gameDTO.SupportedDevices,
-                            conn,
-                            transaction)
+                    InsertGameDeviceType(
+                        gameID,
+                        gameDTO.SupportedDevices,
+                        conn,
+                        transaction)
 
                 If Not success Then
 
@@ -50,8 +50,8 @@ Public Class GameRepo
                 End If
 
                 ErrorLogger.LogErrorToFile(
-                        ex,
-                        Reflection.MethodBase.GetCurrentMethod().Name)
+                    ex,
+                    Reflection.MethodBase.GetCurrentMethod().Name)
 
                 Return -1
 
@@ -205,7 +205,7 @@ Public Class GameRepo
                         If reader.Read() Then
 
                             Return New GameDTO() With {
-                                .gameID =
+                                .GameID =
                                     CType(
                                         reader("GameID"),
                                         Integer),
@@ -243,8 +243,8 @@ Public Class GameRepo
 
     End Function
 
-
     Public Shared Function GetAllGames() As DataTable
+
         Dim dt As New DataTable()
 
         Using conn As New SqlConnection(
@@ -262,20 +262,16 @@ Public Class GameRepo
 
                 Try
 
+                    conn.Open()
 
-                    Using reader As SqlDataReader = cmd.ExecuteReader()
-                        While reader.Read()
-
-                            conn.Open()
-                            dt.Load(cmd.ExecuteReader())
-                            dt.Load(
+                    dt.Load(
                         cmd.ExecuteReader())
 
                 Catch ex As Exception
 
-                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
-
-                    System.Reflection.MethodBase.
+                    ErrorLogger.LogErrorToFile(
+                        ex,
+                        System.Reflection.MethodBase.
                         GetCurrentMethod().Name)
 
                 End Try
@@ -284,8 +280,8 @@ Public Class GameRepo
 
         End Using
 
+        Return dt
 
-        Return gamesList
     End Function
 
     Public Shared Function IsGameExists(

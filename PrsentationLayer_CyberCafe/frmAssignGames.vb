@@ -100,7 +100,7 @@ Public Class frmAssignGames
     End Function
 
     Private Sub LoadAllGames()
-        _allGames = GameServices.GetAllGames()
+        '_allGames = GameServices.GetAllGames()
         If _allGames IsNot Nothing Then
             LoadGamesToUI(_allGames)
         Else
@@ -343,4 +343,6 @@ Public Class frmAssignGames
 
         _thumbnailCache.Clear()
     End Sub
+
+
 End Class

@@ -84,7 +84,7 @@ Public Class ctrGameCard
 
     Private Sub btnGameCard_Click(sender As Object, e As EventArgs) Handles btnGameCard.Click
         chkSelected.Checked = Not chkSelected.Checked
-        MessageBox.Show("Width: " & btnGameCard.Image.Width & vbCrLf & "Height: " & btnGameCard.Image.Height)
+        'MessageBox.Show("Width: " & btnGameCard.Image.Width & vbCrLf & "Height: " & btnGameCard.Image.Height)
     End Sub
 
     Private Sub chkSelected_CheckedChanged(sender As Object, e As EventArgs) Handles chkSelected.CheckedChanged
