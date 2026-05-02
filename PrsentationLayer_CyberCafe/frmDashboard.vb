@@ -64,19 +64,19 @@ Public Class frmDashboard
 
             ' Total Customers
             lblCustNum.Text =
-            kpis.TotalCustomers.ToString("N0")
+        kpis.TotalCustomers.ToString("N0")
 
             ' Devices (In Use / Total)
             lblDevNum.Text =
-            $"{kpis.InUseDevices} / {kpis.TotalDevices}"
+        $"{kpis.InUseDevices} / {kpis.TotalDevices}"
 
             ' Active Sessions
             lblSessNum.Text =
-            kpis.ActiveSessions.ToString("N0")
+        kpis.ActiveSessions.ToString("N0")
 
             ' Today's Revenue
             lblRevNum.Text =
-            kpis.TodayRevenue.ToString("C0")
+        kpis.TodayRevenue.ToString("C0")
 
             'Progress bar
             If kpis.TotalDevices >= 0 Then
@@ -87,10 +87,10 @@ Public Class frmDashboard
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(
-            ex,
-            System.Reflection.MethodBase.
-            GetCurrentMethod().Name
-        )
+        ex,
+        System.Reflection.MethodBase.
+        GetCurrentMethod().Name
+    )
 
         End Try
 
@@ -99,6 +99,8 @@ Public Class frmDashboard
         Dim clickedBtn As Guna.UI2.WinForms.Guna2Button = CType(sender, Guna.UI2.WinForms.Guna2Button)
         Dim deviceId As Integer = Convert.ToInt32(clickedBtn.Tag)
 
-        MessageBox.Show("Opening session for Device ID: " & deviceId)
+        Using frm As frmShowDeviceDetails = New frmShowDeviceDetails(deviceId)
+            frm.ShowDialog()
+        End Using
     End Sub
 End Class

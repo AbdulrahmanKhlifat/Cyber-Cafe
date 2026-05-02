@@ -172,7 +172,7 @@ Public Class frmDevices
             Return DirectCast(tempCtrl, ctrDeviceInfo)
         End If
 
-        '    tempCtrl = tempCtrl.Parent
+        tempCtrl = tempCtrl.Parent
 
         'End While
 
@@ -193,16 +193,12 @@ Public Class frmDevices
 
         If card IsNot Nothing Then
 
-            Dim devInfo = DeviceServices.Find(card.DeviceID)
+            Using detailsForm As New frmShowDeviceDetails(card.DeviceID)
 
-            If devInfo IsNot Nothing Then
-                Using detailsForm As New frmShowDeviceDetails(devInfo)
-                    detailsForm.ShowDialog()
-                End Using
-            Else
+                detailsForm.ShowDialog()
 
-                _ShowGunaMessage("Could not load device details. Check your database connection.", "Error", MessageDialogIcon.Error)
-            End If
+            End Using
+
         End If
 
     End Sub
@@ -269,11 +265,11 @@ Public Class frmDevices
     Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
 
         Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
+            .caption = caption,
             .Text = message,
             .Parent = System.Windows.Forms.Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
+            .icon = icon,
             .Buttons = MessageDialogButtons.OK
         }
 

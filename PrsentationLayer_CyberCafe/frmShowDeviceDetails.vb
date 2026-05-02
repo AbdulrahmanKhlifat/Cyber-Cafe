@@ -5,11 +5,11 @@ Imports Guna.UI2.WinForms
 Public Class frmShowDeviceDetails
 
     Dim _device As DeviceDTO
-    Public Sub New(device As DeviceDTO)
+    Public Sub New(deviceID As Integer)
 
         InitializeComponent()
 
-        _device = device
+        _device = DeviceServices.Find(deviceID)
         LoadDeviceDetails(_device)
     End Sub
 

@@ -1,4 +1,5 @@
 ﻿Imports CyberCafe_DataAccess
+Imports CyberCafeModels
 
 Public Class DeviceGameService
 
@@ -21,7 +22,7 @@ Public Class DeviceGameService
         Return DeviceGameRepo.RemoveGameFromDevice(deviceID, gameID)
     End Function
 
-    Public Shared Function GetGamesByDeviceID(deviceID As Integer) As DataTable
+    Public Shared Function GetGamesByDeviceID(deviceID As Integer) As List(Of GameDTO)
 
         If deviceID <= 0 Then
             Return Nothing
