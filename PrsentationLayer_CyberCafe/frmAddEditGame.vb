@@ -1,52 +1,108 @@
 Imports System.IO
 Imports CyberCafeModels
 Imports Guna.UI2.WinForms
-
+Imports BusinessLayer_CyberCafe
+Imports System.Data.Odbc
 Public Class frmAddEditGame
 
-    Private _gameID As Integer?
-    Private _imagePath As String = ""
+    Private _SelectedImagePath As String = ""
+    Private game As GameDTO
+
+    Private Property _selectedImage As Image
+    Private Property imageChanged As Boolean = False
+
+    Private Enum enMode
+        Add
+        Update
+    End Enum
+
+    Private Property _Mode As enMode
 
     Public Sub New()
         InitializeComponent()
-        _gameID = Nothing
+
+        _Mode = enMode.Add
+
+        game = New GameDTO()
+
         lblTitle.Text = "Add New Game"
+
     End Sub
 
     Public Sub New(gameID As Integer)
+
         InitializeComponent()
-        _gameID = gameID
+
+        _Mode = enMode.Update
+
+        game = GameServices.Find(gameID)
+
         lblTitle.Text = "Edit Game"
+
         LoadGameData()
+
+    End Sub
+
+    Private Sub SyncPlatformsCheckboxes()
+
+        Dim supportedDevicesHashSet As New HashSet(Of Integer)(game.SupportedDevices)
+
+        For Each ctrl In flpPlatforms.Controls
+
+            If TypeOf ctrl Is Guna2CheckBox Then
+                Dim chk = DirectCast(ctrl, Guna2CheckBox)
+
+                chk.Checked = supportedDevicesHashSet.Contains(CInt(chk.Tag))
+
+            End If
+        Next
     End Sub
 
     Private Sub frmAddEditGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         PopulatePlatforms()
+
+        SyncPlatformsCheckboxes()
+
     End Sub
 
     Private Sub PopulatePlatforms()
         flpPlatforms.Controls.Clear()
-        For Each deviceType In [Enum].GetValues(GetType(enDeviceType))
-            Dim chk As New Guna2CheckBox()
-            chk.Text = deviceType.ToString()
-            chk.Tag = deviceType
-            chk.ForeColor = Color.FromArgb(230, 237, 243)
-            chk.CheckedState.FillColor = Color.FromArgb(0, 200, 160)
-            chk.UncheckedState.BorderColor = Color.FromArgb(0, 150, 120)
-            chk.Margin = New Padding(5)
-            chk.AutoSize = True
-            flpPlatforms.Controls.Add(chk)
-        Next
+
+        Dim dtDeviceTypes As DataTable = DeviceTypeServices.GetAllDeviceTypes()
+
+        If dtDeviceTypes IsNot Nothing AndAlso dtDeviceTypes.Rows.Count > 0 Then
+            For Each row As DataRow In dtDeviceTypes.Rows
+                Dim chk As New Guna2CheckBox()
+
+                chk.Text = row("DeviceTypeName").ToString()
+                chk.Tag = Convert.ToInt32(row("DeviceTypeID"))
+
+                chk.ForeColor = Color.FromArgb(230, 237, 243)
+                chk.CheckedState.FillColor = Color.FromArgb(0, 200, 160)
+                chk.UncheckedState.BorderColor = Color.FromArgb(0, 150, 120)
+                chk.Margin = New Padding(5)
+                chk.AutoSize = True
+
+                flpPlatforms.Controls.Add(chk)
+            Next
+        End If
     End Sub
 
     Private Sub LoadGameData()
 
-        ' Dim game = GameServices.Find(_gameID.Value)
-        ' txtGameName.Text = game.GameName
-        ' _imagePath = game.ImagePath
-        ' If File.Exists(_imagePath) Then pbGameImage.Image = Image.FromFile(_imagePath)
+        txtGameName.Text = game.GameName
 
-        txtGameName.Text = "Dummy Name"
+        Dim _FullImagePath As String = UIHelper.GetImagePath(game.ImagePath)
+
+        If game.ImagePath Is Nothing Then
+            pbGameImage.Image = My.Resources._4239781_200
+        Else
+            pbGameImage.Image = Image.FromFile(_FullImagePath)
+            pbGameImage.Tag = _FullImagePath
+            _SelectedImagePath = game.ImagePath
+        End If
+
     End Sub
 
     Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
@@ -54,37 +110,31 @@ Public Class frmAddEditGame
         Using ofd As New OpenFileDialog()
 
             If ofd.ShowDialog() = DialogResult.OK Then
-                _imagePath = ofd.FileName
 
-                Dim bytes = File.ReadAllBytes(_imagePath)
-                Using ms As New MemoryStream(bytes)
-                    pbGameImage.Image = Image.FromStream(ms)
-                End Using
+                imageChanged = True
+
+                Dim fullSelectedImagePath As String = ofd.FileName
+
+                _selectedImage = Image.FromFile(fullSelectedImagePath)
+
+                _SelectedImagePath = Path.GetFileName(fullSelectedImagePath)
+
+                pbGameImage.Image = _selectedImage
             End If
 
         End Using
 
     End Sub
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
 
-        Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
-            .Text = message,
-            .Parent = System.Windows.Forms.Application.OpenForms(0),
-            .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
+    Private Sub _FillGameObject()
 
-        guna.Show()
-    End Sub
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        game.GameName = txtGameName.Text
 
-        If String.IsNullOrWhiteSpace(txtGameName.Text) Then
-            _ShowGunaMessage("Please enter a game name.", "Validation Error", MessageDialogIcon.Warning)
-            Return
+        If imageChanged Then
+
+            game.ImagePath = UIHelper.SaveImageToDirectory(_selectedImage)
+
         End If
-
 
         Dim selectedPlatforms As New List(Of Integer)
 
@@ -94,17 +144,34 @@ Public Class frmAddEditGame
                 Dim chk = DirectCast(ctrl, Guna2CheckBox)
 
                 If chk.Checked Then
-                    selectedPlatforms.Add(chk.Tag)
+                    selectedPlatforms.Add(CInt(chk.Tag))
                 End If
 
             End If
         Next
 
-        Dim game As New GameDTO With {
-            .GameName = txtGameName.Text.Trim(),
-            .SupportedDevices = selectedPlatforms,
-            .ImagePath = _imagePath
-        }
+        game.SupportedDevices = selectedPlatforms
+
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+
+        If String.IsNullOrWhiteSpace(txtGameName.Text) Then
+            UIHelper.ShowGunaMessage("Please enter a game name.", "Validation Error", MessageDialogIcon.Warning)
+            Return
+        End If
+
+        _FillGameObject()
+
+        Select Case _Mode
+            Case enMode.Add
+                GameServices.AddGame(game)
+
+            Case enMode.Update
+                GameServices.UpdateGame(game)
+
+        End Select
+
 
         Me.DialogResult = DialogResult.OK
         Me.Close()

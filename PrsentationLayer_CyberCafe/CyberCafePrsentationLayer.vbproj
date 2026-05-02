@@ -182,6 +182,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.vb" />
+    <Compile Include="UIHelper.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ctrDeviceInfo.resx">
@@ -311,6 +312,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
