@@ -17,8 +17,6 @@ Public Class frmCustomers
         pnlCustomerDetail.Visible = True
     End Sub
 
-
-
     Private Sub RefreshCustomerDgv()
 
         dgvCustomers.DataSource = CustomerServices.GetAllCustomers()
@@ -50,6 +48,7 @@ Public Class frmCustomers
     End Sub
 
     Private Function FillInputsToDTO() As CustomerDTO
+
         Return New CustomerDTO With {
         .UserID = _SelectedCustomerID,
         .Name = txtName.Text.Trim(),
@@ -58,8 +57,9 @@ Public Class frmCustomers
         .Phone = txtPhone.Text.Trim(),
         .Email = txtEmail.Text.Trim(),
         .CreatedAt = DateTime.Now,
-        .CreatedByAdminID = 1
+        .CreatedByAdminID = LoggedInUser.CurrentUser?.Name
     }
+
     End Function
 
     Private Function SaveCustomer(dto As CustomerDTO) As Boolean
@@ -73,9 +73,13 @@ Public Class frmCustomers
     End Function
 
     Private Sub HandleSuccess()
+
         UIHelper.ShowGunaMessage("Data saved successfully!", "Success", MessageDialogIcon.Information)
+
         RefreshCustomerDgv()
+
         ResetUIState()
+
     End Sub
 
     Private Sub ResetUIState()
@@ -85,11 +89,13 @@ Public Class frmCustomers
         btnSaveCustomer.Text = "Save"
     End Sub
     Private Sub ClearInputs()
+
         txtName.Clear()
         txtUserName.Clear()
         txtPassword.Clear()
         txtPhone.Clear()
         txtEmail.Clear()
+
     End Sub
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
 
@@ -140,10 +146,12 @@ Public Class frmCustomers
     Private Sub tsUpdateCustomer_Click(sender As Object, e As EventArgs) Handles tsUpdateCustomer.Click
 
         If dgvCustomers.CurrentRow IsNot Nothing Then
+
             _SelectedCustomerID = CInt(dgvCustomers.CurrentRow.Cells("UserID").Value)
             pnlCustomerDetail.Visible = True
             LoadCustomerData()
             btnSaveCustomer.Text = "Update"
+
         End If
 
     End Sub
@@ -151,9 +159,12 @@ Public Class frmCustomers
     Private Sub tsShowDetails_Click(sender As Object, e As EventArgs) Handles tsShowDetails.Click
 
         If dgvCustomers.CurrentRow IsNot Nothing Then
+
             Dim customerID As Integer = CInt(dgvCustomers.CurrentRow.Cells("UserID").Value)
+
             Dim frm As New frmShowCustomerDetails(customerID)
             frm.ShowDialog()
+
         End If
 
     End Sub
@@ -193,5 +204,6 @@ Public Class frmCustomers
         End If
 
     End Sub
+
 
 End Class

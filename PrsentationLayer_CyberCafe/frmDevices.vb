@@ -215,30 +215,47 @@ Public Class frmDevices
     End Sub
 
 
+
     Private Sub ApplyFilters()
+
         Guna2Transition1.HideSync(flpDevices)
-        Dim searchText As String = txtSearch.Text.ToLower().Trim()
+
+        Dim searchDeviceText As String = txtSearch.Text.ToLower().Trim()
+        Dim searchGameText As String = txtSearchGame.Text.ToLower().Trim()
         Dim selectedStatus As String = cmbStatus.Text.ToLower()
         Dim selectedType As String = cmbDeviceType.Text.ToLower()
 
+
         flpDevices.SuspendLayout()
+
+        Dim devicesWithGame As New List(Of Integer)
+        If Not String.IsNullOrEmpty(searchGameText) Then
+            devicesWithGame = DeviceServices.GetDevicesByGameName(searchGameText)
+        End If
+
 
         For Each control As Control In flpDevices.Controls
             Dim device As ctrDeviceInfo = TryCast(control, ctrDeviceInfo)
             If device IsNot Nothing Then
 
-                Dim matchesName As Boolean = String.IsNullOrEmpty(searchText) _
-                    OrElse device.lblDeviceName.Text.ToLower().Contains(searchText)
 
-                Dim matchesStatus As Boolean = String.IsNullOrEmpty(cmbStatus.Text) _
-                    OrElse cmbStatus.Text = "All Status" _
-                    OrElse device.Status.ToLower().Contains(selectedStatus)
+                Dim matchesName As Boolean = String.IsNullOrEmpty(searchDeviceText) OrElse
+                                        device.lblDeviceName.Text.ToLower().Contains(searchDeviceText)
 
-                Dim matchesType As Boolean = String.IsNullOrEmpty(cmbDeviceType.Text) _
-                    OrElse cmbDeviceType.Text = "All Types" _
-                    OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType)
 
-                device.Visible = matchesName AndAlso matchesStatus AndAlso matchesType
+                Dim matchesGame As Boolean = String.IsNullOrEmpty(searchGameText) OrElse
+                                        (devicesWithGame.Contains(device.DeviceID))
+
+
+                Dim matchesStatus As Boolean = (cmbStatus.Text = "All Status" _
+                    OrElse String.IsNullOrEmpty(cmbStatus.Text) OrElse device.Status.ToLower().Contains(selectedStatus))
+
+
+                Dim matchesType As Boolean = (cmbDeviceType.Text = "All Types" _
+                OrElse String.IsNullOrEmpty(cmbDeviceType.Text) OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType))
+
+                device.Visible = matchesName AndAlso matchesGame AndAlso matchesStatus AndAlso matchesType
+
             End If
         Next
 
@@ -275,6 +292,9 @@ Public Class frmDevices
         If Not isInitializing Then ApplyFilters()
     End Sub
 
+    Private Sub txtSearchGame_TextChanged(sender As Object, e As EventArgs) Handles txtSearchGame.TextChanged
+        If Not isInitializing Then ApplyFilters()
+    End Sub
     Private Sub tsAssignGames_Click(sender As Object, e As EventArgs) Handles tsAssignGames.Click
         Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
 
@@ -285,6 +305,4 @@ Public Class frmDevices
         End If
 
     End Sub
-
-
 End Class

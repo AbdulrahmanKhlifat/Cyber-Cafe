@@ -176,4 +176,34 @@ Public Class DeviceRepo
 
         Return list
     End Function
+
+    Public Shared Function GetDeviceIdsByGameName(searchText As String) As List(Of Integer)
+        Dim deviceIds As New List(Of Integer)()
+
+
+        Dim query As String = "SELECT DISTINCT D.DeviceID FROM Devices D " &
+                          "INNER JOIN DeviceGames DG ON D.DeviceID = DG.DeviceID " &
+                          "INNER JOIN Games G ON DG.GameID = G.GameID " &
+                          "WHERE G.GameName LIKE @Search"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add("@Search", SqlDbType.NVarChar).Value = "%" & searchText.Trim() & "%"
+
+                Try
+                    conn.Open()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            deviceIds.Add(Convert.ToInt32(reader("DeviceID")))
+                        End While
+                    End Using
+                Catch ex As Exception
+                    Debug.WriteLine("Error: " & ex.Message)
+                End Try
+            End Using
+        End Using
+
+        Return deviceIds
+    End Function
 End Class

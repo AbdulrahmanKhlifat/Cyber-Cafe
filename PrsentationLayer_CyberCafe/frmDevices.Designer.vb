@@ -22,11 +22,12 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDevices))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
         Me.pnlFilter = New System.Windows.Forms.Panel()
+        Me.txtSearchGame = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.cmbStatus = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
@@ -84,6 +85,7 @@ Partial Class frmDevices
         'pnlFilter
         '
         Me.pnlFilter.BackColor = System.Drawing.Color.FromArgb(CType(CType(7, Byte), Integer), CType(CType(13, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.pnlFilter.Controls.Add(Me.txtSearchGame)
         Me.pnlFilter.Controls.Add(Me.txtSearch)
         Me.pnlFilter.Controls.Add(Me.cmbStatus)
         Me.pnlFilter.Controls.Add(Me.btnAddDevice)
@@ -94,6 +96,25 @@ Partial Class frmDevices
         Me.pnlFilter.Name = "pnlFilter"
         Me.pnlFilter.Size = New System.Drawing.Size(1341, 64)
         Me.pnlFilter.TabIndex = 8
+        '
+        'txtSearchGame
+        '
+        Me.txtSearchGame.BackColor = System.Drawing.Color.FromArgb(CType(CType(7, Byte), Integer), CType(CType(13, Byte), Integer), CType(CType(18, Byte), Integer))
+        Me.txtSearchGame.BorderColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.txtSearchGame.BorderRadius = 12
+        Me.txtSearchGame.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Guna2Transition1.SetDecoration(Me.txtSearchGame, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.txtSearchGame.DefaultText = ""
+        Me.txtSearchGame.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.txtSearchGame.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtSearchGame.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.txtSearchGame.Location = New System.Drawing.Point(761, 8)
+        Me.txtSearchGame.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
+        Me.txtSearchGame.Name = "txtSearchGame"
+        Me.txtSearchGame.PlaceholderText = "🔍  Search Device By Game Name "
+        Me.txtSearchGame.SelectedText = ""
+        Me.txtSearchGame.Size = New System.Drawing.Size(343, 43)
+        Me.txtSearchGame.TabIndex = 9
         '
         'txtSearch
         '
@@ -438,22 +459,22 @@ Partial Class frmDevices
         '
         Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
         Me.Guna2Transition1.Cursor = Nothing
-        Animation1.AnimateOnlyDifferences = True
-        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
-        Animation1.LeafCoeff = 0!
-        Animation1.MaxTime = 1.0!
-        Animation1.MinTime = 0!
-        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
-        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
-        Animation1.MosaicSize = 0
-        Animation1.Padding = New System.Windows.Forms.Padding(0)
-        Animation1.RotateCoeff = 0!
-        Animation1.RotateLimit = 0!
-        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
-        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
-        Animation1.TimeCoeff = 0!
-        Animation1.TransparencyCoeff = 1.0!
-        Me.Guna2Transition1.DefaultAnimation = Animation1
+        Animation2.AnimateOnlyDifferences = True
+        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
+        Animation2.LeafCoeff = 0!
+        Animation2.MaxTime = 1.0!
+        Animation2.MinTime = 0!
+        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
+        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
+        Animation2.MosaicSize = 0
+        Animation2.Padding = New System.Windows.Forms.Padding(0)
+        Animation2.RotateCoeff = 0!
+        Animation2.RotateLimit = 0!
+        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
+        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
+        Animation2.TimeCoeff = 0!
+        Animation2.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation2
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.MaxAnimationTime = 300
         Me.Guna2Transition1.TimeStep = 0.05!
@@ -507,4 +528,5 @@ Partial Class frmDevices
     Friend WithEvents tsAssignGames As ToolStripMenuItem
     Friend WithEvents tsDeleteDevice As ToolStripMenuItem
     Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
+    Private WithEvents txtSearchGame As Guna.UI2.WinForms.Guna2TextBox
 End Class

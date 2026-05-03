@@ -14,7 +14,7 @@ Public Class ctrDeviceInfo
 
 
 
-    Public Property DeviceID As Integer
+
 
     Public Property Status As String
         Get
@@ -26,6 +26,11 @@ Public Class ctrDeviceInfo
         End Set
 
     End Property
+
+    Public Property DeviceID As Integer
+
+
+
 
     Private Function GetDeviceImage(typeName As String, isAvailable As Boolean) As Image
         Select Case typeName.ToUpper()
@@ -83,4 +88,6 @@ Public Class ctrDeviceInfo
         End If
 
     End Sub
+
+
 End Class

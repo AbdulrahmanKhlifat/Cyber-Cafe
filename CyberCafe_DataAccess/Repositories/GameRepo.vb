@@ -729,4 +729,112 @@ Public Class GameRepo
         Return games
 
     End Function
+    Public Shared Function IsGameAssignedToDevices(gameID As Integer) As Boolean
+
+        Dim isAssigned As Boolean = False
+
+        Dim query As String = "SELECT TOP 1 1 FROM DeviceGames WHERE GameID = @GameID"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@GameID", gameID)
+
+                Try
+                    conn.Open()
+
+                    Dim result = cmd.ExecuteScalar()
+
+                    If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
+
+                        isAssigned = True
+
+                    End If
+
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                End Try
+
+            End Using
+
+        End Using
+
+        Return isAssigned
+
+    End Function
+
+
+
+
+
+    Public Shared Function GetImagePathByGameID(gameID As Integer) As String
+        Dim imageName As String = ""
+
+        Dim query As String = "SELECT ImagePath FROM Games WHERE GameID = @GameID"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@GameID", gameID)
+
+                Try
+
+                    conn.Open()
+                    Dim result = cmd.ExecuteScalar()
+
+                    If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
+                        imageName = result.ToString()
+                    End If
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                    Return Nothing
+                End Try
+            End Using
+        End Using
+
+        If Not String.IsNullOrEmpty(imageName) Then
+            Return imageName
+        End If
+
+        Return Nothing
+    End Function
+    Public Shared Function DeleteGame(gameID As Integer) As Boolean
+
+        If IsGameAssignedToDevices(gameID) Then
+
+            Return False
+        End If
+
+
+        Dim isDeleted As Boolean = False
+        Dim query As String = "Delete From Games WHERE GameID = @GameID"
+
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@GameID", gameID)
+
+                Try
+                    conn.Open()
+
+                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+
+                    isDeleted = (rowsAffected > 0)
+
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                End Try
+
+            End Using
+
+        End Using
+
+        Return isDeleted
+    End Function
+
+
 End Class

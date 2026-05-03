@@ -29,6 +29,13 @@ Public Class DeviceServices
 
     End Function
 
+
+    Public Shared Function GetDevicesByGameName(gameName As String) As List(Of Integer)
+
+        Return DeviceRepo.GetDeviceIdsByGameName(gameName)
+
+    End Function
+
     Public Shared Function GetAllDevices() As DataTable
 
         Return DeviceRepo.GetAllDevices()

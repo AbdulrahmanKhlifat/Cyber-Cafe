@@ -127,10 +127,14 @@ Public Class frmAddEditGame
 
     End Sub
 
-    Private Sub _FillGameObject()
+    Private Function _FillGameObject() As Boolean
 
         game.GameName = txtGameName.Text
 
+        If String.IsNullOrWhiteSpace(txtGameName.Text) Then
+            UIHelper.ShowGunaMessage("Please enter a game name.", "Validation Error", MessageDialogIcon.Warning)
+            Return False
+        End If
         If imageChanged Then
 
             game.ImagePath = UIHelper.SaveImageToDirectory(_selectedImage)
@@ -150,19 +154,21 @@ Public Class frmAddEditGame
 
             End If
         Next
+        If selectedPlatforms.Count = 0 Then
+            UIHelper.ShowGunaMessage("Please select at least one supported platform.", "Validation Error", MessageDialogIcon.Warning)
+            Return False
+        End If
 
         game.SupportedDevices = selectedPlatforms
-
-    End Sub
+        Return True
+    End Function
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-        If String.IsNullOrWhiteSpace(txtGameName.Text) Then
-            UIHelper.ShowGunaMessage("Please enter a game name.", "Validation Error", MessageDialogIcon.Warning)
-            Return
-        End If
 
-        _FillGameObject()
+        If Not _FillGameObject() Then
+            Exit Sub
+        End If
 
         Select Case _Mode
             Case enMode.Add

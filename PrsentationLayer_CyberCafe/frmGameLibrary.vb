@@ -1,4 +1,5 @@
-﻿Imports System.Reflection
+﻿Imports System.IO
+Imports System.Reflection
 Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
 Imports Guna.UI2.WinForms
@@ -150,25 +151,68 @@ Public Class frmGameLibrary
     Private Function ShowConfirmDialog(message As String, Optional title As String = "Confirm") As DialogResult
 
         Dim msgDialog As New Guna.UI2.WinForms.Guna2MessageDialog
+
         msgDialog.Parent = System.Windows.Forms.Application.OpenForms(0)
+
         msgDialog.Style = MessageDialogStyle.Dark
+
         msgDialog.Icon = MessageDialogIcon.Question
+
         msgDialog.Buttons = MessageDialogButtons.YesNo
+
         msgDialog.Caption = title
+
         msgDialog.Text = message
 
         Return msgDialog.Show()
 
     End Function
     Private Sub tsiDelete_Click(sender As Object, e As EventArgs) Handles tsiDelete.Click
-        Dim card = GetSelectedGameCard()
-        If card IsNot Nothing Then
 
-            If ShowConfirmDialog($"Are you sure you want to delete {card.GameName}?") = DialogResult.Yes Then
-                ' GameServices.DeleteGame(card.GameID)
-                LoadGames()
+        Dim card = GetSelectedGameCard()
+        If card Is Nothing Then Exit Sub
+
+        If ShowConfirmDialog($"Are you sure you want to delete {card.GameName}?") = DialogResult.Yes Then
+
+            Dim imageName = GameServices.GetImagePath(card.GameID)
+
+
+            If card.btnGameCard.Image IsNot Nothing Then
+                card.btnGameCard.Image.Dispose()
+                card.btnGameCard.Image = Nothing
             End If
 
+
+            flpGames.Controls.Remove(card)
+            card.Dispose()
+
+
+            GC.Collect()
+            GC.WaitForPendingFinalizers()
+
+            If GameServices.DeleteGame(card.GameID) Then
+
+
+                If Not String.IsNullOrEmpty(imageName) Then
+                    Try
+
+                        Dim fullPath = UIHelper.GetImagePath(imageName)
+
+                        If File.Exists(fullPath) Then
+                            File.Delete(fullPath)
+                        End If
+                    Catch ex As Exception
+
+                        MessageBox.Show("Record deleted, but file is still locked by another process: " & ex.Message)
+                    End Try
+                End If
+
+                UIHelper.ShowGunaMessage("Game and Image Deleted Successfully", "Success", MessageDialogIcon.Information)
+
+                LoadGames()
+            Else
+                UIHelper.ShowGunaMessage("Error: Could not delete the game from database.", "Error", MessageDialogIcon.Error)
+            End If
         End If
     End Sub
 
