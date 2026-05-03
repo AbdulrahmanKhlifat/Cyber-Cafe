@@ -229,7 +229,8 @@ Public Class frmDevices
         flpDevices.SuspendLayout()
 
         Dim devicesWithGame As New List(Of Integer)
-        If Not String.IsNullOrEmpty(searchGameText) Then
+
+        If searchGameText.Length >= 3 Then
             devicesWithGame = DeviceServices.GetDevicesByGameName(searchGameText)
         End If
 
@@ -243,20 +244,29 @@ Public Class frmDevices
                                         device.lblDeviceName.Text.ToLower().Contains(searchDeviceText)
 
 
-                Dim matchesGame As Boolean = String.IsNullOrEmpty(searchGameText) OrElse
-                                        (devicesWithGame.Contains(device.DeviceID))
+                Dim matchesGame As Boolean = False
+
+                If searchGameText.Length = 0 Then
+
+                    matchesGame = True
+                ElseIf searchGameText.Length >= 3 Then
+
+                    matchesGame = devicesWithGame.Contains(device.DeviceID)
+                Else
+                    matchesGame = False
+                End If
 
 
                 Dim matchesStatus As Boolean = (cmbStatus.Text = "All Status" _
-                    OrElse String.IsNullOrEmpty(cmbStatus.Text) OrElse device.Status.ToLower().Contains(selectedStatus))
+                        OrElse String.IsNullOrEmpty(cmbStatus.Text) OrElse device.Status.ToLower().Contains(selectedStatus))
 
 
-                Dim matchesType As Boolean = (cmbDeviceType.Text = "All Types" _
-                OrElse String.IsNullOrEmpty(cmbDeviceType.Text) OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType))
+                    Dim matchesType As Boolean = (cmbDeviceType.Text = "All Types" _
+                    OrElse String.IsNullOrEmpty(cmbDeviceType.Text) OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType))
 
-                device.Visible = matchesName AndAlso matchesGame AndAlso matchesStatus AndAlso matchesType
+                    device.Visible = matchesName AndAlso matchesGame AndAlso matchesStatus AndAlso matchesType
 
-            End If
+                End If
         Next
 
         flpDevices.ResumeLayout()
