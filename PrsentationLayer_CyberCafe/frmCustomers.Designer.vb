@@ -472,7 +472,7 @@ Partial Class frmCustomers
         'tsUpdateCustomer
         '
         Me.tsUpdateCustomer.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tsUpdateCustomer.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.edit_user
+        'Me.tsUpdateCustomer.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.edit_user
         Me.tsUpdateCustomer.Name = "tsUpdateCustomer"
         Me.tsUpdateCustomer.Size = New System.Drawing.Size(216, 26)
         Me.tsUpdateCustomer.Text = "Update Customer"

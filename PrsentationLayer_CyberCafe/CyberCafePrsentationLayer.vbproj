@@ -147,6 +147,12 @@
     <Compile Include="frmSessions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmShowCustomerDetails.Designer.vb">
+      <DependentUpon>frmShowCustomerDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowCustomerDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmShowDeviceDetails.Designer.vb">
       <DependentUpon>frmShowDeviceDetails.vb</DependentUpon>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSessions.resx">
       <DependentUpon>frmSessions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowCustomerDetails.resx">
+      <DependentUpon>frmShowCustomerDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowDeviceDetails.resx">
       <DependentUpon>frmShowDeviceDetails.vb</DependentUpon>
