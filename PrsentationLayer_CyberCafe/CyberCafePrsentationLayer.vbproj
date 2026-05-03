@@ -98,6 +98,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DragHelper.vb" />
+    <Compile Include="frmCustomerDetails.Designer.vb">
+      <DependentUpon>frmCustomerDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomerDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCustomerMain.Designer.vb">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>
     </Compile>
@@ -183,6 +189,7 @@
     </Compile>
     <Compile Include="Program.vb" />
     <Compile Include="UIHelper.vb" />
+    <Compile Include="ValidationHelper.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ctrDeviceInfo.resx">
@@ -193,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAssignGames.resx">
       <DependentUpon>frmAssignGames.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomerDetails.resx">
+      <DependentUpon>frmCustomerDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerMain.resx">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>

@@ -1,6 +1,8 @@
+Imports System.ComponentModel
 Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels.CyberCafe.Models
 Imports Guna.UI2.WinForms
+Imports PrsentationLayer_CyberCafe.PresentationLayer_CyberCafe
 
 Public Class frmCustomers
 
@@ -16,29 +18,10 @@ Public Class frmCustomers
     End Sub
 
 
-    Private Function GetDummyCustomers() As DataTable
-        Dim dt As New DataTable()
-
-        ' تعريف الأعمدة بنفس أسماء أعمدة قاعدة البيانات عندك
-        dt.Columns.Add("CustomerID", GetType(Integer))
-        dt.Columns.Add("Name", GetType(String))
-        dt.Columns.Add("Username", GetType(String))
-        dt.Columns.Add("Password", GetType(String))
-        dt.Columns.Add("Phone", GetType(String))
-
-        ' إضافة أسطر وهمية
-        dt.Rows.Add(1, "أحمد محمد", "ahmed99", "123", "0791234567")
-        dt.Rows.Add(2, "سارة علي", "sara_pro", "pass", "0787654321")
-        dt.Rows.Add(3, "عمر خالد", "omar_gamer", "omar", "0770001122")
-        dt.Rows.Add(4, "ليان محمود", "layan_cafe", "123", "0795554433")
-        dt.Rows.Add(5, "زيد حسن", "zeid_king", "king", "0781112233")
-
-        Return dt
-    End Function
 
     Private Sub RefreshCustomerDgv()
 
-        dgvCustomers.DataSource = GetDummyCustomers() 'CustomerServices.GetAllCustomers()
+        dgvCustomers.DataSource = CustomerServices.GetAllCustomers()
     End Sub
     Private Sub frmCustomers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         RefreshCustomerDgv()
@@ -59,10 +42,10 @@ Public Class frmCustomers
             If SaveCustomer(customerDTO) Then
                 HandleSuccess()
             Else
-                _ShowGunaMessage("Failed to save data.", "Error", MessageDialogIcon.Error)
+                UIHelper.ShowGunaMessage("Failed to save data.", "Error", MessageDialogIcon.Error)
             End If
         Catch ex As Exception
-            _ShowGunaMessage(ex.Message, "Error", MessageDialogIcon.Error)
+            UIHelper.ShowGunaMessage(ex.Message, "Error", MessageDialogIcon.Error)
         End Try
     End Sub
 
@@ -73,7 +56,9 @@ Public Class frmCustomers
         .Username = txtUserName.Text.Trim(),
         .Password = txtPassword.Text,
         .Phone = txtPhone.Text.Trim(),
-        .Email = txtEmail.Text.Trim()
+        .Email = txtEmail.Text.Trim(),
+        .CreatedAt = DateTime.Now,
+        .CreatedByAdminID = 1
     }
     End Function
 
@@ -88,7 +73,7 @@ Public Class frmCustomers
     End Function
 
     Private Sub HandleSuccess()
-        _ShowGunaMessage("Data saved successfully!", "Success", MessageDialogIcon.Information)
+        UIHelper.ShowGunaMessage("Data saved successfully!", "Success", MessageDialogIcon.Information)
         RefreshCustomerDgv()
         ResetUIState()
     End Sub
@@ -119,7 +104,7 @@ Public Class frmCustomers
 
         If String.IsNullOrWhiteSpace(txtName.Text) OrElse String.IsNullOrWhiteSpace(txtUserName.Text) Then
 
-            _ShowGunaMessage("Please fill in required fields (Name & Username).", "Validation Error", MessageDialogIcon.Warning)
+            UIHelper.ShowGunaMessage("Please fill in required fields.", "Validation Error", MessageDialogIcon.Warning)
             Return False
 
         End If
@@ -128,19 +113,6 @@ Public Class frmCustomers
     End Function
 
 
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
-
-        Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
-            .Text = message,
-            .Parent = System.Windows.Forms.Application.OpenForms(0),
-            .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
-        guna.Show()
-
-    End Sub
 
     Private Sub LoadCustomerData()
 
@@ -157,7 +129,7 @@ Public Class frmCustomers
             txtEmail.Text = customer.Email
 
         Else
-            _ShowGunaMessage("Customer not found.", "Error", MessageDialogIcon.Error)
+            UIHelper.ShowGunaMessage("Customer not found.", "Error", MessageDialogIcon.Error)
             pnlCustomerDetail.Visible = False
 
         End If
@@ -168,7 +140,7 @@ Public Class frmCustomers
     Private Sub tsUpdateCustomer_Click(sender As Object, e As EventArgs) Handles tsUpdateCustomer.Click
 
         If dgvCustomers.CurrentRow IsNot Nothing Then
-            _SelectedCustomerID = CInt(dgvCustomers.CurrentRow.Cells("CustomerID").Value)
+            _SelectedCustomerID = CInt(dgvCustomers.CurrentRow.Cells("UserID").Value)
             pnlCustomerDetail.Visible = True
             LoadCustomerData()
             btnSaveCustomer.Text = "Update"
@@ -179,9 +151,45 @@ Public Class frmCustomers
     Private Sub tsShowDetails_Click(sender As Object, e As EventArgs) Handles tsShowDetails.Click
 
         If dgvCustomers.CurrentRow IsNot Nothing Then
-            Dim customerID As Integer = CInt(dgvCustomers.CurrentRow.Cells("CustomerID").Value)
+            Dim customerID As Integer = CInt(dgvCustomers.CurrentRow.Cells("UserID").Value)
             Dim frm As New frmShowCustomerDetails(customerID)
             frm.ShowDialog()
+        End If
+
+    End Sub
+
+
+
+    Private Sub txtEmail_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtEmail.Validating
+
+
+
+        If txtEmail.Text.Trim() = "" Then
+            Return
+        End If
+
+        If Not ValidationHelper.ValidateEmail(txtEmail.Text) Then
+            e.Cancel = True
+            ErrorProvider1.SetError(txtEmail, "Invalid Email Address Format!")
+        Else
+            ErrorProvider1.SetError(txtEmail, "")
+        End If
+
+    End Sub
+    Private Sub txtPhone_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtPhone.Validating
+
+
+
+        If txtPhone.Text.Trim() = "" Then
+            Return
+        End If
+
+        ' validate phone (as number)
+        If Not ValidationHelper.IsNumber(txtPhone.Text) Then
+            e.Cancel = True
+            ErrorProvider1.SetError(txtPhone, "Invalid Phone Number!")
+        Else
+            ErrorProvider1.SetError(txtPhone, "")
         End If
 
     End Sub

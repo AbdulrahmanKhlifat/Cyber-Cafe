@@ -41,7 +41,7 @@ Public Class CustomerRepo
 
                 Using cmd As SqlCommand = New SqlCommand(InsertCustomerCommand, conn, tran)
                     cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userID
-                    cmd.Parameters.Add("@CreatedAt", SqlDbType.DateTime).Value = customer.CreatedAt
+                    cmd.Parameters.Add("@CreatedAt", SqlDbType.DateTime).Value = DateTime.Now()
                     cmd.Parameters.Add("@Credit", SqlDbType.Decimal).Value = customer.Credit
                     cmd.Parameters.Add("@TotalHoursRes", SqlDbType.Int).Value = customer.TotalHoursRes
                     cmd.Parameters.Add("@CreatedByAdminID", SqlDbType.Int).Value = customer.CreatedByAdminID

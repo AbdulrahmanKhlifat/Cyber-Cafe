@@ -24,9 +24,9 @@ Partial Class frmShowDeviceDetails
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmShowDeviceDetails))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Guna2BorderlessForm1 = New Guna.UI2.WinForms.Guna2BorderlessForm(Me.components)
         Me.Guna2ShadowForm1 = New Guna.UI2.WinForms.Guna2ShadowForm(Me.components)
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
@@ -51,6 +51,7 @@ Partial Class frmShowDeviceDetails
         Me.dgvActiveSessions = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.tabDeviceGames = New System.Windows.Forms.TabPage()
         Me.flpDeviceGames = New System.Windows.Forms.FlowLayoutPanel()
+        Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.pnlHeader.SuspendLayout()
         CType(Me.pbDeviceIcon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStatusDot, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -311,29 +312,29 @@ Partial Class frmShowDeviceDetails
         '
         Me.dgvActiveSessions.AllowUserToAddRows = False
         Me.dgvActiveSessions.AllowUserToDeleteRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(51, Byte), Integer))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.dgvActiveSessions.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.dgvActiveSessions.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvActiveSessions.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(41, Byte), Integer))
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvActiveSessions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvActiveSessions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvActiveSessions.ColumnHeadersHeight = 35
         Me.dgvActiveSessions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(41, Byte), Integer))
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.LightGray
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvActiveSessions.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(41, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.LightGray
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvActiveSessions.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvActiveSessions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvActiveSessions.GridColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.dgvActiveSessions.Location = New System.Drawing.Point(15, 15)
@@ -369,6 +370,7 @@ Partial Class frmShowDeviceDetails
         'tabDeviceGames
         '
         Me.tabDeviceGames.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(41, Byte), Integer))
+        Me.tabDeviceGames.Controls.Add(Me.ScrollBar)
         Me.tabDeviceGames.Controls.Add(Me.flpDeviceGames)
         Me.tabDeviceGames.Location = New System.Drawing.Point(4, 44)
         Me.tabDeviceGames.Name = "tabDeviceGames"
@@ -379,11 +381,32 @@ Partial Class frmShowDeviceDetails
         '
         'flpDeviceGames
         '
+        Me.flpDeviceGames.AutoScroll = True
         Me.flpDeviceGames.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpDeviceGames.Location = New System.Drawing.Point(15, 15)
         Me.flpDeviceGames.Name = "flpDeviceGames"
         Me.flpDeviceGames.Size = New System.Drawing.Size(762, 302)
         Me.flpDeviceGames.TabIndex = 1
+        '
+        'ScrollBar
+        '
+        Me.ScrollBar.BindingContainer = Me.flpDeviceGames
+        Me.ScrollBar.BorderRadius = 10
+        Me.ScrollBar.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ScrollBar.HighlightOnWheel = True
+        Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
+        Me.ScrollBar.InUpdate = False
+        Me.ScrollBar.LargeChange = 302
+        Me.ScrollBar.Location = New System.Drawing.Point(759, 15)
+        Me.ScrollBar.Margin = New System.Windows.Forms.Padding(1)
+        Me.ScrollBar.Maximum = 566
+        Me.ScrollBar.Name = "ScrollBar"
+        Me.ScrollBar.ScrollbarSize = 18
+        Me.ScrollBar.Size = New System.Drawing.Size(18, 302)
+        Me.ScrollBar.SmallChange = 5
+        Me.ScrollBar.TabIndex = 2
+        Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
         '
         'frmShowDeviceDetails
         '
@@ -395,6 +418,8 @@ Partial Class frmShowDeviceDetails
         Me.Controls.Add(Me.flpStats)
         Me.Controls.Add(Me.pnlHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmShowDeviceDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Device Details"
@@ -441,4 +466,5 @@ Partial Class frmShowDeviceDetails
     Friend WithEvents dgvActiveSessions As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents pbDeviceIcon As PictureBox
     Friend WithEvents flpDeviceGames As FlowLayoutPanel
+    Friend WithEvents ScrollBar As Guna.UI2.WinForms.Guna2VScrollBar
 End Class

@@ -8,10 +8,29 @@ Public Class frmShowDeviceDetails
     Public Sub New(deviceID As Integer)
 
         InitializeComponent()
-
+        DragHelper.EnableDragging(Me)
         _device = DeviceServices.Find(deviceID)
     End Sub
 
+    Private Sub HandleDeviceImage(Type As Integer)
+
+        Select Case Type
+
+            Case enDeviceType.PC
+                pbDeviceIcon.Image = My.Resources.PC
+
+            Case enDeviceType.PS5
+                pbDeviceIcon.Image = My.Resources.PS5_icon
+
+            Case enDeviceType.VirtualReality
+                pbDeviceIcon.Image = My.Resources.VR_icon
+
+            Case Else
+                pbDeviceIcon.Image = My.Resources.PlayStationIcon
+
+        End Select
+
+    End Sub
     Private Sub frmShowDeviceDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadDeviceGames()
     End Sub
@@ -24,21 +43,17 @@ Public Class frmShowDeviceDetails
             Return
         End If
         Dim games = DeviceGameService.GetGamesByDeviceID(_device.DeviceID)
+        HandleDeviceImage(_device.DeviceTypeID)
         lblDeviceName.Text = _device.DeviceName
         lblDeviceName.ForeColor = Color.FromArgb(0, 251, 255)
         If games IsNot Nothing Then
 
-            Dim panelWidth = flpDeviceGames.ClientSize.Width
-            Dim cardWidth = (panelWidth \ 3) - 15
 
             For Each game In games
 
                 Dim card As New ctrGameCard()
-                card.LoadGameData(game.GameID, game.GameName, "", Nothing)
-
-                card.Width = cardWidth
-                card.Height = 180
-
+                card.LoadGameData(game)
+                card.DisableCheckBox()
                 flpDeviceGames.Controls.Add(card)
 
             Next
@@ -46,7 +61,8 @@ Public Class frmShowDeviceDetails
         End If
 
         flpDeviceGames.ResumeLayout()
-
+        Me.ScrollBar.BindingContainer = Nothing
+        Me.ScrollBar.BindingContainer = Me.flpDeviceGames
     End Sub
 
     Private Sub SetupActiveSessionsGrid()
@@ -58,19 +74,6 @@ Public Class frmShowDeviceDetails
 
         dgvActiveSessions.Rows.Add("S-1001", "John Doe", "10:30 AM", "01:15:00")
         dgvActiveSessions.Rows.Add("S-1002", "Guest", "11:45 AM", "00:45:00")
-    End Sub
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
-
-        Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
-            .Text = message,
-            .Parent = System.Windows.Forms.Application.OpenForms(0),
-            .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
-
-        guna.Show()
     End Sub
 
 

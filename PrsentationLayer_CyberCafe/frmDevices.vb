@@ -144,13 +144,13 @@ Public Class frmDevices
 
         If result Then
 
-            _ShowGunaMessage("Saved successfully!", "Success", MessageDialogIcon.Information)
+            UIHelper.ShowGunaMessage("Saved successfully!", "Success", MessageDialogIcon.Information)
             pnlDeviceDetail.Visible = False
             LoadDevices()
 
         Else
 
-            _ShowGunaMessage("An error occurred during the save process.", "Error", MessageDialogIcon.Error)
+            UIHelper.ShowGunaMessage("An error occurred during the save process.", "Error", MessageDialogIcon.Error)
 
         End If
     End Sub
@@ -255,26 +255,13 @@ Public Class frmDevices
     Private Function IsValidData() As Boolean
 
         If String.IsNullOrWhiteSpace(txtDeviceName.Text) OrElse cboDeviceType.SelectedValue Is Nothing Then
-            _ShowGunaMessage("Please fill in all required fields.", "Validation Error", MessageDialogIcon.Warning)
+            UIHelper.ShowGunaMessage("Please fill in all required fields.", "Validation Error", MessageDialogIcon.Warning)
             Return False
         End If
 
         Return True
     End Function
 
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
-
-        Dim guna As New Guna2MessageDialog With {
-            .caption = caption,
-            .Text = message,
-            .Parent = System.Windows.Forms.Application.OpenForms(0),
-            .Style = MessageDialogStyle.Dark,
-            .icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
-
-        guna.Show()
-    End Sub
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         If Not isInitializing Then ApplyFilters()
@@ -298,5 +285,6 @@ Public Class frmDevices
         End If
 
     End Sub
+
 
 End Class

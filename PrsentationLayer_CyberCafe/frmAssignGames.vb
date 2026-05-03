@@ -30,8 +30,11 @@ Public Class frmAssignGames
         InitializeComponent()
 
         _currentDeviceID = deviceID
-
         _SelectedDeviceDTO = DeviceServices.Find(deviceID)
+        If _SelectedDeviceDTO IsNot Nothing Then
+            _selectedGamesCount = DeviceGameService.GetGamesByDeviceID(deviceID)?.Count()
+        End If
+
     End Sub
 
     Private Sub EnableDoubleBuffering(ctrl As Control)
@@ -51,67 +54,21 @@ Public Class frmAssignGames
             True})
     End Sub
 
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
 
-        Dim guna As New Guna2MessageDialog With {
-            .caption = caption,
-            .Text = message,
-            .Parent = System.Windows.Forms.Application.OpenForms(0),
-            .Style = MessageDialogStyle.Dark,
-            .icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
-
-        guna.Show()
-    End Sub
     Private Sub frmAssignGames_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         EnableDoubleBuffering(flpGames)
-        'LoadDummyGames()
         LoadAllGames()
         pnlHeader.EnableDragging()
     End Sub
 
-    Private Function CreateDummyList() As List(Of GameDTO)
-        Dim gamesList As New List(Of GameDTO)
-
-        Dim gameNames() As String = {
-            "Cyberpunk 2077", "GTA V", "Red Dead Redemption 2",
-            "The Witcher 3", "Elden Ring", "God of War",
-            "Horizon Zero Dawn", "Spider-Man", "Forza Horizon 5",
-            "Halo Infinite", "Call of Duty: MW III", "FIFA 25",
-            "Assassin's Creed Valhalla", "Far Cry 6", "Resident Evil 4",
-            "Minecraft", "Fortnite", "Apex Legends",
-            "Valorant", "League of Legends", "Counter-Strike 2",
-            "Overwatch 2", "Diablo IV", "Starfield",
-            "Baldur's Gate 3", "Hogwarts Legacy", "Palworld",
-            "Lethal Company", "Helldivers 2", "Tekken 8",
-            "Street Fighter 6", "Mortal Kombat 1", "Need for Speed Unbound",
-            "Gran Turismo 7", "NBA 2K25", "Madden NFL 25",
-            "The Last of Us Part I", "Uncharted 4", "Ghost of Tsushima",
-            "Death Stranding", "Metal Gear Solid V", "Sekiro",
-            "Dark Souls III", "Bloodborne", "Nioh 2",
-            "Dragon Ball FighterZ", "Genshin Impact", "Honkai Star Rail",
-            "Final Fantasy XVI", "Persona 5 Royal"
-        }
-
-        For i As Integer = 0 To gameNames.Length - 1
-            gamesList.Add(New GameDTO With {
-            .GameID = i + 1,
-            .GameName = gameNames(i),
-            .ImagePath = ""
-        })
-        Next
-
-        Return gamesList
-    End Function
 
     Private Sub LoadAllGames()
         _allGames = GameServices.GetGamesForDeviceUpdate(_SelectedDeviceDTO.DeviceID, _SelectedDeviceDTO.DeviceTypeID)
         If _allGames IsNot Nothing Then
             LoadGamesToUI(_allGames)
         Else
-            _ShowGunaMessage("Error loading games.", "Error", MessageDialogIcon.Error)
+            UIHelper.ShowGunaMessage("Error loading games.", "Error", MessageDialogIcon.Error)
         End If
     End Sub
 
@@ -156,7 +113,7 @@ Public Class frmAssignGames
 
         Else
 
-            _ShowGunaMessage(
+            UIHelper.ShowGunaMessage(
             "Error loading assigned games.",
             "Error",
             MessageDialogIcon.Error)
@@ -169,7 +126,7 @@ Public Class frmAssignGames
 
         flpGames.SuspendLayout()
 
-        ' Clean previous controls safely
+
         For Each ctrl As Control In flpGames.Controls
             RemoveHandler DirectCast(ctrl, ctrGameCard).SelectionChanged,
                       AddressOf OnGameSelectionChanged
@@ -200,7 +157,7 @@ Public Class frmAssignGames
 
             card.LoadGameData(game)
 
-            ' Set initial selection state
+            '
             card.IsSelected = game.Exists
 
             If game.Exists Then
@@ -217,9 +174,11 @@ Public Class frmAssignGames
         Next
 
         flpGames.ResumeLayout(True)
-
+        Me.ScrollBar.BindingContainer = Nothing
+        Me.ScrollBar.BindingContainer = Me.flpGames
         lblCounter.Text =
         $"{selectedCount} / {flpGames.Controls.Count} selected"
+
 
     End Sub
 
@@ -287,20 +246,20 @@ Public Class frmAssignGames
 
         If selectedIDs.Count = 0 Then
 
-            _ShowGunaMessage("Please select at least one game.", "No Selection", MessageDialogIcon.Warning)
+            UIHelper.ShowGunaMessage("Please select at least one game.", "No Selection", MessageDialogIcon.Warning)
             Return
 
         End If
 
         If SaveSelectedGames(selectedIDs) Then
 
-            _ShowGunaMessage("Games Assigned Successfully!", "Success", MessageDialogIcon.Information)
+            UIHelper.ShowGunaMessage("Games Assigned Successfully!", "Success", MessageDialogIcon.Information)
             Me.DialogResult = DialogResult.OK
             Me.Close()
 
         Else
 
-            _ShowGunaMessage("Error saving games. Please try again.", "Error", MessageDialogIcon.Error)
+            UIHelper.ShowGunaMessage("Error saving games. Please try again.", "Error", MessageDialogIcon.Error)
 
         End If
 

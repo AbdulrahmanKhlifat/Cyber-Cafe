@@ -1,4 +1,4 @@
-Imports BusinessLayer_CyberCafe
+﻿Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels.CyberCafe.Models
 Imports Guna.UI2.WinForms
 
@@ -23,11 +23,11 @@ Public Class frmShowCustomerDetails
             If _Customer IsNot Nothing Then
                 DisplayCustomerInfo()
             Else
-                _ShowGunaMessage("Customer not found.", "Error", MessageDialogIcon.Error)
+                UIHelper.ShowGunaMessage("Customer not found.", "Error", MessageDialogIcon.Error)
                 Me.Close()
             End If
         Catch ex As Exception
-            _ShowGunaMessage("Error loading data: " & ex.Message, "Error", MessageDialogIcon.Error)
+            UIHelper.ShowGunaMessage("Error loading data: " & ex.Message, "Error", MessageDialogIcon.Error)
             Me.Close()
         End Try
     End Sub
@@ -55,17 +55,7 @@ Public Class frmShowCustomerDetails
 
     End Sub
 
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
-        Dim guna As New Guna2MessageDialog With {
-            .Caption = caption,
-            .Text = message,
-            .Parent = Me,
-            .Style = MessageDialogStyle.Dark,
-            .Icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
-        guna.Show()
-    End Sub
+
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs)
         Me.Close()

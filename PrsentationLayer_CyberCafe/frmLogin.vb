@@ -69,7 +69,7 @@ Public Class frmLogin
         If _loginTries = 0 Then
 
 
-            _ShowGunaMessage("You have been blocked for 24 hours" & vbCrLf & "Contact your admin", "Too Many Failed Attempts", MessageDialogIcon.Error)
+            UIHelper.ShowGunaMessage("You have been blocked for 24 hours" & vbCrLf & "Contact your admin", "Too Many Failed Attempts", MessageDialogIcon.Error)
             Application.Exit()
             Return
 
@@ -103,21 +103,11 @@ Public Class frmLogin
         Close()
     End Sub
 
-    Private Sub _ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
-        Dim guna As New Guna2MessageDialog With {
-            .caption = caption,
-            .Text = message,
-            .Parent = System.Windows.Forms.Application.OpenForms(0),
-            .Style = MessageDialogStyle.Dark,
-            .icon = icon,
-            .Buttons = MessageDialogButtons.OK
-        }
-        guna.Show()
-    End Sub
+
 
     Private  Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         If areTextBoxesEmpty() Then
-            _ShowGunaMessage("Please Enter Your Username and Password First!", "Invalid Credential", MessageDialogIcon.Warning)
+            UIHelper.ShowGunaMessage("Please Enter Your Username and Password First!", "Invalid Credential", MessageDialogIcon.Warning)
             Return
         End If
 

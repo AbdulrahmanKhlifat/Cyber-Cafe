@@ -47,7 +47,7 @@ Partial Class ctrDeviceInfo
         Me.pnlDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.pnlDevice.Location = New System.Drawing.Point(0, 0)
         Me.pnlDevice.Name = "pnlDevice"
-        Me.pnlDevice.Size = New System.Drawing.Size(220, 210)
+        Me.pnlDevice.Size = New System.Drawing.Size(208, 207)
         Me.pnlDevice.TabIndex = 0
         '
         'pbStatusDot
@@ -110,7 +110,7 @@ Partial Class ctrDeviceInfo
         'pbDeviceIcon
         '
         Me.pbDeviceIcon.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.pbDeviceIcon.Image = My.Resources.VR_icon
+        Me.pbDeviceIcon.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.VR_icon
         Me.pbDeviceIcon.ImageRotate = 0!
         Me.pbDeviceIcon.Location = New System.Drawing.Point(20, 20)
         Me.pbDeviceIcon.Name = "pbDeviceIcon"
@@ -125,7 +125,7 @@ Partial Class ctrDeviceInfo
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.Controls.Add(Me.pnlDevice)
         Me.Name = "ctrDeviceInfo"
-        Me.Size = New System.Drawing.Size(220, 210)
+        Me.Size = New System.Drawing.Size(208, 207)
         Me.pnlDevice.ResumeLayout(False)
         CType(Me.pbStatusDot, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbDeviceIcon, System.ComponentModel.ISupportInitialize).EndInit()
