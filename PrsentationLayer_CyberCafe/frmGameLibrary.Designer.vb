@@ -24,6 +24,7 @@ Partial Class frmGameLibrary
         Me.cmsGameMenu = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
         Me.tsiEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsiDelete = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Guna2VScrollBar1 = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.pnlTop.SuspendLayout()
         Me.cmsGameMenu.SuspendLayout()
         Me.SuspendLayout()
@@ -130,12 +131,27 @@ Partial Class frmGameLibrary
         Me.tsiDelete.Size = New System.Drawing.Size(131, 26)
         Me.tsiDelete.Text = "Delete"
         '
+        'Guna2VScrollBar1
+        '
+        Me.Guna2VScrollBar1.BindingContainer = Me.flpGames
+        Me.Guna2VScrollBar1.BorderRadius = 10
+        Me.Guna2VScrollBar1.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Guna2VScrollBar1.InUpdate = False
+        Me.Guna2VScrollBar1.LargeChange = 10
+        Me.Guna2VScrollBar1.Location = New System.Drawing.Point(1323, 61)
+        Me.Guna2VScrollBar1.Name = "Guna2VScrollBar1"
+        Me.Guna2VScrollBar1.ScrollbarSize = 18
+        Me.Guna2VScrollBar1.Size = New System.Drawing.Size(18, 654)
+        Me.Guna2VScrollBar1.TabIndex = 0
+        Me.Guna2VScrollBar1.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
+        '
         'frmGameLibrary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1341, 715)
+        Me.Controls.Add(Me.Guna2VScrollBar1)
         Me.Controls.Add(Me.flpGames)
         Me.Controls.Add(Me.pnlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -156,4 +172,5 @@ Partial Class frmGameLibrary
     Friend WithEvents cmsGameMenu As Guna.UI2.WinForms.Guna2ContextMenuStrip
     Friend WithEvents tsiEdit As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsiDelete As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Guna2VScrollBar1 As Guna.UI2.WinForms.Guna2VScrollBar
 End Class
