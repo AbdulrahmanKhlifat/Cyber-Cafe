@@ -1,3 +1,5 @@
+Imports CyberCafeModels
+
 Public Class ctrGameCard
 
     ' Theme Colors (Matching Project Style)
@@ -38,49 +40,83 @@ Public Class ctrGameCard
 
     Public Event SelectionChanged(sender As ctrGameCard, isSelected As Boolean)
 
-    Public Sub LoadGameData(id As Integer, name As String, imgPath As String, Optional cache As Dictionary(Of Integer, Image) = Nothing)
-        GameID = id
-        GameName = name
-        ImagePath = imgPath
+    Public Sub LoadGameData(gameDTO As GameDTO)
+        GameID = gameDTO.GameID
+        GameName = gameDTO.GameName
+        ImagePath = UIHelper.GetImagePath(gameDTO.ImagePath)
 
-
-        If cache IsNot Nothing AndAlso cache.ContainsKey(id) Then
-            btnGameCard.Image = cache(id)
-            Return
+        If ImagePath Is Nothing Then
+            btnGameCard.Image = My.Resources.PlayStationIcon
+        Else
+            btnGameCard.Image = Image.FromFile(ImagePath)
         End If
 
+        'If cache IsNot Nothing AndAlso cache.ContainsKey(id) Then
+        '    btnGameCard.Image = cache(id)
+        '    Return
+        'End If
 
-        Dim img As Image = Nothing
 
-        Try
+        'Dim img As Image = Nothing
 
-            If Not String.IsNullOrEmpty(imgPath) AndAlso IO.File.Exists(imgPath) Then
+        'Try
 
-                Using fs As New IO.FileStream(imgPath, IO.FileMode.Open, IO.FileAccess.Read)
+        '    If Not String.IsNullOrEmpty(imgPath) AndAlso IO.File.Exists(imgPath) Then
 
-                    Using originalImg As Image = Image.FromStream(fs)
+        '        Using fs As New IO.FileStream(imgPath, IO.FileMode.Open, IO.FileAccess.Read)
 
-                        img = New Bitmap(originalImg, New Size(140, 150))
-                    End Using
-                End Using
+        '            Using originalImg As Image = Image.FromStream(fs)
 
-            End If
+        '                img = New Bitmap(originalImg, New Size(140, 150))
+        '            End Using
+        '        End Using
 
-        Catch ex As Exception
+        '    End If
 
-            img = Nothing
+        'Catch ex As Exception
 
-        End Try
+        '    img = Nothing
 
-        If img IsNot Nothing Then
+        'End Try
 
-            If cache IsNot Nothing Then cache(id) = img
-            btnGameCard.Image = img
+        'If img IsNot Nothing Then
 
-        End If
+        '    If cache IsNot Nothing Then cache(id) = img
+        '    btnGameCard.Image = img
+
+        'End If
+    End Sub
+    Public Sub DisableCheckBox()
+
+        Dim clr = Color.FromArgb(22, 27, 34)
+
+        btnGameCard.FillColor = clr
+        btnGameCard.DisabledState.FillColor = clr
+
+        btnGameCard.DisabledState.ForeColor = Color.Gray
+        btnGameCard.DisabledState.BorderColor = clr
+
+
+        btnGameCard.HoverState.FillColor = clr
+        btnGameCard.PressedColor = clr
+
+        Me.chkSelected.Visible = False
     End Sub
 
+    Public Sub LoadGameData(gameDTO As GameSelectionDTO)
+        GameID = gameDTO.GameID
+        GameName = gameDTO.GameName
+        ImagePath = UIHelper.GetImagePath(gameDTO.ImagePath)
 
+        If ImagePath Is Nothing Then
+            btnGameCard.Image = My.Resources.PlayStationIcon
+        Else
+            btnGameCard.Image = Image.FromFile(ImagePath)
+        End If
+
+        btnGameCard.Checked = gameDTO.Exists
+
+    End Sub
 
     Private Sub btnGameCard_Click(sender As Object, e As EventArgs) Handles btnGameCard.Click
         chkSelected.Checked = Not chkSelected.Checked

@@ -19,11 +19,12 @@ Public Class frmGameLibrary
     Private Sub LoadGames()
         Try
 
-            ' _allGames = GameServices.GetAllGames()
-            _allGames = GetDummyGames()
+            _allGames = GameServices.GetAllGames()
 
         Catch ex As Exception
-            _allGames = New List(Of GameDTO)()
+
+            _allGames = New List(Of GameDTO)
+
         End Try
 
         RefreshFlowLayoutPanel(_allGames)
@@ -55,29 +56,31 @@ Public Class frmGameLibrary
         Next
         flpGames.Controls.Clear()
 
-        If games IsNot Nothing Then
-
-            For Each game In games
-                Dim card As New ctrGameCard()
-                card.LoadGameData(game.GameID, game.GameName, "", _thumbnailCache)
-                Dim targetBtn = card.btnGameCard
-                card.chkSelected.Enabled = False
-                card.chkSelected.Hide()
-                DisableCard(card)
-
-
-                card.ContextMenuStrip = cmsGameMenu
-                AddHandler targetBtn.MouseDown,
-                    Sub(s, e)
-                        If e.Button = MouseButtons.Right Then
-                            cmsGameMenu.Tag = card
-                        End If
-                    End Sub
-
-                flpGames.Controls.Add(card)
-            Next
-
+        If games Is Nothing OrElse games.Count = 0 Then
+            Return
         End If
+
+
+        For Each game In games
+            Dim card As New ctrGameCard()
+
+            card.LoadGameData(game)
+            card.DisableCheckBox()
+
+            Dim targetBtn = card.btnGameCard
+
+            targetBtn.ContextMenuStrip = cmsGameMenu
+
+            targetBtn.ContextMenuStrip = cmsGameMenu
+            AddHandler targetBtn.MouseDown,
+                Sub(s, e)
+                    If e.Button = MouseButtons.Right Then
+                        cmsGameMenu.Tag = card
+                    End If
+                End Sub
+
+            flpGames.Controls.Add(card)
+        Next
 
         flpGames.ResumeLayout(True)
     End Sub
@@ -174,19 +177,6 @@ Public Class frmGameLibrary
         Dim prop = GetType(Control).GetProperty("DoubleBuffered", BindingFlags.Instance Or BindingFlags.NonPublic)
         prop?.SetValue(ctrl, True, Nothing)
     End Sub
-
-    Private Function GetDummyGames() As List(Of GameDTO)
-
-        Dim list As New List(Of GameDTO)
-        Dim names() As String = {"Cyberpunk 2077", "GTA V", "The Witcher 3", "Elden Ring", "Valorant", "CS 2"}
-
-        For i As Integer = 0 To names.Length - 1
-            list.Add(New GameDTO With {.GameID = i + 1, .GameName = names(i)})
-        Next
-
-        Return list
-
-    End Function
 
     Private Sub frmGameLibrary_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 

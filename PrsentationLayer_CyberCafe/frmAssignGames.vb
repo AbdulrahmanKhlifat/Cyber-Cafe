@@ -16,16 +16,22 @@ Public Class frmAssignGames
     Private ReadOnly _thumbnailCache As New Dictionary(Of Integer, Image)
 
 
-    Private _allGames As List(Of GameDTO)
+    Private _allGames As List(Of GameSelectionDTO)
 
     Private _selectedGamesCount As Integer = 0
 
 
     Private _currentDeviceID As Integer
 
+    Private _SelectedDeviceDTO As DeviceDTO
+
     Public Sub New(deviceID As Integer)
+
         InitializeComponent()
+
         _currentDeviceID = deviceID
+
+        _SelectedDeviceDTO = DeviceServices.Find(deviceID)
     End Sub
 
     Private Sub EnableDoubleBuffering(ctrl As Control)
@@ -61,7 +67,8 @@ Public Class frmAssignGames
     Private Sub frmAssignGames_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         EnableDoubleBuffering(flpGames)
-        LoadDummyGames()
+        'LoadDummyGames()
+        LoadAllGames()
         pnlHeader.EnableDragging()
     End Sub
 
@@ -100,7 +107,7 @@ Public Class frmAssignGames
     End Function
 
     Private Sub LoadAllGames()
-        '_allGames = GameServices.GetAllGames()
+        _allGames = GameServices.GetGamesForDeviceUpdate(_SelectedDeviceDTO.DeviceID, _SelectedDeviceDTO.DeviceTypeID)
         If _allGames IsNot Nothing Then
             LoadGamesToUI(_allGames)
         Else
@@ -120,26 +127,9 @@ Public Class frmAssignGames
 
         For Each game In games
 
-            Dim gID As Integer = game.GameID
-
-
-            Dim gName As String =
-            If(String.IsNullOrWhiteSpace(game.GameName),
-               "Unknown",
-               game.GameName)
-
-            Dim gPath As String =
-            If(String.IsNullOrWhiteSpace(game.ImagePath),
-               "",
-               game.ImagePath)
-
             Dim card As New ctrGameCard()
 
-            card.LoadGameData(
-            gID,
-            gName,
-            gPath,
-            _thumbnailCache)
+            card.LoadGameData(game)
 
             card.Margin = New Padding(5)
 
@@ -154,6 +144,7 @@ Public Class frmAssignGames
 
     End Sub
 
+    'Move this to frmShowDeviceDetails
     Private Sub LoadAssignedGames()
 
         Dim assignedGames As List(Of GameDTO) =
@@ -174,40 +165,62 @@ Public Class frmAssignGames
 
     End Sub
 
-    Private Sub LoadDummyGames()
+    Public Sub LoadGamesToUI(gamesList As List(Of GameSelectionDTO))
 
-        _allGames = CreateDummyList()
-        LoadGamesToUI(_allGames)
-    End Sub
-
-    Public Sub LoadGamesToUI(gamesList As List(Of GameDTO))
         flpGames.SuspendLayout()
 
-        ' تنظيف الكنترولات السابقة بشكل صحيح
+        ' Clean previous controls safely
         For Each ctrl As Control In flpGames.Controls
-            RemoveHandler DirectCast(ctrl, ctrGameCard).SelectionChanged, AddressOf OnGameSelectionChanged
+            RemoveHandler DirectCast(ctrl, ctrGameCard).SelectionChanged,
+                      AddressOf OnGameSelectionChanged
             ctrl.Dispose()
         Next
+
         flpGames.Controls.Clear()
 
         If gamesList Is Nothing Then Return
 
+        Dim selectedCount As Integer = 0
+
         For Each game In gamesList
 
             Dim gID As Integer = game.GameID
-            Dim gName As String = If(String.IsNullOrEmpty(game.GameName), "Unknown", game.GameName)
-            Dim gPath As String = "" ' مسار الصورة حالياً فارغ
+
+            Dim gName As String =
+            If(String.IsNullOrWhiteSpace(game.GameName),
+               "Unknown",
+               game.GameName)
+
+            Dim gPath As String =
+            If(String.IsNullOrWhiteSpace(game.ImagePath),
+               String.Empty,
+               game.ImagePath)
 
             Dim card As New ctrGameCard()
-            card.LoadGameData(gID, gName, gPath, _thumbnailCache)
+
+            card.LoadGameData(game)
+
+            ' Set initial selection state
+            card.IsSelected = game.Exists
+
+            If game.Exists Then
+                selectedCount += 1
+            End If
+
             card.Margin = New Padding(5)
-            AddHandler card.SelectionChanged, AddressOf OnGameSelectionChanged
+
+            AddHandler card.SelectionChanged,
+                   AddressOf OnGameSelectionChanged
 
             flpGames.Controls.Add(card)
+
         Next
 
         flpGames.ResumeLayout(True)
-        lblCounter.Text = $"0 / {flpGames.Controls.Count} selected"
+
+        lblCounter.Text =
+        $"{selectedCount} / {flpGames.Controls.Count} selected"
+
     End Sub
 
 
@@ -222,9 +235,6 @@ Public Class frmAssignGames
         lblCounter.Text = $"{_selectedGamesCount} / {flpGames.Controls.Count} selected"
 
     End Sub
-
-
-
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         Dim searchText As String = txtSearch.Text.Trim().ToLower()

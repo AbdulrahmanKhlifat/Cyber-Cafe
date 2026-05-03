@@ -5,17 +5,30 @@ Imports CyberCafeModels.CyberCafe.Models
 Public Class GameServices
 
 
-    Public Shared Function AddGame(gameDTO As GameDTO) As Boolean
-        If gameDTO Is Nothing Then
+    Public Shared Function AddGame(game As GameDTO) As Boolean
+        If game Is Nothing Then
             Return False
         End If
 
-        If GameRepo.IsGameExists(gameDTO.GameName) Then
+        If GameRepo.IsGameExists(game.GameName) Then
             Throw New Exception("Game already Exists")
         End If
 
-        Dim newID = GameRepo.AddGame(gameDTO)
+        Dim newID = GameRepo.AddGame(game)
         Return newID <> -1
+    End Function
+
+    Public Shared Function UpdateGame(game As GameDTO) As Boolean
+
+        If game Is Nothing Then
+            Return False
+        End If
+
+        If Not GameRepo.IsGameExists(game.GameID) Then
+            Throw New Exception("Game Does not Exists")
+        End If
+
+        Return GameRepo.UpdateGame(game)
     End Function
 
     Public Shared Function Find(gameID As Integer) As GameDTO
@@ -26,8 +39,14 @@ Public Class GameServices
         Return GameRepo.GetGameByID(gameID)
     End Function
 
-    Public Shared Function GetAllGames() As DataTable
+    Public Shared Function GetAllGames() As List(Of GameDTO)
         Return GameRepo.GetAllGames()
+    End Function
+
+    Public Shared Function GetGamesForDeviceUpdate(deviceID As Integer, deviceTypeID As Integer) As List(Of GameSelectionDTO)
+
+        Return GameRepo.GetGamesForDeviceUpdate(deviceID, deviceTypeID)
+
     End Function
 
 End Class
