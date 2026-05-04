@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports CyberCafeModels
 
 
@@ -36,7 +36,7 @@ Public Class DeviceTypeRepo
     Public Shared Function GetDeviceTypeByID(deviceTypeID As Integer) As DeviceTypeDTO
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "SELECT DeviceTypeID, DeviceName, DeviceDescription 
+            Dim query As String = "SELECT DeviceTypeID, DeviceName, DeviceDescription, ImagePath 
                                    FROM DeviceType 
                                    WHERE DeviceTypeID = @DeviceTypeID"
 
@@ -55,6 +55,8 @@ Public Class DeviceTypeRepo
                                 .DeviceName = CType(reader("DeviceName"), String)
                                 .DeviceDescription = If(reader("DeviceDescription") Is DBNull.Value,
                                                        "", CType(reader("DeviceDescription"), String))
+                                .ImagePath = If(reader("ImagePath") Is DBNull.Value,
+                                                       "", CType(reader("ImagePath"), String))
                             End With
 
                             Return deviceType
@@ -72,6 +74,37 @@ Public Class DeviceTypeRepo
         End Using
 
         Return Nothing
+    End Function
+
+    Public Shared Function AddDeviceType(deviceType As DeviceTypeDTO) As Boolean
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+            Dim query As String = "INSERT INTO DeviceType (DeviceTypeName, DeviceDescription, ImagePath) 
+                                   VALUES (@DeviceTypeName, @DeviceDescription, @ImagePath)"
+
+            Using cmd As New SqlCommand(query, conn)
+                cmd.Parameters.Add("@DeviceTypeName", SqlDbType.NVarChar).Value = deviceType.DeviceName
+
+                If String.IsNullOrWhiteSpace(deviceType.DeviceDescription) Then
+                    cmd.Parameters.Add("@DeviceDescription", SqlDbType.NVarChar).Value = DBNull.Value
+                Else
+                    cmd.Parameters.Add("@DeviceDescription", SqlDbType.NVarChar).Value = deviceType.DeviceDescription
+                End If
+
+                If String.IsNullOrWhiteSpace(deviceType.ImagePath) Then
+                    cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar).Value = DBNull.Value
+                Else
+                    cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar).Value = deviceType.ImagePath
+                End If
+                Try
+                    conn.Open()
+                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                    Return rowsAffected > 0
+                Catch ex As Exception
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                    Return False
+                End Try
+            End Using
+        End Using
     End Function
 
 End Class

@@ -150,13 +150,11 @@ Public Class CustomerRepo
 
             Dim query As String = "SELECT 
                                     u.UserID, 
-                                    u.Name, 
+                                    u.Name as FullName, 
                                     u.Username, 
                                     u.Email, 
                                     u.Phone, 
                                     c.CreatedAt,
-                                    c.Credit,
-                                    c.TotalHoursRes,
                                     c.CreatedByAdminID
                                FROM Customers c
                                INNER JOIN Users u ON c.UserID = u.UserID
@@ -190,13 +188,11 @@ Public Class CustomerRepo
 
             Dim query As String = "SELECT 
                                     u.UserID, 
-                                    u.Name, 
+                                    u.Name as FullName, 
                                     u.Username, 
                                     u.Email, 
                                     u.Phone, 
                                     c.CreatedAt,
-                                    c.Credit,
-                                    c.TotalHoursRes,
                                     c.CreatedByAdminID
                                FROM Customers c
                                INNER JOIN Users u ON c.UserID = u.UserID;"

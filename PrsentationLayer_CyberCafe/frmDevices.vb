@@ -1,4 +1,4 @@
-﻿Imports BusinessLayer_CyberCafe
+Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
 Imports Guna.UI2.WinForms
 
@@ -33,10 +33,12 @@ Public Class frmDevices
     Private Sub FillComboBox()
 
         Dim dt As DataTable = DeviceTypeServices.GetAllDeviceTypes()
-        cboDeviceType.DataSource = dt
-        cboDeviceType.ValueMember = "DeviceTypeID"
-        cboDeviceType.DisplayMember = "DeviceTypeName"
-        cboDeviceType.SelectedIndex = -1
+        If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+            cboDeviceType.ValueMember = "DeviceTypeID"
+            cboDeviceType.DisplayMember = "DeviceTypeName"
+            cboDeviceType.DataSource = dt
+            cboDeviceType.SelectedIndex = -1
+        End If
 
     End Sub
 
@@ -159,6 +161,14 @@ Public Class frmDevices
 
         PrepareForAdd()
 
+    End Sub
+
+    Private Sub btnAddPlatform_Click(sender As Object, e As EventArgs) Handles btnAddPlatform.Click
+        Using addPlatformForm As New frmAddPlatform()
+            If addPlatformForm.ShowDialog() = DialogResult.OK Then
+                FillComboBox()
+            End If
+        End Using
     End Sub
 
     Private Function GetSelectedDeviceInfoCard() As ctrDeviceInfo
@@ -315,4 +325,6 @@ Public Class frmDevices
         End If
 
     End Sub
+
+
 End Class

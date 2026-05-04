@@ -172,46 +172,45 @@ Public Class frmGameLibrary
         Dim card = GetSelectedGameCard()
         If card Is Nothing Then Exit Sub
 
-        If ShowConfirmDialog($"Are you sure you want to delete {card.GameName}?") = DialogResult.Yes Then
 
-            Dim imageName = GameServices.GetImagePath(card.GameID)
+        Dim gameIdToDelete As Integer = card.GameID
+        Dim gameName As String = card.GameName
+        Dim imageName = GameServices.GetImagePath(gameIdToDelete)
 
-
-            If card.btnGameCard.Image IsNot Nothing Then
-                card.btnGameCard.Image.Dispose()
-                card.btnGameCard.Image = Nothing
-            End If
+        If ShowConfirmDialog($"Are you sure you want to delete {gameName}?") = DialogResult.Yes Then
 
 
-            flpGames.Controls.Remove(card)
-            card.Dispose()
+            If GameServices.DeleteGame(gameIdToDelete) Then
 
 
-            GC.Collect()
-            GC.WaitForPendingFinalizers()
+                If card.btnGameCard.Image IsNot Nothing Then
+                    card.btnGameCard.Image.Dispose()
+                    card.btnGameCard.Image = Nothing
+                End If
 
-            If GameServices.DeleteGame(card.GameID) Then
+
+                flpGames.Controls.Remove(card)
+                card.Dispose()
 
 
                 If Not String.IsNullOrEmpty(imageName) Then
                     Try
-
                         Dim fullPath = UIHelper.GetImagePath(imageName)
-
                         If File.Exists(fullPath) Then
+
+                            GC.Collect()
+                            GC.WaitForPendingFinalizers()
                             File.Delete(fullPath)
                         End If
                     Catch ex As Exception
 
-                        MessageBox.Show("Record deleted, but file is still locked by another process: " & ex.Message)
                     End Try
                 End If
 
-                UIHelper.ShowGunaMessage("Game and Image Deleted Successfully", "Success", MessageDialogIcon.Information)
-
-                LoadGames()
+                UIHelper.ShowGunaMessage("Deleted successfully", "Success", MessageDialogIcon.Information)
             Else
-                UIHelper.ShowGunaMessage("Error: Could not delete the game from database.", "Error", MessageDialogIcon.Error)
+
+                UIHelper.ShowGunaMessage("Cannot delete this game because it is linked to active devices or logs.", "Database Constraint", MessageDialogIcon.Error)
             End If
         End If
     End Sub

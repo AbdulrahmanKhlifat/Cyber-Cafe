@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmCustomers
     Inherits System.Windows.Forms.Form
 
@@ -372,32 +372,38 @@ Partial Class frmCustomers
         '
         'dgvCustomers
         '
+
+
+        ' 
+        ' dgvCustomers
+        ' 
+        Me.dgvCustomers.AllowUserToAddRows = False
         Me.dgvCustomers.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(28, 33, 40)
         Me.dgvCustomers.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(13, 17, 23)
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(33, 38, 45)
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 10.5!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(230, 237, 243)
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(33, 38, 45)
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(230, 237, 243)
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvCustomers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvCustomers.ColumnHeadersHeight = 45
         Me.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         Me.dgvCustomers.ContextMenuStrip = Me.cmsCustomer
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.25!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(22, 27, 34)
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.75!)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(230, 237, 243)
         DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(16, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(129, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(0, 120, 100)
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvCustomers.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvCustomers.GridColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+        Me.dgvCustomers.GridColor = System.Drawing.Color.FromArgb(48, 54, 61)
         Me.dgvCustomers.Location = New System.Drawing.Point(0, 104)
         Me.dgvCustomers.Name = "dgvCustomers"
         Me.dgvCustomers.ReadOnly = True
@@ -405,27 +411,35 @@ Partial Class frmCustomers
         Me.dgvCustomers.RowTemplate.Height = 45
         Me.dgvCustomers.Size = New System.Drawing.Size(1015, 611)
         Me.dgvCustomers.TabIndex = 5
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
-        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
-        Me.dgvCustomers.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+
+
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(28, 33, 40)
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.Font = New System.Drawing.Font("Segoe UI", 9.75!)
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.FromArgb(230, 237, 243)
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(0, 120, 100)
+        Me.dgvCustomers.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.White
+
+        Me.dgvCustomers.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(13, 17, 23)
+        Me.dgvCustomers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(48, 54, 61)
+
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(33, 38, 45)
         Me.dgvCustomers.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvCustomers.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Segoe UI", 10.5!, System.Drawing.FontStyle.Bold)
+        Me.dgvCustomers.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(230, 237, 243)
         Me.dgvCustomers.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         Me.dgvCustomers.ThemeStyle.HeaderStyle.Height = 45
+
         Me.dgvCustomers.ThemeStyle.ReadOnly = True
-        Me.dgvCustomers.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
+
+        Me.dgvCustomers.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(22, 27, 34)
         Me.dgvCustomers.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvCustomers.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvCustomers.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvCustomers.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Segoe UI", 9.75!)
+        Me.dgvCustomers.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(230, 237, 243)
         Me.dgvCustomers.ThemeStyle.RowsStyle.Height = 45
-        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(0, 120, 100)
+        Me.dgvCustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White
+
+
         '
         'cmsCustomer
         '

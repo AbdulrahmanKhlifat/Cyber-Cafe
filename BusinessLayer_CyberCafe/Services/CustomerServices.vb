@@ -129,7 +129,7 @@ Public Class CustomerServices
     End Function
 
     Public Shared Function GetAllCustomers() As DataTable
-        Return CustomerRepo.GetAllCustomers()
+        Return CustomerRepo.GetAllActiveCustomers()
     End Function
 
 End Class

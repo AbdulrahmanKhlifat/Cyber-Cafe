@@ -102,7 +102,7 @@ Public Class frmCustomers
         Dim dt As DataTable = DirectCast(dgvCustomers.DataSource, DataTable)
 
         If dt IsNot Nothing Then
-            dt.DefaultView.RowFilter = String.Format("Name LIKE '%{0}%' OR Phone LIKE '%{0}%' OR Username LIKE '%{0}%'", txtSearch.Text)
+            dt.DefaultView.RowFilter = String.Format("FullName LIKE '%{0}%' OR Phone LIKE '%{0}%' OR Username LIKE '%{0}%'", txtSearch.Text)
         End If
 
     End Sub

@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmDevices
     Inherits System.Windows.Forms.Form
 
@@ -22,7 +22,7 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDevices))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
@@ -30,6 +30,7 @@ Partial Class frmDevices
         Me.txtSearchGame = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.cmbStatus = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.btnAddPlatform = New Guna.UI2.WinForms.Guna2Button()
         Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.cmbDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.pnlDeviceDetail = New System.Windows.Forms.Panel()
@@ -75,6 +76,7 @@ Partial Class frmDevices
         '
         Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(33, Byte), Integer))
         Me.pnlTop.Controls.Add(Me.lblTitle)
+        Me.pnlTop.Controls.Add(Me.btnAddPlatform)
         Me.Guna2Transition1.SetDecoration(Me.pnlTop, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 0)
@@ -154,6 +156,21 @@ Partial Class frmDevices
         Me.cmbStatus.Size = New System.Drawing.Size(177, 36)
         Me.cmbStatus.StartIndex = 0
         Me.cmbStatus.TabIndex = 8
+        '
+        'btnAddPlatform
+        '
+        Me.btnAddPlatform.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddPlatform.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.btnAddPlatform.BorderRadius = 8
+        Me.Guna2Transition1.SetDecoration(Me.btnAddPlatform, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.btnAddPlatform.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
+        Me.btnAddPlatform.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.btnAddPlatform.ForeColor = System.Drawing.Color.White
+        Me.btnAddPlatform.Location = New System.Drawing.Point(1127, 7)
+        Me.btnAddPlatform.Name = "btnAddPlatform"
+        Me.btnAddPlatform.Size = New System.Drawing.Size(165, 46)
+        Me.btnAddPlatform.TabIndex = 6
+        Me.btnAddPlatform.Text = "+  Add Platform"
         '
         'btnAddDevice
         '
@@ -459,22 +476,22 @@ Partial Class frmDevices
         '
         Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
         Me.Guna2Transition1.Cursor = Nothing
-        Animation2.AnimateOnlyDifferences = True
-        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
-        Animation2.LeafCoeff = 0!
-        Animation2.MaxTime = 1.0!
-        Animation2.MinTime = 0!
-        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
-        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
-        Animation2.MosaicSize = 0
-        Animation2.Padding = New System.Windows.Forms.Padding(0)
-        Animation2.RotateCoeff = 0!
-        Animation2.RotateLimit = 0!
-        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
-        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
-        Animation2.TimeCoeff = 0!
-        Animation2.TransparencyCoeff = 1.0!
-        Me.Guna2Transition1.DefaultAnimation = Animation2
+        Animation1.AnimateOnlyDifferences = True
+        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
+        Animation1.LeafCoeff = 0!
+        Animation1.MaxTime = 1.0!
+        Animation1.MinTime = 0!
+        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
+        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
+        Animation1.MosaicSize = 0
+        Animation1.Padding = New System.Windows.Forms.Padding(0)
+        Animation1.RotateCoeff = 0!
+        Animation1.RotateLimit = 0!
+        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
+        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
+        Animation1.TimeCoeff = 0!
+        Animation1.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation1
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.MaxAnimationTime = 300
         Me.Guna2Transition1.TimeStep = 0.05!
@@ -506,6 +523,7 @@ Partial Class frmDevices
     Friend WithEvents pnlFilter As Panel
     Private WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents cmbStatus As Guna.UI2.WinForms.Guna2ComboBox
+    Private WithEvents btnAddPlatform As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnAddDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents cmbDeviceType As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents pnlDeviceDetail As Panel
