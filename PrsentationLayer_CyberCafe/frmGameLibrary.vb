@@ -84,6 +84,10 @@ Public Class frmGameLibrary
         Next
 
         flpGames.ResumeLayout(True)
+
+        ' Forces the scrollbar to recalculate 
+        flpGames.AutoScroll = False
+        flpGames.AutoScroll = True
     End Sub
 
 
@@ -167,6 +171,7 @@ Public Class frmGameLibrary
         Return msgDialog.Show()
 
     End Function
+
     Private Sub tsiDelete_Click(sender As Object, e As EventArgs) Handles tsiDelete.Click
 
         Dim card = GetSelectedGameCard()
@@ -211,7 +216,7 @@ Public Class frmGameLibrary
             Else
 
                 UIHelper.ShowGunaMessage("Cannot delete this game because it is linked to active devices or logs.", "Database Constraint", MessageDialogIcon.Error)
-        End If
+            End If
         End If
     End Sub
 

@@ -101,4 +101,13 @@ Public Class UIHelper
         Return Path.Combine(imagesFolder, imageFileName)
 
     End Function
+
+    Public Shared Function LoadImageUnlocked(path As String) As Image
+        Using fs As New IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read)
+
+            Return Image.FromStream(fs)
+
+        End Using
+    End Function
+
 End Class

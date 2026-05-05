@@ -45,46 +45,18 @@ Public Class ctrGameCard
         GameName = gameDTO.GameName
         ImagePath = UIHelper.GetImagePath(gameDTO.ImagePath)
 
-        If ImagePath Is Nothing Then
+        Try
+
+            If Not String.IsNullOrWhiteSpace(ImagePath) AndAlso IO.File.Exists(ImagePath) Then
+                btnGameCard.Image = UIHelper.LoadImageUnlocked(ImagePath)
+            Else
+                btnGameCard.Image = My.Resources.PlayStationIcon
+            End If
+
+        Catch
             btnGameCard.Image = My.Resources.PlayStationIcon
-        Else
-            btnGameCard.Image = Image.FromFile(ImagePath)
-        End If
+        End Try
 
-        'If cache IsNot Nothing AndAlso cache.ContainsKey(id) Then
-        '    btnGameCard.Image = cache(id)
-        '    Return
-        'End If
-
-
-        'Dim img As Image = Nothing
-
-        'Try
-
-        '    If Not String.IsNullOrEmpty(imgPath) AndAlso IO.File.Exists(imgPath) Then
-
-        '        Using fs As New IO.FileStream(imgPath, IO.FileMode.Open, IO.FileAccess.Read)
-
-        '            Using originalImg As Image = Image.FromStream(fs)
-
-        '                img = New Bitmap(originalImg, New Size(140, 150))
-        '            End Using
-        '        End Using
-
-        '    End If
-
-        'Catch ex As Exception
-
-        '    img = Nothing
-
-        'End Try
-
-        'If img IsNot Nothing Then
-
-        '    If cache IsNot Nothing Then cache(id) = img
-        '    btnGameCard.Image = img
-
-        'End If
     End Sub
     Public Sub DisableCheckBox()
 
@@ -120,7 +92,6 @@ Public Class ctrGameCard
 
     Private Sub btnGameCard_Click(sender As Object, e As EventArgs) Handles btnGameCard.Click
         chkSelected.Checked = Not chkSelected.Checked
-        'MessageBox.Show("Width: " & btnGameCard.Image.Width & vbCrLf & "Height: " & btnGameCard.Image.Height)
     End Sub
 
     Private Sub chkSelected_CheckedChanged(sender As Object, e As EventArgs) Handles chkSelected.CheckedChanged

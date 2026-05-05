@@ -102,7 +102,7 @@ Public Class DeviceTypeRepo
                                    VALUES (@DeviceTypeName, @DeviceDescription, @ImagePath)"
 
             Using cmd As New SqlCommand(query, conn)
-                cmd.Parameters.Add("@DeviceTypeName", SqlDbType.NVarChar).Value = deviceType.DeviceName
+                cmd.Parameters.Add("@DeviceTypeName", SqlDbType.NVarChar).Value = deviceType.DeviceTypeName
 
                 If String.IsNullOrWhiteSpace(deviceType.DeviceDescription) Then
                     cmd.Parameters.Add("@DeviceDescription", SqlDbType.NVarChar).Value = DBNull.Value

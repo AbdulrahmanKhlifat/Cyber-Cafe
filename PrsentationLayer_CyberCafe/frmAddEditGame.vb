@@ -6,11 +6,13 @@ Public Class frmAddEditGame
 
     Private game As GameDTO
 
-    Private Property _ImageChanged As Boolean = False
+    Private Property _IsImageModified As Boolean = False ' user changed image or not
 
-    Private Property _ImageSourcePath As String
+    Private Property _SelectedImagePath As String  ' new image picked by user
 
-    Dim savedImageFileName As String = Nothing
+    Private Property _SavedImageFileName As String = Nothing ' filename stored in DB after save
+
+    Private Property _ExistingImagePath As String ' old image path (used for delete)
 
     Private Enum enMode
         Add
@@ -103,14 +105,22 @@ Public Class frmAddEditGame
 
         lblGameID.Text = game.GameID.ToString()
 
-        _ImageSourcePath = UIHelper.GetImagePath(game.ImagePath)
+        _ExistingImagePath = UIHelper.GetImagePath(game.ImagePath)
 
-        If game.ImagePath Is Nothing Then
+        _SelectedImagePath = _ExistingImagePath
+
+        Try
+            If game.ImagePath Is Nothing Then
+                pbGameImage.Image = My.Resources.PlayStationIcon
+            Else
+                pbGameImage.Image = Image.FromFile(_SelectedImagePath)
+                pbGameImage.Tag = _SelectedImagePath
+
+            End If
+        Catch ex As Exception
             pbGameImage.Image = My.Resources.PlayStationIcon
-        Else
-            pbGameImage.Image = Image.FromFile(_ImageSourcePath)
-            pbGameImage.Tag = _ImageSourcePath
-        End If
+        End Try
+
 
     End Sub
 
@@ -120,11 +130,15 @@ Public Class frmAddEditGame
 
             If ofd.ShowDialog() = DialogResult.OK Then
 
-                _ImageChanged = True
+                _IsImageModified = True
 
-                _ImageSourcePath = ofd.FileName
+                _SelectedImagePath = ofd.FileName
 
-                pbGameImage.Image = Image.FromFile(_ImageSourcePath)
+                If pbGameImage.Image IsNot Nothing Then
+                    pbGameImage.Image.Dispose()
+                End If
+
+                pbGameImage.Image = Image.FromFile(_SelectedImagePath)
             End If
 
         End Using
@@ -158,10 +172,10 @@ Public Class frmAddEditGame
 
         game.GameName = txtGameName.Text.Trim()
 
-        If _ImageChanged Then
+        If _IsImageModified Then
 
-            savedImageFileName = UIHelper.SaveImageToDirectory(_ImageSourcePath)
-            game.ImagePath = savedImageFileName
+            _SavedImageFileName = UIHelper.SaveImageToDirectory(_SelectedImagePath)
+            game.ImagePath = _SavedImageFileName
 
         End If
 
@@ -178,6 +192,17 @@ Public Class frmAddEditGame
 
         game.SupportedDevices = selectedPlatforms
 
+    End Sub
+
+    Private Sub DeleteOldImage()
+
+        If Not _IsImageModified Then Exit Sub
+
+        If File.Exists(_ExistingImagePath) Then
+
+            File.Delete(_ExistingImagePath)
+
+        End If
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -202,6 +227,7 @@ Public Class frmAddEditGame
 
                 Case enMode.Update
                     GameServices.UpdateGame(game)
+                    DeleteOldImage()
 
             End Select
 
@@ -219,13 +245,13 @@ Public Class frmAddEditGame
 
         Catch ex As Exception
             UIHelper.ShowGunaMessage("Something Went Wrong.", "Error", MessageDialogIcon.Error)
-
+            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
 
         Finally
 
-            If Not success AndAlso _ImageChanged Then
+            If Not success AndAlso _IsImageModified Then
 
-                Dim fullPath = UIHelper.GetImagePath(savedImageFileName)
+                Dim fullPath = UIHelper.GetImagePath(_SavedImageFileName)
 
                 If File.Exists(fullPath) Then
 

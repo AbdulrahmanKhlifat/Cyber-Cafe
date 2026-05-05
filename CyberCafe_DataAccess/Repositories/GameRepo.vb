@@ -693,24 +693,41 @@ Public Class GameRepo
     Public Shared Function DeleteGame(gameID As Integer) As Boolean
 
         Dim isDeleted As Boolean = False
-        Dim query As String = "Delete From Games WHERE GameID = @GameID"
-
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Using cmd As New SqlCommand(query, conn)
+            conn.Open()
 
-                cmd.Parameters.AddWithValue("@GameID", gameID)
+            Using trans As SqlTransaction = conn.BeginTransaction()
 
                 Try
-                    conn.Open()
+                    ' 1. Delete from child table first
+                    Dim queryChild As String =
+                    "DELETE FROM GamesDeviceTypes WHERE GameID = @GameID"
 
-                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                    Using cmdChild As New SqlCommand(queryChild, conn, trans)
+                        cmdChild.Parameters.AddWithValue("@GameID", gameID)
+                        cmdChild.ExecuteNonQuery()
+                    End Using
 
-                    isDeleted = (rowsAffected > 0)
+                    ' 2. Delete from parent table
+                    Dim queryParent As String =
+                    "DELETE FROM Games WHERE GameID = @GameID"
+
+                    Using cmdParent As New SqlCommand(queryParent, conn, trans)
+                        cmdParent.Parameters.AddWithValue("@GameID", gameID)
+                        Dim rowsAffected As Integer = cmdParent.ExecuteNonQuery()
+                        isDeleted = (rowsAffected > 0)
+                    End Using
+
+                    ' 3. Commit if everything succeeded
+                    trans.Commit()
 
                 Catch ex As Exception
-                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                    trans.Rollback()
+                    CyberCafeModels.ErrorLogger.LogErrorToFile(
+                    ex,
+                    System.Reflection.MethodBase.GetCurrentMethod().Name)
                 End Try
 
             End Using
@@ -718,6 +735,7 @@ Public Class GameRepo
         End Using
 
         Return isDeleted
+
     End Function
 
 
