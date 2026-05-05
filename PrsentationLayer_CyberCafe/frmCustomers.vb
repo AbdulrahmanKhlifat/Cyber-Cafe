@@ -57,7 +57,7 @@ Public Class frmCustomers
         .Phone = txtPhone.Text.Trim(),
         .Email = txtEmail.Text.Trim(),
         .CreatedAt = DateTime.Now,
-        .CreatedByAdminID = LoggedInUser.CurrentUser?.Name
+        .CreatedByAdminID = LoggedInUser.CurrentUser?.UserID
     }
 
     End Function

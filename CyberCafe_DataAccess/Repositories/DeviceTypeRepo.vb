@@ -4,32 +4,52 @@ Imports CyberCafeModels
 
 Public Class DeviceTypeRepo
 
-    Public Shared Function GetAllDeviceTypes() As DataTable
-        Dim dt As New DataTable()
+    Public Shared Function GetAllDeviceTypes() As List(Of DeviceTypeDTO)
+        Dim result As New List(Of DeviceTypeDTO)
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT DeviceTypeID, DeviceTypeName, DeviceDescription FROM DeviceType"
+
+            Dim query As String =
+            "SELECT DeviceTypeID, DeviceTypeName, DeviceDescription
+             FROM DeviceType
+             ORDER BY DeviceTypeName"
 
             Using cmd As New SqlCommand(query, conn)
+
                 Try
                     conn.Open()
+
                     Using reader As SqlDataReader = cmd.ExecuteReader()
 
-                        If reader.HasRows Then
-                            dt.Load(reader)
-                        End If
+                        While reader.Read()
+
+                            Dim item As New DeviceTypeDTO With {
+                            .DeviceTypeID = Convert.ToInt32(reader("DeviceTypeID")),
+                            .DeviceTypeName = reader("DeviceTypeName").ToString(),
+                            .DeviceDescription = reader("DeviceDescription").ToString()
+                        }
+
+                            result.Add(item)
+
+                        End While
 
                     End Using
 
                 Catch ex As Exception
-                    CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    ErrorLogger.LogErrorToFile(
+                    ex,
+                    Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    Throw
 
                 End Try
+
             End Using
 
         End Using
 
-        Return dt
+        Return result
 
     End Function
 
@@ -52,7 +72,7 @@ Public Class DeviceTypeRepo
                             Dim deviceType As New DeviceTypeDTO()
                             With deviceType
                                 .DeviceTypeID = CType(reader("DeviceTypeID"), Integer)
-                                .DeviceName = CType(reader("DeviceName"), String)
+                                .DeviceTypeName = CType(reader("DeviceName"), String)
                                 .DeviceDescription = If(reader("DeviceDescription") Is DBNull.Value,
                                                        "", CType(reader("DeviceDescription"), String))
                                 .ImagePath = If(reader("ImagePath") Is DBNull.Value,

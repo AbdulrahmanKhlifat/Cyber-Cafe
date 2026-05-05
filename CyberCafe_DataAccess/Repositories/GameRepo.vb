@@ -6,170 +6,117 @@ Public Class GameRepo
     Public Shared Function AddGame(gameDTO As GameDTO) As Integer
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
+            ' If the server is down the exception is bubbled up to the BLL
+            conn.Open()
 
-            Dim transaction As SqlTransaction = Nothing
+            Using transaction = conn.BeginTransaction()
 
-            Try
+                Try
 
-                conn.Open()
-
-                transaction = conn.BeginTransaction()
-
-                Dim gameID As Integer =
+                    Dim gameID As Integer =
                     InsertGame(gameDTO, conn, transaction)
 
-                If gameID <= 0 Then
-
-                    transaction.Rollback()
-                    Return -1
-
-                End If
-
-                Dim success As Boolean =
                     InsertGameDeviceType(
-                        gameID,
-                        gameDTO.SupportedDevices,
-                        conn,
-                        transaction)
+                    gameID,
+                    gameDTO.SupportedDevices,
+                    conn,
+                    transaction)
 
-                If Not success Then
+                    transaction.Commit()
+
+                    Return gameID
+
+                Catch ex As Exception
 
                     transaction.Rollback()
-                    Return -1
 
-                End If
-
-                transaction.Commit()
-
-                Return gameID
-
-            Catch ex As Exception
-
-                If transaction IsNot Nothing Then
-                    transaction.Rollback()
-                End If
-
-                ErrorLogger.LogErrorToFile(
+                    ErrorLogger.LogErrorToFile(
                     ex,
                     Reflection.MethodBase.GetCurrentMethod().Name)
 
-                Return -1
+                    Throw
 
-            End Try
+                End Try
+
+            End Using
 
         End Using
 
     End Function
 
-    Private Shared Function InsertGameDeviceType(
+    Private Shared Sub InsertGameDeviceType(
         gameID As Integer,
         deviceTypeIDs As List(Of Integer),
         conn As SqlConnection,
-        transaction As SqlTransaction) As Boolean
+        transaction As SqlTransaction)
 
-        If deviceTypeIDs Is Nothing OrElse
-           deviceTypeIDs.Count = 0 Then
-
-            Return False
-
+        If deviceTypeIDs Is Nothing OrElse deviceTypeIDs.Count = 0 Then
+            Throw New ArgumentException("Game must have at least one device type")
         End If
 
-        Try
+        Dim table As New DataTable()
 
-            Dim table As New DataTable()
+        table.Columns.Add("GameID", GetType(Integer))
+        table.Columns.Add("DeviceTypeID", GetType(Integer))
 
-            table.Columns.Add("GameID", GetType(Integer))
-            table.Columns.Add("DeviceTypeID", GetType(Integer))
+        For Each deviceTypeID In deviceTypeIDs
 
-            For Each deviceTypeID In deviceTypeIDs
+            If deviceTypeID > 0 Then
 
-                If deviceTypeID > 0 Then
+                table.Rows.Add(gameID, deviceTypeID)
 
-                    table.Rows.Add(gameID, deviceTypeID)
+            End If
 
-                End If
+        Next
 
-            Next
-
-            Using bulk As New SqlBulkCopy(
+        Using bulk As New SqlBulkCopy(
                 conn,
                 SqlBulkCopyOptions.Default,
                 transaction)
 
-                bulk.DestinationTableName = "GamesDeviceTypes"
+            bulk.DestinationTableName = "GamesDeviceTypes"
 
-                bulk.ColumnMappings.Add(
+            bulk.ColumnMappings.Add(
                     "GameID",
                     "GameID")
 
-                bulk.ColumnMappings.Add(
+            bulk.ColumnMappings.Add(
                     "DeviceTypeID",
                     "DeviceTypeID")
 
-                bulk.WriteToServer(table)
-
-            End Using
-
-            Return True
-
-        Catch ex As Exception
-
-            ErrorLogger.LogErrorToFile(
-                ex,
-                System.Reflection.MethodBase.GetCurrentMethod().Name)
-
-            Return False
-
-        End Try
-
-    End Function
-
-    Private Shared Function InsertGame(
-        gameDTO As GameDTO,
-        conn As SqlConnection,
-        transaction As SqlTransaction) As Integer
-
-        Dim gameID As Integer = 0
-
-        Dim query As String =
-            "INSERT INTO Games
-             (GameName, ImagePath)
-             VALUES
-             (@GameName, @ImagePath);
-             SELECT SCOPE_IDENTITY();"
-
-        Using cmd As New SqlCommand(
-            query,
-            conn,
-            transaction)
-
-            cmd.Parameters.Add(
-                "@GameName",
-                SqlDbType.NVarChar).
-                Value = gameDTO.GameName
-
-            cmd.Parameters.Add(
-                "@ImagePath",
-                SqlDbType.NVarChar,
-                255).
-                Value =
-                If(String.IsNullOrWhiteSpace(gameDTO.ImagePath),
-                    DBNull.Value,
-                    gameDTO.ImagePath)
-
-            Dim result =
-                cmd.ExecuteScalar()
-
-            If result IsNot Nothing Then
-
-                gameID =
-                    Convert.ToInt32(result)
-
-            End If
+            bulk.WriteToServer(table)
 
         End Using
+    End Sub
 
-        Return gameID
+    Private Shared Function InsertGame(
+    gameDTO As GameDTO,
+    conn As SqlConnection,
+    transaction As SqlTransaction) As Integer
+
+        Dim query As String =
+        "INSERT INTO Games (GameName, ImagePath)
+         VALUES (@GameName, @ImagePath);
+         SELECT SCOPE_IDENTITY();"
+
+        Using cmd As New SqlCommand(query, conn, transaction)
+
+            cmd.Parameters.Add("@GameName", SqlDbType.NVarChar).Value = gameDTO.GameName
+
+            cmd.Parameters.Add("@ImagePath", SqlDbType.NVarChar, 255).Value =
+            If(String.IsNullOrWhiteSpace(gameDTO.ImagePath),
+               DBNull.Value,
+               gameDTO.ImagePath)
+
+            Dim result = cmd.ExecuteScalar()
+
+            If result Is Nothing Then
+                Throw New Exception("Failed to retrieve inserted GameID")
+            End If
+
+            Return Convert.ToInt32(result)
+
+        End Using
 
     End Function
 
@@ -179,217 +126,164 @@ Public Class GameRepo
         Using conn As New SqlConnection(
         DataAccessSettings.connectionString)
 
-            Dim transaction As SqlTransaction = Nothing
+            conn.Open()
 
-            Try
+            Using transaction = conn.BeginTransaction()
 
-                conn.Open()
+                Try
 
-                transaction =
-                conn.BeginTransaction()
+                    UpdateGameRecord(
+                        gameDTO,
+                        conn,
+                        transaction)
 
-                Dim success As Boolean =
-                UpdateGameRecord(
-                    gameDTO,
-                    conn,
-                    transaction)
+                    ReplaceGameDeviceTypes(
+                        gameDTO.GameID,
+                        gameDTO.SupportedDevices,
+                        conn,
+                        transaction)
 
-                If Not success Then
+                    transaction.Commit()
 
-                    transaction.Rollback()
-                    Return False
+                    Return True
 
-                End If
-
-                success =
-                ReplaceGameDeviceTypes(
-                    gameDTO.GameID,
-                    gameDTO.SupportedDevices,
-                    conn,
-                    transaction)
-
-                If Not success Then
+                Catch ex As Exception
 
                     transaction.Rollback()
-                    Return False
 
-                End If
+                    ErrorLogger.LogErrorToFile(
+                    ex,
+                    Reflection.MethodBase.
+                    GetCurrentMethod().Name)
 
-                transaction.Commit()
+                    Throw
 
-                Return True
+                End Try
 
-            Catch ex As Exception
-
-                If transaction IsNot Nothing Then
-                    transaction.Rollback()
-                End If
-
-                ErrorLogger.LogErrorToFile(
-                ex,
-                Reflection.MethodBase.
-                GetCurrentMethod().Name)
-
-                Return False
-
-            End Try
-
+            End Using
         End Using
-
     End Function
 
-    Private Shared Function UpdateGameRecord(
+    Private Shared Sub UpdateGameRecord(
     gameDTO As GameDTO,
     conn As SqlConnection,
-    transaction As SqlTransaction) As Boolean
+    transaction As SqlTransaction)
 
-        Try
-
-            Dim query As String =
-            "UPDATE Games
+        Dim query As String =
+        "UPDATE Games
              SET GameName = @GameName,
                  ImagePath = @ImagePath
              WHERE GameID = @GameID"
 
-            Using cmd As New SqlCommand(
-            query,
-            conn,
-            transaction)
+        Using cmd As New SqlCommand(
+        query,
+        conn,
+        transaction)
 
-                cmd.Parameters.Add(
-                "@GameID",
-                SqlDbType.Int).
-                Value = gameDTO.GameID
+            cmd.Parameters.Add(
+            "@GameID",
+            SqlDbType.Int).
+            Value = gameDTO.GameID
 
-                cmd.Parameters.Add(
-                "@GameName",
-                SqlDbType.NVarChar).
-                Value = gameDTO.GameName
+            cmd.Parameters.Add(
+            "@GameName",
+            SqlDbType.NVarChar).
+            Value = gameDTO.GameName
 
-                cmd.Parameters.Add(
-                "@ImagePath",
-                SqlDbType.NVarChar,
-                255).
-                Value =
-                If(String.IsNullOrWhiteSpace(
-                        gameDTO.ImagePath),
-                   DBNull.Value,
-                   gameDTO.ImagePath)
+            cmd.Parameters.Add(
+            "@ImagePath",
+            SqlDbType.NVarChar,
+            255).
+            Value =
+            If(String.IsNullOrWhiteSpace(
+                    gameDTO.ImagePath),
+               DBNull.Value,
+               gameDTO.ImagePath)
 
-                Dim rowsAffected =
-                cmd.ExecuteNonQuery()
+            cmd.ExecuteNonQuery()
 
-                Return rowsAffected > 0
 
-            End Using
+        End Using
 
-        Catch ex As Exception
+    End Sub
 
-            ErrorLogger.LogErrorToFile(
-            ex,
-            Reflection.MethodBase.
-            GetCurrentMethod().Name)
-
-            Return False
-
-        End Try
-
-    End Function
-
-    Private Shared Function ReplaceGameDeviceTypes(
+    Private Shared Sub ReplaceGameDeviceTypes(
     gameID As Integer,
     deviceTypeIDs As List(Of Integer),
     conn As SqlConnection,
-    transaction As SqlTransaction) As Boolean
+    transaction As SqlTransaction)
 
-        If deviceTypeIDs Is Nothing OrElse
-       deviceTypeIDs.Count = 0 Then
-
-            Return False
-
+        If deviceTypeIDs Is Nothing OrElse deviceTypeIDs.Count = 0 Then
+            Throw New ArgumentException("Game must have at least one device type")
         End If
 
-        Try
 
-            ' Step 1 — Delete old mappings
+        'Delete old mappings
 
-            Dim deleteQuery As String =
+        Dim deleteQuery As String =
             "DELETE FROM GamesDeviceTypes
              WHERE GameID = @GameID"
 
-            Using cmd As New SqlCommand(
+        Using cmd As New SqlCommand(
             deleteQuery,
             conn,
             transaction)
 
-                cmd.Parameters.Add(
+            cmd.Parameters.Add(
                 "@GameID",
                 SqlDbType.Int).
                 Value = gameID
 
-                cmd.ExecuteNonQuery()
+            cmd.ExecuteNonQuery()
 
-            End Using
+        End Using
 
-            ' Step 2 — Bulk insert new mappings
+        'Bulk insert new mappings
 
-            Dim table As New DataTable()
+        Dim table As New DataTable()
 
-            table.Columns.Add(
+        table.Columns.Add(
             "GameID",
             GetType(Integer))
 
-            table.Columns.Add(
+        table.Columns.Add(
             "DeviceTypeID",
             GetType(Integer))
 
-            For Each deviceTypeID
+        For Each deviceTypeID
             In deviceTypeIDs
 
-                If deviceTypeID > 0 Then
+            If deviceTypeID > 0 Then
 
-                    table.Rows.Add(
+                table.Rows.Add(
                     gameID,
                     deviceTypeID)
 
-                End If
+            End If
 
-            Next
+        Next
 
-            Using bulk As New SqlBulkCopy(
+        Using bulk As New SqlBulkCopy(
             conn,
             SqlBulkCopyOptions.Default,
             transaction)
 
-                bulk.DestinationTableName =
+            bulk.DestinationTableName =
                 "GamesDeviceTypes"
 
-                bulk.ColumnMappings.Add(
+            bulk.ColumnMappings.Add(
                 "GameID",
                 "GameID")
 
-                bulk.ColumnMappings.Add(
+            bulk.ColumnMappings.Add(
                 "DeviceTypeID",
                 "DeviceTypeID")
 
-                bulk.WriteToServer(table)
+            bulk.WriteToServer(table)
 
-            End Using
+        End Using
 
-            Return True
-
-        Catch ex As Exception
-
-            ErrorLogger.LogErrorToFile(
-            ex,
-            Reflection.MethodBase.
-            GetCurrentMethod().Name)
-
-            Return False
-
-        End Try
-
-    End Function
+    End Sub
 
     Public Shared Function GetGameByID(
     gameID As Integer) As GameDTO
@@ -764,10 +658,6 @@ Public Class GameRepo
 
     End Function
 
-
-
-
-
     Public Shared Function GetImagePathByGameID(gameID As Integer) As String
         Dim imageName As String = ""
 
@@ -801,12 +691,6 @@ Public Class GameRepo
         Return Nothing
     End Function
     Public Shared Function DeleteGame(gameID As Integer) As Boolean
-
-        If IsGameAssignedToDevices(gameID) Then
-
-            Return False
-        End If
-
 
         Dim isDeleted As Boolean = False
         Dim query As String = "Delete From Games WHERE GameID = @GameID"

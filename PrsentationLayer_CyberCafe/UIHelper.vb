@@ -86,6 +86,12 @@ Public Class UIHelper
 
     End Function
 
+    Public Shared Function SaveImageToDirectory(imageSourcePath As String, Optional targetWidth As Integer = 130, Optional targetHeight As Integer = 160) As String
+
+        Return SaveImageToDirectory(Image.FromFile(imageSourcePath), targetWidth, targetHeight)
+
+    End Function
+
     Public Shared Function GetImagePath(imageFileName As String) As String
 
         If String.IsNullOrEmpty(imageFileName) Then Return Nothing

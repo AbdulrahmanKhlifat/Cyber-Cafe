@@ -4,11 +4,13 @@ Imports CyberCafeModels
 Imports Guna.UI2.WinForms
 Public Class frmAddEditGame
 
-    Private _SelectedImagePath As String = ""
     Private game As GameDTO
 
-    Private Property _selectedImage As Image
-    Private Property imageChanged As Boolean = False
+    Private Property _ImageChanged As Boolean = False
+
+    Private Property _ImageSourcePath As String
+
+    Dim savedImageFileName As String = Nothing
 
     Private Enum enMode
         Add
@@ -66,40 +68,48 @@ Public Class frmAddEditGame
     End Sub
 
     Private Sub PopulatePlatforms()
+
         flpPlatforms.Controls.Clear()
 
-        Dim dtDeviceTypes As DataTable = DeviceTypeServices.GetAllDeviceTypes()
+        Dim deviceTypes As List(Of DeviceTypeDTO) =
+        DeviceTypeServices.GetAllDeviceTypes()
 
-        If dtDeviceTypes IsNot Nothing AndAlso dtDeviceTypes.Rows.Count > 0 Then
-            For Each row As DataRow In dtDeviceTypes.Rows
-                Dim chk As New Guna2CheckBox()
-
-                chk.Text = row("DeviceTypeName").ToString()
-                chk.Tag = Convert.ToInt32(row("DeviceTypeID"))
-
-                chk.ForeColor = Color.FromArgb(230, 237, 243)
-                chk.CheckedState.FillColor = Color.FromArgb(0, 200, 160)
-                chk.UncheckedState.BorderColor = Color.FromArgb(0, 150, 120)
-                chk.Margin = New Padding(5)
-                chk.AutoSize = True
-
-                flpPlatforms.Controls.Add(chk)
-            Next
+        If deviceTypes Is Nothing OrElse deviceTypes.Count = 0 Then
+            Exit Sub
         End If
+
+        For Each dt In deviceTypes
+
+            Dim chk As New Guna2CheckBox()
+
+            chk.Text = dt.DeviceTypeName
+            chk.Tag = dt.DeviceTypeID
+
+            chk.ForeColor = Color.FromArgb(230, 237, 243)
+            chk.CheckedState.FillColor = Color.FromArgb(0, 200, 160)
+            chk.UncheckedState.BorderColor = Color.FromArgb(0, 150, 120)
+            chk.Margin = New Padding(5)
+            chk.AutoSize = True
+
+            flpPlatforms.Controls.Add(chk)
+
+        Next
+
     End Sub
 
     Private Sub LoadGameData()
 
         txtGameName.Text = game.GameName
 
-        Dim _FullImagePath As String = UIHelper.GetImagePath(game.ImagePath)
+        lblGameID.Text = game.GameID.ToString()
+
+        _ImageSourcePath = UIHelper.GetImagePath(game.ImagePath)
 
         If game.ImagePath Is Nothing Then
-            pbGameImage.Image = My.Resources._4239781_200
+            pbGameImage.Image = My.Resources.PlayStationIcon
         Else
-            pbGameImage.Image = Image.FromFile(_FullImagePath)
-            pbGameImage.Tag = _FullImagePath
-            _SelectedImagePath = game.ImagePath
+            pbGameImage.Image = Image.FromFile(_ImageSourcePath)
+            pbGameImage.Tag = _ImageSourcePath
         End If
 
     End Sub
@@ -110,76 +120,125 @@ Public Class frmAddEditGame
 
             If ofd.ShowDialog() = DialogResult.OK Then
 
-                imageChanged = True
+                _ImageChanged = True
 
-                Dim fullSelectedImagePath As String = ofd.FileName
+                _ImageSourcePath = ofd.FileName
 
-                _selectedImage = Image.FromFile(fullSelectedImagePath)
-
-                _SelectedImagePath = Path.GetFileName(fullSelectedImagePath)
-
-                pbGameImage.Image = _selectedImage
+                pbGameImage.Image = Image.FromFile(_ImageSourcePath)
             End If
 
         End Using
 
     End Sub
 
-    Private Function _FillGameObject() As Boolean
-
-        game.GameName = txtGameName.Text
+    Private Function ValidateInput() As String
 
         If String.IsNullOrWhiteSpace(txtGameName.Text) Then
-            UIHelper.ShowGunaMessage("Please enter a game name.", "Validation Error", MessageDialogIcon.Warning)
-            Return False
+            Return "Please enter a game name."
         End If
-        If imageChanged Then
 
-            game.ImagePath = UIHelper.SaveImageToDirectory(_selectedImage)
+        Dim hasPlatform As Boolean = False
+
+        For Each ctrl In flpPlatforms.Controls
+            If TypeOf ctrl Is Guna2CheckBox AndAlso DirectCast(ctrl, Guna2CheckBox).Checked Then
+                hasPlatform = True
+                Exit For
+            End If
+        Next
+
+        If Not hasPlatform Then
+            Return "Please select at least one supported platform."
+        End If
+
+        Return Nothing
+
+    End Function
+
+    Private Sub FillGameObject()
+
+        game.GameName = txtGameName.Text.Trim()
+
+        If _ImageChanged Then
+
+            savedImageFileName = UIHelper.SaveImageToDirectory(_ImageSourcePath)
+            game.ImagePath = savedImageFileName
 
         End If
 
         Dim selectedPlatforms As New List(Of Integer)
 
         For Each ctrl In flpPlatforms.Controls
-
             If TypeOf ctrl Is Guna2CheckBox Then
                 Dim chk = DirectCast(ctrl, Guna2CheckBox)
-
                 If chk.Checked Then
                     selectedPlatforms.Add(CInt(chk.Tag))
                 End If
-
             End If
         Next
-        If selectedPlatforms.Count = 0 Then
-            UIHelper.ShowGunaMessage("Please select at least one supported platform.", "Validation Error", MessageDialogIcon.Warning)
-            Return False
-        End If
 
         game.SupportedDevices = selectedPlatforms
-        Return True
-    End Function
+
+    End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
+        Dim validationError = ValidateInput()
 
-        If Not _FillGameObject() Then
+        If validationError IsNot Nothing Then
+
+            UIHelper.ShowGunaMessage(validationError, "Validation Error", MessageDialogIcon.Error)
             Exit Sub
         End If
 
-        Select Case _Mode
-            Case enMode.Add
-                GameServices.AddGame(game)
+        FillGameObject()
 
-            Case enMode.Update
-                GameServices.UpdateGame(game)
+        Dim success As Boolean = False
 
-        End Select
+        Try
+
+            Select Case _Mode
+                Case enMode.Add
+                    GameServices.AddGame(game)
+
+                Case enMode.Update
+                    GameServices.UpdateGame(game)
+
+            End Select
+
+            success = True
+
+            Me.DialogResult = DialogResult.OK
+            Me.Close()
 
 
-        Me.DialogResult = DialogResult.OK
-        Me.Close()
+        Catch ex As ArgumentException
+            UIHelper.ShowGunaMessage(ex.Message, "Error", MessageDialogIcon.Warning)
+
+        Catch ex As InvalidOperationException
+            UIHelper.ShowGunaMessage(ex.Message, "Error", MessageDialogIcon.Warning)
+
+        Catch ex As Exception
+            UIHelper.ShowGunaMessage("Something Went Wrong.", "Error", MessageDialogIcon.Error)
+
+
+        Finally
+
+            If Not success AndAlso _ImageChanged Then
+
+                Dim fullPath = UIHelper.GetImagePath(savedImageFileName)
+
+                If File.Exists(fullPath) Then
+
+                    File.Delete(fullPath)
+
+                End If
+
+            End If
+
+        End Try
+
+
+
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click

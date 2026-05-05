@@ -9,7 +9,12 @@ Public Class frmDevices
     Public Sub New()
 
         isInitializing = True
+
         InitializeComponent()
+
+        FillComboBox()
+
+
         isInitializing = False
 
     End Sub
@@ -26,19 +31,31 @@ Public Class frmDevices
     Private Sub frmDevices_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         LoadDevices()
-        FillComboBox()
 
     End Sub
 
     Private Sub FillComboBox()
 
-        Dim dt As DataTable = DeviceTypeServices.GetAllDeviceTypes()
-        If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-            cboDeviceType.ValueMember = "DeviceTypeID"
-            cboDeviceType.DisplayMember = "DeviceTypeName"
-            cboDeviceType.DataSource = dt
-            cboDeviceType.SelectedIndex = -1
-        End If
+        Dim dt As List(Of DeviceTypeDTO) = DeviceTypeServices.GetAllDeviceTypes()
+
+        cboDeviceType.ValueMember = "DeviceTypeID"
+        cboDeviceType.DisplayMember = "DeviceTypeName"
+        cboDeviceType.DataSource = dt
+        cboDeviceType.SelectedIndex = -1
+
+        Dim dtWithAll As New List(Of DeviceTypeDTO)
+
+        dtWithAll.Add(New DeviceTypeDTO With {
+        .DeviceTypeID = 0,
+        .DeviceTypeName = "All Types"
+        })
+
+        dtWithAll.AddRange(dt)
+
+        cmbDeviceType.ValueMember = "DeviceTypeID"
+        cmbDeviceType.DisplayMember = "DeviceTypeName"
+        cmbDeviceType.DataSource = dtWithAll
+        cmbDeviceType.SelectedIndex = 0
 
     End Sub
 
@@ -271,12 +288,12 @@ Public Class frmDevices
                         OrElse String.IsNullOrEmpty(cmbStatus.Text) OrElse device.Status.ToLower().Contains(selectedStatus))
 
 
-                    Dim matchesType As Boolean = (cmbDeviceType.Text = "All Types" _
-                    OrElse String.IsNullOrEmpty(cmbDeviceType.Text) OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType))
+                Dim matchesType As Boolean = (cmbDeviceType.Text = "All Types" _
+                OrElse String.IsNullOrEmpty(cmbDeviceType.Text) OrElse device.lblDeviceType.Text.ToLower().Contains(selectedType))
 
-                    device.Visible = matchesName AndAlso matchesGame AndAlso matchesStatus AndAlso matchesType
+                device.Visible = matchesName AndAlso matchesGame AndAlso matchesStatus AndAlso matchesType
 
-                End If
+            End If
         Next
 
         flpDevices.ResumeLayout()
@@ -298,7 +315,6 @@ Public Class frmDevices
 
         Return True
     End Function
-
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         If Not isInitializing Then ApplyFilters()

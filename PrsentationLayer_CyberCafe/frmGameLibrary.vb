@@ -211,7 +211,7 @@ Public Class frmGameLibrary
             Else
 
                 UIHelper.ShowGunaMessage("Cannot delete this game because it is linked to active devices or logs.", "Database Constraint", MessageDialogIcon.Error)
-            End If
+        End If
         End If
     End Sub
 

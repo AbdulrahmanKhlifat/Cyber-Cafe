@@ -200,7 +200,7 @@ Partial Class frmDevices
         Me.cmbDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.cmbDeviceType.ItemHeight = 30
-        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "PS4", "PS5", "XBOX", "Virtual Reality"})
+        Me.cmbDeviceType.Items.AddRange(New Object() {"All Types", "PC", "Playstation 5", "Xbox", "VR Station", "Racing Simulator"})
         Me.cmbDeviceType.Location = New System.Drawing.Point(559, 12)
         Me.cmbDeviceType.Name = "cmbDeviceType"
         Me.cmbDeviceType.Size = New System.Drawing.Size(182, 36)

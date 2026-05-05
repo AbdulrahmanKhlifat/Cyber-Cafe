@@ -3,7 +3,7 @@ Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class DeviceTypeServices
-    Public Shared Function GetAllDeviceTypes() As DataTable
+    Public Shared Function GetAllDeviceTypes() As List(Of DeviceTypeDTO)
         Return DeviceTypeRepo.GetAllDeviceTypes()
     End Function
 

@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Runtime.InteropServices
 Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
@@ -209,7 +210,6 @@ Public Class DeviceGameRepo
 
     End Function
 
-
     Public Shared Function RemoveAllGamesFromDevice(deviceID As Integer) As Boolean
         Dim rowsAffected As Integer = 0
 
@@ -233,4 +233,90 @@ Public Class DeviceGameRepo
         Return rowsAffected > 0
     End Function
 
+    Public Shared Function IsGameInstalledOnDeviceType(gameID As Integer, deviceTypeID As Integer) As Boolean
+
+        Dim isInstalled As Boolean = False
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Dim query = "SELECT 
+            CASE 
+                WHEN EXISTS (
+                    SELECT 1 
+                    FROM DeviceGames dg
+                    INNER JOIN Devices d ON d.DeviceID = dg.DeviceID
+                    WHERE d.DeviceTypeID = @DeviceTypeID AND dg.GameID = @GameID
+                ) 
+                THEN 1 
+                ELSE 0 
+            END AS IsInstalled;"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add("@GameID", SqlDbType.Int).Value = gameID
+                cmd.Parameters.Add("@DeviceTypeID", SqlDbType.Int).Value = deviceTypeID
+
+                Try
+                    conn.Open()
+
+                    Dim result = cmd.ExecuteScalar()
+
+                    If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
+                        isInstalled = (Convert.ToInt32(result) = 1)
+                    End If
+
+                Catch ex As Exception
+                    ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
+                End Try
+
+            End Using
+
+        End Using
+
+        Return isInstalled
+
+    End Function
+
+    Public Shared Function GetUsedDeviceTypesWhereGameInstalled(gameID As Integer) As List(Of DeviceTypeDTO)
+
+        Dim result As New List(Of DeviceTypeDTO)
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Dim query As String =
+            "SELECT DISTINCT dt.DeviceTypeID, dt.DeviceTypeName
+             FROM DeviceGames dg
+             INNER JOIN Devices d ON d.DeviceID = dg.DeviceID
+             INNER JOIN DeviceType dt ON dt.DeviceTypeID = d.DeviceTypeID
+             WHERE dg.GameID = @GameID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add("@GameID", SqlDbType.Int).Value = gameID
+
+                conn.Open()
+
+                Using reader = cmd.ExecuteReader()
+
+                    While reader.Read()
+
+                        Dim item As New DeviceTypeDTO With {
+                            .DeviceTypeID = Convert.ToInt32(reader("DeviceTypeID")),
+                            .DeviceTypeName = reader("DeviceTypeName").ToString()
+                        }
+
+                        result.Add(item)
+
+                    End While
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return result
+
+    End Function
 End Class
