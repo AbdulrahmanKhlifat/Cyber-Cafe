@@ -10,8 +10,8 @@ Public Class DeviceRepo
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "INSERT INTO Devices (DeviceName,DeviceTypeID, Status, PricePerHour) 
-                                   VALUES (@DeviceName,@DeviceTypeID, @Status, @PricePerHour);
+            Dim query As String = "INSERT INTO Devices (DeviceName,DeviceTypeID, Status, PricePerHour, IsDeleted) 
+                                   VALUES (@DeviceName,@DeviceTypeID, @Status, @PricePerHour, @IsDeleted);
                                    SELECT SCOPE_IDENTITY();"
 
             Using cmd As New SqlCommand(query, conn)
@@ -20,6 +20,7 @@ Public Class DeviceRepo
                 cmd.Parameters.Add("@DeviceTypeID", SqlDbType.Int).Value = dto.DeviceTypeID
                 cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = dto.Status
                 cmd.Parameters.Add("@PricePerHour", SqlDbType.Decimal).Value = dto.PricePerHour
+                cmd.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = dto.IsDeleted
 
                 Try
                     conn.Open()
@@ -39,13 +40,15 @@ Public Class DeviceRepo
         Dim rowsAffected As Integer = 0
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "UPDATE Devices SET DeviceName=@DeviceName, DeviceTypeID = @TypeID, Status = @Status, 
-                                   PricePerHour = @Price WHERE DeviceID = @ID"
+                                   PricePerHour = @Price, IsDeleted=@IsDeleted WHERE DeviceID = @ID"
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@DeviceName", SqlDbType.NVarChar).Value = dto.DeviceName
                 cmd.Parameters.Add("@ID", SqlDbType.Int).Value = dto.DeviceID
                 cmd.Parameters.Add("@TypeID", SqlDbType.Int).Value = dto.DeviceTypeID
                 cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = dto.Status
                 cmd.Parameters.Add("@Price", SqlDbType.Decimal).Value = dto.PricePerHour
+                cmd.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = dto.IsDeleted
+
                 Try
                     conn.Open()
                     rowsAffected = cmd.ExecuteNonQuery()
@@ -86,10 +89,11 @@ Public Class DeviceRepo
         Dim dt As New DataTable()
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, " &
-                     "d.Status, d.PricePerHour " &
-                     "FROM Devices d " &
-                     "JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID"
+            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, 
+                     d.Status, d.PricePerHour  
+                     From Devices d  
+                     JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID
+                     Where d.IsDeleted = 0"
             Using cmd As New SqlCommand(query, conn)
                 Try
                     conn.Open()
@@ -146,10 +150,11 @@ Public Class DeviceRepo
         Dim list As New List(Of DeviceDTO)()
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, " &
-                                  "d.Status, d.PricePerHour " &
-                                  "FROM Devices d " &
-                                  "JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID"
+            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, 
+                                  d.Status, d.PricePerHour 
+                                  FROM Devices d 
+                                  JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID
+                                  Where d.IsDeleted = 0"
 
             Using cmd As New SqlCommand(query, conn)
                 Try
@@ -206,4 +211,28 @@ Public Class DeviceRepo
 
         Return deviceIds
     End Function
+
+    Public Shared Function SoftDeleteDevice(deviceID As Integer) As Boolean
+
+        Dim query As String =
+            "UPDATE Devices
+             SET IsDeleted = 1
+             WHERE DeviceID = @DeviceID"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@DeviceID", deviceID)
+
+                conn.Open()
+
+                Return cmd.ExecuteNonQuery() > 0
+
+            End Using
+
+        End Using
+
+    End Function
+
 End Class

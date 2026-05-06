@@ -5,4 +5,6 @@
     Public Property DeviceName As String
     Public Property Status As enDeviceStatus
     Public Property PricePerHour As Decimal
+
+    Public Property IsDeleted As Boolean
 End Class

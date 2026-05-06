@@ -11,7 +11,7 @@ Public Class DeviceTypeServices
         Return DeviceTypeRepo.GetDeviceTypeByID(deviceTypeID)
     End Function
 
-    Public Shared Function SaveDeviceType(deviceType As DeviceTypeDTO) As Boolean
+    Public Shared Function Add(deviceType As DeviceTypeDTO) As Boolean
         If deviceType Is Nothing Then
             Return False
         End If
