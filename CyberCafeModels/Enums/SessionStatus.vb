@@ -1,4 +1,4 @@
-﻿Public Enum SessionStatus
+﻿Public Enum SessionStatus As Byte
 
     Active = 0
 

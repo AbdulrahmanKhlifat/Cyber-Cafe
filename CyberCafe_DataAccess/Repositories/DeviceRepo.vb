@@ -194,7 +194,7 @@ Public Class DeviceRepo
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Using cmd As New SqlCommand(query, conn)
 
-                cmd.Parameters.Add("@Search", SqlDbType.NVarChar).Value = "%" & searchText.Trim() & "%"
+                cmd.Parameters.Add("@Search", SqlDbType.NVarChar).Value = "% " & searchText.Trim() & "%"
 
                 Try
                     conn.Open()

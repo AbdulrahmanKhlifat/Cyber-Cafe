@@ -73,6 +73,7 @@
     <Compile Include="Repositories\DeviceRepo.vb" />
     <Compile Include="Repositories\DeviceTypeRepo.vb" />
     <Compile Include="Repositories\GameRepo.vb" />
+    <Compile Include="Repositories\SessionRepo.vb" />
     <Compile Include="Repositories\TransactionRepo.vb" />
     <Compile Include="Repositories\UserRepo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
