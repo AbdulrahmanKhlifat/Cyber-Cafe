@@ -143,10 +143,11 @@ Public Class DeviceRepo
         Dim list As New List(Of DeviceDTO)()
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName,t.ImagePath, " &
-                                  "d.Status " &
-                                  "FROM Devices d " &
-                                  "JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID"
+            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName,t.ImagePath, 
+                                  d.Status 
+                                  FROM Devices d 
+                                  JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID
+                                  Where d.IsDeleted = 0"
 
             Using cmd As New SqlCommand(query, conn)
                 Try
@@ -179,15 +180,15 @@ Public Class DeviceRepo
         Dim deviceIds As New List(Of Integer)()
 
 
-        Dim query As String = "SELECT DISTINCT D.DeviceID FROM Devices D " &
-                          "INNER JOIN DeviceGames DG ON D.DeviceID = DG.DeviceID " &
-                          "INNER JOIN Games G ON DG.GameID = G.GameID " &
-                          "WHERE G.GameName LIKE @Search"
+        Dim query As String = "SELECT DISTINCT D.DeviceID FROM Devices D 
+                          INNER JOIN DeviceGames DG ON D.DeviceID = DG.DeviceID 
+                          INNER JOIN Games G ON DG.GameID = G.GameID 
+                          WHERE G.GameName LIKE @Search and D.IsDeleted = 0"
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Using cmd As New SqlCommand(query, conn)
 
-                cmd.Parameters.Add("@Search", SqlDbType.NVarChar).Value = "% " & searchText.Trim() & "%"
+                cmd.Parameters.Add("@Search", SqlDbType.NVarChar).Value = "%" & searchText.Trim() & "%"
 
                 Try
                     conn.Open()

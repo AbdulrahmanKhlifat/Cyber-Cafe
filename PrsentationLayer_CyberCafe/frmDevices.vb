@@ -64,7 +64,7 @@ Public Class frmDevices
         flpDevices.Controls.Clear()
         flpDevices.SuspendLayout()
 
-        Dim devicesList As List(Of DeviceDTO) = GetAllDevicesList()
+        Dim devicesList As List(Of DeviceDTO) = DeviceServices.GetAllDevicesList()
 
         For Each device In devicesList
             AddDeviceToFlowLayout(device)
@@ -72,27 +72,6 @@ Public Class frmDevices
 
         flpDevices.ResumeLayout()
     End Sub
-
-    Private Function GetAllDevicesList() As List(Of DeviceDTO)
-
-        Dim list As New List(Of DeviceDTO)
-        Dim dtDevices As DataTable = DeviceServices.GetAllDevices()
-
-        For Each row As DataRow In dtDevices.Rows
-
-            list.Add(New DeviceDTO With {
-                .DeviceID = Convert.ToInt32(row("DeviceID")),
-                .DeviceName = row("DeviceName").ToString(),
-                .DeviceTypeName = row("DeviceTypeName").ToString(),
-                .Status = CType(CByte(row("Status")), enDeviceStatus),
-                .ImagePath = If(row("ImagePath") Is DBNull.Value, "", row("ImagePath").ToString())
-            })
-
-        Next
-
-        Return list
-
-    End Function
 
     Private Sub AddDeviceToFlowLayout(device As DeviceDTO)
 
@@ -377,7 +356,7 @@ Public Class frmDevices
                 Dim guna As New Guna2MessageDialog With {
                 .Caption = "Error",
                 .Text = "Please select a device",
-                .Parent = Me,
+                .Parent = Application.OpenForms(0),
                 .Style = MessageDialogStyle.Dark,
                 .Icon = MessageDialogIcon.Error,
                 .Buttons = MessageDialogButtons.OK
@@ -392,7 +371,7 @@ Public Class frmDevices
             Dim confirmDialog As New Guna2MessageDialog With {
             .Caption = "Confirm Delete",
             .Text = "Are you sure you want to delete this device?",
-            .Parent = Me,
+            .Parent = Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
             .Icon = MessageDialogIcon.Question,
             .Buttons = MessageDialogButtons.YesNo
@@ -409,7 +388,7 @@ Public Class frmDevices
             Dim successDialog As New Guna2MessageDialog With {
             .Caption = "Success",
             .Text = "Device deleted successfully",
-            .Parent = Me,
+            .Parent = Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
             .Icon = MessageDialogIcon.Information,
             .Buttons = MessageDialogButtons.OK
@@ -424,7 +403,7 @@ Public Class frmDevices
             Dim errorDialog As New Guna2MessageDialog With {
             .Caption = "Error",
             .Text = ex.Message,
-            .Parent = Me,
+            .Parent = Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
             .Icon = MessageDialogIcon.Error,
             .Buttons = MessageDialogButtons.OK
