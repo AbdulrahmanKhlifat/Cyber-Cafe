@@ -6,6 +6,7 @@ Public Class frmDevices
     Private Property isInitializing As Boolean
 
     Private _SelectedDeviceID As Integer = -1
+    Private _SelectedDeviceType As DeviceTypeDTO
     Public Sub New()
 
         isInitializing = True
@@ -55,7 +56,7 @@ Public Class frmDevices
         cmbDeviceType.ValueMember = "DeviceTypeID"
         cmbDeviceType.DisplayMember = "DeviceTypeName"
         cmbDeviceType.DataSource = dtWithAll
-        cmbDeviceType.SelectedIndex = 0
+        cmbDeviceType.SelectedIndex = -1
 
     End Sub
 
@@ -138,14 +139,34 @@ Public Class frmDevices
         End If
 
     End Sub
+    Private Sub cboDeviceType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboDeviceType.SelectedIndexChanged
 
+        Dim img As Image = Nothing
+
+        If cboDeviceType.SelectedValue IsNot Nothing AndAlso Convert.ToInt32(cboDeviceType.SelectedValue) <> -1 Then
+
+            _SelectedDeviceType = DeviceTypeServices.Find(Convert.ToInt32(cboDeviceType.SelectedValue))
+
+            If _SelectedDeviceType IsNot Nothing Then
+                img = UIHelper.LoadImageUnlocked(UIHelper.GetImagePath(_SelectedDeviceType.ImagePath))
+                img = UIHelper.ResizeImage(img, 215, 150)
+                If Not String.IsNullOrEmpty(_SelectedDeviceType.ImagePath) Then
+                    PictureBox1.Image = img
+                End If
+            End If
+        Else
+
+            PictureBox1.Image = Nothing
+        End If
+    End Sub
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSaveDevice.Click
         If Not IsValidData() Then Return
 
         Dim device As New DeviceDTO With {
             .DeviceName = txtDeviceName.Text.Trim(),
             .DeviceTypeID = Convert.ToInt32(cboDeviceType.SelectedValue),
-            .Status = enDeviceStatus.Available
+            .Status = enDeviceStatus.Available,
+            .ImagePath = _SelectedDeviceType?.ImagePath
         }
 
         Dim result As Boolean = False
@@ -324,7 +345,6 @@ Public Class frmDevices
     Private Sub ClearAddDeviceDetails()
         txtDeviceName.Clear()
         cboDeviceType.SelectedIndex = -1
-        nUpDownPrice.Value = 0.5
     End Sub
 
     Private Function IsValidData() As Boolean

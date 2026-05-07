@@ -62,7 +62,8 @@ Public Class frmAddPlatform
         Return New DeviceTypeDTO With {
             .DeviceTypeName = txtPlatformName.Text.Trim(),
             .DeviceDescription = txtDescription.Text.Trim(),
-            .ImagePath = If(String.IsNullOrEmpty(savedFileName), Nothing, savedFileName)
+            .ImagePath = If(String.IsNullOrEmpty(savedFileName), Nothing, savedFileName),
+            .PricePerHour = nUpDownPrice.Value
         }
     End Function
 
@@ -72,24 +73,23 @@ Public Class frmAddPlatform
         Dim fullPath = UIHelper.GetImagePath(fileName)
 
         Try
-            ' 1. تحرير الذاكرة بشكل هجومي
+
             GC.Collect()
             GC.WaitForPendingFinalizers()
 
             If File.Exists(fullPath) Then
-                ' 2. محاولة الحذف العادية
+
                 File.Delete(fullPath)
             End If
         Catch ex As Exception
-            ' 3. إذا فشل (بسبب الشاشة اللي ورا)، سنقوم بإعادة تسمية الملف 
-            ' لكي يختفي منطقياً ثم يحذف عند إغلاق البرنامج
+
             Try
                 Dim renamedPath = fullPath & ".deleted"
                 If File.Exists(renamedPath) Then File.Delete(renamedPath)
                 File.Move(fullPath, renamedPath)
-                ' التحريك (Move) أحياناً ينجح حتى لو كان الملف مقفلاً للقراءة
+
             Catch
-                ' إذا فشل كل شيء، لا تظهر خطأ لكي لا يتوقف البرنامج
+
             End Try
         End Try
     End Sub

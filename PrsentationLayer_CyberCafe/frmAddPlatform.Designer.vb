@@ -28,7 +28,10 @@ Partial Class frmAddPlatform
         Me.btnSave = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2BorderlessForm1 = New Guna.UI2.WinForms.Guna2BorderlessForm(Me.components)
+        Me.nUpDownPrice = New Guna.UI2.WinForms.Guna2NumericUpDown()
+        Me.lblStatusF = New System.Windows.Forms.Label()
         CType(Me.picPlatform, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDownPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -94,7 +97,7 @@ Partial Class frmAddPlatform
         Me.txtDescription.Name = "txtDescription"
         Me.txtDescription.PlaceholderText = ""
         Me.txtDescription.SelectedText = ""
-        Me.txtDescription.Size = New System.Drawing.Size(350, 80)
+        Me.txtDescription.Size = New System.Drawing.Size(350, 70)
         Me.txtDescription.TabIndex = 4
         '
         'picPlatform
@@ -102,7 +105,7 @@ Partial Class frmAddPlatform
         Me.picPlatform.BorderRadius = 8
         Me.picPlatform.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.picPlatform.ImageRotate = 0!
-        Me.picPlatform.Location = New System.Drawing.Point(25, 260)
+        Me.picPlatform.Location = New System.Drawing.Point(25, 309)
         Me.picPlatform.Name = "picPlatform"
         Me.picPlatform.Size = New System.Drawing.Size(100, 100)
         Me.picPlatform.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -115,7 +118,7 @@ Partial Class frmAddPlatform
         Me.btnBrowseImage.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.btnBrowseImage.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnBrowseImage.ForeColor = System.Drawing.Color.White
-        Me.btnBrowseImage.Location = New System.Drawing.Point(140, 320)
+        Me.btnBrowseImage.Location = New System.Drawing.Point(140, 369)
         Me.btnBrowseImage.Name = "btnBrowseImage"
         Me.btnBrowseImage.Size = New System.Drawing.Size(120, 40)
         Me.btnBrowseImage.TabIndex = 6
@@ -127,7 +130,7 @@ Partial Class frmAddPlatform
         Me.btnSave.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(215, 380)
+        Me.btnSave.Location = New System.Drawing.Point(215, 429)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(160, 45)
         Me.btnSave.TabIndex = 7
@@ -139,7 +142,7 @@ Partial Class frmAddPlatform
         Me.btnCancel.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.btnCancel.Location = New System.Drawing.Point(25, 380)
+        Me.btnCancel.Location = New System.Drawing.Point(25, 429)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(160, 45)
         Me.btnCancel.TabIndex = 8
@@ -152,11 +155,45 @@ Partial Class frmAddPlatform
         Me.Guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6R
         Me.Guna2BorderlessForm1.TransparentWhileDrag = True
         '
+        'nUpDownPrice
+        '
+        Me.nUpDownPrice.BackColor = System.Drawing.Color.Transparent
+        Me.nUpDownPrice.BorderRadius = 5
+        Me.nUpDownPrice.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom
+        Me.nUpDownPrice.BorderThickness = 0
+        Me.nUpDownPrice.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.nUpDownPrice.DecimalPlaces = 2
+        Me.nUpDownPrice.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
+        Me.nUpDownPrice.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.nUpDownPrice.ForeColor = System.Drawing.Color.White
+        Me.nUpDownPrice.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.nUpDownPrice.Location = New System.Drawing.Point(23, 256)
+        Me.nUpDownPrice.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.nUpDownPrice.Name = "nUpDownPrice"
+        Me.nUpDownPrice.Size = New System.Drawing.Size(360, 47)
+        Me.nUpDownPrice.TabIndex = 20
+        Me.nUpDownPrice.UpDownButtonFillColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.nUpDownPrice.UpDownButtonForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.nUpDownPrice.Value = New Decimal(New Integer() {5, 0, 0, 65536})
+        '
+        'lblStatusF
+        '
+        Me.lblStatusF.BackColor = System.Drawing.Color.Transparent
+        Me.lblStatusF.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.lblStatusF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        Me.lblStatusF.Location = New System.Drawing.Point(22, 231)
+        Me.lblStatusF.Name = "lblStatusF"
+        Me.lblStatusF.Size = New System.Drawing.Size(148, 26)
+        Me.lblStatusF.TabIndex = 19
+        Me.lblStatusF.Text = "Price Per Hour"
+        '
         'frmAddPlatform
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(400, 450)
+        Me.ClientSize = New System.Drawing.Size(400, 491)
+        Me.Controls.Add(Me.nUpDownPrice)
+        Me.Controls.Add(Me.lblStatusF)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnBrowseImage)
@@ -171,6 +208,7 @@ Partial Class frmAddPlatform
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add Platform"
         CType(Me.picPlatform, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDownPrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -186,4 +224,6 @@ Partial Class frmAddPlatform
     Friend WithEvents btnSave As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnCancel As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2BorderlessForm1 As Guna.UI2.WinForms.Guna2BorderlessForm
+    Friend WithEvents nUpDownPrice As Guna.UI2.WinForms.Guna2NumericUpDown
+    Private WithEvents lblStatusF As Label
 End Class
