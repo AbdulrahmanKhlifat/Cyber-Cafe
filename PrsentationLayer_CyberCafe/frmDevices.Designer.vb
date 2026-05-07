@@ -34,14 +34,12 @@ Partial Class frmDevices
         Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.cmbDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.pnlDeviceDetail = New System.Windows.Forms.Panel()
-        Me.nUpDownPrice = New Guna.UI2.WinForms.Guna2NumericUpDown()
         Me.lblDetailTitle = New System.Windows.Forms.Label()
         Me.pnlDivider = New System.Windows.Forms.Panel()
         Me.lblDevNameF = New System.Windows.Forms.Label()
         Me.txtDeviceName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblDevTypeF = New System.Windows.Forms.Label()
         Me.cboDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.lblStatusF = New System.Windows.Forms.Label()
         Me.btnSaveDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.btnClearDeviceInfo = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancelDevice = New Guna.UI2.WinForms.Guna2Button()
@@ -52,13 +50,14 @@ Partial Class frmDevices
         Me.tsUpdateDevice = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsAssignGames = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsDeleteDevice = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
         Me.DeleteDeviceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pnlTop.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
-        CType(Me.nUpDownPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DeviceContextMenu.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -206,14 +205,13 @@ Partial Class frmDevices
         '
         'pnlDeviceDetail
         '
-        Me.pnlDeviceDetail.Controls.Add(Me.nUpDownPrice)
+        Me.pnlDeviceDetail.Controls.Add(Me.PictureBox1)
         Me.pnlDeviceDetail.Controls.Add(Me.lblDetailTitle)
         Me.pnlDeviceDetail.Controls.Add(Me.pnlDivider)
         Me.pnlDeviceDetail.Controls.Add(Me.lblDevNameF)
         Me.pnlDeviceDetail.Controls.Add(Me.txtDeviceName)
         Me.pnlDeviceDetail.Controls.Add(Me.lblDevTypeF)
         Me.pnlDeviceDetail.Controls.Add(Me.cboDeviceType)
-        Me.pnlDeviceDetail.Controls.Add(Me.lblStatusF)
         Me.pnlDeviceDetail.Controls.Add(Me.btnSaveDevice)
         Me.pnlDeviceDetail.Controls.Add(Me.btnClearDeviceInfo)
         Me.pnlDeviceDetail.Controls.Add(Me.btnCancelDevice)
@@ -224,28 +222,6 @@ Partial Class frmDevices
         Me.pnlDeviceDetail.Size = New System.Drawing.Size(409, 591)
         Me.pnlDeviceDetail.TabIndex = 10
         Me.pnlDeviceDetail.Visible = False
-        '
-        'nUpDownPrice
-        '
-        Me.nUpDownPrice.BackColor = System.Drawing.Color.Transparent
-        Me.nUpDownPrice.BorderRadius = 5
-        Me.nUpDownPrice.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.nUpDownPrice.BorderThickness = 0
-        Me.nUpDownPrice.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.nUpDownPrice.DecimalPlaces = 2
-        Me.Guna2Transition1.SetDecoration(Me.nUpDownPrice, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.nUpDownPrice.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.nUpDownPrice.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.nUpDownPrice.ForeColor = System.Drawing.Color.White
-        Me.nUpDownPrice.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
-        Me.nUpDownPrice.Location = New System.Drawing.Point(16, 317)
-        Me.nUpDownPrice.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.nUpDownPrice.Name = "nUpDownPrice"
-        Me.nUpDownPrice.Size = New System.Drawing.Size(360, 48)
-        Me.nUpDownPrice.TabIndex = 18
-        Me.nUpDownPrice.UpDownButtonFillColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.nUpDownPrice.UpDownButtonForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.nUpDownPrice.Value = New Decimal(New Integer() {5, 0, 0, 65536})
         '
         'lblDetailTitle
         '
@@ -329,18 +305,6 @@ Partial Class frmDevices
         Me.cboDeviceType.Size = New System.Drawing.Size(365, 36)
         Me.cboDeviceType.TabIndex = 11
         '
-        'lblStatusF
-        '
-        Me.lblStatusF.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2Transition1.SetDecoration(Me.lblStatusF, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.lblStatusF.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.lblStatusF.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblStatusF.Location = New System.Drawing.Point(15, 290)
-        Me.lblStatusF.Name = "lblStatusF"
-        Me.lblStatusF.Size = New System.Drawing.Size(229, 19)
-        Me.lblStatusF.TabIndex = 15
-        Me.lblStatusF.Text = "Price Per Hour"
-        '
         'btnSaveDevice
         '
         Me.btnSaveDevice.BorderRadius = 8
@@ -348,7 +312,7 @@ Partial Class frmDevices
         Me.btnSaveDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.btnSaveDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSaveDevice.ForeColor = System.Drawing.Color.White
-        Me.btnSaveDevice.Location = New System.Drawing.Point(16, 377)
+        Me.btnSaveDevice.Location = New System.Drawing.Point(14, 291)
         Me.btnSaveDevice.Name = "btnSaveDevice"
         Me.btnSaveDevice.Size = New System.Drawing.Size(364, 45)
         Me.btnSaveDevice.TabIndex = 14
@@ -363,7 +327,7 @@ Partial Class frmDevices
         Me.btnClearDeviceInfo.FillColor = System.Drawing.Color.DimGray
         Me.btnClearDeviceInfo.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnClearDeviceInfo.ForeColor = System.Drawing.Color.White
-        Me.btnClearDeviceInfo.Location = New System.Drawing.Point(18, 432)
+        Me.btnClearDeviceInfo.Location = New System.Drawing.Point(16, 346)
         Me.btnClearDeviceInfo.Name = "btnClearDeviceInfo"
         Me.btnClearDeviceInfo.Size = New System.Drawing.Size(181, 43)
         Me.btnClearDeviceInfo.TabIndex = 16
@@ -377,7 +341,7 @@ Partial Class frmDevices
         Me.btnCancelDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.btnCancelDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.btnCancelDevice.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.btnCancelDevice.Location = New System.Drawing.Point(213, 432)
+        Me.btnCancelDevice.Location = New System.Drawing.Point(211, 346)
         Me.btnCancelDevice.Name = "btnCancelDevice"
         Me.btnCancelDevice.Size = New System.Drawing.Size(167, 43)
         Me.btnCancelDevice.TabIndex = 17
@@ -432,7 +396,7 @@ Partial Class frmDevices
         Me.DeviceContextMenu.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
         Me.DeviceContextMenu.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.DeviceContextMenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-        Me.DeviceContextMenu.Size = New System.Drawing.Size(196, 162)
+        Me.DeviceContextMenu.Size = New System.Drawing.Size(196, 140)
         '
         'tsShowDetails
         '
@@ -469,6 +433,13 @@ Partial Class frmDevices
         Me.tsDeleteDevice.Size = New System.Drawing.Size(195, 26)
         Me.tsDeleteDevice.Text = "Start Session"
         '
+        'DeleteDeviceToolStripMenuItem
+        '
+        Me.DeleteDeviceToolStripMenuItem.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.delete
+        Me.DeleteDeviceToolStripMenuItem.Name = "DeleteDeviceToolStripMenuItem"
+        Me.DeleteDeviceToolStripMenuItem.Size = New System.Drawing.Size(195, 26)
+        Me.DeleteDeviceToolStripMenuItem.Text = "Delete Device"
+        '
         'Guna2Transition1
         '
         Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
@@ -493,12 +464,14 @@ Partial Class frmDevices
         Me.Guna2Transition1.MaxAnimationTime = 300
         Me.Guna2Transition1.TimeStep = 0.05!
         '
-        'DeleteDeviceToolStripMenuItem
+        'PictureBox1
         '
-        Me.DeleteDeviceToolStripMenuItem.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.delete
-        Me.DeleteDeviceToolStripMenuItem.Name = "DeleteDeviceToolStripMenuItem"
-        Me.DeleteDeviceToolStripMenuItem.Size = New System.Drawing.Size(195, 26)
-        Me.DeleteDeviceToolStripMenuItem.Text = "Delete Device"
+        Me.Guna2Transition1.SetDecoration(Me.PictureBox1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.PictureBox1.Location = New System.Drawing.Point(106, 418)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(176, 132)
+        Me.PictureBox1.TabIndex = 18
+        Me.PictureBox1.TabStop = False
         '
         'frmDevices
         '
@@ -517,8 +490,8 @@ Partial Class frmDevices
         Me.pnlTop.ResumeLayout(False)
         Me.pnlFilter.ResumeLayout(False)
         Me.pnlDeviceDetail.ResumeLayout(False)
-        CType(Me.nUpDownPrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.DeviceContextMenu.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -531,14 +504,12 @@ Partial Class frmDevices
     Private WithEvents btnAddDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents cmbDeviceType As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents pnlDeviceDetail As Panel
-    Friend WithEvents nUpDownPrice As Guna.UI2.WinForms.Guna2NumericUpDown
     Private WithEvents lblDetailTitle As Label
     Private WithEvents pnlDivider As Panel
     Private WithEvents lblDevNameF As Label
     Private WithEvents txtDeviceName As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents lblDevTypeF As Label
     Private WithEvents cboDeviceType As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents lblStatusF As Label
     Private WithEvents btnSaveDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnClearDeviceInfo As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnCancelDevice As Guna.UI2.WinForms.Guna2Button
@@ -552,4 +523,5 @@ Partial Class frmDevices
     Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
     Private WithEvents txtSearchGame As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents DeleteDeviceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
