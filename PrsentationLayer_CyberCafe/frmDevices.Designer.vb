@@ -26,11 +26,11 @@ Partial Class frmDevices
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDevices))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
+        Me.btnManagePlatforms = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlFilter = New System.Windows.Forms.Panel()
         Me.txtSearchGame = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.cmbStatus = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnAddPlatform = New Guna.UI2.WinForms.Guna2Button()
         Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.cmbDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.pnlDeviceDetail = New System.Windows.Forms.Panel()
@@ -76,13 +76,24 @@ Partial Class frmDevices
         '
         Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(33, Byte), Integer))
         Me.pnlTop.Controls.Add(Me.lblTitle)
-        Me.pnlTop.Controls.Add(Me.btnAddPlatform)
+        Me.pnlTop.Controls.Add(Me.btnManagePlatforms)
         Me.Guna2Transition1.SetDecoration(Me.pnlTop, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTop.Location = New System.Drawing.Point(0, 0)
         Me.pnlTop.Name = "pnlTop"
         Me.pnlTop.Size = New System.Drawing.Size(1341, 66)
         Me.pnlTop.TabIndex = 7
+        '
+        'btnManagePlatforms
+        '
+        Me.Guna2Transition1.SetDecoration(Me.btnManagePlatforms, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.btnManagePlatforms.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnManagePlatforms.ForeColor = System.Drawing.Color.White
+        Me.btnManagePlatforms.Location = New System.Drawing.Point(1129, 7)
+        Me.btnManagePlatforms.Name = "btnManagePlatforms"
+        Me.btnManagePlatforms.Size = New System.Drawing.Size(165, 46)
+        Me.btnManagePlatforms.TabIndex = 6
+        Me.btnManagePlatforms.Text = "Manage Platforms"
         '
         'pnlFilter
         '
@@ -156,21 +167,6 @@ Partial Class frmDevices
         Me.cmbStatus.Size = New System.Drawing.Size(177, 36)
         Me.cmbStatus.StartIndex = 0
         Me.cmbStatus.TabIndex = 8
-        '
-        'btnAddPlatform
-        '
-        Me.btnAddPlatform.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddPlatform.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnAddPlatform.BorderRadius = 8
-        Me.Guna2Transition1.SetDecoration(Me.btnAddPlatform, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.btnAddPlatform.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.btnAddPlatform.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnAddPlatform.ForeColor = System.Drawing.Color.White
-        Me.btnAddPlatform.Location = New System.Drawing.Point(1127, 7)
-        Me.btnAddPlatform.Name = "btnAddPlatform"
-        Me.btnAddPlatform.Size = New System.Drawing.Size(165, 46)
-        Me.btnAddPlatform.TabIndex = 6
-        Me.btnAddPlatform.Text = "+  Add Platform"
         '
         'btnAddDevice
         '
@@ -523,7 +519,7 @@ Partial Class frmDevices
     Friend WithEvents pnlFilter As Panel
     Private WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
     Private WithEvents cmbStatus As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents btnAddPlatform As Guna.UI2.WinForms.Guna2Button
+    Private WithEvents btnManagePlatforms As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnAddDevice As Guna.UI2.WinForms.Guna2Button
     Private WithEvents cmbDeviceType As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents pnlDeviceDetail As Panel

@@ -84,7 +84,8 @@ Public Class frmDevices
                 .DeviceID = Convert.ToInt32(row("DeviceID")),
                 .DeviceName = row("DeviceName").ToString(),
                 .DeviceTypeName = row("DeviceTypeName").ToString(),
-                .Status = CType(CByte(row("Status")), enDeviceStatus)
+                .Status = CType(CByte(row("Status")), enDeviceStatus),
+                .ImagePath = If(row("ImagePath") Is DBNull.Value, "", row("ImagePath").ToString())
             })
 
         Next
@@ -131,7 +132,6 @@ Public Class frmDevices
             _SelectedDeviceID = DeviceID
             txtDeviceName.Text = device.DeviceName
             cboDeviceType.SelectedValue = device.DeviceTypeID
-            nUpDownPrice.Value = device.PricePerHour
             btnSaveDevice.Text = "Save Changes"
             pnlDeviceDetail.Visible = True
 
@@ -145,7 +145,6 @@ Public Class frmDevices
         Dim device As New DeviceDTO With {
             .DeviceName = txtDeviceName.Text.Trim(),
             .DeviceTypeID = Convert.ToInt32(cboDeviceType.SelectedValue),
-            .PricePerHour = nUpDownPrice.Value,
             .Status = enDeviceStatus.Available
         }
 
@@ -180,11 +179,14 @@ Public Class frmDevices
 
     End Sub
 
-    Private Sub btnAddPlatform_Click(sender As Object, e As EventArgs) Handles btnAddPlatform.Click
-        Using addPlatformForm As New frmAddPlatform()
-            If addPlatformForm.ShowDialog() = DialogResult.OK Then
-                FillComboBox()
-            End If
+    Private Sub btnManagePlatforms_Click(sender As Object, e As EventArgs) Handles btnManagePlatforms.Click
+
+        Using managePlatformsForm As New frmManagePlatforms()
+
+            managePlatformsForm.ShowDialog()
+            FillComboBox()
+            LoadDevices()
+
         End Using
     End Sub
 
@@ -193,7 +195,6 @@ Public Class frmDevices
         Dim sourceCtrl = DeviceContextMenu.SourceControl
         Dim tempCtrl = sourceCtrl
 
-        'While tempCtrl IsNot Nothing
 
         If TypeOf tempCtrl Is ctrDeviceInfo Then
             Return DirectCast(tempCtrl, ctrDeviceInfo)
@@ -201,10 +202,30 @@ Public Class frmDevices
 
         tempCtrl = tempCtrl.Parent
 
-        'End While
+
 
         Return Nothing
     End Function
+    Private Sub tsStartSession_Click(sender As Object, e As EventArgs) Handles tsDeleteDevice.Click
+
+        Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
+
+        If card IsNot Nothing Then
+
+            Using startSessionForm As New frmStartSession(card.DeviceID)
+
+                If startSessionForm.ShowDialog() = DialogResult.OK Then
+
+                    LoadDevices()
+
+                End If
+
+            End Using
+
+        End If
+
+    End Sub
+
     Private Sub tsEditDevice_Click(sender As Object, e As EventArgs) Handles tsUpdateDevice.Click
 
         Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()

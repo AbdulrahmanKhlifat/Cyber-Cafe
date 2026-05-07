@@ -6,11 +6,8 @@ Public Class ctrDeviceInfo
     Private Shared ReadOnly CyanHoverColor As Color = Color.FromArgb(35, 44, 51)
     Private Shared ReadOnly ColorInUse As Color = Color.Red
 
-    Private Shared ReadOnly ImgPC As Image = My.Resources._771247
-    Private Shared ReadOnly ImgPS4 As Image = My.Resources.PlayStationIcon
-    Private Shared ReadOnly ImgPS5 As Image = My.Resources.PS5_icon
-    Private Shared ReadOnly ImgXbox As Image = My.Resources.XBOX
-    Private Shared ReadOnly ImgVR As Image = My.Resources.VR_icon
+
+
 
 
 
@@ -29,32 +26,23 @@ Public Class ctrDeviceInfo
 
     Public Property DeviceID As Integer
 
+    Private ImagePath As String
 
 
-
-    Private Function GetDeviceImage(typeName As String, isAvailable As Boolean) As Image
-        Select Case typeName.ToUpper()
-            Case "PC"
-                Return ImgPC
-            Case "PS4"
-                Return ImgPS4
-            Case "PS5"
-                pbDeviceIcon.BackColor = Color.White
-                Return ImgPS5
-            Case "XBOX"
-                Return ImgXbox
-            Case "VIRTUAL REALITY"
-                Return ImgVR
-            Case Else
-                Return ImgPC
-        End Select
-    End Function
 
     Public Sub LoadData(deviceInfo As DeviceDTO)
         DeviceID = deviceInfo.DeviceID
         lblDeviceName.Text = deviceInfo.DeviceName
         lblDeviceType.Text = deviceInfo.DeviceTypeName
         lblStatus.Text = deviceInfo.Status.ToString()
+
+        ImagePath = UIHelper.GetImagePath(deviceInfo.ImagePath)
+
+        If ImagePath Is Nothing Then
+            pbDeviceIcon.Image = My.Resources.PlayStationIcon
+        Else
+            pbDeviceIcon.Image = UIHelper.LoadImageUnlocked(ImagePath)
+        End If
 
         UpdateUI(deviceInfo.DeviceTypeName, deviceInfo.Status)
     End Sub
@@ -65,9 +53,8 @@ Public Class ctrDeviceInfo
         Dim statusColor As Color = If(isAvailable, ColorAvailable, ColorInUse)
         pbStatusDot.FillColor = statusColor
         lblStatus.ForeColor = statusColor
-
-        pbDeviceIcon.Image = GetDeviceImage(typeName, isAvailable)
         pnlDevice.Cursor = Cursors.Hand
+
     End Sub
 
 
@@ -88,6 +75,5 @@ Public Class ctrDeviceInfo
         End If
 
     End Sub
-
 
 End Class

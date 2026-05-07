@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports CyberCafeModels
 
 
@@ -10,8 +10,8 @@ Public Class DeviceRepo
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "INSERT INTO Devices (DeviceName,DeviceTypeID, Status, PricePerHour) 
-                                   VALUES (@DeviceName,@DeviceTypeID, @Status, @PricePerHour);
+            Dim query As String = "INSERT INTO Devices (DeviceName,DeviceTypeID, Status) 
+                                   VALUES (@DeviceName,@DeviceTypeID, @Status);
                                    SELECT SCOPE_IDENTITY();"
 
             Using cmd As New SqlCommand(query, conn)
@@ -19,7 +19,6 @@ Public Class DeviceRepo
                 cmd.Parameters.Add("@DeviceName", SqlDbType.NVarChar).Value = dto.DeviceName
                 cmd.Parameters.Add("@DeviceTypeID", SqlDbType.Int).Value = dto.DeviceTypeID
                 cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = dto.Status
-                cmd.Parameters.Add("@PricePerHour", SqlDbType.Decimal).Value = dto.PricePerHour
 
                 Try
                     conn.Open()
@@ -39,13 +38,12 @@ Public Class DeviceRepo
         Dim rowsAffected As Integer = 0
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "UPDATE Devices SET DeviceName=@DeviceName, DeviceTypeID = @TypeID, Status = @Status, 
-                                   PricePerHour = @Price WHERE DeviceID = @ID"
+                                   WHERE DeviceID = @ID"
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@DeviceName", SqlDbType.NVarChar).Value = dto.DeviceName
                 cmd.Parameters.Add("@ID", SqlDbType.Int).Value = dto.DeviceID
                 cmd.Parameters.Add("@TypeID", SqlDbType.Int).Value = dto.DeviceTypeID
                 cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = dto.Status
-                cmd.Parameters.Add("@Price", SqlDbType.Decimal).Value = dto.PricePerHour
                 Try
                     conn.Open()
                     rowsAffected = cmd.ExecuteNonQuery()
@@ -86,8 +84,8 @@ Public Class DeviceRepo
         Dim dt As New DataTable()
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, " &
-                     "d.Status, d.PricePerHour " &
+            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName,t.ImagePath, " &
+                     "d.Status " &
                      "FROM Devices d " &
                      "JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID"
             Using cmd As New SqlCommand(query, conn)
@@ -107,10 +105,10 @@ Public Class DeviceRepo
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "SELECT D.*, DT.DeviceTypeName " &
-            "FROM Devices D " &
-            "LEFT JOIN DeviceType DT ON D.DeviceTypeID = DT.DeviceTypeID " &
-            "WHERE D.DeviceID = @DeviceID"
+            Dim query As String = "SELECT D.*, DT.DeviceTypeName, DT.ImagePath, DT.PricePerHour " &
+                              "FROM Devices D " &
+                              "LEFT JOIN DeviceType DT ON D.DeviceTypeID = DT.DeviceTypeID " &
+                              "WHERE D.DeviceID = @DeviceID"
 
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
@@ -118,36 +116,35 @@ Public Class DeviceRepo
                 Try
                     conn.Open()
                     Using reader As SqlDataReader = cmd.ExecuteReader()
-
                         If reader.Read() Then
                             device = New DeviceDTO() With {
-                           .DeviceID = CInt(reader("DeviceID")),
-                           .DeviceName = If(reader("DeviceName") Is DBNull.Value, "", reader("DeviceName").ToString()),
-                           .DeviceTypeID = CInt(reader("DeviceTypeID")),
-                           .DeviceTypeName = If(reader("DeviceTypeName") Is DBNull.Value, "Unknown", reader("DeviceTypeName").ToString()),
-                           .PricePerHour = CDec(reader("PricePerHour")),
-                           .Status = DirectCast(CInt(reader("Status")), enDeviceStatus)
-                         }
+                            .DeviceID = CInt(reader("DeviceID")),
+                            .DeviceName = If(reader("DeviceName") Is DBNull.Value, "", reader("DeviceName").ToString()),
+                            .DeviceTypeID = CInt(reader("DeviceTypeID")),
+                            .DeviceTypeName = If(reader("DeviceTypeName") Is DBNull.Value, "Unknown", reader("DeviceTypeName").ToString()),
+                            .Status = DirectCast(CInt(reader("Status")), enDeviceStatus),
+                            .ImagePath = If(reader("ImagePath") Is DBNull.Value, "", reader("ImagePath").ToString()),
+                            .PricePerHour = If(reader("PricePerHour") Is DBNull.Value, 0D, CDec(reader("PricePerHour")))
+                        }
                         End If
-
                     End Using
                 Catch ex As Exception
-                    MsgBox(ex.Message)
+
                     CyberCafeModels.ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
                 End Try
             End Using
         End Using
 
         Return device
-
     End Function
 
     Public Shared Function GetAllDevicesList() As List(Of DeviceDTO)
         Dim list As New List(Of DeviceDTO)()
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName, " &
-                                  "d.Status, d.PricePerHour " &
+            Dim query As String = "SELECT d.DeviceID, d.DeviceName, d.DeviceTypeID, t.DeviceTypeName,t.ImagePath, " &
+                                  "d.Status " &
                                   "FROM Devices d " &
                                   "JOIN DeviceType t ON d.DeviceTypeID = t.DeviceTypeID"
 
@@ -162,7 +159,8 @@ Public Class DeviceRepo
                                 .DeviceID = Convert.ToInt32(reader("DeviceID")),
                                 .DeviceName = reader("DeviceName").ToString(),
                                 .DeviceTypeName = reader("DeviceTypeName").ToString(),
-                                .Status = CType(CByte(reader("Status")), enDeviceStatus)
+                                .Status = CType(CByte(reader("Status")), enDeviceStatus),
+                                .ImagePath = If(reader("ImagePath") Is DBNull.Value, "", reader("ImagePath").ToString())
                         })
                         End While
                     End Using

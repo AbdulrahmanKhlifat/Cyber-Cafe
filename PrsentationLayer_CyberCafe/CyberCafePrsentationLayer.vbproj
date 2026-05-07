@@ -141,6 +141,12 @@
     <Compile Include="frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmManagePlatforms.Designer.vb">
+      <DependentUpon>frmManagePlatforms.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmManagePlatforms.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSessions.Designer.vb">
       <DependentUpon>frmSessions.vb</DependentUpon>
     </Compile>
@@ -157,6 +163,12 @@
       <DependentUpon>frmTransactions.vb</DependentUpon>
     </Compile>
     <Compile Include="frmTransactions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStartSession.Designer.vb">
+      <DependentUpon>frmStartSession.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmStartSession.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -230,6 +242,9 @@
     <EmbeddedResource Include="frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmManagePlatforms.resx">
+      <DependentUpon>frmManagePlatforms.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSessions.resx">
       <DependentUpon>frmSessions.vb</DependentUpon>
     </EmbeddedResource>
@@ -238,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStartSession.resx">
+      <DependentUpon>frmStartSession.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditGame.resx">
       <DependentUpon>frmAddEditGame.vb</DependentUpon>

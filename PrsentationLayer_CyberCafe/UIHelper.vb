@@ -3,14 +3,14 @@ Imports CyberCafeModels
 Imports Guna.UI2.WinForms
 Public Class UIHelper
 
-    Public Shared Sub ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon)
+    Public Shared Sub ShowGunaMessage(message As String, caption As String, icon As MessageDialogIcon, Optional btns As MessageDialogButtons = MessageDialogButtons.OK)
         Dim guna As New Guna2MessageDialog With {
             .Caption = caption,
             .Text = message,
             .Parent = System.Windows.Forms.Application.OpenForms(0),
             .Style = MessageDialogStyle.Dark,
             .Icon = icon,
-            .Buttons = MessageDialogButtons.OK
+            .Buttons = btns
         }
 
         guna.Show()
@@ -103,11 +103,20 @@ Public Class UIHelper
     End Function
 
     Public Shared Function LoadImageUnlocked(path As String) As Image
-        Using fs As New IO.FileStream(path, IO.FileMode.Open, IO.FileAccess.Read)
-
-            Return Image.FromStream(fs)
-
-        End Using
+        If Not IO.File.Exists(path) Then Return Nothing
+        Try
+            Dim img As Image
+            ' نستخدم FileStream مع وضعية التشارك للسماح للعمليات الأخرى بالدخول
+            Using fs As New FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+                Using tempImg As Image = Image.FromStream(fs)
+                    ' السر هنا: ننشئ Bitmap جديدة تماماً من الصورة المؤقتة
+                    ' الـ Bitmap الجديدة ستكون في الرام ولا علاقة لها بالملف
+                    img = New Bitmap(tempImg)
+                End Using ' هنا يتم إغلاق الـ tempImg والـ fs فوراً
+            End Using
+            Return img
+        Catch
+            Return Nothing
+        End Try
     End Function
-
 End Class

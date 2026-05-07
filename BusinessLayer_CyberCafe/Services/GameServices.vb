@@ -95,12 +95,15 @@ Public Class GameServices
             Return GameRepo.UpdateGame(game)
 
         Catch ex As SqlException
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
 
             If ex.Number = 2601 OrElse ex.Number = 2627 Then
                 Throw New InvalidOperationException("Game already exists")
             Else
+
                 Throw
+
             End If
         End Try
     End Function

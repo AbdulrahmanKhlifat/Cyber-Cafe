@@ -1,4 +1,4 @@
-﻿Imports System.ComponentModel.Design
+Imports System.ComponentModel.Design
 Imports CyberCafe_DataAccess
 Imports CyberCafeModels.CyberCafe.Models
 
@@ -130,6 +130,11 @@ Public Class CustomerServices
 
     Public Shared Function GetAllCustomers() As DataTable
         Return CustomerRepo.GetAllActiveCustomers()
+    End Function
+
+
+    Public Shared Function GetTop10Customers(Optional str As String = "") As List(Of CustomerDTO)
+        Return CustomerRepo.GetTop10Customers(str)
     End Function
 
 End Class
