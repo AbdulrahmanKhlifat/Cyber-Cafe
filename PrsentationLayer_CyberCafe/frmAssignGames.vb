@@ -244,12 +244,12 @@ Public Class frmAssignGames
         Dim selectedIDs = GetSelectedGameIDs()
 
 
-        If selectedIDs.Count = 0 Then
+        'If selectedIDs.Count = 0 Then
 
-            UIHelper.ShowGunaMessage("Please select at least one game.", "No Selection", MessageDialogIcon.Warning)
-            Return
+        '    UIHelper.ShowGunaMessage("Please select at least one game.", "No Selection", MessageDialogIcon.Warning)
+        '    Return
 
-        End If
+        'End If
 
         If SaveSelectedGames(selectedIDs) Then
 

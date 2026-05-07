@@ -118,7 +118,7 @@ Public Class DeviceRepo
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             device = New DeviceDTO() With {
-                            .DeviceID = CInt(reader("DeviceID")),
+                            .deviceID = CInt(reader("DeviceID")),
                             .DeviceName = If(reader("DeviceName") Is DBNull.Value, "", reader("DeviceName").ToString()),
                             .DeviceTypeID = CInt(reader("DeviceTypeID")),
                             .DeviceTypeName = If(reader("DeviceTypeName") Is DBNull.Value, "Unknown", reader("DeviceTypeName").ToString()),
@@ -204,4 +204,28 @@ Public Class DeviceRepo
 
         Return deviceIds
     End Function
+
+    Public Shared Function SoftDeleteDevice(deviceID As Integer) As Boolean
+
+        Dim query As String =
+            "UPDATE Devices
+             SET IsDeleted = 1
+             WHERE DeviceID = @DeviceID"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@DeviceID", deviceID)
+
+                conn.Open()
+
+                Return cmd.ExecuteNonQuery() > 0
+
+            End Using
+
+        End Using
+
+    End Function
+
 End Class

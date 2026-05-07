@@ -363,5 +363,77 @@ Public Class frmDevices
 
     End Sub
 
+    Private Sub DeleteDeviceToolStripMenuItem_Click(
+    sender As Object,
+    e As EventArgs
+) Handles DeleteDeviceToolStripMenuItem.Click
+
+        Try
+
+            Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
+
+            If card Is Nothing Then
+
+                Dim guna As New Guna2MessageDialog With {
+                .Caption = "Error",
+                .Text = "Please select a device",
+                .Parent = Me,
+                .Style = MessageDialogStyle.Dark,
+                .Icon = MessageDialogIcon.Error,
+                .Buttons = MessageDialogButtons.OK
+            }
+
+                guna.Show()
+
+                Return
+
+            End If
+
+            Dim confirmDialog As New Guna2MessageDialog With {
+            .Caption = "Confirm Delete",
+            .Text = "Are you sure you want to delete this device?",
+            .Parent = Me,
+            .Style = MessageDialogStyle.Dark,
+            .Icon = MessageDialogIcon.Question,
+            .Buttons = MessageDialogButtons.YesNo
+        }
+
+            Dim result As DialogResult = confirmDialog.Show()
+
+            If result = DialogResult.No Then
+                Return
+            End If
+
+            DeviceServices.SoftDeleteDevice(card.DeviceID)
+
+            Dim successDialog As New Guna2MessageDialog With {
+            .Caption = "Success",
+            .Text = "Device deleted successfully",
+            .Parent = Me,
+            .Style = MessageDialogStyle.Dark,
+            .Icon = MessageDialogIcon.Information,
+            .Buttons = MessageDialogButtons.OK
+        }
+
+            successDialog.Show()
+
+            LoadDevices()
+
+        Catch ex As Exception
+
+            Dim errorDialog As New Guna2MessageDialog With {
+            .Caption = "Error",
+            .Text = ex.Message,
+            .Parent = Me,
+            .Style = MessageDialogStyle.Dark,
+            .Icon = MessageDialogIcon.Error,
+            .Buttons = MessageDialogButtons.OK
+        }
+
+            errorDialog.Show()
+
+        End Try
+
+    End Sub
 
 End Class

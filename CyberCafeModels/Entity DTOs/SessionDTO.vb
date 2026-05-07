@@ -7,6 +7,7 @@
 
     Public Property DeviceTypeID As Integer
 
+    ' Nullable because "Allow Nulls" is checked
     Public Property CurrentDeviceID As Integer?
 
     Public Property SessionStatus As SessionStatus

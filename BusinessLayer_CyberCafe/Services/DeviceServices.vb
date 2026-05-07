@@ -52,4 +52,21 @@ Public Class DeviceServices
         Return DeviceRepo.GetAllDevicesList()
     End Function
 
+    Public Shared Sub SoftDeleteDevice(deviceID As Integer)
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException("Invalid DeviceID")
+        End If
+
+        'Has active Session throw exception
+
+        Dim isDeleted As Boolean =
+            DeviceRepo.SoftDeleteDevice(deviceID)
+
+        If Not isDeleted Then
+            Throw New Exception("Device was not deleted")
+        End If
+
+    End Sub
+
 End Class

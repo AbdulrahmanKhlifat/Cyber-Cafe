@@ -22,7 +22,7 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDevices))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
@@ -53,6 +53,7 @@ Partial Class frmDevices
         Me.tsAssignGames = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsDeleteDevice = New System.Windows.Forms.ToolStripMenuItem()
         Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
+        Me.DeleteDeviceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlTop.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
@@ -420,7 +421,7 @@ Partial Class frmDevices
         Me.DeviceContextMenu.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.DeviceContextMenu.ForeColor = System.Drawing.Color.White
         Me.DeviceContextMenu.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.DeviceContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsShowDetails, Me.tsUpdateDevice, Me.tsAssignGames, Me.tsDeleteDevice})
+        Me.DeviceContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsShowDetails, Me.tsUpdateDevice, Me.tsAssignGames, Me.tsDeleteDevice, Me.DeleteDeviceToolStripMenuItem})
         Me.DeviceContextMenu.Name = "DeviceContextMenu"
         Me.DeviceContextMenu.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
         Me.DeviceContextMenu.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
@@ -431,7 +432,7 @@ Partial Class frmDevices
         Me.DeviceContextMenu.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
         Me.DeviceContextMenu.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.DeviceContextMenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-        Me.DeviceContextMenu.Size = New System.Drawing.Size(196, 114)
+        Me.DeviceContextMenu.Size = New System.Drawing.Size(196, 162)
         '
         'tsShowDetails
         '
@@ -472,25 +473,32 @@ Partial Class frmDevices
         '
         Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
         Me.Guna2Transition1.Cursor = Nothing
-        Animation1.AnimateOnlyDifferences = True
-        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
-        Animation1.LeafCoeff = 0!
-        Animation1.MaxTime = 1.0!
-        Animation1.MinTime = 0!
-        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
-        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
-        Animation1.MosaicSize = 0
-        Animation1.Padding = New System.Windows.Forms.Padding(0)
-        Animation1.RotateCoeff = 0!
-        Animation1.RotateLimit = 0!
-        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
-        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
-        Animation1.TimeCoeff = 0!
-        Animation1.TransparencyCoeff = 1.0!
-        Me.Guna2Transition1.DefaultAnimation = Animation1
+        Animation2.AnimateOnlyDifferences = True
+        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
+        Animation2.LeafCoeff = 0!
+        Animation2.MaxTime = 1.0!
+        Animation2.MinTime = 0!
+        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
+        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
+        Animation2.MosaicSize = 0
+        Animation2.Padding = New System.Windows.Forms.Padding(0)
+        Animation2.RotateCoeff = 0!
+        Animation2.RotateLimit = 0!
+        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
+        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
+        Animation2.TimeCoeff = 0!
+        Animation2.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation2
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.MaxAnimationTime = 300
         Me.Guna2Transition1.TimeStep = 0.05!
+        '
+        'DeleteDeviceToolStripMenuItem
+        '
+        Me.DeleteDeviceToolStripMenuItem.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.delete
+        Me.DeleteDeviceToolStripMenuItem.Name = "DeleteDeviceToolStripMenuItem"
+        Me.DeleteDeviceToolStripMenuItem.Size = New System.Drawing.Size(195, 26)
+        Me.DeleteDeviceToolStripMenuItem.Text = "Delete Device"
         '
         'frmDevices
         '
@@ -543,4 +551,5 @@ Partial Class frmDevices
     Friend WithEvents tsDeleteDevice As ToolStripMenuItem
     Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
     Private WithEvents txtSearchGame As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents DeleteDeviceToolStripMenuItem As ToolStripMenuItem
 End Class
