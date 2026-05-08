@@ -1,5 +1,4 @@
-﻿Imports System.ComponentModel
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports CyberCafeModels
 
 Public Class SessionRepo
@@ -10,7 +9,7 @@ Public Class SessionRepo
           cmd As New SqlCommand("
             INSERT INTO Sessions
             (
-                CreatedByAdmin,
+                CreatedByAdminID,
                 CustomerID,
                 DeviceTypeID,
                 CurrentDeviceID,
@@ -23,7 +22,7 @@ Public Class SessionRepo
             )
             VALUES
             (
-                @CreatedByAdmin,
+                @CreatedByAdminID,
                 @CustomerID,
                 @DeviceTypeID,
                 @CurrentDeviceID,
@@ -38,7 +37,7 @@ Public Class SessionRepo
             SELECT SCOPE_IDENTITY();
           ", con)
 
-            cmd.Parameters.Add("@CreatedByAdmin", SqlDbType.Int).Value =
+            cmd.Parameters.Add("@CreatedByAdminID", SqlDbType.Int).Value =
             session.CreatedByAdminID
 
             cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value =
@@ -83,7 +82,7 @@ Public Class SessionRepo
 
     End Function
 
-    Public Shared Function UpdateSessionStatus(session As SessionDTO) As Boolean
+    Public Shared Function UpdateSessionStatus(sessionID As Integer, status As SessionStatus) As Boolean
 
         Dim isUpdated As Boolean = False
 
@@ -95,8 +94,8 @@ Public Class SessionRepo
 
             Using cmd As New SqlCommand(query, conn)
 
-                cmd.Parameters.Add("@SessionStatus", SqlDbType.TinyInt).Value = session.SessionStatus
-                cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = session.SessionID
+                cmd.Parameters.Add("@SessionStatus", SqlDbType.TinyInt).Value = CByte(status)
+                cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = sessionID
 
                 conn.Open()
 
@@ -110,48 +109,51 @@ Public Class SessionRepo
         Return isUpdated
     End Function
 
-    Public Shared Function GetActiveSessions() As List(Of SessionDTO)
+    Public Shared Function UpdateCurrentDevice(
+    sessionID As Integer,
+    currentDeviceID As Integer?
+) As Boolean
 
-        Dim activeSessions As New List(Of SessionDTO)
+        If sessionID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid SessionID."
+        )
+        End If
 
-        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
 
             Dim query As String =
-            "SELECT [SessionID]
-                ,[CreatedByAdmin]
-                ,[CustomerID]
-                ,[DeviceTypeID]
-                ,[CurrentDeviceID]
-                ,[SessionStatus]
-                ,[RemainingSeconds]
-                ,[SessionRatePerHour]
-                ,[StartTime]
-                ,[EndTime]
-                ,[LastResumeTime]
-            FROM Sessions
-            WHERE SessionStatus = @Status"
+        "UPDATE Sessions
+         SET CurrentDeviceID = @CurrentDeviceID
+         WHERE SessionID = @SessionID"
 
             Using cmd As New SqlCommand(query, conn)
 
-                cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = CByte(SessionStatus.Active)
+                cmd.Parameters.Add(
+                "@CurrentDeviceID",
+                SqlDbType.Int
+            ).Value =
+            If(currentDeviceID.HasValue,
+               currentDeviceID.Value,
+               DBNull.Value)
+
+                cmd.Parameters.Add(
+                "@SessionID",
+                SqlDbType.Int
+            ).Value = sessionID
 
                 conn.Open()
 
-                Using reader As SqlDataReader = cmd.ExecuteReader()
+                Dim rowsAffected As Integer =
+                cmd.ExecuteNonQuery()
 
-                    While reader.Read()
-
-                        activeSessions.Add(MapSession(reader))
-
-                    End While
-
-                End Using
+                Return rowsAffected > 0
 
             End Using
 
         End Using
-
-        Return activeSessions
 
     End Function
 
@@ -191,6 +193,336 @@ Public Class SessionRepo
 
     End Function
 
+    Public Shared Function UpdateLastResumeTime(
+    sessionID As Integer,
+    lastResumeTime As DateTime
+) As Boolean
+
+        If sessionID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid SessionID."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            Dim query As String =
+        "UPDATE Sessions
+         SET LastResumeTime = @LastResumeTime
+         WHERE SessionID = @SessionID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add(
+                "@LastResumeTime",
+                SqlDbType.DateTime2
+            ).Value = lastResumeTime
+
+                cmd.Parameters.Add(
+                "@SessionID",
+                SqlDbType.Int
+            ).Value = sessionID
+
+                conn.Open()
+
+                Dim rowsAffected As Integer =
+                cmd.ExecuteNonQuery()
+
+                Return rowsAffected > 0
+
+            End Using
+
+        End Using
+
+    End Function
+
+    Public Shared Function GetActiveSessions() As List(Of SessionDTO)
+
+        Dim activeSessions As New List(Of SessionDTO)
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Dim query As String =
+            "SELECT [SessionID]
+                ,[CreatedByAdminID]
+                ,[CustomerID]
+                ,[DeviceTypeID]
+                ,[CurrentDeviceID]
+                ,[SessionStatus]
+                ,[RemainingSeconds]
+                ,[SessionRatePerHour]
+                ,[StartTime]
+                ,[EndTime]
+                ,[LastResumeTime]
+            FROM Sessions
+            WHERE SessionStatus = @Status"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = CByte(SessionStatus.Active)
+
+                conn.Open()
+
+                Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                    While reader.Read()
+
+                        activeSessions.Add(MapSession(reader))
+
+                    End While
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return activeSessions
+
+    End Function
+
+    Public Shared Function GetSessionsByCustomerID(customerID As Integer) As List(Of SessionDTO)
+
+        Dim activeSessions As New List(Of SessionDTO)
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Dim query As String =
+            "SELECT [SessionID]
+                ,[CreatedByAdminID]
+                ,[CustomerID]
+                ,[DeviceTypeID]
+                ,[CurrentDeviceID]
+                ,[SessionStatus]
+                ,[RemainingSeconds]
+                ,[SessionRatePerHour]
+                ,[StartTime]
+                ,[EndTime]
+                ,[LastResumeTime]
+            FROM Sessions
+            WHERE [CustomerID] = @CustomerID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerID
+
+                conn.Open()
+
+                Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                    While reader.Read()
+
+                        activeSessions.Add(MapSession(reader))
+
+                    End While
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return activeSessions
+
+    End Function
+
+    Public Shared Function GetSessionByID(sessionID As Integer) As SessionDTO
+
+        If sessionID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid SessionID."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            Dim query As String =
+        "SELECT
+            [SessionID],
+            [CreatedByAdminIDID],
+            [CustomerID],
+            [DeviceTypeID],
+            [CurrentDeviceID],
+            [SessionStatus],
+            [RemainingSeconds],
+            [SessionRatePerHour],
+            [StartTime],
+            [EndTime],
+            [LastResumeTime]
+         FROM Sessions
+         WHERE SessionID = @SessionID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add(
+                "@SessionID",
+                SqlDbType.Int
+            ).Value = sessionID
+
+                conn.Open()
+
+                Using reader As SqlDataReader =
+                cmd.ExecuteReader()
+
+                    If reader.Read() Then
+
+                        Return MapSession(reader)
+
+                    End If
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return Nothing
+
+    End Function
+
+    Public Shared Function GetSessionStatus(sessionID As Integer) As SessionStatus
+
+        If sessionID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid SessionID."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            Dim query As String =
+        "SELECT SessionStatus
+         FROM Sessions
+         WHERE SessionID = @SessionID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add(
+                "@SessionID",
+                SqlDbType.Int
+            ).Value = sessionID
+
+                conn.Open()
+
+                Dim result As Object =
+                cmd.ExecuteScalar()
+
+                If result Is Nothing Then
+
+                    Throw New Exception(
+                    "Session was not found."
+                )
+
+                End If
+
+                Return CType(
+                Convert.ToByte(result),
+                SessionStatus
+            )
+
+            End Using
+
+        End Using
+
+    End Function
+
+    Public Shared Function IsSessionExists(sessionID As Integer) As Boolean
+
+        If sessionID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid SessionID."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            Dim query As String =
+        "SELECT 1
+         FROM Sessions
+         WHERE SessionID = @SessionID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add(
+                "@SessionID",
+                SqlDbType.Int
+            ).Value = sessionID
+
+                conn.Open()
+
+                Dim result As Object =
+                cmd.ExecuteScalar()
+
+                Return result IsNot Nothing
+
+            End Using
+
+        End Using
+
+    End Function
+
+    Public Shared Function MarkSessionEnded(
+    sessionID As Integer,
+    endTime As DateTime
+) As Boolean
+
+        If sessionID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid SessionID."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            Dim query As String =
+        "UPDATE Sessions
+         SET
+            SessionStatus = @SessionStatus,
+            RemainingSeconds = 0,
+            EndTime = @EndTime
+         WHERE SessionID = @SessionID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add(
+                "@SessionStatus",
+                SqlDbType.TinyInt
+            ).Value =
+            CByte(SessionStatus.Ended)
+
+                cmd.Parameters.Add(
+                "@EndTime",
+                SqlDbType.DateTime2
+            ).Value = endTime
+
+                cmd.Parameters.Add(
+                "@SessionID",
+                SqlDbType.Int
+            ).Value = sessionID
+
+                conn.Open()
+
+                Dim rowsAffected As Integer =
+                cmd.ExecuteNonQuery()
+
+                Return rowsAffected > 0
+
+            End Using
+
+        End Using
+
+    End Function
+
     Private Shared Function MapSession(reader As SqlDataReader) As SessionDTO
 
         Dim session As New SessionDTO()
@@ -199,7 +531,7 @@ Public Class SessionRepo
             Convert.ToInt32(reader("SessionID"))
 
         session.CreatedByAdminID =
-            Convert.ToInt32(reader("CreatedByAdmin"))
+            Convert.ToInt32(reader("CreatedByAdminID"))
 
         session.CustomerID =
             Convert.ToInt32(reader("CustomerID"))
