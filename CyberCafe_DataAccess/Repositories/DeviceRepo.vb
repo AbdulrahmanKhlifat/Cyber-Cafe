@@ -229,4 +229,126 @@ Public Class DeviceRepo
 
     End Function
 
+    Public Shared Function IsDeviceExists(deviceID As Integer?) As Boolean
+
+        If deviceID Is Nothing Then
+            Throw New ArgumentNullException(NameOf(deviceID))
+        End If
+
+        Const query As String =
+        "SELECT 1 FROM Devices WHERE DeviceID = @DeviceID"
+
+        Using connection As New SqlConnection(DataAccessSettings.connectionString),
+          command As New SqlCommand(query, connection)
+
+            command.Parameters.AddWithValue("@DeviceID", deviceID)
+
+            connection.Open()
+
+            Return command.ExecuteScalar() IsNot Nothing
+
+        End Using
+
+    End Function
+
+    Public Shared Function IsDeviceOccupied(
+    deviceID As Integer
+) As Boolean
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid DeviceID."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            Dim query As String =
+        "SELECT 1
+         FROM Sessions
+         WHERE
+            CurrentDeviceID = @DeviceID
+            AND SessionStatus = @SessionStatus"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add(
+                "@DeviceID",
+                SqlDbType.Int
+            ).Value = deviceID
+
+                cmd.Parameters.Add(
+                "@SessionStatus",
+                SqlDbType.TinyInt
+            ).Value =
+            CByte(SessionStatus.Active)
+
+                conn.Open()
+
+                Dim result As Object =
+                cmd.ExecuteScalar()
+
+                Return result IsNot Nothing
+
+            End Using
+
+        End Using
+
+    End Function
+
+    Public Shared Function DoesDeviceMatchType(
+    deviceID As Integer,
+    deviceTypeID As Integer
+) As Boolean
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException(
+                "Invalid DeviceID."
+            )
+        End If
+
+        If deviceTypeID <= 0 Then
+            Throw New ArgumentException(
+                "Invalid DeviceTypeID."
+            )
+        End If
+
+        Using conn As New SqlConnection(
+            DataAccessSettings.connectionString
+        )
+
+            Dim query As String =
+            "SELECT 1
+         FROM Devices
+         WHERE
+            DeviceID = @DeviceID
+            AND DeviceTypeID = @DeviceTypeID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add(
+                    "@DeviceID",
+                    SqlDbType.Int
+                ).Value = deviceID
+
+                cmd.Parameters.Add(
+                    "@DeviceTypeID",
+                    SqlDbType.Int
+                ).Value = deviceTypeID
+
+                conn.Open()
+
+                Dim result As Object =
+                    cmd.ExecuteScalar()
+
+                Return result IsNot Nothing
+
+            End Using
+
+        End Using
+
+    End Function
+
 End Class

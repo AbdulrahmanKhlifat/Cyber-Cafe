@@ -238,7 +238,7 @@ Public Class SessionRepo
 
     End Function
 
-    Public Shared Function GetActiveSessions() As List(Of SessionDTO)
+    Public Shared Function GetRuntimeSessions() As List(Of SessionDTO)
 
         Dim activeSessions As New List(Of SessionDTO)
 
@@ -257,11 +257,12 @@ Public Class SessionRepo
                 ,[EndTime]
                 ,[LastResumeTime]
             FROM Sessions
-            WHERE SessionStatus = @Status"
+            WHERE SessionStatus in (@Active, @Paused)"
 
             Using cmd As New SqlCommand(query, conn)
 
-                cmd.Parameters.Add("@Status", SqlDbType.TinyInt).Value = CByte(SessionStatus.Active)
+                cmd.Parameters.Add("@Active", SqlDbType.TinyInt).Value = CByte(SessionStatus.Active)
+                cmd.Parameters.Add("@Paused", SqlDbType.TinyInt).Value = CByte(SessionStatus.Paused)
 
                 conn.Open()
 
@@ -469,6 +470,55 @@ Public Class SessionRepo
 
     End Function
 
+    Private Shared Function MapSession(reader As SqlDataReader) As SessionDTO
+
+        Dim session As New SessionDTO()
+
+        session.SessionID =
+            Convert.ToInt32(reader("SessionID"))
+
+        session.CreatedByAdminID =
+            Convert.ToInt32(reader("CreatedByAdminID"))
+
+        session.CustomerID =
+            Convert.ToInt32(reader("CustomerID"))
+
+        session.DeviceTypeID =
+            Convert.ToInt32(reader("DeviceTypeID"))
+
+        session.CurrentDeviceID =
+            If(IsDBNull(reader("CurrentDeviceID")),
+               CType(Nothing, Integer?),
+               Convert.ToInt32(reader("CurrentDeviceID")))
+
+        session.SessionStatus =
+            CType(Convert.ToByte(reader("SessionStatus")),
+                  SessionStatus)
+
+        session.RemainingSeconds =
+            Convert.ToInt32(reader("RemainingSeconds"))
+
+        session.SessionRatePerHour =
+            Convert.ToDecimal(reader("SessionRatePerHour"))
+
+        session.StartTime =
+            Convert.ToDateTime(reader("StartTime"))
+
+        session.EndTime =
+            If(IsDBNull(reader("EndTime")),
+               CType(Nothing, DateTime?),
+               Convert.ToDateTime(reader("EndTime")))
+
+        session.LastResumeTime =
+            If(IsDBNull(reader("LastResumeTime")),
+               CType(Nothing, DateTime?),
+               Convert.ToDateTime(reader("LastResumeTime")))
+
+        Return session
+
+    End Function
+
+    'Persistence Methods
     Public Shared Function MarkSessionEnded(
     sessionID As Integer,
     endTime As DateTime
@@ -523,51 +573,86 @@ Public Class SessionRepo
 
     End Function
 
-    Private Shared Function MapSession(reader As SqlDataReader) As SessionDTO
+    Public Shared Function PauseSession(
+    sessionID As Integer,
+    remainingSeconds As Integer
+) As Boolean
 
-        Dim session As New SessionDTO()
+        If remainingSeconds < 0 Then
+            Throw New ArgumentException(
+            "RemainingSeconds cannot be negative."
+        )
+        End If
 
-        session.SessionID =
-            Convert.ToInt32(reader("SessionID"))
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-        session.CreatedByAdminID =
-            Convert.ToInt32(reader("CreatedByAdminID"))
+            Dim query As String =
+        "UPDATE Sessions
+         SET
+            SessionStatus = @SessionStatus,
+            RemainingSeconds = @RemainingSeconds
+         WHERE SessionID = @SessionID"
 
-        session.CustomerID =
-            Convert.ToInt32(reader("CustomerID"))
+            Using cmd As New SqlCommand(query, conn)
 
-        session.DeviceTypeID =
-            Convert.ToInt32(reader("DeviceTypeID"))
+                cmd.Parameters.Add(
+                "@SessionStatus",
+                SqlDbType.TinyInt
+            ).Value =
+            CByte(SessionStatus.Paused)
 
-        session.CurrentDeviceID =
-            If(IsDBNull(reader("CurrentDeviceID")),
-               CType(Nothing, Integer?),
-               Convert.ToInt32(reader("CurrentDeviceID")))
+                cmd.Parameters.Add(
+                "@RemainingSeconds",
+                SqlDbType.Int
+            ).Value = remainingSeconds
 
-        session.SessionStatus =
-            CType(Convert.ToByte(reader("SessionStatus")),
-                  SessionStatus)
+                cmd.Parameters.Add(
+                "@SessionID",
+                SqlDbType.Int
+            ).Value = sessionID
 
-        session.RemainingSeconds =
-            Convert.ToInt32(reader("RemainingSeconds"))
+                conn.Open()
 
-        session.SessionRatePerHour =
-            Convert.ToDecimal(reader("SessionRatePerHour"))
+                Dim rowsAffected As Integer =
+                cmd.ExecuteNonQuery()
 
-        session.StartTime =
-            Convert.ToDateTime(reader("StartTime"))
+                Return rowsAffected > 0
 
-        session.EndTime =
-            If(IsDBNull(reader("EndTime")),
-               CType(Nothing, DateTime?),
-               Convert.ToDateTime(reader("EndTime")))
+            End Using
 
-        session.LastResumeTime =
-            If(IsDBNull(reader("LastResumeTime")),
-               CType(Nothing, DateTime?),
-               Convert.ToDateTime(reader("LastResumeTime")))
+        End Using
 
-        Return session
+    End Function
+
+    Public Shared Function ResumeSession(sessionID As Integer, LastResumeTime As DateTime, deviceID As Integer) As Boolean
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Dim query As String =
+        "UPDATE Sessions
+         SET
+            SessionStatus = @SessionStatus,
+            LastResumeTime = @LastResumeTime,
+            CurrentDeviceID = @DeviceID
+         WHERE SessionID = @SessionID"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add("@SessionStatus", SqlDbType.TinyInt).Value = CByte(SessionStatus.Active)
+                cmd.Parameters.Add("@LastResumeTime", SqlDbType.DateTime2).Value = LastResumeTime
+                cmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
+                cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = sessionID
+
+                conn.Open()
+
+                Dim rowsAffected As Integer =
+                cmd.ExecuteNonQuery()
+
+                Return rowsAffected > 0
+
+            End Using
+
+        End Using
 
     End Function
 
