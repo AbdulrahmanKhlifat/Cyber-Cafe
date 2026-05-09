@@ -5,78 +5,118 @@ Public Class SessionRepo
 
     Public Shared Function InsertSession(session As SessionDTO) As Integer
 
-        Using con As New SqlConnection(DataAccessSettings.connectionString),
-          cmd As New SqlCommand("
-            INSERT INTO Sessions
-            (
-                CreatedByAdminID,
-                CustomerID,
-                DeviceTypeID,
-                CurrentDeviceID,
-                SessionStatus,
-                RemainingSeconds,
-                SessionRatePerHour,
-                StartTime,
-                EndTime,
-                LastResumeTime
-            )
-            VALUES
-            (
-                @CreatedByAdminID,
-                @CustomerID,
-                @DeviceTypeID,
-                @CurrentDeviceID,
-                @SessionStatus,
-                @RemainingSeconds,
-                @SessionRatePerHour,
-                @StartTime,
-                @EndTime,
-                @LastResumeTime
-            );
-
-            SELECT SCOPE_IDENTITY();
-          ", con)
-
-            cmd.Parameters.Add("@CreatedByAdminID", SqlDbType.Int).Value =
-            session.CreatedByAdminID
-
-            cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value =
-            session.CustomerID
-
-            cmd.Parameters.Add("@DeviceTypeID", SqlDbType.Int).Value =
-            session.DeviceTypeID
-
-            cmd.Parameters.Add("@CurrentDeviceID", SqlDbType.Int).Value =
-            If(session.CurrentDeviceID.HasValue,
-               session.CurrentDeviceID.Value,
-               DBNull.Value)
-
-            cmd.Parameters.Add("@SessionStatus", SqlDbType.TinyInt).Value =
-            CByte(session.SessionStatus)
-
-            cmd.Parameters.Add("@RemainingSeconds", SqlDbType.Int).Value =
-            session.RemainingSeconds
-
-            cmd.Parameters.Add("@SessionRatePerHour", SqlDbType.Decimal).Value =
-            session.SessionRatePerHour
-
-            cmd.Parameters("@SessionRatePerHour").Precision = 5
-            cmd.Parameters("@SessionRatePerHour").Scale = 2
-
-            cmd.Parameters.Add("@StartTime", SqlDbType.DateTime2).Value =
-            session.StartTime
-
-            cmd.Parameters.Add("@EndTime", SqlDbType.DateTime2).Value =
-            If(session.EndTime.HasValue,
-               session.EndTime.Value,
-               DBNull.Value)
-
-            cmd.Parameters.Add("@LastResumeTime", SqlDbType.DateTime2).Value =
-            session.LastResumeTime
+        Using con As New SqlConnection(DataAccessSettings.connectionString)
 
             con.Open()
 
-            Return Convert.ToInt32(cmd.ExecuteScalar())
+            Using transaction = con.BeginTransaction()
+
+                Try
+
+                    Dim sessionID As Integer
+
+                    Using cmd As New SqlCommand("
+                    INSERT INTO Sessions
+                    (
+                        CreatedByAdminID,
+                        CustomerID,
+                        DeviceTypeID,
+                        CurrentDeviceID,
+                        SessionStatus,
+                        RemainingSeconds,
+                        SessionRatePerHour,
+                        StartTime,
+                        EndTime,
+                        LastResumeTime,
+                        SessionCost
+                    )
+                    VALUES
+                    (
+                        @CreatedByAdminID,
+                        @CustomerID,
+                        @DeviceTypeID,
+                        @CurrentDeviceID,
+                        @SessionStatus,
+                        @RemainingSeconds,
+                        @SessionRatePerHour,
+                        @StartTime,
+                        @EndTime,
+                        @LastResumeTime,
+                        @SessionCost
+                    );
+
+                    SELECT SCOPE_IDENTITY();
+                ", con, transaction)
+
+                        cmd.Parameters.Add("@CreatedByAdminID", SqlDbType.Int).Value =
+                        session.CreatedByAdminID
+
+                        cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value =
+                        session.CustomerID
+
+                        cmd.Parameters.Add("@DeviceTypeID", SqlDbType.Int).Value =
+                        session.DeviceTypeID
+
+                        cmd.Parameters.Add("@CurrentDeviceID", SqlDbType.Int).Value =
+                        If(session.CurrentDeviceID.HasValue,
+                           session.CurrentDeviceID.Value,
+                           DBNull.Value)
+
+                        cmd.Parameters.Add("@SessionStatus", SqlDbType.TinyInt).Value =
+                        CByte(session.SessionStatus)
+
+                        cmd.Parameters.Add("@RemainingSeconds", SqlDbType.Int).Value =
+                        session.RemainingSeconds
+
+                        cmd.Parameters.Add("@SessionRatePerHour", SqlDbType.Decimal).Value =
+                        session.SessionRatePerHour
+
+                        cmd.Parameters("@SessionRatePerHour").Precision = 5
+                        cmd.Parameters("@SessionRatePerHour").Scale = 2
+
+                        cmd.Parameters.Add("@StartTime", SqlDbType.DateTime2).Value =
+                        session.StartTime
+
+                        cmd.Parameters.Add("@EndTime", SqlDbType.DateTime2).Value =
+                        If(session.EndTime.HasValue,
+                           session.EndTime.Value,
+                           DBNull.Value)
+
+                        cmd.Parameters.Add("@LastResumeTime", SqlDbType.DateTime2).Value =
+                        session.LastResumeTime
+
+                        cmd.Parameters.Add("@SessionCost", SqlDbType.Decimal).Value =
+                        session.SessionCost
+
+                        cmd.Parameters("@SessionCost").Precision = 10
+                        cmd.Parameters("@SessionCost").Scale = 2
+
+                        sessionID =
+                        Convert.ToInt32(cmd.ExecuteScalar())
+
+                    End Using
+
+
+                    Dim deviceStatusUpdated As Boolean = DeviceRepo.UpdateDeviceStatus(session.CurrentDeviceID.Value, enDeviceStatus.InUse, transaction)
+
+                    If Not deviceStatusUpdated Then
+                        transaction.Rollback()
+                        Throw New Exception("Failed to update device status.")
+                    End If
+
+                    transaction.Commit()
+
+                    Return sessionID
+
+                Catch
+
+                    transaction.Rollback()
+
+                    Throw
+
+                End Try
+
+            End Using
 
         End Using
 
@@ -256,6 +296,7 @@ Public Class SessionRepo
                 ,[StartTime]
                 ,[EndTime]
                 ,[LastResumeTime]
+                ,[SessionCost]
             FROM Sessions
             WHERE SessionStatus in (@Active, @Paused)"
 
@@ -514,6 +555,8 @@ Public Class SessionRepo
                CType(Nothing, DateTime?),
                Convert.ToDateTime(reader("LastResumeTime")))
 
+        session.SessionCost = Convert.ToDecimal(reader("SessionCost"))
+
         Return session
 
     End Function
@@ -521,51 +564,75 @@ Public Class SessionRepo
     'Persistence Methods
     Public Shared Function MarkSessionEnded(
     sessionID As Integer,
-    endTime As DateTime
+    endTime As DateTime,
+    deviceID As Integer
 ) As Boolean
 
         If sessionID <= 0 Then
             Throw New ArgumentException(
-            "Invalid SessionID."
-        )
+            "Invalid SessionID.")
         End If
 
         Using conn As New SqlConnection(
-        DataAccessSettings.connectionString
-    )
+        DataAccessSettings.connectionString)
 
-            Dim query As String =
-        "UPDATE Sessions
-         SET
-            SessionStatus = @SessionStatus,
-            RemainingSeconds = 0,
-            EndTime = @EndTime
-         WHERE SessionID = @SessionID"
+            conn.Open()
 
-            Using cmd As New SqlCommand(query, conn)
+            Using transaction = conn.BeginTransaction()
 
-                cmd.Parameters.Add(
-                "@SessionStatus",
-                SqlDbType.TinyInt
-            ).Value =
-            CByte(SessionStatus.Ended)
+                Try
 
-                cmd.Parameters.Add(
-                "@EndTime",
-                SqlDbType.DateTime2
-            ).Value = endTime
+                    Const query As String =
+                    "UPDATE Sessions
+                     SET
+                        SessionStatus = @SessionStatus,
+                        RemainingSeconds = 0,
+                        EndTime = @EndTime
+                     WHERE SessionID = @SessionID"
 
-                cmd.Parameters.Add(
-                "@SessionID",
-                SqlDbType.Int
-            ).Value = sessionID
+                    Dim rowsAffected As Integer
 
-                conn.Open()
+                    Using cmd As New SqlCommand(
+                    query,
+                    conn,
+                    transaction)
 
-                Dim rowsAffected As Integer =
-                cmd.ExecuteNonQuery()
+                        cmd.Parameters.Add(
+                        "@SessionStatus",
+                        SqlDbType.TinyInt).Value =
+                        CByte(SessionStatus.Ended)
 
-                Return rowsAffected > 0
+                        cmd.Parameters.Add(
+                        "@EndTime",
+                        SqlDbType.DateTime2).Value =
+                        endTime
+
+                        cmd.Parameters.Add(
+                        "@SessionID",
+                        SqlDbType.Int).Value =
+                        sessionID
+
+                        rowsAffected =
+                        cmd.ExecuteNonQuery()
+
+                    End Using
+
+                    DeviceRepo.UpdateDeviceStatus(
+                    deviceID,
+                    enDeviceStatus.Available,
+                    transaction)
+
+                    transaction.Commit()
+
+                    Return rowsAffected > 0
+
+                Catch
+
+                    transaction.Rollback()
+
+                    Throw
+
+                End Try
 
             End Using
 
@@ -575,48 +642,74 @@ Public Class SessionRepo
 
     Public Shared Function PauseSession(
     sessionID As Integer,
-    remainingSeconds As Integer
+    remainingSeconds As Integer,
+    deviceID As Integer
 ) As Boolean
 
         If remainingSeconds < 0 Then
             Throw New ArgumentException(
-            "RemainingSeconds cannot be negative."
-        )
+            "RemainingSeconds cannot be negative.")
         End If
 
-        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString)
 
-            Dim query As String =
-        "UPDATE Sessions
-         SET
-            SessionStatus = @SessionStatus,
-            RemainingSeconds = @RemainingSeconds
-         WHERE SessionID = @SessionID"
+            conn.Open()
 
-            Using cmd As New SqlCommand(query, conn)
+            Using transaction = conn.BeginTransaction()
 
-                cmd.Parameters.Add(
-                "@SessionStatus",
-                SqlDbType.TinyInt
-            ).Value =
-            CByte(SessionStatus.Paused)
+                Try
 
-                cmd.Parameters.Add(
-                "@RemainingSeconds",
-                SqlDbType.Int
-            ).Value = remainingSeconds
+                    Const query As String =
+                    "UPDATE Sessions
+                     SET
+                        SessionStatus = @SessionStatus,
+                        RemainingSeconds = @RemainingSeconds
+                     WHERE SessionID = @SessionID"
 
-                cmd.Parameters.Add(
-                "@SessionID",
-                SqlDbType.Int
-            ).Value = sessionID
+                    Dim rowsAffected As Integer
 
-                conn.Open()
+                    Using cmd As New SqlCommand(
+                    query,
+                    conn,
+                    transaction)
 
-                Dim rowsAffected As Integer =
-                cmd.ExecuteNonQuery()
+                        cmd.Parameters.Add(
+                        "@SessionStatus",
+                        SqlDbType.TinyInt).Value =
+                        CByte(SessionStatus.Paused)
 
-                Return rowsAffected > 0
+                        cmd.Parameters.Add(
+                        "@RemainingSeconds",
+                        SqlDbType.Int).Value =
+                        remainingSeconds
+
+                        cmd.Parameters.Add(
+                        "@SessionID",
+                        SqlDbType.Int).Value =
+                        sessionID
+
+                        rowsAffected =
+                        cmd.ExecuteNonQuery()
+
+                    End Using
+
+                    DeviceRepo.UpdateDeviceStatus(
+                    deviceID,
+                    enDeviceStatus.Available,
+                    transaction)
+
+                    transaction.Commit()
+
+                    Return rowsAffected > 0
+
+                Catch
+
+                    transaction.Rollback()
+
+                    Throw
+
+                End Try
 
             End Using
 
@@ -624,31 +717,77 @@ Public Class SessionRepo
 
     End Function
 
-    Public Shared Function ResumeSession(sessionID As Integer, LastResumeTime As DateTime, deviceID As Integer) As Boolean
+    Public Shared Function ResumeSession(
+    sessionID As Integer,
+    lastResumeTime As DateTime,
+    deviceID As Integer
+) As Boolean
 
-        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString)
 
-            Dim query As String =
-        "UPDATE Sessions
-         SET
-            SessionStatus = @SessionStatus,
-            LastResumeTime = @LastResumeTime,
-            CurrentDeviceID = @DeviceID
-         WHERE SessionID = @SessionID"
+            conn.Open()
 
-            Using cmd As New SqlCommand(query, conn)
+            Using transaction = conn.BeginTransaction()
 
-                cmd.Parameters.Add("@SessionStatus", SqlDbType.TinyInt).Value = CByte(SessionStatus.Active)
-                cmd.Parameters.Add("@LastResumeTime", SqlDbType.DateTime2).Value = LastResumeTime
-                cmd.Parameters.Add("@DeviceID", SqlDbType.Int).Value = deviceID
-                cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = sessionID
+                Try
 
-                conn.Open()
+                    Const query As String =
+                    "UPDATE Sessions
+                     SET
+                        SessionStatus = @SessionStatus,
+                        LastResumeTime = @LastResumeTime,
+                        CurrentDeviceID = @DeviceID
+                     WHERE SessionID = @SessionID"
 
-                Dim rowsAffected As Integer =
-                cmd.ExecuteNonQuery()
+                    Dim rowsAffected As Integer
 
-                Return rowsAffected > 0
+                    Using cmd As New SqlCommand(
+                    query,
+                    conn,
+                    transaction)
+
+                        cmd.Parameters.Add(
+                        "@SessionStatus",
+                        SqlDbType.TinyInt).Value =
+                        CByte(SessionStatus.Active)
+
+                        cmd.Parameters.Add(
+                        "@LastResumeTime",
+                        SqlDbType.DateTime2).Value =
+                        lastResumeTime
+
+                        cmd.Parameters.Add(
+                        "@DeviceID",
+                        SqlDbType.Int).Value =
+                        deviceID
+
+                        cmd.Parameters.Add(
+                        "@SessionID",
+                        SqlDbType.Int).Value =
+                        sessionID
+
+                        rowsAffected =
+                        cmd.ExecuteNonQuery()
+
+                    End Using
+
+                    DeviceRepo.UpdateDeviceStatus(
+                    deviceID,
+                    enDeviceStatus.InUse,
+                    transaction)
+
+                    transaction.Commit()
+
+                    Return rowsAffected > 0
+
+                Catch
+
+                    transaction.Rollback()
+
+                    Throw
+
+                End Try
 
             End Using
 

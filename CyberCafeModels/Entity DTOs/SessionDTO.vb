@@ -22,4 +22,6 @@
 
     Public Property LastResumeTime As DateTime
 
+    Public Property SessionCost As Decimal
+
 End Class

@@ -76,8 +76,7 @@ Public Class frmDevices
 
     Private Sub AddDeviceToFlowLayout(device As DeviceDTO)
 
-        Dim ctrl As New ctrDeviceInfo()
-        ctrl.LoadData(device)
+        Dim ctrl As New ctrDeviceInfo(device)
         ctrl.ContextMenuStrip = DeviceContextMenu
         flpDevices.Controls.Add(ctrl)
 

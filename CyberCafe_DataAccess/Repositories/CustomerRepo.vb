@@ -1,5 +1,6 @@
 Imports System.Data.SqlClient
 Imports CyberCafe_DataAccess.CyberCafe.DAL
+Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class CustomerRepo
@@ -287,27 +288,55 @@ Public Class CustomerRepo
     ''' <param name="search"></param>
     ''' <returns></returns>
     Public Shared Function GetTop10Customers(search As String) As List(Of CustomerDTO)
+
         Dim result As New List(Of CustomerDTO)
+
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
-            Dim query As String = "SELECT TOP 10 U.UserID, U.Name FROM Customers C " &
-                                  "JOIN Users U ON C.UserID = U.UserID " &
-                                  "WHERE U.Name LIKE @Search OR @Search = '' " &
-                                  "ORDER BY U.Name ASC"
+            Dim query As String =
+            "SELECT TOP 10 U.UserID, U.Name " &
+            "FROM Customers C " &
+            "JOIN Users U ON C.UserID = U.UserID " &
+            "WHERE (U.Name LIKE @Search OR @Search = '%%') " &
+            "AND NOT EXISTS ( " &
+            "   SELECT 1 " &
+            "   FROM Sessions S " &
+            "   WHERE S.CustomerID = C.UserID " &
+            "   AND S.SessionStatus = @ActiveStatus " &
+            ") " &
+            "ORDER BY U.Name ASC"
+
             Using cmd As New SqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@Search", "%" & search & "%")
+
+                cmd.Parameters.AddWithValue(
+                "@Search",
+                "%" & search & "%")
+
+                cmd.Parameters.AddWithValue(
+                "@ActiveStatus",
+                CInt(SessionStatus.Active))
+
                 conn.Open()
+
                 Using reader = cmd.ExecuteReader()
+
                     While reader.Read()
+
                         result.Add(New CustomerDTO With {
-                            .UserID = CInt(reader("UserID")),
-                            .Name = reader("Name").ToString()
-                        })
+                        .UserID = CInt(reader("UserID")),
+                        .Name = reader("Name").ToString()
+                    })
+
                     End While
+
                 End Using
+
             End Using
+
         End Using
+
         Return result
+
     End Function
 
 End Class

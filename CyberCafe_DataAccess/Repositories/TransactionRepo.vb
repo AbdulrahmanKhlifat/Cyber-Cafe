@@ -8,9 +8,9 @@ Public Class TransactionRepo
 
         Using conn As SqlConnection = New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "INSERT INTO Transactions 
-                                  (CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID) 
+                                  (CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID, IsDeleted) 
                                   VALUES 
-                                  (@CustomerID, @ProcessedByAdminID, @TransactionType, @TransactionDate, @TransactionNotes, @SessionID);
+                                  (@CustomerID, @ProcessedByAdminID, @TransactionType, @TransactionDate, @TransactionNotes, @SessionID, 0);
                                   SELECT SCOPE_IDENTITY();"
 
             Using cmd As SqlCommand = New SqlCommand(query, conn)
@@ -61,7 +61,7 @@ Public Class TransactionRepo
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "SELECT TransactionID, CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID
                                    FROM Transactions 
-                                   WHERE TransactionID = @TransactionID;"
+                                   WHERE TransactionID = @TransactionID AND IsDeleted = 0;"
 
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = transactionID
@@ -144,7 +144,7 @@ Public Class TransactionRepo
             Dim query As String = "SELECT COUNT(TransactionID) AS TotalTransactions, 
                                       ISNULL(SUM(PaidAmount), 0) AS TotalRevenue
                                FROM Transactions 
-                               WHERE CAST(TransactionDate AS DATE) = CAST(GETDATE() AS DATE);"
+                               WHERE CAST(TransactionDate AS DATE) = CAST(GETDATE() AS DATE) and IsDeleted = 0;"
 
             Using cmd As New SqlCommand(query, conn)
 

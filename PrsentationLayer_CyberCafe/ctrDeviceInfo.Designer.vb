@@ -1,17 +1,44 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿Imports BusinessLayer_CyberCafe
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ctrDeviceInfo
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+
         Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
+
+            If disposing Then
+
+                RemoveHandler SessionService.SessionTicked,
+                AddressOf OnSessionTicked
+
+                RemoveHandler SessionService.SessionStarted,
+                AddressOf OnSessionStart
+
+                RemoveHandler SessionService.SessionResumed,
+                AddressOf OnSessionResume
+
+                RemoveHandler SessionService.SessionPaused,
+                AddressOf OnSessionPause
+
+                RemoveHandler SessionService.SessionEnded,
+                AddressOf OnSessionEnd
+
+                If components IsNot Nothing Then
+                    components.Dispose()
+                End If
+
             End If
+
         Finally
+
             MyBase.Dispose(disposing)
+
         End Try
+
     End Sub
 
     'Required by the Windows Form Designer
@@ -23,12 +50,14 @@ Partial Class ctrDeviceInfo
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pnlDevice = New Guna.UI2.WinForms.Guna2Panel()
+        Me.lblDeviceType = New System.Windows.Forms.Label()
+        Me.lblRemainingTime = New System.Windows.Forms.Label()
         Me.pbStatusDot = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.gnSeparator = New Guna.UI2.WinForms.Guna2Separator()
-        Me.lblDeviceType = New System.Windows.Forms.Label()
         Me.lblDeviceName = New System.Windows.Forms.Label()
         Me.pbDeviceIcon = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.lblRemainingTimeHeader = New System.Windows.Forms.Label()
         Me.pnlDevice.SuspendLayout()
         CType(Me.pbStatusDot, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbDeviceIcon, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -37,12 +66,14 @@ Partial Class ctrDeviceInfo
         'pnlDevice
         '
         Me.pnlDevice.BorderRadius = 10
+        Me.pnlDevice.Controls.Add(Me.lblDeviceType)
+        Me.pnlDevice.Controls.Add(Me.lblRemainingTime)
         Me.pnlDevice.Controls.Add(Me.pbStatusDot)
         Me.pnlDevice.Controls.Add(Me.lblStatus)
         Me.pnlDevice.Controls.Add(Me.gnSeparator)
-        Me.pnlDevice.Controls.Add(Me.lblDeviceType)
         Me.pnlDevice.Controls.Add(Me.lblDeviceName)
         Me.pnlDevice.Controls.Add(Me.pbDeviceIcon)
+        Me.pnlDevice.Controls.Add(Me.lblRemainingTimeHeader)
         Me.pnlDevice.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.pnlDevice.Location = New System.Drawing.Point(0, 0)
@@ -50,12 +81,37 @@ Partial Class ctrDeviceInfo
         Me.pnlDevice.Size = New System.Drawing.Size(208, 207)
         Me.pnlDevice.TabIndex = 0
         '
+        'lblDeviceType
+        '
+        Me.lblDeviceType.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.lblDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(135, Byte), Integer))
+        Me.lblDeviceType.Location = New System.Drawing.Point(18, 115)
+        Me.lblDeviceType.Name = "lblDeviceType"
+        Me.lblDeviceType.Size = New System.Drawing.Size(150, 25)
+        Me.lblDeviceType.TabIndex = 21
+        Me.lblDeviceType.Text = "Type"
+        Me.lblDeviceType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblRemainingTime
+        '
+        Me.lblRemainingTime.AutoSize = True
+        Me.lblRemainingTime.BackColor = System.Drawing.Color.Transparent
+        Me.lblRemainingTime.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRemainingTime.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblRemainingTime.Location = New System.Drawing.Point(129, 186)
+        Me.lblRemainingTime.Name = "lblRemainingTime"
+        Me.lblRemainingTime.Size = New System.Drawing.Size(55, 16)
+        Me.lblRemainingTime.TabIndex = 27
+        Me.lblRemainingTime.Text = "00:00:00"
+        Me.lblRemainingTime.Visible = False
+        '
         'pbStatusDot
         '
         Me.pbStatusDot.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.pbStatusDot.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.pbStatusDot.ImageRotate = 0!
-        Me.pbStatusDot.Location = New System.Drawing.Point(22, 170)
+        Me.pbStatusDot.Location = New System.Drawing.Point(14, 166)
         Me.pbStatusDot.Name = "pbStatusDot"
         Me.pbStatusDot.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbStatusDot.Size = New System.Drawing.Size(12, 12)
@@ -67,7 +123,7 @@ Partial Class ctrDeviceInfo
         Me.lblStatus.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.lblStatus.Font = New System.Drawing.Font("Segoe UI Semibold", 11.0!, System.Drawing.FontStyle.Bold)
         Me.lblStatus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lblStatus.Location = New System.Drawing.Point(40, 162)
+        Me.lblStatus.Location = New System.Drawing.Point(32, 158)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(100, 28)
         Me.lblStatus.TabIndex = 24
@@ -82,18 +138,6 @@ Partial Class ctrDeviceInfo
         Me.gnSeparator.Name = "gnSeparator"
         Me.gnSeparator.Size = New System.Drawing.Size(190, 10)
         Me.gnSeparator.TabIndex = 22
-        '
-        'lblDeviceType
-        '
-        Me.lblDeviceType.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.lblDeviceType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lblDeviceType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(135, Byte), Integer))
-        Me.lblDeviceType.Location = New System.Drawing.Point(18, 115)
-        Me.lblDeviceType.Name = "lblDeviceType"
-        Me.lblDeviceType.Size = New System.Drawing.Size(150, 25)
-        Me.lblDeviceType.TabIndex = 21
-        Me.lblDeviceType.Text = "Type"
-        Me.lblDeviceType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblDeviceName
         '
@@ -119,6 +163,19 @@ Partial Class ctrDeviceInfo
         Me.pbDeviceIcon.TabIndex = 19
         Me.pbDeviceIcon.TabStop = False
         '
+        'lblTimeRemainingHeader
+        '
+        Me.lblRemainingTimeHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.lblRemainingTimeHeader.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblRemainingTimeHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(135, Byte), Integer))
+        Me.lblRemainingTimeHeader.Location = New System.Drawing.Point(11, 181)
+        Me.lblRemainingTimeHeader.Name = "lblTimeRemainingHeader"
+        Me.lblRemainingTimeHeader.Size = New System.Drawing.Size(121, 24)
+        Me.lblRemainingTimeHeader.TabIndex = 26
+        Me.lblRemainingTimeHeader.Text = "Time Remaining:"
+        Me.lblRemainingTimeHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblRemainingTimeHeader.Visible = False
+        '
         'ctrDeviceInfo
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -127,6 +184,7 @@ Partial Class ctrDeviceInfo
         Me.Name = "ctrDeviceInfo"
         Me.Size = New System.Drawing.Size(208, 207)
         Me.pnlDevice.ResumeLayout(False)
+        Me.pnlDevice.PerformLayout()
         CType(Me.pbStatusDot, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbDeviceIcon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -140,4 +198,6 @@ Partial Class ctrDeviceInfo
     Friend WithEvents lblDeviceType As Label
     Friend WithEvents lblDeviceName As Label
     Friend WithEvents pbDeviceIcon As Guna.UI2.WinForms.Guna2PictureBox
+    Friend WithEvents lblRemainingTimeHeader As Label
+    Friend WithEvents lblRemainingTime As Label
 End Class

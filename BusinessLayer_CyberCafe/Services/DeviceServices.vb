@@ -69,4 +69,24 @@ Public Class DeviceServices
 
     End Sub
 
+    Public Shared Function GetDeviceStatus(deviceID As Integer) As enDeviceStatus
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException("Invalid DeviceID")
+        End If
+
+        Try
+
+            Return CType(DeviceRepo.GetDeviceStatus(deviceID), enDeviceStatus)
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+            Throw
+
+        End Try
+
+    End Function
+
 End Class

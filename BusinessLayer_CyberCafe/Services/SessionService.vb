@@ -45,7 +45,7 @@ Public Class SessionService
 
                     If TryGetSessionEndTime(sessionDTO, endTime) Then
 
-                        SessionRepo.MarkSessionEnded(sessionDTO.SessionID, endTime)
+                        SessionRepo.MarkSessionEnded(sessionDTO.SessionID, endTime, sessionDTO.CurrentDeviceID.Value)
 
                         Continue For
 
@@ -76,6 +76,8 @@ Public Class SessionService
             Return True
 
         End If
+
+        session.RemainingSeconds = session.RemainingSeconds - difference.TotalSeconds
 
         Return False
 
@@ -109,7 +111,7 @@ Public Class SessionService
 
         Try
 
-            SessionRepo.MarkSessionEnded(session.SessionID, DateTime.Now)
+            SessionRepo.MarkSessionEnded(session.SessionID, DateTime.Now, session.CurrentDeviceID.Value)
 
             RaiseEvent SessionEnded(session)
 
@@ -134,10 +136,6 @@ Public Class SessionService
 
         If session.StartTime > DateTime.Now Then
             Throw New ArgumentException("Session StartTime cannot be in the future.")
-        End If
-
-        If session.StartTime = DateTime.MinValue Then
-            Throw New ArgumentException("Session StartTime was not set.")
         End If
 
         If session.RemainingSeconds <= 0 Then
@@ -165,10 +163,13 @@ Public Class SessionService
         ValidateSessionStart(session)
 
         Try
-
-            session.LastResumeTime = session.StartTime
+            Dim start = DateTime.Now
             session.SessionStatus = SessionStatus.Active
             session.EndTime = Nothing
+            session.StartTime = start
+            session.LastResumeTime = start
+
+            session.SessionCost = (session.RemainingSeconds / 3600D) * session.SessionRatePerHour
 
             session.SessionID = SessionRepo.InsertSession(session)
 
@@ -206,7 +207,7 @@ Public Class SessionService
                 Throw New InvalidOperationException("Only active sessions can be paused.")
             End If
 
-            Dim isPaused As Boolean = SessionRepo.PauseSession(active.SessionID, active.RemainingSeconds)
+            Dim isPaused As Boolean = SessionRepo.PauseSession(active.SessionID, active.RemainingSeconds, active.CurrentDeviceID)
 
             If isPaused Then
 

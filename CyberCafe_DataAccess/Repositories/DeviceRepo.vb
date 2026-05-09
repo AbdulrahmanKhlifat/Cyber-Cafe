@@ -351,4 +351,72 @@ Public Class DeviceRepo
 
     End Function
 
+    Public Shared Function GetDeviceStatus(deviceID As Integer) As enDeviceStatus
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException("Invalid DeviceID")
+        End If
+
+        Const query As String =
+        "SELECT Status FROM Devices WHERE DeviceID = @DeviceID"
+
+        Using connection As New SqlConnection(DataAccessSettings.connectionString),
+          command As New SqlCommand(query, connection)
+
+            command.Parameters.AddWithValue("@DeviceID", deviceID)
+
+            connection.Open()
+
+            Dim result As Object = command.ExecuteScalar()
+
+            If result Is Nothing Then
+                Throw New Exception("Device not found")
+            End If
+
+            Return CType(result, enDeviceStatus)
+
+        End Using
+
+    End Function
+
+    Public Shared Function UpdateDeviceStatus(
+    deviceID As Integer,
+    status As enDeviceStatus,
+    transaction As SqlTransaction
+) As Boolean
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException("Invalid DeviceID.")
+        End If
+
+        If transaction Is Nothing Then
+            Throw New ArgumentNullException(NameOf(transaction))
+        End If
+
+        Const query As String =
+            "UPDATE Devices
+         SET Status = @Status
+         WHERE DeviceID = @DeviceID"
+
+        Using cmd As New SqlCommand(
+            query,
+            transaction.Connection,
+            transaction)
+
+            cmd.Parameters.Add(
+                "@Status",
+                SqlDbType.TinyInt).Value =
+                CByte(status)
+
+            cmd.Parameters.Add(
+                "@DeviceID",
+                SqlDbType.Int).Value =
+                deviceID
+
+            Return cmd.ExecuteNonQuery() > 0
+
+        End Using
+
+    End Function
+
 End Class
