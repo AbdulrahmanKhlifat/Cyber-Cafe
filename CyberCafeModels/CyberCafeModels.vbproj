@@ -65,8 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity DTOs\AdminDTO.vb" />
+    <Compile Include="Entity DTOs\CartItemDTO.vb" />
+    <Compile Include="Entity DTOs\ConsumableDTO.vb" />
     <Compile Include="Entity DTOs\CustomerDTO.vb" />
+    <Compile Include="Entity DTOs\PurchaseDTO.vb" />
     <Compile Include="Entity DTOs\SessionDTO.vb" />
+    <Compile Include="Enums\PurchaseType.vb" />
     <Compile Include="Enums\SessionStatus.vb" />
     <Compile Include="ResponseDTOs\DailyTransactionsSummaryDTO.vb" />
     <Compile Include="ResponseDTOs\DashboardKpiDTO.vb" />

@@ -103,20 +103,28 @@ Public Class UIHelper
     End Function
 
     Public Shared Function LoadImageUnlocked(path As String) As Image
-        If Not IO.File.Exists(path) Then Return Nothing
+
+        If Not IO.File.Exists(path) Then
+            Return Nothing
+        End If
+
         Try
             Dim img As Image
-            ' نستخدم FileStream مع وضعية التشارك للسماح للعمليات الأخرى بالدخول
+
             Using fs As New FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
                 Using tempImg As Image = Image.FromStream(fs)
-                    ' السر هنا: ننشئ Bitmap جديدة تماماً من الصورة المؤقتة
-                    ' الـ Bitmap الجديدة ستكون في الرام ولا علاقة لها بالملف
+
                     img = New Bitmap(tempImg)
-                End Using ' هنا يتم إغلاق الـ tempImg والـ fs فوراً
+
+                End Using
+
             End Using
+
             Return img
+
         Catch
             Return Nothing
         End Try
+
     End Function
 End Class

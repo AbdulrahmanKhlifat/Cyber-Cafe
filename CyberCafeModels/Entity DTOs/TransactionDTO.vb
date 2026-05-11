@@ -13,4 +13,8 @@
 
     Public Property SessionID As Integer?
 
+    Public Property PaidAmount As Decimal
+
+    Public Property IsDeleted As Boolean
+
 End Class

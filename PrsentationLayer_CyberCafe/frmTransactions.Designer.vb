@@ -130,7 +130,7 @@ Partial Class frmTransactions
         Me.Label2.ForeColor = System.Drawing.Color.LightGray
         Me.Label2.Location = New System.Drawing.Point(14, 128)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(168, 23)
+        Me.Label2.Size = New System.Drawing.Size(129, 17)
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "Processed By Admin:"
         '
@@ -161,7 +161,7 @@ Partial Class frmTransactions
         Me.Label1.ForeColor = System.Drawing.Color.LightGray
         Me.Label1.Location = New System.Drawing.Point(12, 248)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(141, 23)
+        Me.Label1.Size = New System.Drawing.Size(108, 17)
         Me.Label1.TabIndex = 19
         Me.Label1.Text = "Transaction Type:"
         '
@@ -230,7 +230,7 @@ Partial Class frmTransactions
         Me.lblServiceCharge.ForeColor = System.Drawing.Color.LightGray
         Me.lblServiceCharge.Location = New System.Drawing.Point(12, 189)
         Me.lblServiceCharge.Name = "lblServiceCharge"
-        Me.lblServiceCharge.Size = New System.Drawing.Size(127, 23)
+        Me.lblServiceCharge.Size = New System.Drawing.Size(98, 17)
         Me.lblServiceCharge.TabIndex = 9
         Me.lblServiceCharge.Text = "Service Charge:"
         '
@@ -261,7 +261,7 @@ Partial Class frmTransactions
         Me.lblCustomerName.ForeColor = System.Drawing.Color.LightGray
         Me.lblCustomerName.Location = New System.Drawing.Point(14, 68)
         Me.lblCustomerName.Name = "lblCustomerName"
-        Me.lblCustomerName.Size = New System.Drawing.Size(139, 23)
+        Me.lblCustomerName.Size = New System.Drawing.Size(106, 17)
         Me.lblCustomerName.TabIndex = 3
         Me.lblCustomerName.Text = "Customer Name:"
         '
@@ -273,7 +273,7 @@ Partial Class frmTransactions
         Me.lblDetailsTitle.ForeColor = System.Drawing.Color.White
         Me.lblDetailsTitle.Location = New System.Drawing.Point(20, 20)
         Me.lblDetailsTitle.Name = "lblDetailsTitle"
-        Me.lblDetailsTitle.Size = New System.Drawing.Size(242, 28)
+        Me.lblDetailsTitle.Size = New System.Drawing.Size(192, 21)
         Me.lblDetailsTitle.TabIndex = 0
         Me.lblDetailsTitle.Text = "TRANSACTION DETAILS:"
         '
@@ -301,7 +301,7 @@ Partial Class frmTransactions
         Me.lblTransTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblTransTitle.Location = New System.Drawing.Point(84, 10)
         Me.lblTransTitle.Name = "lblTransTitle"
-        Me.lblTransTitle.Size = New System.Drawing.Size(269, 37)
+        Me.lblTransTitle.Size = New System.Drawing.Size(204, 30)
         Me.lblTransTitle.TabIndex = 1
         Me.lblTransTitle.Text = "Transactions Today:"
         '
@@ -313,7 +313,7 @@ Partial Class frmTransactions
         Me.lblTransNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblTransNum.Location = New System.Drawing.Point(84, 44)
         Me.lblTransNum.Name = "lblTransNum"
-        Me.lblTransNum.Size = New System.Drawing.Size(69, 54)
+        Me.lblTransNum.Size = New System.Drawing.Size(56, 45)
         Me.lblTransNum.TabIndex = 0
         Me.lblTransNum.Text = "42"
         '
@@ -359,7 +359,7 @@ Partial Class frmTransactions
         Me.Label3.ForeColor = System.Drawing.Color.LightGray
         Me.Label3.Location = New System.Drawing.Point(341, 32)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 28)
+        Me.Label3.Size = New System.Drawing.Size(50, 21)
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "From:"
         '
@@ -371,7 +371,7 @@ Partial Class frmTransactions
         Me.Label4.ForeColor = System.Drawing.Color.LightGray
         Me.Label4.Location = New System.Drawing.Point(13, 32)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(132, 28)
+        Me.Label4.Size = New System.Drawing.Size(105, 21)
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "Filter By Type:"
         '
@@ -383,7 +383,7 @@ Partial Class frmTransactions
         Me.lblMoney.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblMoney.Location = New System.Drawing.Point(116, 42)
         Me.lblMoney.Name = "lblMoney"
-        Me.lblMoney.Size = New System.Drawing.Size(206, 54)
+        Me.lblMoney.Size = New System.Drawing.Size(164, 45)
         Me.lblMoney.TabIndex = 0
         Me.lblMoney.Text = "$1,245.00"
         '
@@ -395,7 +395,7 @@ Partial Class frmTransactions
         Me.Label5.ForeColor = System.Drawing.Color.LightGray
         Me.Label5.Location = New System.Drawing.Point(649, 32)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(36, 28)
+        Me.Label5.Size = New System.Drawing.Size(28, 21)
         Me.Label5.TabIndex = 10
         Me.Label5.Text = "To:"
         '
@@ -464,7 +464,7 @@ Partial Class frmTransactions
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(107, 10)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(290, 37)
+        Me.Label7.Size = New System.Drawing.Size(220, 30)
         Me.Label7.TabIndex = 2
         Me.Label7.Text = "Total Revenue Today:"
         '
@@ -505,7 +505,7 @@ Partial Class frmTransactions
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.Label6.Location = New System.Drawing.Point(12, 9)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(300, 32)
+        Me.Label6.Size = New System.Drawing.Size(232, 25)
         Me.Label6.TabIndex = 1
         Me.Label6.Text = "Daily Business Summary:"
         '

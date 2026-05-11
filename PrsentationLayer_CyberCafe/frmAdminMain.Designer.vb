@@ -34,7 +34,8 @@ Partial Class frmAdminMain
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.pnlNav = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnConsumables = New System.Windows.Forms.Button()
+        Me.btnGameLib = New System.Windows.Forms.Button()
         Me.btnTransactions = New System.Windows.Forms.Button()
         Me.btnDashboard = New System.Windows.Forms.Button()
         Me.btnSessions = New System.Windows.Forms.Button()
@@ -171,7 +172,8 @@ Partial Class frmAdminMain
         'pnlNav
         '
         Me.pnlNav.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.pnlNav.Controls.Add(Me.Button1)
+        Me.pnlNav.Controls.Add(Me.btnConsumables)
+        Me.pnlNav.Controls.Add(Me.btnGameLib)
         Me.pnlNav.Controls.Add(Me.btnTransactions)
         Me.pnlNav.Controls.Add(Me.btnDashboard)
         Me.pnlNav.Controls.Add(Me.btnSessions)
@@ -185,20 +187,35 @@ Partial Class frmAdminMain
         Me.pnlNav.Size = New System.Drawing.Size(182, 715)
         Me.pnlNav.TabIndex = 2
         '
-        'Button1
+        'btnConsumables
         '
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(-1, 408)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
-        Me.Button1.Size = New System.Drawing.Size(182, 78)
-        Me.Button1.TabIndex = 12
-        Me.Button1.Text = "🕹 Games Library"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnConsumables.FlatAppearance.BorderSize = 0
+        Me.btnConsumables.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConsumables.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnConsumables.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.btnConsumables.Location = New System.Drawing.Point(-1, 490)
+        Me.btnConsumables.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnConsumables.Name = "btnConsumables"
+        Me.btnConsumables.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
+        Me.btnConsumables.Size = New System.Drawing.Size(182, 78)
+        Me.btnConsumables.TabIndex = 13
+        Me.btnConsumables.Text = "🕹 Consumables"
+        Me.btnConsumables.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'btnGameLib
+        '
+        Me.btnGameLib.FlatAppearance.BorderSize = 0
+        Me.btnGameLib.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGameLib.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnGameLib.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.btnGameLib.Location = New System.Drawing.Point(-1, 408)
+        Me.btnGameLib.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnGameLib.Name = "btnGameLib"
+        Me.btnGameLib.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
+        Me.btnGameLib.Size = New System.Drawing.Size(182, 78)
+        Me.btnGameLib.TabIndex = 12
+        Me.btnGameLib.Text = "🕹 Games Library"
+        Me.btnGameLib.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'btnTransactions
         '
@@ -342,5 +359,6 @@ Partial Class frmAdminMain
     Friend WithEvents btnSessions As Button
     Friend WithEvents btnDashboard As Button
     Friend WithEvents btnTransactions As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnGameLib As Button
+    Friend WithEvents btnConsumables As Button
 End Class

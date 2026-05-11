@@ -81,12 +81,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\AdminServices.vb" />
+    <Compile Include="Services\ConsumableServices.vb" />
     <Compile Include="Services\CustomerServices.vb" />
     <Compile Include="Services\DashboardServices.vb" />
     <Compile Include="Services\DeviceGameService.vb" />
     <Compile Include="Services\DeviceServices.vb" />
     <Compile Include="Services\DeviceTypeServices.vb" />
     <Compile Include="Services\GameServices.vb" />
+    <Compile Include="Services\PurchaseSerivces.vb" />
     <Compile Include="Session Context\ActiveSessionsManager.vb" />
     <Compile Include="Utilities\HashUtility.vb" />
     <Compile Include="Session Context\LoggedInUser.vb" />

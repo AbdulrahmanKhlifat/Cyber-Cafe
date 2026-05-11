@@ -1,5 +1,6 @@
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports CyberCafe_DataAccess.CyberCafe.DAL
+Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class CustomerRepo
@@ -143,6 +144,77 @@ Public Class CustomerRepo
         Return UserRepo.DeleteUser(userID)
     End Function
 
+
+
+    Public Shared Function DeductCredits(customerID As Integer, amount As Decimal, conn As SqlConnection, trans As SqlTransaction) As Boolean
+
+        Dim rowsAffected As Integer = 0
+
+        Try
+
+            Dim query As String = "UPDATE Customers 
+                                  SET Credits = Credits - @Amount WHERE CustomerID = @CustomerID AND Credits >= @Amount"
+
+            Using cmd As New SqlCommand(query, conn, trans)
+
+                cmd.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount
+
+                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerID
+
+                rowsAffected = cmd.ExecuteNonQuery()
+
+            End Using
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+            Throw
+
+        End Try
+
+        Return rowsAffected > 0
+
+    End Function
+
+
+
+    Public Shared Function GetCustomerCredits(customerID As Integer, conn As SqlConnection, trans As SqlTransaction) As Decimal
+
+        Dim credits As Decimal = 0
+
+        Try
+
+            Dim query As String = "SELECT Credits 
+                                  FROM CustomersWHERE CustomerID = @CustomerIDAND IsDeleted = 0"
+
+            Using cmd As New SqlCommand(query, conn, trans)
+
+                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerID
+
+                Dim result = cmd.ExecuteScalar()
+
+                If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
+
+                    credits = Convert.ToDecimal(result)
+
+                End If
+
+            End Using
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+            Throw
+
+        End Try
+
+        Return credits
+
+    End Function
+
+
     Public Shared Function GetAllActiveCustomers() As DataTable
         Dim dt As DataTable = New DataTable()
 
@@ -276,7 +348,7 @@ Public Class CustomerRepo
     Public Shared Function IsCustomerExistsByID(UserID As Integer) As Boolean
         Return UserRepo.IsUserExistsByID(UserID)
     End Function
-
+    '''
     Public Shared Function IsUsernameTaken(username As String) As Boolean
         Return UserRepo.IsUsernameTaken(username)
     End Function
@@ -284,8 +356,9 @@ Public Class CustomerRepo
     ''' <summary>
     ''' 
     ''' </summary>
-    ''' <param name="search"></param>
+    ''' <param name="اوف"></param>
     ''' <returns></returns>
+
     Public Shared Function GetTop10Customers(search As String) As List(Of CustomerDTO)
         Dim result As New List(Of CustomerDTO)
         Using conn As New SqlConnection(DataAccessSettings.connectionString)

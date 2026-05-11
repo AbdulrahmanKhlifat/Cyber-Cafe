@@ -48,12 +48,10 @@ Module Program
 
                     Case UserRoleType.Customer
 
-                        Dim customer As CustomerDTO =
-                            CType(LoggedInUser.CurrentUser,
-                                  CustomerDTO)
+                        Dim customer As CustomerDTO = CType(LoggedInUser.CurrentUser, CustomerDTO)
 
                         Application.Run(
-                            New frmCustomerMain(customer)
+                            New frmCustomerMain(1)
                         )
 
                     Case Else

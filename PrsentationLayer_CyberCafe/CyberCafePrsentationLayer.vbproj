@@ -91,6 +91,12 @@
     <Compile Include="ctrGameCard.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ctrConsumableCard.Designer.vb">
+      <DependentUpon>ctrConsumableCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctrConsumableCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="frmAssignGames.Designer.vb">
       <DependentUpon>frmAssignGames.vb</DependentUpon>
     </Compile>
@@ -98,6 +104,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DragHelper.vb" />
+    <Compile Include="frmCustomerCart.Designer.vb">
+      <DependentUpon>frmCustomerCart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomerCart.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCustomerDetails.Designer.vb">
       <DependentUpon>frmCustomerDetails.vb</DependentUpon>
     </Compile>
@@ -139,6 +151,24 @@
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
     <Compile Include="frmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInventoryManagement.Designer.vb">
+      <DependentUpon>frmInventoryManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmInventoryManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditConsumable.Designer.vb">
+      <DependentUpon>frmAddEditConsumable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditConsumable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRestockConsumable.Designer.vb">
+      <DependentUpon>frmRestockConsumable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRestockConsumable.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmManagePlatforms.Designer.vb">
@@ -216,8 +246,14 @@
     <EmbeddedResource Include="ctrGameCard.resx">
       <DependentUpon>ctrGameCard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrConsumableCard.resx">
+      <DependentUpon>ctrConsumableCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAssignGames.resx">
       <DependentUpon>frmAssignGames.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomerCart.resx">
+      <DependentUpon>frmCustomerCart.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerDetails.resx">
       <DependentUpon>frmCustomerDetails.vb</DependentUpon>
@@ -241,6 +277,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInventoryManagement.resx">
+      <DependentUpon>frmInventoryManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditConsumable.resx">
+      <DependentUpon>frmAddEditConsumable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRestockConsumable.resx">
+      <DependentUpon>frmRestockConsumable.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManagePlatforms.resx">
       <DependentUpon>frmManagePlatforms.vb</DependentUpon>

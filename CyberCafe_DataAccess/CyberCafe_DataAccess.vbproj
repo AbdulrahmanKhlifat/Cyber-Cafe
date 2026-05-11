@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\AdminRepo.vb" />
+    <Compile Include="Repositories\ConsumablesRepo.vb" />
     <Compile Include="Repositories\CustomerRepo.vb" />
     <Compile Include="Configuration\DataAccessSettings.vb" />
     <Compile Include="Repositories\DashboardRepo.vb" />
@@ -73,6 +74,8 @@
     <Compile Include="Repositories\DeviceRepo.vb" />
     <Compile Include="Repositories\DeviceTypeRepo.vb" />
     <Compile Include="Repositories\GameRepo.vb" />
+    <Compile Include="Repositories\PurchaseItemsRepo.vb" />
+    <Compile Include="Repositories\PurchaseRepo.vb" />
     <Compile Include="Repositories\SessionRepo.vb" />
     <Compile Include="Repositories\TransactionRepo.vb" />
     <Compile Include="Repositories\UserRepo.vb" />

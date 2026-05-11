@@ -52,7 +52,7 @@ Partial Class frmLogin
         Me.pnlBrand.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlBrand.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.pnlBrand.Location = New System.Drawing.Point(0, 0)
-        Me.pnlBrand.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlBrand.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlBrand.Name = "pnlBrand"
         Me.pnlBrand.Size = New System.Drawing.Size(308, 450)
         Me.pnlBrand.TabIndex = 2
@@ -62,7 +62,7 @@ Partial Class frmLogin
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.PictureBox1.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources._4239781_200
         Me.PictureBox1.Location = New System.Drawing.Point(105, 132)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(75, 82)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -112,7 +112,7 @@ Partial Class frmLogin
         Me.pnlLoginCard.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlLoginCard.FillColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.pnlLoginCard.Location = New System.Drawing.Point(0, 0)
-        Me.pnlLoginCard.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlLoginCard.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlLoginCard.Name = "pnlLoginCard"
         Me.pnlLoginCard.Size = New System.Drawing.Size(721, 450)
         Me.pnlLoginCard.TabIndex = 3
@@ -122,7 +122,7 @@ Partial Class frmLogin
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.Label1.ForeColor = System.Drawing.Color.LightGray
-        Me.Label1.Location = New System.Drawing.Point(381, 259)
+        Me.Label1.Location = New System.Drawing.Point(382, 260)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(75, 13)
@@ -138,7 +138,7 @@ Partial Class frmLogin
         Me.chkRememberMe.CheckedState.InnerColor = System.Drawing.Color.White
         Me.chkRememberMe.Location = New System.Drawing.Point(347, 258)
         Me.chkRememberMe.Name = "chkRememberMe"
-        Me.chkRememberMe.Size = New System.Drawing.Size(29, 15)
+        Me.chkRememberMe.Size = New System.Drawing.Size(35, 18)
         Me.chkRememberMe.TabIndex = 46
         Me.chkRememberMe.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
         Me.chkRememberMe.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
@@ -168,7 +168,7 @@ Partial Class frmLogin
         Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.btnExit.Location = New System.Drawing.Point(682, 0)
-        Me.btnExit.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnExit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(39, 42)
         Me.btnExit.TabIndex = 43
@@ -183,7 +183,7 @@ Partial Class frmLogin
         Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.btnLogin.ForeColor = System.Drawing.Color.White
         Me.btnLogin.Location = New System.Drawing.Point(345, 287)
-        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(343, 41)
         Me.btnLogin.TabIndex = 3

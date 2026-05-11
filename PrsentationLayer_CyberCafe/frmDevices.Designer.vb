@@ -22,7 +22,7 @@ Partial Class frmDevices
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDevices))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
@@ -34,6 +34,7 @@ Partial Class frmDevices
         Me.btnAddDevice = New Guna.UI2.WinForms.Guna2Button()
         Me.cmbDeviceType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.pnlDeviceDetail = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblDetailTitle = New System.Windows.Forms.Label()
         Me.pnlDivider = New System.Windows.Forms.Panel()
         Me.lblDevNameF = New System.Windows.Forms.Label()
@@ -52,12 +53,11 @@ Partial Class frmDevices
         Me.tsDeleteDevice = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteDeviceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pnlTop.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlDeviceDetail.SuspendLayout()
-        Me.DeviceContextMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.DeviceContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -86,6 +86,7 @@ Partial Class frmDevices
         '
         'btnManagePlatforms
         '
+        Me.btnManagePlatforms.BorderRadius = 8
         Me.Guna2Transition1.SetDecoration(Me.btnManagePlatforms, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.btnManagePlatforms.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnManagePlatforms.ForeColor = System.Drawing.Color.White
@@ -222,6 +223,15 @@ Partial Class frmDevices
         Me.pnlDeviceDetail.Size = New System.Drawing.Size(409, 591)
         Me.pnlDeviceDetail.TabIndex = 10
         Me.pnlDeviceDetail.Visible = False
+        '
+        'PictureBox1
+        '
+        Me.Guna2Transition1.SetDecoration(Me.PictureBox1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.PictureBox1.Location = New System.Drawing.Point(106, 418)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(176, 132)
+        Me.PictureBox1.TabIndex = 18
+        Me.PictureBox1.TabStop = False
         '
         'lblDetailTitle
         '
@@ -444,34 +454,25 @@ Partial Class frmDevices
         '
         Me.Guna2Transition1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
         Me.Guna2Transition1.Cursor = Nothing
-        Animation2.AnimateOnlyDifferences = True
-        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
-        Animation2.LeafCoeff = 0!
-        Animation2.MaxTime = 1.0!
-        Animation2.MinTime = 0!
-        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
-        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
-        Animation2.MosaicSize = 0
-        Animation2.Padding = New System.Windows.Forms.Padding(0)
-        Animation2.RotateCoeff = 0!
-        Animation2.RotateLimit = 0!
-        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
-        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
-        Animation2.TimeCoeff = 0!
-        Animation2.TransparencyCoeff = 1.0!
-        Me.Guna2Transition1.DefaultAnimation = Animation2
+        Animation1.AnimateOnlyDifferences = True
+        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
+        Animation1.LeafCoeff = 0!
+        Animation1.MaxTime = 1.0!
+        Animation1.MinTime = 0!
+        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
+        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
+        Animation1.MosaicSize = 0
+        Animation1.Padding = New System.Windows.Forms.Padding(0)
+        Animation1.RotateCoeff = 0!
+        Animation1.RotateLimit = 0!
+        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
+        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
+        Animation1.TimeCoeff = 0!
+        Animation1.TransparencyCoeff = 1.0!
+        Me.Guna2Transition1.DefaultAnimation = Animation1
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.MaxAnimationTime = 300
         Me.Guna2Transition1.TimeStep = 0.05!
-        '
-        'PictureBox1
-        '
-        Me.Guna2Transition1.SetDecoration(Me.PictureBox1, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.PictureBox1.Location = New System.Drawing.Point(106, 418)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(176, 132)
-        Me.PictureBox1.TabIndex = 18
-        Me.PictureBox1.TabStop = False
         '
         'frmDevices
         '
@@ -490,8 +491,8 @@ Partial Class frmDevices
         Me.pnlTop.ResumeLayout(False)
         Me.pnlFilter.ResumeLayout(False)
         Me.pnlDeviceDetail.ResumeLayout(False)
-        Me.DeviceContextMenu.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.DeviceContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

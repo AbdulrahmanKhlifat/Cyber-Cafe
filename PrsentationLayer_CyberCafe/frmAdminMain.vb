@@ -87,8 +87,15 @@ Public Class frmAdminMain
         Me.WindowState = FormWindowState.Minimized
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnGameLibrary_Click(sender As Object, e As EventArgs) Handles btnGameLib.Click
         ChangeForm(New frmGameLibrary)
-        _UpdateButtonColor(Button1)
+        _UpdateButtonColor(btnGameLib)
     End Sub
+
+    Private Sub btnInventoryManagement_Click(sender As Object, e As EventArgs) Handles btnConsumables.Click
+        ChangeForm(New frmInventoryManagement)
+        _UpdateButtonColor(btnConsumables)
+    End Sub
+
+
 End Class

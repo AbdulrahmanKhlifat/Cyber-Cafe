@@ -57,6 +57,50 @@ Public Class TransactionRepo
         Return transactionID
     End Function
 
+
+    Public Shared Function AddTransaction(transactionDto As TransactionDTO, conn As SqlConnection, trans As SqlTransaction) As Integer
+
+        Dim transactionID As Integer = -1
+
+        Try
+
+            Dim query As String = "INSERT INTO Transactions(ProcessedByAdminID,TransactionType,PaidAmount,TransactionDate,TransactionNotes,IsDeleted)
+                                  VALUES(@ProcessedByAdminID,@TransactionType,@PaidAmount,@TransactionDate,@TransactionNotes,@IsDeleted);
+                                  SELECT SCOPE_IDENTITY();"
+
+            Using cmd As New SqlCommand(query, conn, trans)
+
+                cmd.Parameters.Add("@ProcessedByAdminID", SqlDbType.Int).Value = If(transactionDto.ProcessedByAdminID, transactionDto.ProcessedByAdminID, DBNull.Value)
+
+                cmd.Parameters.Add("@TransactionType", SqlDbType.Int).Value = transactionDto.TransactionType
+
+                cmd.Parameters.Add("@PaidAmount", SqlDbType.Decimal).Value = transactionDto.PaidAmount
+
+                cmd.Parameters.Add("@TransactionDate", SqlDbType.DateTime).Value = transactionDto.TransactionDate
+
+                cmd.Parameters.Add("@TransactionNotes", SqlDbType.NVarChar, 255).Value =
+                 If(String.IsNullOrWhiteSpace(transactionDto.TransactionNotes), DBNull.Value, transactionDto.TransactionNotes)
+
+                cmd.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = transactionDto.IsDeleted
+
+                transactionID = Convert.ToInt32(cmd.ExecuteScalar())
+
+            End Using
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+            Throw
+
+        End Try
+
+        Return transactionID
+
+    End Function
+
+
+
     Public Shared Function GetTransactionByID(transactionID As Integer) As TransactionDTO
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
             Dim query As String = "SELECT TransactionID, CustomerID, ProcessedByAdminID, TransactionType, TransactionDate, TransactionNotes, SessionID
@@ -101,17 +145,21 @@ Public Class TransactionRepo
 
                     Return Nothing
                 End Try
+
             End Using
+
         End Using
 
         Return Nothing
+
     End Function
 
     Public Shared Function GetAllTransactions() As DataTable
         Dim dt As New DataTable()
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT * FROM vw_Transactions_Details 
+            Dim query As String = "SELECT TransacationID,TransactionDate,CustomerName,PaidAmount,SessionID,CreatedByAdminID FROM Transactions 
+                                   INNER JOIN Customers ON Transactions.CustomerID = Customers.CustomerID
                                    ORDER BY TransactionDate DESC;"
 
             Using cmd As New SqlCommand(query, conn)
