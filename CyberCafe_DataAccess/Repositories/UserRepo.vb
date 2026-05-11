@@ -69,7 +69,7 @@ Namespace CyberCafe.DAL
             Dim isFound = False
 
             Using conn As SqlConnection = New SqlConnection(DataAccessSettings.connectionString)
-                Dim query = "Select Found = 1 From Users WHERE UserID = @UserID"
+                Dim query = "Select Found = 1 From Users WHERE UserID = @UserID and IsDeleted = 0"
 
                 Using cmd As SqlCommand = New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@UserID", userID)

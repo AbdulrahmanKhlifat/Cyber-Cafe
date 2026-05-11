@@ -36,6 +36,7 @@ Partial Class frmStartSession
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2BorderlessForm1 = New Guna.UI2.WinForms.Guna2BorderlessForm(Me.components)
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
+        Me.txtSeconds = New Guna.UI2.WinForms.Guna2TextBox()
         CType(Me.numHours, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -108,9 +109,9 @@ Partial Class frmStartSession
         Me.lblHours.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
         Me.lblHours.Location = New System.Drawing.Point(22, 215)
         Me.lblHours.Name = "lblHours"
-        Me.lblHours.Size = New System.Drawing.Size(117, 15)
+        Me.lblHours.Size = New System.Drawing.Size(56, 15)
         Me.lblHours.TabIndex = 5
-        Me.lblHours.Text = "ALLOCATED HOURS"
+        Me.lblHours.Text = "Seconds:"
         '
         'numHours
         '
@@ -123,7 +124,7 @@ Partial Class frmStartSession
         Me.numHours.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.numHours.ForeColor = System.Drawing.Color.White
         Me.numHours.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
-        Me.numHours.Location = New System.Drawing.Point(25, 235)
+        Me.numHours.Location = New System.Drawing.Point(12, 347)
         Me.numHours.Maximum = New Decimal(New Integer() {12, 0, 0, 0})
         Me.numHours.Minimum = New Decimal(New Integer() {5, 0, 0, 65536})
         Me.numHours.Name = "numHours"
@@ -131,6 +132,7 @@ Partial Class frmStartSession
         Me.numHours.TabIndex = 6
         Me.numHours.UpDownButtonFillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.numHours.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.numHours.Visible = False
         '
         'btnStart
         '
@@ -163,11 +165,28 @@ Partial Class frmStartSession
         Me.Guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6R
         Me.Guna2BorderlessForm1.TransparentWhileDrag = True
         '
+        'txtSeconds
+        '
+        Me.txtSeconds.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.txtSeconds.BorderRadius = 8
+        Me.txtSeconds.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSeconds.DefaultText = ""
+        Me.txtSeconds.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txtSeconds.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txtSeconds.ForeColor = System.Drawing.Color.White
+        Me.txtSeconds.Location = New System.Drawing.Point(25, 250)
+        Me.txtSeconds.Name = "txtSeconds"
+        Me.txtSeconds.PlaceholderText = ""
+        Me.txtSeconds.SelectedText = ""
+        Me.txtSeconds.Size = New System.Drawing.Size(350, 40)
+        Me.txtSeconds.TabIndex = 11
+        '
         'frmStartSession
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(400, 399)
+        Me.Controls.Add(Me.txtSeconds)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnStart)
         Me.Controls.Add(Me.numHours)
@@ -198,4 +217,5 @@ Partial Class frmStartSession
     Friend WithEvents Guna2BorderlessForm1 As Guna.UI2.WinForms.Guna2BorderlessForm
     Friend WithEvents Guna2Elipse1 As Guna2Elipse
     Friend WithEvents cmbCustomers As ComboBox
+    Friend WithEvents txtSeconds As Guna2TextBox
 End Class

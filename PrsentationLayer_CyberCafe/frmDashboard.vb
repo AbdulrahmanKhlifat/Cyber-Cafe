@@ -68,7 +68,7 @@ Public Class frmDashboard
 
             ' Devices (In Use / Total)
             lblDevNum.Text =
-        $"{kpis.InUseDevices} / {kpis.TotalDevices}"
+        $"{kpis.AvailableDevices} / {kpis.TotalDevices}"
 
             ' Active Sessions
             lblSessNum.Text =
@@ -81,7 +81,7 @@ Public Class frmDashboard
             'Progress bar
             If kpis.TotalDevices >= 0 Then
 
-                pbDevicesInUse.Value = kpis.ActiveDevices / kpis.TotalDevices
+                pbDevicesInUse.Value = (kpis.ActiveSessions / kpis.TotalDevices) * 100
 
             End If
         Catch ex As Exception

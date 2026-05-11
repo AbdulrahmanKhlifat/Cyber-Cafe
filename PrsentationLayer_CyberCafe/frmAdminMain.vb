@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class frmAdminMain
@@ -13,6 +14,8 @@ Public Class frmAdminMain
         _LastButtonClicked = New Button()
         _admin = admin
         _UpdateButtonColor(btnDashboard)
+
+        SessionService.Initialize()
     End Sub
 
     Private Sub _UpdateButtonColor(btn As Button)

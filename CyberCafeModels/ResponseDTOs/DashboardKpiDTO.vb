@@ -10,5 +10,5 @@
 
     Public Property TodayRevenue As Decimal
 
-    Public Property InUseDevices As Integer
+    Public Property AvailableDevices As Integer
 End Class

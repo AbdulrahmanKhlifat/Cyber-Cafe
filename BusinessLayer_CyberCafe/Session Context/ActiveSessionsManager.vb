@@ -52,6 +52,23 @@ Public Class ActiveSessionsManager
 
     End Function
 
+    Public Shared Function GetActiveSessionByDeviceID(deviceID As Integer) As ActiveSession
+
+        For Each session In _activeSessions.Values.ToList()
+
+            If session.DeviceID = deviceID AndAlso
+           session.Status = SessionStatus.Active Then
+
+                Return session
+
+            End If
+
+        Next
+
+        Return Nothing
+
+    End Function
+
     Public Shared Function RemoveSession(sessionID As Integer) As Boolean
         If sessionID <= 0 Then
             Throw New ArgumentException("Invalid SessionID")

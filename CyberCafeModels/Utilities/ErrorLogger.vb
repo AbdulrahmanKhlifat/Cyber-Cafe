@@ -39,4 +39,35 @@ Public Class ErrorLogger
             System.Diagnostics.Debug.WriteLine($"Failed to log error: {logEx.Message}")
         End Try
     End Sub
+
+    Public Shared Sub LogNullSession(methodName As String)
+
+        Dim appPath As String = AppDomain.CurrentDomain.BaseDirectory
+
+        Dim logDirectory As String = Path.Combine(appPath, "Logs")
+        Dim logFilePath As String = Path.Combine(logDirectory, "ErrorLog.txt")
+
+        Try
+
+            If Not Directory.Exists(logDirectory) Then
+                Directory.CreateDirectory(logDirectory)
+            End If
+
+            Using writer As New StreamWriter(logFilePath, True)
+
+                writer.WriteLine("--------------------------------------------------")
+                writer.WriteLine($"Date        : {DateTime.Now}")
+                writer.WriteLine($"Method      : {methodName}")
+                writer.WriteLine("Error       : A Session object was Nothing during runtime engine load.")
+                writer.WriteLine("--------------------------------------------------")
+                writer.WriteLine()
+
+            End Using
+
+        Catch logEx As Exception
+            Debug.WriteLine($"Failed to log error: {logEx.Message}")
+        End Try
+
+    End Sub
+
 End Class

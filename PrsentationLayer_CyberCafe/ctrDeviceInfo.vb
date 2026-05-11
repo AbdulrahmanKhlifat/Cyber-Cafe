@@ -1,16 +1,16 @@
-﻿Imports CyberCafeModels
+﻿Imports System.Reflection
+Imports System.Web.UI.WebControls
+Imports BusinessLayer_CyberCafe
+Imports CyberCafeModels
 
 Public Class ctrDeviceInfo
 
-    Private Shared ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
     Private Shared ReadOnly CyanHoverColor As Color = Color.FromArgb(35, 44, 51)
-    Private Shared ReadOnly ColorInUse As Color = Color.Red
+    Private Shared ReadOnly ColorAvailable As Color = Color.FromArgb(0, 200, 160)
+    Private Shared ReadOnly ColorInUse As Color = Color.Orange
+    Private Shared ReadOnly ColorMaintenance As Color = Color.Crimson
 
-
-
-
-
-
+    Private _IsSubscribedToTicks As Boolean = False
 
 
     Public Property Status As String
@@ -28,32 +28,227 @@ Public Class ctrDeviceInfo
 
     Private ImagePath As String
 
+    Public Property Device As DeviceDTO
 
+    Public Sub New(d As DeviceDTO)
+        ' This call is required by the designer.
+        InitializeComponent()
+        ' Add any initialization after the InitializeComponent() call.
 
-    Public Sub LoadData(deviceInfo As DeviceDTO)
-        DeviceID = deviceInfo.DeviceID
-        lblDeviceName.Text = deviceInfo.DeviceName
-        lblDeviceType.Text = deviceInfo.DeviceTypeName
-        lblStatus.Text = deviceInfo.Status.ToString()
+        AddHandler SessionService.SessionStarted,
+            AddressOf OnSessionStart
 
-        ImagePath = UIHelper.GetImagePath(deviceInfo.ImagePath)
+        AddHandler SessionService.SessionResumed,
+            AddressOf OnSessionResume
 
-        If ImagePath Is Nothing Then
-            pbDeviceIcon.Image = My.Resources.PlayStationIcon
-        Else
-            pbDeviceIcon.Image = UIHelper.LoadImageUnlocked(ImagePath)
+        AddHandler SessionService.SessionPaused,
+            AddressOf OnSessionPause
+
+        AddHandler SessionService.SessionEnded,
+            AddressOf OnSessionEnd
+
+        DeviceID = d.DeviceID
+        Device = d
+
+        Dim activeSession As ActiveSession = ActiveSessionsManager.GetActiveSessionByDeviceID(DeviceID)
+
+        If activeSession IsNot Nothing Then
+
+            Device.Status = enDeviceStatus.InUse
+
+            SubscribeToTicks()
+
         End If
 
-        UpdateUI(deviceInfo.DeviceTypeName, deviceInfo.Status)
+        RefreshData()
     End Sub
 
-    Private Sub UpdateUI(typeName As String, status As enDeviceStatus)
-        Dim isAvailable As Boolean = (status = enDeviceStatus.Available)
+    Private Sub OnSessionEnd(session As ActiveSession)
 
-        Dim statusColor As Color = If(isAvailable, ColorAvailable, ColorInUse)
+        If session.DeviceID <> DeviceID Then
+            Return
+        End If
+
+        UnsubscribeFromTicks()
+
+        Device.Status = enDeviceStatus.Available
+
+        UpdateUI()
+
+    End Sub
+
+    Private Sub OnSessionPause(session As ActiveSession)
+
+        If session.DeviceID <> DeviceID Then
+            Return
+        End If
+
+        UnsubscribeFromTicks()
+
+        Device.Status = enDeviceStatus.Available
+
+        UpdateUI()
+
+    End Sub
+
+    Private Sub OnSessionTicked(session As ActiveSession)
+
+        If session.DeviceID <> DeviceID Then
+            Return
+        End If
+
+        If InvokeRequired Then
+
+            Invoke(Sub()
+                       lblRemainingTime.Text =
+                       TimeSpan.FromSeconds(session.RemainingSeconds).
+                       ToString("hh\:mm\:ss")
+                   End Sub)
+
+            Return
+
+        End If
+
+        lblRemainingTime.Text =
+        TimeSpan.FromSeconds(session.RemainingSeconds).
+        ToString("hh\:mm\:ss")
+
+    End Sub
+
+    Private Sub OnSessionStart(session As ActiveSession)
+
+        If session.DeviceID <> DeviceID Then
+            Return
+        End If
+
+        SubscribeToTicks()
+
+        Device.Status = enDeviceStatus.InUse
+
+        UpdateUI()
+
+    End Sub
+
+    Private Sub OnSessionResume(session As ActiveSession)
+
+        If session.DeviceID <> DeviceID Then
+            Return
+        End If
+
+        Device.Status = enDeviceStatus.InUse
+
+        SubscribeToTicks()
+
+        UpdateUI()
+
+    End Sub
+
+    Private Sub SubscribeToTicks()
+
+        If _IsSubscribedToTicks Then
+            Return
+        End If
+
+        AddHandler SessionService.SessionTicked,
+            AddressOf OnSessionTicked
+
+        _IsSubscribedToTicks = True
+
+    End Sub
+
+    Private Sub UnsubscribeFromTicks()
+
+        If Not _IsSubscribedToTicks Then
+            Return
+        End If
+
+        RemoveHandler SessionService.SessionTicked,
+        AddressOf OnSessionTicked
+
+        _IsSubscribedToTicks = False
+
+        If InvokeRequired Then
+
+            Invoke(Sub()
+                       lblRemainingTime.Visible = False
+                       lblRemainingTimeHeader.Visible = False
+                   End Sub)
+
+            Return
+
+        End If
+
+        lblRemainingTime.Visible = False
+        lblRemainingTimeHeader.Visible = False
+
+    End Sub
+
+    Public Sub RefreshData()
+        DeviceID = Device.DeviceID
+        lblDeviceName.Text = Device.DeviceName
+        lblDeviceType.Text = Device.DeviceTypeName
+
+        lblDeviceType.Tag = Device.DeviceTypeID
+
+        ImagePath = UIHelper.GetImagePath(Device.ImagePath)
+
+        Try
+
+            pbDeviceIcon.Image = UIHelper.LoadImageUnlocked(ImagePath)
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(ex, MethodBase.GetCurrentMethod().Name)
+
+            pbDeviceIcon.Image = My.Resources.PlayStationIcon
+
+        End Try
+
+        UpdateUI()
+
+    End Sub
+
+    Private Sub UpdateUI()
+
+        If InvokeRequired Then
+
+            Invoke(Sub()
+                       UpdateUI()
+                   End Sub)
+
+            Return
+
+        End If
+
+        lblStatus.Text = Device.Status.ToString()
+
+        Dim statusColor As Color
+
+        Select Case Device.Status
+
+            Case enDeviceStatus.Available
+                statusColor = ColorAvailable
+
+            Case enDeviceStatus.InUse
+                statusColor = ColorInUse
+                lblStatus.Text = "In Use"
+
+            Case enDeviceStatus.Maintenance
+                statusColor = ColorMaintenance
+
+            Case Else
+                statusColor = Color.Gray
+
+        End Select
+
+        lblRemainingTime.Visible =
+        (Device.Status = enDeviceStatus.InUse)
+
+        lblRemainingTimeHeader.Visible =
+        (Device.Status = enDeviceStatus.InUse)
+
         pbStatusDot.FillColor = statusColor
         lblStatus.ForeColor = statusColor
-        pnlDevice.Cursor = Cursors.Hand
 
     End Sub
 
