@@ -158,8 +158,7 @@ Public Class TransactionRepo
         Dim dt As New DataTable()
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
-            Dim query As String = "SELECT TransacationID,TransactionDate,CustomerName,PaidAmount,SessionID,CreatedByAdminID FROM Transactions 
-                                   INNER JOIN Customers ON Transactions.CustomerID = Customers.CustomerID
+            Dim query As String = "SELECT * FROM vw_Transactions_Details
                                    ORDER BY TransactionDate DESC;"
 
             Using cmd As New SqlCommand(query, conn)

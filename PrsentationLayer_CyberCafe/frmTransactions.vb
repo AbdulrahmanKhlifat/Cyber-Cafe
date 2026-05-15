@@ -45,7 +45,6 @@ Public Class frmTransactions
 
     Public Sub RefreshData()
         dgvTrans.DataSource = TransactionServices.GetAllTransactions()
-        MessageBox.Show(dgvTrans.Rows.Count)
         LoadTransactionsSummaryInPanels()
     End Sub
 
@@ -55,10 +54,6 @@ Public Class frmTransactions
         styleDataGridView()
         RefreshData()
         LoadTransactionsSummaryInPanels()
-
-    End Sub
-
-    Private Sub pnlDetails_Paint(sender As Object, e As PaintEventArgs) Handles pnlDetails.Paint
 
     End Sub
 
@@ -76,7 +71,7 @@ Public Class frmTransactions
 
         Dim selectedRow As DataGridViewRow = dgvTrans.CurrentRow
 
-        txtCustomerName.Text = selectedRow.Cells("Customer Name").Value?.ToString()
+        txtCustomerName.Text = selectedRow.Cells("CustomerName").Value?.ToString()
         txtAdmin.Text = selectedRow.Cells("CreatedByAdmin").Value?.ToString()
         txtTransactionType.Text = selectedRow.Cells("TransactionType").Value?.ToString()
         lblTotal.Text = "Transaction Reference ID: " & selectedRow.Cells("TransactionID").Value?.ToString()

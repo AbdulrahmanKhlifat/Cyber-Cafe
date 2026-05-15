@@ -29,31 +29,31 @@ Partial Class frmSessions
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tmrDuration = New System.Windows.Forms.Timer(Me.components)
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.tabPageActive = New System.Windows.Forms.TabPage()
         Me.dgvActiveSessions = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.pnlStartSession = New Guna.UI2.WinForms.Guna2Panel()
-        Me.lblStartTitle = New System.Windows.Forms.Label()
-        Me.cboCustomer = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.cboDevice = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnStartSession = New Guna.UI2.WinForms.Guna2Button()
         Me.tabSessions = New Guna.UI2.WinForms.Guna2TabControl()
         Me.tabPageHistory = New System.Windows.Forms.TabPage()
-        Me.dgvHistory = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.pnlHistoryFilter = New Guna.UI2.WinForms.Guna2Panel()
+        Me.dgvSessionsHistory = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.tabPausedSessions = New System.Windows.Forms.TabPage()
         Me.btnFilterHistory = New Guna.UI2.WinForms.Guna2Button()
         Me.cboHistoryCustomer = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.dtpTo = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.dtpFrom = New Guna.UI2.WinForms.Guna2DateTimePicker()
+        Me.dgvPausedSessions = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.pnlHeader.SuspendLayout()
         Me.tabPageActive.SuspendLayout()
         CType(Me.dgvActiveSessions, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlStartSession.SuspendLayout()
         Me.tabSessions.SuspendLayout()
         Me.tabPageHistory.SuspendLayout()
-        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvSessionsHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabPausedSessions.SuspendLayout()
+        CType(Me.dgvPausedSessions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tmrDuration
@@ -88,7 +88,6 @@ Partial Class frmSessions
         '
         Me.tabPageActive.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.tabPageActive.Controls.Add(Me.dgvActiveSessions)
-        Me.tabPageActive.Controls.Add(Me.pnlStartSession)
         Me.tabPageActive.Location = New System.Drawing.Point(4, 44)
         Me.tabPageActive.Margin = New System.Windows.Forms.Padding(2)
         Me.tabPageActive.Name = "tabPageActive"
@@ -118,15 +117,16 @@ Partial Class frmSessions
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvActiveSessions.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvActiveSessions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvActiveSessions.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.dgvActiveSessions.Location = New System.Drawing.Point(0, 70)
+        Me.dgvActiveSessions.Location = New System.Drawing.Point(0, 0)
         Me.dgvActiveSessions.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvActiveSessions.Name = "dgvActiveSessions"
         Me.dgvActiveSessions.ReadOnly = True
         Me.dgvActiveSessions.RowHeadersVisible = False
         Me.dgvActiveSessions.RowHeadersWidth = 51
         Me.dgvActiveSessions.RowTemplate.Height = 40
-        Me.dgvActiveSessions.Size = New System.Drawing.Size(1039, 363)
+        Me.dgvActiveSessions.Size = New System.Drawing.Size(1333, 617)
         Me.dgvActiveSessions.TabIndex = 0
         Me.dgvActiveSessions.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
         Me.dgvActiveSessions.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -150,84 +150,11 @@ Partial Class frmSessions
         Me.dgvActiveSessions.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         Me.dgvActiveSessions.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
-        'pnlStartSession
-        '
-        Me.pnlStartSession.Controls.Add(Me.lblStartTitle)
-        Me.pnlStartSession.Controls.Add(Me.cboCustomer)
-        Me.pnlStartSession.Controls.Add(Me.cboDevice)
-        Me.pnlStartSession.Controls.Add(Me.btnStartSession)
-        Me.pnlStartSession.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlStartSession.FillColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.pnlStartSession.Location = New System.Drawing.Point(0, 0)
-        Me.pnlStartSession.Margin = New System.Windows.Forms.Padding(2)
-        Me.pnlStartSession.Name = "pnlStartSession"
-        Me.pnlStartSession.Size = New System.Drawing.Size(1333, 69)
-        Me.pnlStartSession.TabIndex = 1
-        '
-        'lblStartTitle
-        '
-        Me.lblStartTitle.AutoSize = True
-        Me.lblStartTitle.BackColor = System.Drawing.Color.Transparent
-        Me.lblStartTitle.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.lblStartTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblStartTitle.Location = New System.Drawing.Point(17, 24)
-        Me.lblStartTitle.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblStartTitle.Name = "lblStartTitle"
-        Me.lblStartTitle.Size = New System.Drawing.Size(139, 20)
-        Me.lblStartTitle.TabIndex = 0
-        Me.lblStartTitle.Text = "Start New Session:"
-        '
-        'cboCustomer
-        '
-        Me.cboCustomer.BackColor = System.Drawing.Color.Transparent
-        Me.cboCustomer.BorderRadius = 8
-        Me.cboCustomer.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboCustomer.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.cboCustomer.FocusedColor = System.Drawing.Color.Empty
-        Me.cboCustomer.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cboCustomer.ForeColor = System.Drawing.Color.White
-        Me.cboCustomer.ItemHeight = 30
-        Me.cboCustomer.Location = New System.Drawing.Point(165, 18)
-        Me.cboCustomer.Margin = New System.Windows.Forms.Padding(2)
-        Me.cboCustomer.Name = "cboCustomer"
-        Me.cboCustomer.Size = New System.Drawing.Size(215, 36)
-        Me.cboCustomer.TabIndex = 1
-        '
-        'cboDevice
-        '
-        Me.cboDevice.BackColor = System.Drawing.Color.Transparent
-        Me.cboDevice.BorderRadius = 8
-        Me.cboDevice.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cboDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboDevice.FillColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.cboDevice.FocusedColor = System.Drawing.Color.Empty
-        Me.cboDevice.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cboDevice.ForeColor = System.Drawing.Color.White
-        Me.cboDevice.ItemHeight = 30
-        Me.cboDevice.Location = New System.Drawing.Point(397, 18)
-        Me.cboDevice.Margin = New System.Windows.Forms.Padding(2)
-        Me.cboDevice.Name = "cboDevice"
-        Me.cboDevice.Size = New System.Drawing.Size(172, 36)
-        Me.cboDevice.TabIndex = 2
-        '
-        'btnStartSession
-        '
-        Me.btnStartSession.BorderRadius = 8
-        Me.btnStartSession.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.btnStartSession.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnStartSession.ForeColor = System.Drawing.Color.White
-        Me.btnStartSession.Location = New System.Drawing.Point(589, 23)
-        Me.btnStartSession.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnStartSession.Name = "btnStartSession"
-        Me.btnStartSession.Size = New System.Drawing.Size(103, 31)
-        Me.btnStartSession.TabIndex = 3
-        Me.btnStartSession.Text = "Start"
-        '
         'tabSessions
         '
         Me.tabSessions.Controls.Add(Me.tabPageActive)
         Me.tabSessions.Controls.Add(Me.tabPageHistory)
+        Me.tabSessions.Controls.Add(Me.tabPausedSessions)
         Me.tabSessions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tabSessions.ItemSize = New System.Drawing.Size(180, 40)
         Me.tabSessions.Location = New System.Drawing.Point(0, 56)
@@ -258,8 +185,7 @@ Partial Class frmSessions
         'tabPageHistory
         '
         Me.tabPageHistory.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.tabPageHistory.Controls.Add(Me.dgvHistory)
-        Me.tabPageHistory.Controls.Add(Me.pnlHistoryFilter)
+        Me.tabPageHistory.Controls.Add(Me.dgvSessionsHistory)
         Me.tabPageHistory.Location = New System.Drawing.Point(4, 44)
         Me.tabPageHistory.Margin = New System.Windows.Forms.Padding(2)
         Me.tabPageHistory.Name = "tabPageHistory"
@@ -267,11 +193,11 @@ Partial Class frmSessions
         Me.tabPageHistory.TabIndex = 1
         Me.tabPageHistory.Text = "Session History"
         '
-        'dgvHistory
+        'dgvSessionsHistory
         '
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.dgvHistory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgvHistory.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvSessionsHistory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.dgvSessionsHistory.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -279,8 +205,8 @@ Partial Class frmSessions
         DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvHistory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgvHistory.ColumnHeadersHeight = 42
+        Me.dgvSessionsHistory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvSessionsHistory.ColumnHeadersHeight = 42
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
         DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -288,49 +214,50 @@ Partial Class frmSessions
         DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvHistory.DefaultCellStyle = DataGridViewCellStyle6
-        Me.dgvHistory.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvHistory.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvHistory.Location = New System.Drawing.Point(0, 69)
-        Me.dgvHistory.Margin = New System.Windows.Forms.Padding(2)
-        Me.dgvHistory.Name = "dgvHistory"
-        Me.dgvHistory.ReadOnly = True
-        Me.dgvHistory.RowHeadersVisible = False
-        Me.dgvHistory.RowHeadersWidth = 51
-        Me.dgvHistory.RowTemplate.Height = 40
-        Me.dgvHistory.Size = New System.Drawing.Size(1333, 548)
-        Me.dgvHistory.TabIndex = 0
-        Me.dgvHistory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        Me.dgvHistory.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
-        Me.dgvHistory.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
-        Me.dgvHistory.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
-        Me.dgvHistory.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgvHistory.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvHistory.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvHistory.ThemeStyle.HeaderStyle.Height = 42
-        Me.dgvHistory.ThemeStyle.ReadOnly = True
-        Me.dgvHistory.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvHistory.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvHistory.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.RowsStyle.Height = 40
-        Me.dgvHistory.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.dgvHistory.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvSessionsHistory.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvSessionsHistory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvSessionsHistory.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvSessionsHistory.Location = New System.Drawing.Point(0, 0)
+        Me.dgvSessionsHistory.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgvSessionsHistory.Name = "dgvSessionsHistory"
+        Me.dgvSessionsHistory.ReadOnly = True
+        Me.dgvSessionsHistory.RowHeadersVisible = False
+        Me.dgvSessionsHistory.RowHeadersWidth = 51
+        Me.dgvSessionsHistory.RowTemplate.Height = 40
+        Me.dgvSessionsHistory.Size = New System.Drawing.Size(1333, 617)
+        Me.dgvSessionsHistory.TabIndex = 0
+        Me.dgvSessionsHistory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        Me.dgvSessionsHistory.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
+        Me.dgvSessionsHistory.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
+        Me.dgvSessionsHistory.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
+        Me.dgvSessionsHistory.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvSessionsHistory.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvSessionsHistory.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvSessionsHistory.ThemeStyle.HeaderStyle.Height = 42
+        Me.dgvSessionsHistory.ThemeStyle.ReadOnly = True
+        Me.dgvSessionsHistory.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvSessionsHistory.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvSessionsHistory.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.RowsStyle.Height = 40
+        Me.dgvSessionsHistory.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.dgvSessionsHistory.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
-        'pnlHistoryFilter
+        'tabPausedSessions
         '
-        Me.pnlHistoryFilter.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlHistoryFilter.FillColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.pnlHistoryFilter.Location = New System.Drawing.Point(0, 0)
-        Me.pnlHistoryFilter.Margin = New System.Windows.Forms.Padding(2)
-        Me.pnlHistoryFilter.Name = "pnlHistoryFilter"
-        Me.pnlHistoryFilter.Size = New System.Drawing.Size(1333, 69)
-        Me.pnlHistoryFilter.TabIndex = 1
+        Me.tabPausedSessions.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.tabPausedSessions.Controls.Add(Me.dgvPausedSessions)
+        Me.tabPausedSessions.Location = New System.Drawing.Point(4, 44)
+        Me.tabPausedSessions.Name = "tabPausedSessions"
+        Me.tabPausedSessions.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabPausedSessions.Size = New System.Drawing.Size(1333, 617)
+        Me.tabPausedSessions.TabIndex = 2
+        Me.tabPausedSessions.Text = "Paused Sessions"
         '
         'btnFilterHistory
         '
@@ -395,6 +322,61 @@ Partial Class frmSessions
         Me.dtpFrom.TabIndex = 0
         Me.dtpFrom.Value = New Date(2026, 4, 16, 12, 0, 59, 721)
         '
+        'dgvPausedSessions
+        '
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.dgvPausedSessions.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        Me.dgvPausedSessions.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvPausedSessions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        Me.dgvPausedSessions.ColumnHeadersHeight = 42
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvPausedSessions.DefaultCellStyle = DataGridViewCellStyle9
+        Me.dgvPausedSessions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvPausedSessions.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvPausedSessions.Location = New System.Drawing.Point(3, 3)
+        Me.dgvPausedSessions.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgvPausedSessions.Name = "dgvPausedSessions"
+        Me.dgvPausedSessions.ReadOnly = True
+        Me.dgvPausedSessions.RowHeadersVisible = False
+        Me.dgvPausedSessions.RowHeadersWidth = 51
+        Me.dgvPausedSessions.RowTemplate.Height = 40
+        Me.dgvPausedSessions.Size = New System.Drawing.Size(1327, 611)
+        Me.dgvPausedSessions.TabIndex = 1
+        Me.dgvPausedSessions.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        Me.dgvPausedSessions.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
+        Me.dgvPausedSessions.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
+        Me.dgvPausedSessions.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
+        Me.dgvPausedSessions.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvPausedSessions.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvPausedSessions.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvPausedSessions.ThemeStyle.HeaderStyle.Height = 42
+        Me.dgvPausedSessions.ThemeStyle.ReadOnly = True
+        Me.dgvPausedSessions.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(13, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvPausedSessions.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvPausedSessions.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.RowsStyle.Height = 40
+        Me.dgvPausedSessions.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.dgvPausedSessions.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        '
         'frmSessions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -410,11 +392,11 @@ Partial Class frmSessions
         Me.pnlHeader.ResumeLayout(False)
         Me.tabPageActive.ResumeLayout(False)
         CType(Me.dgvActiveSessions, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlStartSession.ResumeLayout(False)
-        Me.pnlStartSession.PerformLayout()
         Me.tabSessions.ResumeLayout(False)
         Me.tabPageHistory.ResumeLayout(False)
-        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvSessionsHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tabPausedSessions.ResumeLayout(False)
+        CType(Me.dgvPausedSessions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -424,17 +406,13 @@ Partial Class frmSessions
     Private WithEvents pnlHeader As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents tabPageActive As TabPage
     Private WithEvents dgvActiveSessions As Guna.UI2.WinForms.Guna2DataGridView
-    Private WithEvents pnlStartSession As Guna.UI2.WinForms.Guna2Panel
-    Private WithEvents lblStartTitle As Label
-    Private WithEvents cboCustomer As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents cboDevice As Guna.UI2.WinForms.Guna2ComboBox
-    Private WithEvents btnStartSession As Guna.UI2.WinForms.Guna2Button
     Private WithEvents tabSessions As Guna.UI2.WinForms.Guna2TabControl
     Private WithEvents tabPageHistory As TabPage
-    Private WithEvents dgvHistory As Guna.UI2.WinForms.Guna2DataGridView
-    Private WithEvents pnlHistoryFilter As Guna.UI2.WinForms.Guna2Panel
+    Private WithEvents dgvSessionsHistory As Guna.UI2.WinForms.Guna2DataGridView
     Private WithEvents btnFilterHistory As Guna.UI2.WinForms.Guna2Button
     Private WithEvents cboHistoryCustomer As Guna.UI2.WinForms.Guna2ComboBox
     Private WithEvents dtpTo As Guna.UI2.WinForms.Guna2DateTimePicker
     Private WithEvents dtpFrom As Guna.UI2.WinForms.Guna2DateTimePicker
+    Friend WithEvents tabPausedSessions As TabPage
+    Private WithEvents dgvPausedSessions As Guna.UI2.WinForms.Guna2DataGridView
 End Class

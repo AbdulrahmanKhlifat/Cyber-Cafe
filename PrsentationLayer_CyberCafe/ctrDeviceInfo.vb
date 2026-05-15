@@ -73,7 +73,7 @@ Public Class ctrDeviceInfo
 
         Device.Status = enDeviceStatus.Available
 
-        UpdateUI()
+        UpdateStatusUI()
 
     End Sub
 
@@ -87,7 +87,7 @@ Public Class ctrDeviceInfo
 
         Device.Status = enDeviceStatus.Available
 
-        UpdateUI()
+        UpdateStatusUI()
 
     End Sub
 
@@ -125,7 +125,7 @@ Public Class ctrDeviceInfo
 
         Device.Status = enDeviceStatus.InUse
 
-        UpdateUI()
+        UpdateStatusUI()
 
     End Sub
 
@@ -139,7 +139,7 @@ Public Class ctrDeviceInfo
 
         SubscribeToTicks()
 
-        UpdateUI()
+        UpdateStatusUI()
 
     End Sub
 
@@ -204,16 +204,16 @@ Public Class ctrDeviceInfo
 
         End Try
 
-        UpdateUI()
+        UpdateStatusUI()
 
     End Sub
 
-    Private Sub UpdateUI()
+    Public Sub UpdateStatusUI()
 
         If InvokeRequired Then
 
             Invoke(Sub()
-                       UpdateUI()
+                       UpdateStatusUI()
                    End Sub)
 
             Return

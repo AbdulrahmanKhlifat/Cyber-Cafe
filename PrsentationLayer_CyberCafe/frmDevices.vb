@@ -205,7 +205,7 @@ Public Class frmDevices
 
         Return Nothing
     End Function
-    Private Sub tsStartSession_Click(sender As Object, e As EventArgs) Handles tsDeleteDevice.Click
+    Private Sub tsStartSession_Click(sender As Object, e As EventArgs) Handles tsStartSession.Click
 
         Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
 
@@ -431,6 +431,102 @@ Public Class frmDevices
             errorDialog.Show()
 
         End Try
+
+    End Sub
+
+    Private Sub DeviceContextMenu_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DeviceContextMenu.Opening
+        Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
+
+        If card Is Nothing Then Return
+
+        Select Case card.Status.ToLower()
+            Case "available"
+                SetMaintenanceToolStripMenuItem.Text = "Set to Maintenance"
+                SetMaintenanceToolStripMenuItem.Visible = True
+                tsStartSession.Visible = True
+
+            Case "in use"
+                SetMaintenanceToolStripMenuItem.Visible = False
+                tsStartSession.Visible = False
+                DeleteDeviceToolStripMenuItem.Visible = False
+
+            Case "maintenance"
+                SetMaintenanceToolStripMenuItem.Text = "Set to Available"
+                SetMaintenanceToolStripMenuItem.Visible = True
+                tsStartSession.Visible = False
+
+        End Select
+    End Sub
+
+    Private Sub SetMaintenanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetMaintenanceToolStripMenuItem.Click
+
+        Dim card As ctrDeviceInfo = GetSelectedDeviceInfoCard()
+
+        If card Is Nothing Then Return
+
+        Try
+
+            Dim NewStatus As enDeviceStatus
+
+            Select Case card.Status.ToLower()
+
+                Case "available"
+                    NewStatus = enDeviceStatus.Maintenance
+
+                Case "maintenance"
+                    NewStatus = enDeviceStatus.Available
+
+                Case "in use"
+                    UIHelper.ShowGunaMessage(
+                        "Cannot change status while device is in use.",
+                        "Error",
+                        MessageDialogIcon.Error
+                    )
+
+                    Return
+
+                Case Else
+
+                    UIHelper.ShowGunaMessage(
+                    "Unknown device status.",
+                    "Error",
+                    MessageDialogIcon.Error
+                )
+
+                    Return
+
+            End Select
+
+
+            Dim isUpdated As Boolean = DeviceServices.UpdateStatus(card.DeviceID, NewStatus)
+
+            If isUpdated Then
+
+                UIHelper.ShowGunaMessage(
+                    "Device status changed successfully.",
+                    "Success",
+                    MessageDialogIcon.Information
+                    )
+
+                card.Device.Status = NewStatus
+
+                card.UpdateStatusUI()
+
+            End If
+
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+            UIHelper.ShowGunaMessage(
+                "An error occurred while changing device status.",
+                "Error",
+                MessageDialogIcon.Error
+            )
+
+        End Try
+
 
     End Sub
 

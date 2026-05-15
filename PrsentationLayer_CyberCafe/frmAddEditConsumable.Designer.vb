@@ -82,6 +82,7 @@ Partial Class frmAddEditConsumable
         Me.pbConsumable.Location = New System.Drawing.Point(270, 319)
         Me.pbConsumable.Name = "pbConsumable"
         Me.pbConsumable.Size = New System.Drawing.Size(92, 56)
+        Me.pbConsumable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbConsumable.TabIndex = 24
         Me.pbConsumable.TabStop = False
         '
@@ -226,7 +227,7 @@ Partial Class frmAddEditConsumable
         Me.lblHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
         Me.lblHeader.Location = New System.Drawing.Point(35, 30)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(131, 32)
+        Me.lblHeader.Size = New System.Drawing.Size(132, 32)
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "ADD ITEM"
         '
