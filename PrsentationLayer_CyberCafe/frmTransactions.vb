@@ -32,6 +32,10 @@ Public Class frmTransactions
 
 
         dgvTrans.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+        dgvTrans.DefaultCellStyle.Font = New Font("Segoe UI", 11.5F, FontStyle.Regular)
+        dgvTrans.RowTemplate.Height = 35
+
     End Sub
 
     Private Sub LoadTransactionsSummaryInPanels()
@@ -59,7 +63,7 @@ Public Class frmTransactions
 
     Private Sub dgvTrans_SelectionChanged(sender As Object, e As EventArgs) Handles dgvTrans.SelectionChanged
 
-        If dgvTrans.CurrentRow Is Nothing Or dgvTrans.CurrentRow.Index < 0 Then
+        If dgvTrans.CurrentRow Is Nothing OrElse dgvTrans.CurrentRow.Index < 0 Then
 
             txtCustomerName.Clear()
             txtAdmin.Clear()

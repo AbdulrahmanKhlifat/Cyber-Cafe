@@ -104,6 +104,21 @@ Public Class SessionRepo
                         Throw New Exception("Failed to update device status.")
                     End If
 
+                    Dim transactionInserted As Boolean = TransactionRepo.AddTransaction(New TransactionDTO With {
+                        .CustomerID = session.CustomerID,
+                        .ProcessedByAdminID = session.CreatedByAdminID,
+                        .TransactionType = TransactionType.SessionStart,
+                        .PaidAmount = session.SessionCost,
+                        .TransactionDate = session.StartTime,
+                        .SessionID = sessionID,
+                        .TransactionNotes = "Session Start"
+                    }, con, transaction) <> -1
+
+                    If Not transactionInserted Then
+                        transaction.Rollback()
+                        Throw New Exception("Failed to insert transaction record.")
+                    End If
+
                     transaction.Commit()
 
                     Return sessionID

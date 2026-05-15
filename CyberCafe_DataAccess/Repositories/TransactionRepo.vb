@@ -57,15 +57,14 @@ Public Class TransactionRepo
         Return transactionID
     End Function
 
-
     Public Shared Function AddTransaction(transactionDto As TransactionDTO, conn As SqlConnection, trans As SqlTransaction) As Integer
 
         Dim transactionID As Integer = -1
 
         Try
 
-            Dim query As String = "INSERT INTO Transactions(ProcessedByAdminID,TransactionType,PaidAmount,TransactionDate,TransactionNotes,IsDeleted)
-                                  VALUES(@ProcessedByAdminID,@TransactionType,@PaidAmount,@TransactionDate,@TransactionNotes,@IsDeleted);
+            Dim query As String = "INSERT INTO Transactions(ProcessedByAdminID,TransactionType,PaidAmount,TransactionDate,TransactionNotes,SessionID,CustomerID,IsDeleted)
+                                  VALUES(@ProcessedByAdminID,@TransactionType,@PaidAmount,@TransactionDate,@TransactionNotes,@SessionID,@CustomerID,@IsDeleted);
                                   SELECT SCOPE_IDENTITY();"
 
             Using cmd As New SqlCommand(query, conn, trans)
@@ -80,6 +79,10 @@ Public Class TransactionRepo
 
                 cmd.Parameters.Add("@TransactionNotes", SqlDbType.NVarChar, 255).Value =
                  If(String.IsNullOrWhiteSpace(transactionDto.TransactionNotes), DBNull.Value, transactionDto.TransactionNotes)
+
+                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = If(transactionDto.CustomerID.HasValue, transactionDto.CustomerID.Value, DBNull.Value)
+
+                cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = If(transactionDto.SessionID.HasValue, transactionDto.SessionID.Value, DBNull.Value)
 
                 cmd.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = transactionDto.IsDeleted
 

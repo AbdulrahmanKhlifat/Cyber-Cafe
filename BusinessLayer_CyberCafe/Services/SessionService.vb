@@ -150,11 +150,23 @@ Public Class SessionService
             Throw New ArgumentException("Device Does not exist!")
         End If
 
-        If DeviceRepo.IsDeviceOccupied(session.CurrentDeviceID) Then
+        Dim deviceStatus As enDeviceStatus = DeviceRepo.GetDeviceStatus(session.CurrentDeviceID)
+
+        If deviceStatus = enDeviceStatus.InUse Then
             Throw New ArgumentException("Device already has an active session!")
         End If
 
-        'check if Device matches DeviceType
+        If deviceStatus = enDeviceStatus.Maintenance Then
+            Throw New ArgumentException("Device is under maintenance!")
+        End If
+
+        If CustomerRepo.HasActiveSessionByCustomerId(session.CustomerID) Then
+            Throw New InvalidOperationException("Customer already has an active session.")
+        End If
+
+        If Not DeviceRepo.DoesDeviceMatchType(session.CurrentDeviceID, session.DeviceTypeID) Then
+            Throw New ArgumentException("Device does not match the session's device type.")
+        End If
 
     End Sub
 
@@ -277,6 +289,14 @@ Public Class SessionService
 
             Throw New InvalidOperationException(
             "Cannot resume session on different device type."
+        )
+
+        End If
+
+        If CustomerRepo.HasActiveSessionByCustomerId(pausedSession.CustomerID) Then
+
+            Throw New InvalidOperationException(
+            "Customer already has an active session."
         )
 
         End If

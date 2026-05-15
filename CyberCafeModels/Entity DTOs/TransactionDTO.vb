@@ -1,7 +1,7 @@
 ﻿Public Class TransactionDTO
     Public Property TransactionID As Integer
 
-    Public Property CustomerID As Integer
+    Public Property CustomerID As Integer?
 
     Public Property ProcessedByAdminID As Integer
 
