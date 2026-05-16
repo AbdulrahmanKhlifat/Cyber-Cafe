@@ -23,19 +23,20 @@ Partial Class frmCustomerMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pnlNav = New System.Windows.Forms.Panel()
+        Me.btnShowDetails = New Guna.UI2.WinForms.Guna2Button()
         Me.btnGameLauncher = New System.Windows.Forms.Button()
         Me.btnCart = New System.Windows.Forms.Button()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlTopBar = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblLogoIcon = New System.Windows.Forms.Label()
         Me.lblLogoText = New System.Windows.Forms.Label()
-        Me.lblClock = New System.Windows.Forms.Label()
         Me.pnlUserBadge = New System.Windows.Forms.Panel()
-        Me.lblUserName = New System.Windows.Forms.Label()
-        Me.lblUserRole = New System.Windows.Forms.Label()
+        Me.lblMyCredit = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.btnMinWin = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.btnGameLauncher = New System.Windows.Forms.Button()
         Me.pnlNav.SuspendLayout()
         Me.pnlTopBar.SuspendLayout()
         Me.pnlUserBadge.SuspendLayout()
@@ -44,6 +45,7 @@ Partial Class frmCustomerMain
         'pnlNav
         '
         Me.pnlNav.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.pnlNav.Controls.Add(Me.btnShowDetails)
         Me.pnlNav.Controls.Add(Me.btnGameLauncher)
         Me.pnlNav.Controls.Add(Me.btnCart)
         Me.pnlNav.Controls.Add(Me.btnLogout)
@@ -53,6 +55,19 @@ Partial Class frmCustomerMain
         Me.pnlNav.Name = "pnlNav"
         Me.pnlNav.Size = New System.Drawing.Size(182, 589)
         Me.pnlNav.TabIndex = 4
+        '
+        'btnShowDetails
+        '
+        Me.btnShowDetails.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.btnShowDetails.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.btnShowDetails.Font = New System.Drawing.Font("Segoe UI Black", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnShowDetails.ForeColor = System.Drawing.Color.Black
+        Me.btnShowDetails.Location = New System.Drawing.Point(0, 477)
+        Me.btnShowDetails.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnShowDetails.Name = "btnShowDetails"
+        Me.btnShowDetails.Size = New System.Drawing.Size(182, 56)
+        Me.btnShowDetails.TabIndex = 12
+        Me.btnShowDetails.Text = "   Show Details"
         '
         'btnGameLauncher
         '
@@ -103,10 +118,10 @@ Partial Class frmCustomerMain
         '
         'pnlTopBar
         '
+        Me.pnlTopBar.Controls.Add(Me.pnlUserBadge)
         Me.pnlTopBar.Controls.Add(Me.lblLogoIcon)
         Me.pnlTopBar.Controls.Add(Me.lblLogoText)
         Me.pnlTopBar.Controls.Add(Me.lblClock)
-        Me.pnlTopBar.Controls.Add(Me.pnlUserBadge)
         Me.pnlTopBar.Controls.Add(Me.btnCloseWin)
         Me.pnlTopBar.Controls.Add(Me.btnMinWin)
         Me.pnlTopBar.Dock = System.Windows.Forms.DockStyle.Top
@@ -122,10 +137,10 @@ Partial Class frmCustomerMain
         Me.lblLogoIcon.BackColor = System.Drawing.Color.Transparent
         Me.lblLogoIcon.Font = New System.Drawing.Font("Segoe UI Emoji", 18.0!)
         Me.lblLogoIcon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lblLogoIcon.Location = New System.Drawing.Point(11, 0)
+        Me.lblLogoIcon.Location = New System.Drawing.Point(11, 6)
         Me.lblLogoIcon.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLogoIcon.Name = "lblLogoIcon"
-        Me.lblLogoIcon.Size = New System.Drawing.Size(44, 40)
+        Me.lblLogoIcon.Size = New System.Drawing.Size(44, 36)
         Me.lblLogoIcon.TabIndex = 3
         Me.lblLogoIcon.Text = "🎮"
         Me.lblLogoIcon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -135,10 +150,10 @@ Partial Class frmCustomerMain
         Me.lblLogoText.BackColor = System.Drawing.Color.Transparent
         Me.lblLogoText.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblLogoText.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblLogoText.Location = New System.Drawing.Point(59, 9)
+        Me.lblLogoText.Location = New System.Drawing.Point(59, 12)
         Me.lblLogoText.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblLogoText.Name = "lblLogoText"
-        Me.lblLogoText.Size = New System.Drawing.Size(121, 40)
+        Me.lblLogoText.Size = New System.Drawing.Size(121, 28)
         Me.lblLogoText.TabIndex = 4
         Me.lblLogoText.Text = "CyberCafe Pro"
         '
@@ -158,39 +173,35 @@ Partial Class frmCustomerMain
         '
         Me.pnlUserBadge.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlUserBadge.BackColor = System.Drawing.Color.Transparent
-        Me.pnlUserBadge.Controls.Add(Me.lblUserName)
-        Me.pnlUserBadge.Controls.Add(Me.lblUserRole)
-        Me.pnlUserBadge.Location = New System.Drawing.Point(1031, 6)
+        Me.pnlUserBadge.Controls.Add(Me.lblMyCredit)
+        Me.pnlUserBadge.Controls.Add(Me.Label1)
+        Me.pnlUserBadge.Location = New System.Drawing.Point(680, 4)
         Me.pnlUserBadge.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlUserBadge.Name = "pnlUserBadge"
         Me.pnlUserBadge.Size = New System.Drawing.Size(173, 46)
         Me.pnlUserBadge.TabIndex = 2
         '
-        'lblUserName
+        'lblMyCredit
         '
-        Me.lblUserName.AutoSize = True
-        Me.lblUserName.BackColor = System.Drawing.Color.Transparent
-        Me.lblUserName.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.lblUserName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblUserName.Location = New System.Drawing.Point(13, 2)
-        Me.lblUserName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblUserName.Name = "lblUserName"
-        Me.lblUserName.Size = New System.Drawing.Size(73, 19)
-        Me.lblUserName.TabIndex = 0
-        Me.lblUserName.Text = "Customer"
+        Me.lblMyCredit.AutoSize = True
+        Me.lblMyCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblMyCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.lblMyCredit.Location = New System.Drawing.Point(118, 12)
+        Me.lblMyCredit.Name = "lblMyCredit"
+        Me.lblMyCredit.Size = New System.Drawing.Size(33, 21)
+        Me.lblMyCredit.TabIndex = 6
+        Me.lblMyCredit.Text = "🧾"
         '
-        'lblUserRole
+        'Label1
         '
-        Me.lblUserRole.AutoSize = True
-        Me.lblUserRole.BackColor = System.Drawing.Color.Transparent
-        Me.lblUserRole.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.lblUserRole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lblUserRole.Location = New System.Drawing.Point(13, 19)
-        Me.lblUserRole.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblUserRole.Name = "lblUserRole"
-        Me.lblUserRole.Size = New System.Drawing.Size(40, 13)
-        Me.lblUserRole.TabIndex = 1
-        Me.lblUserRole.Text = "Admin"
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(4, 12)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(115, 21)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "🧾 My Credit:"
         '
         'btnCloseWin
         '
@@ -227,6 +238,11 @@ Partial Class frmCustomerMain
         Me.pnlMain.Size = New System.Drawing.Size(1300, 589)
         Me.pnlMain.TabIndex = 5
         '
+        Me.btnGameLauncher.TabIndex = 11
+        Me.btnGameLauncher.Text = " 🎮 Games"
+        Me.btnGameLauncher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnGameLauncher.UseVisualStyleBackColor = False
+        '
         'frmCustomerMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -253,13 +269,14 @@ Partial Class frmCustomerMain
     Private WithEvents pnlTopBar As Guna.UI2.WinForms.Guna2Panel
     Private WithEvents lblLogoIcon As Label
     Private WithEvents lblLogoText As Label
-    Private WithEvents lblClock As Label
     Private WithEvents pnlUserBadge As Panel
-    Private WithEvents lblUserName As Label
-    Private WithEvents lblUserRole As Label
     Private WithEvents btnCloseWin As Guna.UI2.WinForms.Guna2Button
     Private WithEvents btnMinWin As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnCart As Button
     Friend WithEvents pnlMain As Panel
     Friend WithEvents btnGameLauncher As Button
+    Friend WithEvents lblMyCredit As Label
+    Friend WithEvents Label1 As Label
+    Private WithEvents btnShowDetails As Guna.UI2.WinForms.Guna2Button
+    Private WithEvents lblClock As Label
 End Class

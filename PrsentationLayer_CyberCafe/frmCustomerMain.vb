@@ -2,6 +2,7 @@
 Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
+
 Public Class frmCustomerMain
 
 
@@ -140,4 +141,15 @@ Public Class frmCustomerMain
         tmrSessionRefresh.Stop()
 
     End Sub
+    Private Sub btnShowDetails_Click(sender As Object, e As EventArgs) Handles btnShowDetails.Click
+
+
+
+        Using frmShowCustomerDetails As New frmShowCustomerDetails(_SessionDto.CustomerID)
+            frmShowCustomerDetails.ShowDialog()
+        End Using
+
+    End Sub
+
+
 End Class
