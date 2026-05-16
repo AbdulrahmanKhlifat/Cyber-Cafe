@@ -35,6 +35,7 @@ Partial Class frmCustomerMain
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.btnMinWin = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.btnShowDetails = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlNav.SuspendLayout()
         Me.pnlTopBar.SuspendLayout()
         Me.pnlUserBadge.SuspendLayout()
@@ -84,6 +85,7 @@ Partial Class frmCustomerMain
         '
         'pnlTopBar
         '
+        Me.pnlTopBar.Controls.Add(Me.btnShowDetails)
         Me.pnlTopBar.Controls.Add(Me.lblLogoIcon)
         Me.pnlTopBar.Controls.Add(Me.lblLogoText)
         Me.pnlTopBar.Controls.Add(Me.lblClock)
@@ -141,7 +143,7 @@ Partial Class frmCustomerMain
         Me.pnlUserBadge.BackColor = System.Drawing.Color.Transparent
         Me.pnlUserBadge.Controls.Add(Me.lblUserName)
         Me.pnlUserBadge.Controls.Add(Me.lblUserRole)
-        Me.pnlUserBadge.Location = New System.Drawing.Point(1031, 6)
+        Me.pnlUserBadge.Location = New System.Drawing.Point(951, 4)
         Me.pnlUserBadge.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlUserBadge.Name = "pnlUserBadge"
         Me.pnlUserBadge.Size = New System.Drawing.Size(173, 46)
@@ -208,6 +210,18 @@ Partial Class frmCustomerMain
         Me.pnlMain.Size = New System.Drawing.Size(1300, 589)
         Me.pnlMain.TabIndex = 5
         '
+        'btnShowDetails
+        '
+        Me.btnShowDetails.BorderRadius = 8
+        Me.btnShowDetails.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.btnShowDetails.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.btnShowDetails.ForeColor = System.Drawing.Color.White
+        Me.btnShowDetails.Location = New System.Drawing.Point(1129, 5)
+        Me.btnShowDetails.Name = "btnShowDetails"
+        Me.btnShowDetails.Size = New System.Drawing.Size(160, 45)
+        Me.btnShowDetails.TabIndex = 7
+        Me.btnShowDetails.Text = "Show Details"
+        '
         'frmCustomerMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -241,4 +255,5 @@ Partial Class frmCustomerMain
     Private WithEvents btnMinWin As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnCart As Button
     Friend WithEvents pnlMain As Panel
+    Friend WithEvents btnShowDetails As Guna.UI2.WinForms.Guna2Button
 End Class

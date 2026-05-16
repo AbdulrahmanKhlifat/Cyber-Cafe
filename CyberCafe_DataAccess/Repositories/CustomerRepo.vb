@@ -433,7 +433,7 @@ Public Class CustomerRepo
         Try
 
             Dim query As String = "SELECT Credits 
-                                  FROM CustomersWHERE CustomerID = @CustomerIDAND IsDeleted = 0"
+                                  FROM Customers WHERE CustomerID = @CustomerID AND IsDeleted = 0"
 
             Using cmd As New SqlCommand(query, conn, trans)
 

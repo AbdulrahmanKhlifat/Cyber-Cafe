@@ -52,6 +52,8 @@ Partial Class frmCustomerCart
         Me.btnPurchase = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2VScrollBar1 = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblMyCredit = New System.Windows.Forms.Label()
         Me.pnlHeader.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlInvoice.SuspendLayout()
@@ -116,6 +118,8 @@ Partial Class frmCustomerCart
         '
         'pnlFilter
         '
+        Me.pnlFilter.Controls.Add(Me.lblMyCredit)
+        Me.pnlFilter.Controls.Add(Me.Label1)
         Me.pnlFilter.Controls.Add(Me.txtSearch)
         Me.pnlFilter.Controls.Add(Me.btnSearch)
         Me.pnlFilter.Controls.Add(Me.cboCategoryFilter)
@@ -417,6 +421,28 @@ Partial Class frmCustomerCart
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(524, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(115, 21)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "🧾 My Credit:"
+        '
+        'lblMyCredit
+        '
+        Me.lblMyCredit.AutoSize = True
+        Me.lblMyCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblMyCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.lblMyCredit.Location = New System.Drawing.Point(638, 11)
+        Me.lblMyCredit.Name = "lblMyCredit"
+        Me.lblMyCredit.Size = New System.Drawing.Size(33, 21)
+        Me.lblMyCredit.TabIndex = 4
+        Me.lblMyCredit.Text = "🧾"
+        '
         'frmCustomerCart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -434,6 +460,7 @@ Partial Class frmCustomerCart
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlHeader.PerformLayout()
         Me.pnlFilter.ResumeLayout(False)
+        Me.pnlFilter.PerformLayout()
         Me.pnlInvoice.ResumeLayout(False)
         Me.pnlInvoiceHeader.ResumeLayout(False)
         Me.pnlInvoiceHeader.PerformLayout()
@@ -472,4 +499,6 @@ Partial Class frmCustomerCart
     Friend WithEvents pnlInvoiceSeparator As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2VScrollBar1 As Guna.UI2.WinForms.Guna2VScrollBar
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents lblMyCredit As Label
+    Friend WithEvents Label1 As Label
 End Class

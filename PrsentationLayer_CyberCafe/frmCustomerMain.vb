@@ -1,5 +1,5 @@
 ﻿Imports CyberCafeModels
-Imports CyberCafeModels.CyberCafe.Models
+
 
 Public Class frmCustomerMain
 
@@ -66,4 +66,9 @@ Public Class frmCustomerMain
         Me.Close()
     End Sub
 
+    Private Sub btnShowDetails_Click(sender As Object, e As EventArgs) Handles btnShowDetails.Click
+
+        ChangeForm(New frmShowCustomerDetails(_SessionDto.CustomerID))
+
+    End Sub
 End Class
