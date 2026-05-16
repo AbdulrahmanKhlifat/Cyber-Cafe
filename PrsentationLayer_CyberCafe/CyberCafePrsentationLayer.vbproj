@@ -97,6 +97,12 @@
     <Compile Include="ctrConsumableCard.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="frmAddDeductCustomerCredit.Designer.vb">
+      <DependentUpon>frmAddDeductCustomerCredit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddDeductCustomerCredit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAssignGames.Designer.vb">
       <DependentUpon>frmAssignGames.vb</DependentUpon>
     </Compile>
@@ -254,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrConsumableCard.resx">
       <DependentUpon>ctrConsumableCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddDeductCustomerCredit.resx">
+      <DependentUpon>frmAddDeductCustomerCredit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAssignGames.resx">
       <DependentUpon>frmAssignGames.vb</DependentUpon>
@@ -413,6 +422,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ChatGPT Image May 16, 2026, 01_40_07 PM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image May 16, 2026, 06_55_29 PM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image May 16, 2026, 08_51_14 PM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image May 16, 2026, 08_54_34 PM.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

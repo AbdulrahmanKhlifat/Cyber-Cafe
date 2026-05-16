@@ -8,4 +8,5 @@
 
     WalkInPurchase = 3
 
+    DeductCredit = 4
 End Enum

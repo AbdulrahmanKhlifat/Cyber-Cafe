@@ -20,7 +20,7 @@ Module Program
             Using frmLogin As New frmLogin()
 
                 Dim result As DialogResult =
-                    frmLogin.ShowDialog()
+                frmLogin.ShowDialog()
 
                 ' User closed login or cancelled
                 If result <> DialogResult.OK Then
@@ -37,11 +37,11 @@ Module Program
                     Case UserRoleType.Admin
 
                         Dim admin As AdminDTO =
-                            CType(LoggedInUser.CurrentUser,
-                                  AdminDTO)
+                        CType(LoggedInUser.CurrentUser,
+                        AdminDTO)
 
                         Application.Run(
-                            New frmAdminMain(admin)
+                        New frmAdminMain(admin)
                         )
 
                     Case UserRoleType.Customer
@@ -49,7 +49,7 @@ Module Program
                         Dim customer As CustomerDTO = CType(LoggedInUser.CurrentUser, CustomerDTO)
 
                         Application.Run(
-                            New frmCustomerMain(1)
+                        New frmCustomerMain(1)
                         )
 
                     Case Else

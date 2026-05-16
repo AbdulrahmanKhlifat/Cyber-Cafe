@@ -194,7 +194,7 @@ Public Class TransactionRepo
             Dim query As String = "SELECT COUNT(TransactionID) AS TotalTransactions, 
                                       ISNULL(SUM(PaidAmount), 0) AS TotalRevenue
                                FROM Transactions 
-                               WHERE CAST(TransactionDate AS DATE) = CAST(GETDATE() AS DATE) and IsDeleted = 0;"
+                               WHERE CAST(TransactionDate AS DATE) = CAST(GETDATE() AS DATE) and IsDeleted = 0 And TransactionType not in (0, 4);"
 
             Using cmd As New SqlCommand(query, conn)
 
