@@ -460,9 +460,25 @@ Public Class frmShowDeviceDetails
 
         Try
 
-
+            Using frm As New frmResumeSession(sessionID)
+                If frm.ShowDialog() = DialogResult.OK Then
+                    LoadCurrentSession()
+                End If
+            End Using
 
         Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(
+            ex,
+            Reflection.MethodBase.
+            GetCurrentMethod().Name
+        )
+
+            UIHelper.ShowGunaMessage(
+            ex.Message,
+            "Error",
+            MessageDialogIcon.Error
+        )
 
         End Try
 

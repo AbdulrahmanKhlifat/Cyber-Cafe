@@ -360,9 +360,31 @@ Public Class SessionService
 
     End Function
 
+    Public Shared Function GetResumeSessionDetails(sessionID As Integer) As ResumeSessionDTO
 
+        Try
 
+            Dim dto As ResumeSessionDTO =
+            SessionRepo.GetResumeSessionDetails(sessionID)
 
+            If dto Is Nothing Then
+                Throw New Exception("Paused session not found.")
+            End If
+
+            Return dto
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(
+            ex,
+            Reflection.MethodBase.GetCurrentMethod().Name
+        )
+
+            Throw
+
+        End Try
+
+    End Function
 
     Public Shared Function GetActiveSessionsAsView() As DataTable
         Return SessionRepo.GetActiveSessionsView

@@ -35,6 +35,7 @@ Partial Class frmCustomerMain
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.btnMinWin = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.btnGameLauncher = New System.Windows.Forms.Button()
         Me.btnShowDetails = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlNav.SuspendLayout()
         Me.pnlTopBar.SuspendLayout()
@@ -44,6 +45,7 @@ Partial Class frmCustomerMain
         'pnlNav
         '
         Me.pnlNav.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.pnlNav.Controls.Add(Me.btnGameLauncher)
         Me.pnlNav.Controls.Add(Me.btnCart)
         Me.pnlNav.Controls.Add(Me.btnLogout)
         Me.pnlNav.Dock = System.Windows.Forms.DockStyle.Left
@@ -60,13 +62,13 @@ Partial Class frmCustomerMain
         Me.btnCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCart.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCart.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnCart.Location = New System.Drawing.Point(1, 149)
+        Me.btnCart.Location = New System.Drawing.Point(2, 86)
         Me.btnCart.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCart.Name = "btnCart"
         Me.btnCart.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
         Me.btnCart.Size = New System.Drawing.Size(179, 78)
         Me.btnCart.TabIndex = 10
-        Me.btnCart.Text = "  🖥  My Cart"
+        Me.btnCart.Text = " 🛒  My Cart"
         Me.btnCart.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCart.UseVisualStyleBackColor = False
         '
@@ -210,6 +212,23 @@ Partial Class frmCustomerMain
         Me.pnlMain.Size = New System.Drawing.Size(1300, 589)
         Me.pnlMain.TabIndex = 5
         '
+        'btnGameLauncher
+        '
+        Me.btnGameLauncher.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.btnGameLauncher.FlatAppearance.BorderSize = 0
+        Me.btnGameLauncher.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGameLauncher.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGameLauncher.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.btnGameLauncher.Location = New System.Drawing.Point(2, 4)
+        Me.btnGameLauncher.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnGameLauncher.Name = "btnGameLauncher"
+        Me.btnGameLauncher.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
+        Me.btnGameLauncher.Size = New System.Drawing.Size(179, 78)
+        Me.btnGameLauncher.TabIndex = 11
+        Me.btnGameLauncher.Text = " 🎮 Games"
+        Me.btnGameLauncher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnGameLauncher.UseVisualStyleBackColor = False
+        '
         'btnShowDetails
         '
         Me.btnShowDetails.BorderRadius = 8
@@ -256,4 +275,5 @@ Partial Class frmCustomerMain
     Friend WithEvents btnCart As Button
     Friend WithEvents pnlMain As Panel
     Friend WithEvents btnShowDetails As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnGameLauncher As Button
 End Class

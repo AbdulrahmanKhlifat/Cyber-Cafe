@@ -275,13 +275,13 @@ Public Class CustomerRepo
         Try
 
             Dim query As String = "UPDATE Customers 
-                                  SET Credits = Credits - @Amount WHERE CustomerID = @CustomerID AND Credits >= @Amount"
+                                  SET Credit = Credit - @Amount WHERE UserID = @UserID AND Credit >= @Amount"
 
             Using cmd As New SqlCommand(query, conn, trans)
 
                 cmd.Parameters.Add("@Amount", SqlDbType.Decimal).Value = amount
 
-                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerID
+                cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = customerID
 
                 rowsAffected = cmd.ExecuteNonQuery()
 
@@ -432,12 +432,12 @@ Public Class CustomerRepo
 
         Try
 
-            Dim query As String = "SELECT Credits 
-                                  FROM Customers WHERE CustomerID = @CustomerID AND IsDeleted = 0"
+            Dim query As String = "SELECT Credit
+                                  FROM Customers WHERE UserID = @UserID"
 
             Using cmd As New SqlCommand(query, conn, trans)
 
-                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerID
+                cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = customerID
 
                 Dim result = cmd.ExecuteScalar()
 
