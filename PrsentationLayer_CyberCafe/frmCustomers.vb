@@ -7,7 +7,6 @@ Public Class frmCustomers
 
     Private _SelectedCustomerID As Integer = -1
 
-
     Private Sub btnCancelCustomer_Click(sender As Object, e As EventArgs) Handles btnCancelCustomer.Click
         pnlCustomerDetail.Visible = False
     End Sub
@@ -161,8 +160,9 @@ Public Class frmCustomers
 
             Dim customerID As Integer = CInt(dgvCustomers.CurrentRow.Cells("UserID").Value)
 
-            Dim frm As New frmShowCustomerDetails(customerID)
-            frm.ShowDialog()
+            Using frm As New frmShowCustomerDetails(customerID)
+                frm.ShowDialog()
+            End Using
 
         End If
 
@@ -204,5 +204,63 @@ Public Class frmCustomers
 
     End Sub
 
+    Private Sub tsAddCredit_Click(sender As Object, e As EventArgs) Handles tsAddCredit.Click
+
+        If dgvCustomers.CurrentRow IsNot Nothing Then
+
+            Dim customerID As Integer = CInt(dgvCustomers.CurrentRow.Cells("UserID").Value)
+
+            Using frm As New frmAddDeductCustomerCredit(customerID, frmAddDeductCustomerCredit.enMode.Add)
+                frm.ShowDialog()
+            End Using
+
+            LoadCustomerData()
+
+        End If
+
+    End Sub
+
+    Private Sub tsDeductCredit_Click(sender As Object, e As EventArgs) Handles tsDeductCredit.Click
+
+        If dgvCustomers.CurrentRow IsNot Nothing Then
+
+            Dim customerID As Integer = CInt(dgvCustomers.CurrentRow.Cells("UserID").Value)
+
+            Using frm As New frmAddDeductCustomerCredit(customerID, frmAddDeductCustomerCredit.enMode.Deduct)
+                frm.ShowDialog()
+            End Using
+
+            LoadCustomerData()
+
+        End If
+
+    End Sub
+
+    Private Sub cmsCustomer_Opening(
+    sender As Object,
+    e As System.ComponentModel.CancelEventArgs
+) Handles cmsCustomer.Opening
+
+        If dgvCustomers.SelectedRows.Count = 0 Then
+
+            e.Cancel = True
+
+            Return
+
+        End If
+
+        Dim selectedRow As DataGridViewRow =
+        dgvCustomers.SelectedRows(0)
+
+        Dim credit As Decimal = 0
+
+        Decimal.TryParse(
+        selectedRow.Cells("Credit").Value.ToString(),
+        credit
+    )
+
+        tsDeductCredit.Visible = credit > 0
+
+    End Sub
 
 End Class

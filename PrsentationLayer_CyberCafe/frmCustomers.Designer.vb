@@ -49,9 +49,11 @@ Partial Class frmCustomers
         Me.btnCancelCustomer = New Guna.UI2.WinForms.Guna2Button()
         Me.dgvCustomers = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.cmsCustomer = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
-        Me.tsShowDetails = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsUpdateCustomer = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.tsShowDetails = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsAddCredit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsDeductCredit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsUpdateCustomer = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlHeader.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlCustomerDetail.SuspendLayout()
@@ -434,7 +436,7 @@ Partial Class frmCustomers
         Me.cmsCustomer.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.cmsCustomer.ForeColor = System.Drawing.Color.White
         Me.cmsCustomer.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.cmsCustomer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsShowDetails, Me.tsUpdateCustomer})
+        Me.cmsCustomer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsShowDetails, Me.tsAddCredit, Me.tsDeductCredit, Me.tsUpdateCustomer})
         Me.cmsCustomer.Name = "DeviceContextMenu"
         Me.cmsCustomer.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
         Me.cmsCustomer.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
@@ -445,7 +447,11 @@ Partial Class frmCustomers
         Me.cmsCustomer.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
         Me.cmsCustomer.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.cmsCustomer.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-        Me.cmsCustomer.Size = New System.Drawing.Size(217, 56)
+        Me.cmsCustomer.Size = New System.Drawing.Size(217, 130)
+        '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
         '
         'tsShowDetails
         '
@@ -456,16 +462,29 @@ Partial Class frmCustomers
         Me.tsShowDetails.Size = New System.Drawing.Size(216, 26)
         Me.tsShowDetails.Text = "Show Details"
         '
+        'tsAddCredit
+        '
+        Me.tsAddCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsAddCredit.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.ChatGPT_Image_May_16__2026__06_55_29_PM
+        Me.tsAddCredit.Name = "tsAddCredit"
+        Me.tsAddCredit.Size = New System.Drawing.Size(216, 26)
+        Me.tsAddCredit.Text = "Add Credit"
+        '
+        'tsDeductCredit
+        '
+        Me.tsDeductCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsDeductCredit.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.ChatGPT_Image_May_16__2026__08_54_34_PM
+        Me.tsDeductCredit.Name = "tsDeductCredit"
+        Me.tsDeductCredit.Size = New System.Drawing.Size(216, 26)
+        Me.tsDeductCredit.Text = "Deduct Credit"
+        '
         'tsUpdateCustomer
         '
         Me.tsUpdateCustomer.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsUpdateCustomer.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.edit_user
         Me.tsUpdateCustomer.Name = "tsUpdateCustomer"
         Me.tsUpdateCustomer.Size = New System.Drawing.Size(216, 26)
         Me.tsUpdateCustomer.Text = "Update Customer"
-        '
-        'ErrorProvider1
-        '
-        Me.ErrorProvider1.ContainerControl = Me
         '
         'frmCustomers
         '
@@ -516,4 +535,6 @@ Partial Class frmCustomers
     Friend WithEvents tsShowDetails As ToolStripMenuItem
     Friend WithEvents tsUpdateCustomer As ToolStripMenuItem
     Friend WithEvents ErrorProvider1 As ErrorProvider
+    Friend WithEvents tsAddCredit As ToolStripMenuItem
+    Friend WithEvents tsDeductCredit As ToolStripMenuItem
 End Class

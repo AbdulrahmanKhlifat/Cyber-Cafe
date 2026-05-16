@@ -27,7 +27,7 @@ Public Class DashboardRepo
                 (SELECT ISNULL(SUM(PaidAmount), 0)
                  FROM Transactions
                  WHERE CAST(TransactionDate AS DATE) = CAST(GETDATE() AS DATE)
-                   AND IsDeleted = 0) AS TodayRevenue
+                   AND IsDeleted = 0 AND TransactionType not in (0, 4) ) AS TodayRevenue
 
             FROM Devices
             Where IsDeleted = 0;"

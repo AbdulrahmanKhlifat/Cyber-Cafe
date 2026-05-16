@@ -144,7 +144,129 @@ Public Class CustomerRepo
         Return UserRepo.DeleteUser(userID)
     End Function
 
+    Public Shared Function AddCredits(
+    customerID As Integer,
+    amount As Decimal,
+    processedByAdminID As Integer
+) As Boolean
 
+        If customerID <= 0 Then
+            Throw New Exception("Invalid customer ID.")
+        End If
+
+        If amount <= 0 Then
+            Throw New Exception(
+            "Amount must be greater than zero."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            conn.Open()
+
+            Using trans As SqlTransaction =
+            conn.BeginTransaction()
+
+                Try
+
+                    Dim query As String =
+                "UPDATE Customers
+                 SET Credit = Credit + @Amount
+                 WHERE UserID = @UserID"
+
+                    Using cmd As New SqlCommand(
+                    query,
+                    conn,
+                    trans
+                )
+
+                        cmd.Parameters.Add(
+                        "@Amount",
+                        SqlDbType.Decimal
+                    ).Value = amount
+
+                        cmd.Parameters.Add(
+                        "@UserID",
+                        SqlDbType.Int
+                    ).Value = customerID
+
+                        Dim rowsAffected As Integer =
+                        cmd.ExecuteNonQuery()
+
+                        If rowsAffected = 0 Then
+
+                            Throw New Exception(
+                            "Customer not found or failed to add credits."
+                        )
+
+                        End If
+
+                    End Using
+
+                    Dim transactionDto As New TransactionDTO()
+
+                    With transactionDto
+                        .ProcessedByAdminID = processedByAdminID
+
+                        .TransactionType =
+                        CInt(TransactionType.AddCredit)
+
+                        .PaidAmount = amount
+
+                        .TransactionDate =
+                        DateTime.Now
+
+                        .TransactionNotes =
+                        "Customer credit added."
+
+                        .CustomerID = customerID
+
+                        .SessionID = Nothing
+
+                        .IsDeleted = False
+
+                    End With
+
+                    Dim transactionID As Integer =
+                    TransactionRepo.AddTransaction(
+                        transactionDto,
+                        conn,
+                        trans
+                    )
+
+                    If transactionID <= 0 Then
+
+                        Throw New Exception(
+                        "Failed to create transaction."
+                    )
+
+                    End If
+
+                    trans.Commit()
+
+                    Return True
+
+                Catch ex As Exception
+
+                    trans.Rollback()
+
+                    ErrorLogger.LogErrorToFile(
+                    ex,
+                    Reflection.MethodBase.
+                    GetCurrentMethod().Name
+                )
+
+                    Throw
+
+                End Try
+
+            End Using
+
+        End Using
+
+    End Function
 
     Public Shared Function DeductCredits(customerID As Integer, amount As Decimal, conn As SqlConnection, trans As SqlTransaction) As Boolean
 
@@ -177,7 +299,132 @@ Public Class CustomerRepo
 
     End Function
 
+    Public Shared Function DeductCredits(
+    customerID As Integer,
+    amount As Decimal,
+    processedByAdminID As Integer
+) As Boolean
 
+        If customerID <= 0 Then
+            Throw New Exception("Invalid customer ID.")
+        End If
+
+        If amount <= 0 Then
+            Throw New Exception(
+            "Amount must be greater than zero."
+        )
+        End If
+
+        Using conn As New SqlConnection(
+        DataAccessSettings.connectionString
+    )
+
+            conn.Open()
+
+            Using trans As SqlTransaction =
+            conn.BeginTransaction()
+
+                Try
+
+                    Dim query As String =
+                "UPDATE Customers
+                 SET Credit = Credit - @Amount
+                 WHERE UserID = @UserID
+                 AND Credit >= @Amount"
+
+                    Using cmd As New SqlCommand(
+                    query,
+                    conn,
+                    trans
+                )
+
+                        cmd.Parameters.Add(
+                        "@Amount",
+                        SqlDbType.Decimal
+                    ).Value = amount
+
+                        cmd.Parameters.Add(
+                        "@UserID",
+                        SqlDbType.Int
+                    ).Value = customerID
+
+                        Dim rowsAffected As Integer =
+                        cmd.ExecuteNonQuery()
+
+                        If rowsAffected = 0 Then
+
+                            Throw New Exception(
+                            "Insufficient credit or customer not found."
+                        )
+
+                        End If
+
+                    End Using
+
+                    Dim transactionDto As New TransactionDTO()
+
+                    With transactionDto
+
+                        .ProcessedByAdminID =
+                        processedByAdminID
+
+                        .TransactionType =
+                        CInt(TransactionType.DeductCredit)
+
+                        .PaidAmount = amount
+
+                        .TransactionDate =
+                        DateTime.Now
+
+                        .TransactionNotes =
+                        "Customer credit deducted."
+
+                        .CustomerID = customerID
+
+                        .SessionID = Nothing
+
+                        .IsDeleted = False
+
+                    End With
+
+                    Dim transactionID As Integer =
+                    TransactionRepo.AddTransaction(
+                        transactionDto,
+                        conn,
+                        trans
+                    )
+
+                    If transactionID <= 0 Then
+
+                        Throw New Exception(
+                        "Failed to create transaction."
+                    )
+
+                    End If
+
+                    trans.Commit()
+
+                    Return True
+
+                Catch ex As Exception
+
+                    trans.Rollback()
+
+                    ErrorLogger.LogErrorToFile(
+                    ex,
+                    Reflection.MethodBase.
+                    GetCurrentMethod().Name
+                )
+
+                    Throw
+
+                End Try
+
+            End Using
+
+        End Using
+
+    End Function
 
     Public Shared Function GetCustomerCredits(customerID As Integer, conn As SqlConnection, trans As SqlTransaction) As Decimal
 
@@ -227,7 +474,7 @@ Public Class CustomerRepo
                                     u.Email, 
                                     u.Phone, 
                                     c.CreatedAt,
-                                    c.CreatedByAdminID
+                                    c.Credit
                                FROM Customers c
                                INNER JOIN Users u ON c.UserID = u.UserID
                                WHERE u.IsDeleted = 0;"

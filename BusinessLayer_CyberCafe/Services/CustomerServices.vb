@@ -137,4 +137,36 @@ Public Class CustomerServices
         Return CustomerRepo.GetTop10Customers(str)
     End Function
 
+    Public Shared Function AddCredits(customerID As Integer, amount As Integer, processedByAdminID As Integer) As Boolean
+
+        If amount <= 0 Then
+            Throw New ArgumentException("Amount must be greater than zero.")
+        End If
+
+        Dim customer = CustomerRepo.GetCustomerInfoByID(customerID)
+
+        If customer Is Nothing Then
+            Throw New Exception("Customer does not exist.")
+        End If
+
+        Return CustomerRepo.AddCredits(customerID, amount, processedByAdminID)
+
+    End Function
+
+    Public Shared Function DeductCredits(customerID As Integer, amount As Integer, processedByAdminID As Integer) As Boolean
+
+        If amount <= 0 Then
+            Throw New ArgumentException("Amount must be greater than zero.")
+        End If
+
+        Dim customer = CustomerRepo.GetCustomerInfoByID(customerID)
+
+        If customer Is Nothing Then
+            Throw New Exception("Customer does not exist.")
+        End If
+
+        Return CustomerRepo.DeductCredits(customerID, amount, processedByAdminID)
+
+    End Function
+
 End Class
