@@ -11,14 +11,66 @@ Public Class frmCustomerMain
 
     Private _LastButtonClicked As Button
 
+    Private WithEvents tmrSessionRefresh As New Timer()
+
+
     Public Sub New(activeSession As ActiveSession)
 
         InitializeComponent()
 
         _SessionID = activeSession.SessionID
 
+        _SessionDto = activeSession
+
     End Sub
+
+    Private Sub tmrSessionRefresh_Tick(sender As Object, e As EventArgs) Handles tmrSessionRefresh.Tick
+
+        RefreshRemainingTime()
+
+    End Sub
+    Private Sub RefreshRemainingTime()
+
+        If _SessionDto Is Nothing Then
+            Return
+        End If
+
+        Dim remaining As TimeSpan =
+        TimeSpan.FromSeconds(
+            _SessionDto.RemainingSeconds
+        )
+
+        lblClock.Text =
+        $"Session Remaining: {remaining:hh\:mm\:ss}"
+
+        Select Case _SessionDto.RemainingSeconds
+
+            Case <= 300 ' 5 minutes
+
+                lblClock.ForeColor =
+                Color.FromArgb(255, 80, 80)
+
+            Case <= 600 ' 10 minutes
+
+                lblClock.ForeColor =
+                Color.Gold
+
+            Case Else
+
+                lblClock.ForeColor =
+                Color.FromArgb(0, 220, 160)
+
+        End Select
+
+    End Sub
+
     Private Sub frmCustomerMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        ChangeForm(New frmGameLauncher(_SessionDto))
+        _UpdateButtonColor(btnGameLauncher)
+
+        tmrSessionRefresh.Interval = 1000
+        tmrSessionRefresh.Start()
 
         Try
 
@@ -37,7 +89,6 @@ Public Class frmCustomerMain
         Me.CenterToParent()
         pnlTopBar.EnableDragging()
 
-        lblClock.Text = DateTime.Now.ToString("HH:mm:ss   ddd, MMM dd yyyy")
     End Sub
     Private Sub _UpdateButtonColor(btn As Button)
 
@@ -79,4 +130,14 @@ Public Class frmCustomerMain
         Me.Close()
     End Sub
 
+    Private Sub btnGameLauncher_Click(sender As Object, e As EventArgs) Handles btnGameLauncher.Click
+        ChangeForm(New frmGameLauncher(_SessionDto))
+        _UpdateButtonColor(btnGameLauncher)
+    End Sub
+
+    Private Sub frmCustomerMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
+        tmrSessionRefresh.Stop()
+
+    End Sub
 End Class

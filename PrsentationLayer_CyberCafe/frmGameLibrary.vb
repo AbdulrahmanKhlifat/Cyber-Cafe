@@ -7,7 +7,6 @@ Imports Guna.UI2.WinForms
 Public Class frmGameLibrary
 
     Private _allGames As List(Of GameDTO)
-    Private ReadOnly _thumbnailCache As New Dictionary(Of Integer, Image)
 
     Private Shared ReadOnly CyberAccent As Color = Color.FromArgb(0, 251, 255)
 
@@ -225,15 +224,5 @@ Public Class frmGameLibrary
         Dim prop = GetType(Control).GetProperty("DoubleBuffered", BindingFlags.Instance Or BindingFlags.NonPublic)
         prop?.SetValue(ctrl, True, Nothing)
     End Sub
-
-    Private Sub frmGameLibrary_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
-        For Each img In _thumbnailCache.Values
-            img?.Dispose()
-        Next
-
-        _thumbnailCache.Clear()
-    End Sub
-
 
 End Class

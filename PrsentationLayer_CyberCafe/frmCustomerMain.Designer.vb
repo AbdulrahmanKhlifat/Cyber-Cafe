@@ -23,6 +23,7 @@ Partial Class frmCustomerMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pnlNav = New System.Windows.Forms.Panel()
+        Me.btnGameLauncher = New System.Windows.Forms.Button()
         Me.btnCart = New System.Windows.Forms.Button()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlTopBar = New Guna.UI2.WinForms.Guna2Panel()
@@ -35,7 +36,6 @@ Partial Class frmCustomerMain
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.btnMinWin = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlMain = New System.Windows.Forms.Panel()
-        Me.btnGameLauncher = New System.Windows.Forms.Button()
         Me.pnlNav.SuspendLayout()
         Me.pnlTopBar.SuspendLayout()
         Me.pnlUserBadge.SuspendLayout()
@@ -53,6 +53,23 @@ Partial Class frmCustomerMain
         Me.pnlNav.Name = "pnlNav"
         Me.pnlNav.Size = New System.Drawing.Size(182, 589)
         Me.pnlNav.TabIndex = 4
+        '
+        'btnGameLauncher
+        '
+        Me.btnGameLauncher.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.btnGameLauncher.FlatAppearance.BorderSize = 0
+        Me.btnGameLauncher.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGameLauncher.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGameLauncher.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.btnGameLauncher.Location = New System.Drawing.Point(2, 4)
+        Me.btnGameLauncher.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnGameLauncher.Name = "btnGameLauncher"
+        Me.btnGameLauncher.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
+        Me.btnGameLauncher.Size = New System.Drawing.Size(179, 78)
+        Me.btnGameLauncher.TabIndex = 11
+        Me.btnGameLauncher.Text = " 🎮 Games"
+        Me.btnGameLauncher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnGameLauncher.UseVisualStyleBackColor = False
         '
         'btnCart
         '
@@ -127,15 +144,15 @@ Partial Class frmCustomerMain
         '
         'lblClock
         '
+        Me.lblClock.AutoSize = True
         Me.lblClock.BackColor = System.Drawing.Color.Transparent
-        Me.lblClock.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.lblClock.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblClock.Location = New System.Drawing.Point(191, 13)
+        Me.lblClock.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblClock.ForeColor = System.Drawing.Color.Lime
+        Me.lblClock.Location = New System.Drawing.Point(201, 19)
         Me.lblClock.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblClock.Name = "lblClock"
-        Me.lblClock.Size = New System.Drawing.Size(189, 25)
+        Me.lblClock.Size = New System.Drawing.Size(0, 21)
         Me.lblClock.TabIndex = 1
-        Me.lblClock.Text = "00:00:00   Mon, Jan 01 2025"
         '
         'pnlUserBadge
         '
@@ -210,23 +227,6 @@ Partial Class frmCustomerMain
         Me.pnlMain.Size = New System.Drawing.Size(1300, 589)
         Me.pnlMain.TabIndex = 5
         '
-        'btnGameLauncher
-        '
-        Me.btnGameLauncher.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnGameLauncher.FlatAppearance.BorderSize = 0
-        Me.btnGameLauncher.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGameLauncher.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnGameLauncher.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnGameLauncher.Location = New System.Drawing.Point(2, 4)
-        Me.btnGameLauncher.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnGameLauncher.Name = "btnGameLauncher"
-        Me.btnGameLauncher.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
-        Me.btnGameLauncher.Size = New System.Drawing.Size(179, 78)
-        Me.btnGameLauncher.TabIndex = 11
-        Me.btnGameLauncher.Text = " 🎮 Games"
-        Me.btnGameLauncher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnGameLauncher.UseVisualStyleBackColor = False
-        '
         'frmCustomerMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -241,6 +241,7 @@ Partial Class frmCustomerMain
         Me.Text = "frmCustomerMain"
         Me.pnlNav.ResumeLayout(False)
         Me.pnlTopBar.ResumeLayout(False)
+        Me.pnlTopBar.PerformLayout()
         Me.pnlUserBadge.ResumeLayout(False)
         Me.pnlUserBadge.PerformLayout()
         Me.ResumeLayout(False)
