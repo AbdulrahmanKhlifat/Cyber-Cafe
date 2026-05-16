@@ -210,7 +210,7 @@ Partial Class frmInventoryManagement
         Me.cms.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.RestockToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.cms.Name = "cms"
         Me.cms.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.cms.Size = New System.Drawing.Size(181, 70)
+        Me.cms.Size = New System.Drawing.Size(208, 94)
         '
         'EditToolStripMenuItem
         '
@@ -577,29 +577,26 @@ Partial Class frmInventoryManagement
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(32, 19)
         '
-        'RestockToolStripMenuItem
+        'ScrollBar
         '
-        Me.RestockToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.RestockToolStripMenuItem.Name = "RestockToolStripMenuItem"
-        Me.RestockToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        Me.RestockToolStripMenuItem.Size = New System.Drawing.Size(32, 19)
-        Me.RestockToolStripMenuItem.Text = "    📦  Restock Inventory"
-        '
-        'DeleteToolStripMenuItem
-        '
-        Me.DeleteToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(95, Byte), Integer))
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(32, 19)
-        Me.DeleteToolStripMenuItem.Text = "    🗑  Delete Permanently"
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.EditToolStripMenuItem.Text = "Edit"
+        Me.ScrollBar.BindingContainer = Me.dgvInventory
+        Me.ScrollBar.BorderRadius = 10
+        Me.ScrollBar.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ScrollBar.HighlightOnWheel = True
+        Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
+        Me.ScrollBar.InUpdate = False
+        Me.ScrollBar.LargeChange = 528
+        Me.ScrollBar.Location = New System.Drawing.Point(901, 1)
+        Me.ScrollBar.Margin = New System.Windows.Forms.Padding(1)
+        Me.ScrollBar.Maximum = 566
+        Me.ScrollBar.Minimum = 1
+        Me.ScrollBar.Name = "ScrollBar"
+        Me.ScrollBar.ScrollbarSize = 18
+        Me.ScrollBar.Size = New System.Drawing.Size(18, 506)
+        Me.ScrollBar.TabIndex = 3
+        Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
+        Me.ScrollBar.Value = 1
         '
         'frmInventoryManagement
         '

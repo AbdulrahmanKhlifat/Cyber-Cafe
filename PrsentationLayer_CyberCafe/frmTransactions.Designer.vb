@@ -53,6 +53,7 @@ Partial Class frmTransactions
         Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
         CType(Me.dgvTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlDetails.SuspendLayout()
         Me.pnlTotal.SuspendLayout()
@@ -509,11 +510,33 @@ Partial Class frmTransactions
         Me.Label6.TabIndex = 1
         Me.Label6.Text = "Daily Business Summary:"
         '
+        'ScrollBar
+        '
+        Me.ScrollBar.BindingContainer = Me.dgvTrans
+        Me.ScrollBar.BorderRadius = 10
+        Me.ScrollBar.FillColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ScrollBar.HighlightOnWheel = True
+        Me.ScrollBar.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(106, Byte), Integer))
+        Me.ScrollBar.InUpdate = False
+        Me.ScrollBar.LargeChange = 528
+        Me.ScrollBar.Location = New System.Drawing.Point(984, 267)
+        Me.ScrollBar.Margin = New System.Windows.Forms.Padding(1)
+        Me.ScrollBar.Maximum = 566
+        Me.ScrollBar.Minimum = 1
+        Me.ScrollBar.Name = "ScrollBar"
+        Me.ScrollBar.ScrollbarSize = 18
+        Me.ScrollBar.Size = New System.Drawing.Size(18, 426)
+        Me.ScrollBar.TabIndex = 11
+        Me.ScrollBar.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.ScrollBar.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
+        Me.ScrollBar.Value = 1
+        '
         'frmTransactions
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1341, 694)
+        Me.Controls.Add(Me.ScrollBar)
         Me.Controls.Add(Me.dgvTrans)
         Me.Controls.Add(Me.pnlDetails)
         Me.Controls.Add(Me.pnlTop)
@@ -569,4 +592,5 @@ Partial Class frmTransactions
     Private WithEvents Label7 As Label
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Guna2PictureBox2 As Guna.UI2.WinForms.Guna2PictureBox
+    Friend WithEvents ScrollBar As Guna.UI2.WinForms.Guna2VScrollBar
 End Class
