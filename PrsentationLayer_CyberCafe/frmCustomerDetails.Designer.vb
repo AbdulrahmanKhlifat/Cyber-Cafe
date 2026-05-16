@@ -31,7 +31,6 @@ Partial Class frmShowCustomerDetails
         Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblCustomerName = New System.Windows.Forms.Label()
         Me.lblUsernameHeader = New System.Windows.Forms.Label()
-        Me.pbProfileImage = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.flpStats = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlCardCredit = New Guna.UI2.WinForms.Guna2Panel()
@@ -56,7 +55,6 @@ Partial Class frmShowCustomerDetails
         Me.tabActivity = New System.Windows.Forms.TabPage()
         Me.dgvRecentSessions = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.pnlHeader.SuspendLayout()
-        CType(Me.pbProfileImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.flpStats.SuspendLayout()
         Me.pnlCardCredit.SuspendLayout()
         Me.pnlCardHours.SuspendLayout()
@@ -85,7 +83,6 @@ Partial Class frmShowCustomerDetails
         Me.pnlHeader.BackColor = System.Drawing.Color.Transparent
         Me.pnlHeader.Controls.Add(Me.lblCustomerName)
         Me.pnlHeader.Controls.Add(Me.lblUsernameHeader)
-        Me.pnlHeader.Controls.Add(Me.pbProfileImage)
         Me.pnlHeader.Controls.Add(Me.Guna2ControlBox1)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -99,7 +96,7 @@ Partial Class frmShowCustomerDetails
         Me.lblCustomerName.AutoSize = True
         Me.lblCustomerName.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblCustomerName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblCustomerName.Location = New System.Drawing.Point(100, 25)
+        Me.lblCustomerName.Location = New System.Drawing.Point(23, 23)
         Me.lblCustomerName.Name = "lblCustomerName"
         Me.lblCustomerName.Size = New System.Drawing.Size(155, 25)
         Me.lblCustomerName.TabIndex = 1
@@ -110,23 +107,11 @@ Partial Class frmShowCustomerDetails
         Me.lblUsernameHeader.AutoSize = True
         Me.lblUsernameHeader.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.lblUsernameHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        Me.lblUsernameHeader.Location = New System.Drawing.Point(101, 53)
+        Me.lblUsernameHeader.Location = New System.Drawing.Point(24, 51)
         Me.lblUsernameHeader.Name = "lblUsernameHeader"
         Me.lblUsernameHeader.Size = New System.Drawing.Size(82, 19)
         Me.lblUsernameHeader.TabIndex = 2
         Me.lblUsernameHeader.Text = "@username"
-        '
-        'pbProfileImage
-        '
-        Me.pbProfileImage.FillColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.pbProfileImage.ImageRotate = 0!
-        Me.pbProfileImage.Location = New System.Drawing.Point(20, 15)
-        Me.pbProfileImage.Name = "pbProfileImage"
-        Me.pbProfileImage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
-        Me.pbProfileImage.Size = New System.Drawing.Size(70, 70)
-        Me.pbProfileImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.pbProfileImage.TabIndex = 3
-        Me.pbProfileImage.TabStop = False
         '
         'Guna2ControlBox1
         '
@@ -479,7 +464,6 @@ Partial Class frmShowCustomerDetails
         Me.Text = "Customer Details"
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlHeader.PerformLayout()
-        CType(Me.pbProfileImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.flpStats.ResumeLayout(False)
         Me.pnlCardCredit.ResumeLayout(False)
         Me.pnlCardCredit.PerformLayout()
@@ -501,7 +485,6 @@ Partial Class frmShowCustomerDetails
     Friend WithEvents pnlHeader As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents lblCustomerName As Label
     Friend WithEvents lblUsernameHeader As Label
-    Friend WithEvents pbProfileImage As Guna.UI2.WinForms.Guna2CirclePictureBox
     Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents flpStats As FlowLayoutPanel
     Friend WithEvents pnlCardCredit As Guna.UI2.WinForms.Guna2Panel

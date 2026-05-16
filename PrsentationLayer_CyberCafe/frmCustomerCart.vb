@@ -5,7 +5,7 @@ Imports Guna.UI2.WinForms
 
 Public Class frmCustomerCart
 
-
+    Public Event PurchaseCompleted()
 
     Private _allItems As List(Of ConsumableDTO)
     Private ReadOnly _CustomerID As Integer?
@@ -341,6 +341,8 @@ Public Class frmCustomerCart
 
         ResetCartUI()
 
+        RaiseEvent PurchaseCompleted()
+
     End Sub
 
 
@@ -369,6 +371,8 @@ Public Class frmCustomerCart
         End If
 
         ShowPurchaseSuccess(totalAmount)
+
+        RaiseEvent PurchaseCompleted()
 
         ResetCartUI()
 

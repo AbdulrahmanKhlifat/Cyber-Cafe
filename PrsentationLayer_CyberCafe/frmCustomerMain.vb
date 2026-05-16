@@ -1,4 +1,5 @@
-﻿Imports BusinessLayer_CyberCafe
+﻿Imports System.Reflection
+Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
@@ -30,6 +31,20 @@ Public Class frmCustomerMain
         RefreshRemainingTime()
 
     End Sub
+
+    Private Sub RefreshCustomerCredit()
+
+        If _SessionDto Is Nothing Then
+            Return
+        End If
+
+        Dim creditBalance As Decimal = CustomerServices.GetCustomerCreditBalance(_SessionDto.CustomerID)
+
+        lblCredit.Text =
+        $"🧾 Credit: { creditBalance:0.00}$"
+
+    End Sub
+
     Private Sub RefreshRemainingTime()
 
         If _SessionDto Is Nothing Then
@@ -75,7 +90,10 @@ Public Class frmCustomerMain
 
         Try
 
+            RefreshCustomerCredit()
+
             _SessionDto = ActiveSessionsManager.GetSession(_SessionID)
+
 
         Catch ex As Exception
 
@@ -84,6 +102,14 @@ Public Class frmCustomerMain
                 Me.Close()
                 Return
             End If
+
+            UIHelper.ShowGunaMessage(
+                "An error occurred while refreshing session data. Please try again later.",
+                "Error",
+                Guna.UI2.WinForms.MessageDialogIcon.Error
+            )
+
+            ErrorLogger.LogErrorToFile(ex, MethodBase.GetCurrentMethod().Name)
 
         End Try
 
@@ -122,7 +148,20 @@ Public Class frmCustomerMain
 
     Private Sub btnCart_Click(sender As Object, e As EventArgs) Handles btnCart.Click
 
-        ChangeForm(New frmCustomerCart(_SessionDto.CustomerID, _SessionDto.SessionID))
+        Dim frm As New frmCustomerCart(
+        _SessionDto.CustomerID,
+        _SessionDto.SessionID
+    )
+
+        AddHandler frm.PurchaseCompleted,
+        Sub()
+
+            RefreshCustomerCredit()
+
+        End Sub
+
+        ChangeForm(frm)
+
         _UpdateButtonColor(btnCart)
 
     End Sub

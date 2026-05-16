@@ -28,15 +28,14 @@ Partial Class frmCustomerMain
         Me.btnCart = New System.Windows.Forms.Button()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlTopBar = New Guna.UI2.WinForms.Guna2Panel()
+        Me.pnlUserBadge = New System.Windows.Forms.Panel()
+        Me.lblCredit = New System.Windows.Forms.Label()
         Me.lblLogoIcon = New System.Windows.Forms.Label()
         Me.lblLogoText = New System.Windows.Forms.Label()
-        Me.pnlUserBadge = New System.Windows.Forms.Panel()
-        Me.lblMyCredit = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblClock = New System.Windows.Forms.Label()
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.btnMinWin = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlMain = New System.Windows.Forms.Panel()
-        Me.btnGameLauncher = New System.Windows.Forms.Button()
         Me.pnlNav.SuspendLayout()
         Me.pnlTopBar.SuspendLayout()
         Me.pnlUserBadge.SuspendLayout()
@@ -61,7 +60,7 @@ Partial Class frmCustomerMain
         Me.btnShowDetails.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.btnShowDetails.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnShowDetails.Font = New System.Drawing.Font("Segoe UI Black", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnShowDetails.ForeColor = System.Drawing.Color.Black
+        Me.btnShowDetails.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.btnShowDetails.Location = New System.Drawing.Point(0, 477)
         Me.btnShowDetails.Margin = New System.Windows.Forms.Padding(2)
         Me.btnShowDetails.Name = "btnShowDetails"
@@ -132,6 +131,28 @@ Partial Class frmCustomerMain
         Me.pnlTopBar.Size = New System.Drawing.Size(1482, 56)
         Me.pnlTopBar.TabIndex = 3
         '
+        'pnlUserBadge
+        '
+        Me.pnlUserBadge.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlUserBadge.BackColor = System.Drawing.Color.Transparent
+        Me.pnlUserBadge.Controls.Add(Me.lblCredit)
+        Me.pnlUserBadge.Location = New System.Drawing.Point(1101, 6)
+        Me.pnlUserBadge.Margin = New System.Windows.Forms.Padding(2)
+        Me.pnlUserBadge.Name = "pnlUserBadge"
+        Me.pnlUserBadge.Size = New System.Drawing.Size(195, 46)
+        Me.pnlUserBadge.TabIndex = 2
+        '
+        'lblCredit
+        '
+        Me.lblCredit.AutoSize = True
+        Me.lblCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.lblCredit.Location = New System.Drawing.Point(12, 15)
+        Me.lblCredit.Name = "lblCredit"
+        Me.lblCredit.Size = New System.Drawing.Size(46, 21)
+        Me.lblCredit.TabIndex = 6
+        Me.lblCredit.Text = "555$"
+        '
         'lblLogoIcon
         '
         Me.lblLogoIcon.BackColor = System.Drawing.Color.Transparent
@@ -169,40 +190,6 @@ Partial Class frmCustomerMain
         Me.lblClock.Size = New System.Drawing.Size(0, 21)
         Me.lblClock.TabIndex = 1
         '
-        'pnlUserBadge
-        '
-        Me.pnlUserBadge.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pnlUserBadge.BackColor = System.Drawing.Color.Transparent
-        Me.pnlUserBadge.Controls.Add(Me.lblMyCredit)
-        Me.pnlUserBadge.Controls.Add(Me.Label1)
-        Me.pnlUserBadge.Location = New System.Drawing.Point(680, 4)
-        Me.pnlUserBadge.Margin = New System.Windows.Forms.Padding(2)
-        Me.pnlUserBadge.Name = "pnlUserBadge"
-        Me.pnlUserBadge.Size = New System.Drawing.Size(173, 46)
-        Me.pnlUserBadge.TabIndex = 2
-        '
-        'lblMyCredit
-        '
-        Me.lblMyCredit.AutoSize = True
-        Me.lblMyCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblMyCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.lblMyCredit.Location = New System.Drawing.Point(118, 12)
-        Me.lblMyCredit.Name = "lblMyCredit"
-        Me.lblMyCredit.Size = New System.Drawing.Size(33, 21)
-        Me.lblMyCredit.TabIndex = 6
-        Me.lblMyCredit.Text = "🧾"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(4, 12)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(115, 21)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "🧾 My Credit:"
-        '
         'btnCloseWin
         '
         Me.btnCloseWin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -238,11 +225,6 @@ Partial Class frmCustomerMain
         Me.pnlMain.Size = New System.Drawing.Size(1300, 589)
         Me.pnlMain.TabIndex = 5
         '
-        Me.btnGameLauncher.TabIndex = 11
-        Me.btnGameLauncher.Text = " 🎮 Games"
-        Me.btnGameLauncher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnGameLauncher.UseVisualStyleBackColor = False
-        '
         'frmCustomerMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -275,8 +257,7 @@ Partial Class frmCustomerMain
     Friend WithEvents btnCart As Button
     Friend WithEvents pnlMain As Panel
     Friend WithEvents btnGameLauncher As Button
-    Friend WithEvents lblMyCredit As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblCredit As Label
     Private WithEvents btnShowDetails As Guna.UI2.WinForms.Guna2Button
     Private WithEvents lblClock As Label
 End Class

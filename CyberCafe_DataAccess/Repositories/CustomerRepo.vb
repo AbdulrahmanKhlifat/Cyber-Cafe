@@ -426,6 +426,47 @@ Public Class CustomerRepo
 
     End Function
 
+    Public Shared Function GetCustomerCredits(customerID As Integer) As Decimal
+
+        Dim credits As Decimal = 0
+
+        Try
+
+            Dim query As String = "SELECT Credit
+                               FROM Customers 
+                               WHERE UserID = @UserID"
+
+            Using conn As New SqlConnection(DataAccessSettings.connectionString),
+              cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = customerID
+
+                conn.Open()
+
+                Dim result = cmd.ExecuteScalar()
+
+                If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
+
+                    credits = Convert.ToDecimal(result)
+                End If
+
+            End Using
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(
+            ex,
+            Reflection.MethodBase.GetCurrentMethod().Name
+        )
+
+            Throw
+
+        End Try
+
+        Return credits
+
+    End Function
+
     Public Shared Function GetCustomerCredits(customerID As Integer, conn As SqlConnection, trans As SqlTransaction) As Decimal
 
         Dim credits As Decimal = 0

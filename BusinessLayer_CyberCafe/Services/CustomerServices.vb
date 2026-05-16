@@ -169,4 +169,10 @@ Public Class CustomerServices
 
     End Function
 
+    Public Shared Function GetCustomerCreditBalance(customerID As Integer) As Decimal
+
+        Return CustomerRepo.GetCustomerCredits(customerID)
+
+    End Function
+
 End Class
