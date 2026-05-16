@@ -105,12 +105,14 @@ Public Class frmAddDeductCustomerCredit
             Case enMode.Add
 
                 btnUpdate.Text = "ADD CREDIT"
+                lblHeader.Text = "ADD CREDIT"
 
                 SetUIColor(Color.FromArgb(120, 90, 255))
 
             Case enMode.Deduct
 
                 btnUpdate.Text = "DEDUCT CREDIT"
+                lblHeader.Text = "DEDUCT CREDIT"
 
                 SetUIColor(Color.Crimson)
 
