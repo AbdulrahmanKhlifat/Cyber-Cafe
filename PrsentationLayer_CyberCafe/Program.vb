@@ -10,9 +10,7 @@ Module Program
         Application.SetCompatibleTextRenderingDefault(False)
 
 
-        'Using frm As New frmDashboard()
-        '    Application.Run(frm)
-        'End Using
+
         If Environment.OSVersion.Version.Major >= 6 Then
             SetProcessDPIAware()
         End If

@@ -1,6 +1,5 @@
 ﻿Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
-Imports Guna.UI2.WinForms
 
 Public Class frmTransactions
     Private Sub styleDataGridView()
@@ -88,5 +87,31 @@ Public Class frmTransactions
 
     End Sub
 
+    Private Sub cbTransactionType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb.SelectedIndexChanged
+
+
+        If dgvTrans.CurrentRow Is Nothing Then
+            Return
+        End If
+
+        If dgvTrans.CurrentRow.Cells(0).Value Is Nothing Then
+            Return
+        End If
+
+        Dim selectedType As String = cmb.SelectedItem.ToString()
+
+        Dim dt As DataTable = CType(dgvTrans.DataSource, DataTable)
+
+        If selectedType = "All Types" Then
+
+            dt.DefaultView.RowFilter = ""
+
+        Else
+
+            dt.DefaultView.RowFilter = $"TransactionType = '{selectedType}'"
+
+        End If
+
+    End Sub
 
 End Class

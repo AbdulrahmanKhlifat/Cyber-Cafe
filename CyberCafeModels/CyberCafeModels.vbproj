@@ -72,6 +72,7 @@
     <Compile Include="Entity DTOs\SessionDTO.vb" />
     <Compile Include="Enums\PurchaseType.vb" />
     <Compile Include="Enums\SessionStatus.vb" />
+    <Compile Include="ResponseDTOs\ConsumableSummaryDTO.vb" />
     <Compile Include="ResponseDTOs\DailyTransactionsSummaryDTO.vb" />
     <Compile Include="ResponseDTOs\DashboardKpiDTO.vb" />
     <Compile Include="Entity DTOs\DeviceDTO.vb" />

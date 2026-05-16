@@ -315,4 +315,19 @@ Public Class SessionService
 
     End Function
 
+
+
+
+
+    Public Shared Function GetActiveSessionsAsView() As DataTable
+        Return SessionRepo.GetActiveSessionsView
+    End Function
+
+    Public Shared Function GetPausedSessionsAsView() As DataTable
+        Return SessionRepo.GetPausedSessionsView
+    End Function
+
+    Public Shared Function GetSessionHistoryAsView() As DataTable
+        Return SessionRepo.GetSessionsHistoryView()
+    End Function
 End Class

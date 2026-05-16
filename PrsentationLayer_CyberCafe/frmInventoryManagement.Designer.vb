@@ -23,9 +23,9 @@ Partial Class frmInventoryManagement
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlMain = New Guna.UI2.WinForms.Guna2Panel()
         Me.pnlAlerts = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblAlertTitle = New System.Windows.Forms.Label()
@@ -33,6 +33,9 @@ Partial Class frmInventoryManagement
         Me.pnlGridContainer = New Guna.UI2.WinForms.Guna2Panel()
         Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.cms = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RestockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlToolbar = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnWalkIn = New Guna.UI2.WinForms.Guna2Button()
         Me.btnAdd = New Guna.UI2.WinForms.Guna2Button()
@@ -57,13 +60,11 @@ Partial Class frmInventoryManagement
         Me.lblTotalTitle = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RestockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlMain.SuspendLayout()
         Me.pnlAlerts.SuspendLayout()
         Me.pnlGridContainer.SuspendLayout()
         CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cms.SuspendLayout()
         Me.pnlToolbar.SuspendLayout()
         Me.tlpStats.SuspendLayout()
         Me.pnlStatMostSold.SuspendLayout()
@@ -146,30 +147,30 @@ Partial Class frmInventoryManagement
         Me.dgvInventory.AllowUserToDeleteRows = False
         Me.dgvInventory.AllowUserToResizeColumns = False
         Me.dgvInventory.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        Me.dgvInventory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
+        Me.dgvInventory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvInventory.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvInventory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvInventory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvInventory.ColumnHeadersHeight = 40
         Me.dgvInventory.ContextMenuStrip = Me.cms
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvInventory.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvInventory.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvInventory.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvInventory.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.dgvInventory.Location = New System.Drawing.Point(1, 1)
@@ -207,7 +208,31 @@ Partial Class frmInventoryManagement
         Me.cms.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.RestockToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.cms.Name = "cms"
         Me.cms.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.cms.Size = New System.Drawing.Size(181, 70)
+        Me.cms.Size = New System.Drawing.Size(208, 94)
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(227, 30)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'RestockToolStripMenuItem
+        '
+        Me.RestockToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.RestockToolStripMenuItem.Name = "RestockToolStripMenuItem"
+        Me.RestockToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        Me.RestockToolStripMenuItem.Size = New System.Drawing.Size(227, 30)
+        Me.RestockToolStripMenuItem.Text = "    📦  Restock Inventory"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(95, Byte), Integer))
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(227, 30)
+        Me.DeleteToolStripMenuItem.Text = "    🗑  Delete Permanently"
         '
         'pnlToolbar
         '
@@ -275,7 +300,7 @@ Partial Class frmInventoryManagement
         Me.cmbStockStatus.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbStockStatus.ForeColor = System.Drawing.Color.Silver
         Me.cmbStockStatus.ItemHeight = 34
-        Me.cmbStockStatus.Items.AddRange(New Object() {"All Stock Status", "In Stock", "Low Stock", "Out of Stock"})
+        Me.cmbStockStatus.Items.AddRange(New Object() {"All", "In Stock", "Low Stock", "Out of Stock"})
         Me.cmbStockStatus.Location = New System.Drawing.Point(520, 12)
         Me.cmbStockStatus.Name = "cmbStockStatus"
         Me.cmbStockStatus.Size = New System.Drawing.Size(180, 40)
@@ -550,30 +575,6 @@ Partial Class frmInventoryManagement
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(32, 19)
         '
-        'RestockToolStripMenuItem
-        '
-        Me.RestockToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.RestockToolStripMenuItem.Name = "RestockToolStripMenuItem"
-        Me.RestockToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        Me.RestockToolStripMenuItem.Size = New System.Drawing.Size(32, 19)
-        Me.RestockToolStripMenuItem.Text = "    📦  Restock Inventory"
-        '
-        'DeleteToolStripMenuItem
-        '
-        Me.DeleteToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(95, Byte), Integer))
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(32, 19)
-        Me.DeleteToolStripMenuItem.Text = "    🗑  Delete Permanently"
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.EditToolStripMenuItem.Text = "Edit"
-        '
         'frmInventoryManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -590,6 +591,7 @@ Partial Class frmInventoryManagement
         Me.pnlAlerts.PerformLayout()
         Me.pnlGridContainer.ResumeLayout(False)
         CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cms.ResumeLayout(False)
         Me.pnlToolbar.ResumeLayout(False)
         Me.tlpStats.ResumeLayout(False)
         Me.pnlStatMostSold.ResumeLayout(False)

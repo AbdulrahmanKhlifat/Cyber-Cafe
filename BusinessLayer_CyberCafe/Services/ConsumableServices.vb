@@ -90,6 +90,12 @@ Public Class ConsumableServices
 
     End Function
 
+    Public Shared Function GetCounsumablesSummary() As ConsumablesSummaryDTO
+
+        Return ConsumablesRepo.GetKpiConsumables()
+
+    End Function
+
     Private Shared Sub ValidateConsumable(consumable As ConsumableDTO)
 
         If consumable Is Nothing Then

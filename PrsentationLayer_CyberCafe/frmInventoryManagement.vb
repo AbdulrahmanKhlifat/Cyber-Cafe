@@ -18,8 +18,7 @@ Public Class frmInventoryManagement
 
         dgvInventory.DataSource = _dtConsumables
 
-        Dim selectionColor As Color =
-    Color.FromArgb(30, 45, 65)
+        Dim selectionColor As Color = Color.FromArgb(30, 45, 65)
 
         dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect
 
@@ -34,6 +33,18 @@ Public Class frmInventoryManagement
         dgvInventory.ClearSelection()
     End Sub
 
+
+    Private Sub LoadKPIs()
+
+        Dim AllKPIS = ConsumableServices.GetCounsumablesSummary()
+
+        lblTotalVal.Text = AllKPIS.TotalItems.ToString()
+        lblOutVal.Text = AllKPIS.OutOfStock.ToString()
+        lblLowVal.Text = AllKPIS.LowStock.ToString()
+        lblMostSoldVal.Text = AllKPIS.MostSoldItem
+        lblRevVal.Text = AllKPIS.TotalValue.ToString("C2")
+
+    End Sub
 
     Private Sub LoadData()
 
@@ -50,7 +61,7 @@ Public Class frmInventoryManagement
 
         ApplyCMS()
 
-
+        LoadKPIs()
         LoadAlerts()
     End Sub
     Private Sub ApplyCMS()
@@ -154,18 +165,51 @@ Public Class frmInventoryManagement
 
 
 
-    Private Sub ApplyFilter(filter As String)
+    Private Sub ApplyFilters()
+
         If _dtConsumables Is Nothing Then
             Return
         End If
-        filter = filter.Replace("'", "''")
 
-        _dtConsumables.DefaultView.RowFilter = $"ConsumableName LIKE '%{filter}%'"
+        Dim filters As New List(Of String)
+
+
+        Dim nameFilter As String = txtSearch.Text.Trim.Replace("'", "''")
+
+        If nameFilter <> "" Then
+            filters.Add($"ConsumableName LIKE '%{nameFilter}%'")
+        End If
+
+
+        Select Case cmbStockStatus.Text
+
+            Case "All"
+                filters.Add("")
+
+            Case "Low Stock"
+                filters.Add("Quantity <= 5")
+
+            Case "In Stock"
+                filters.Add("Quantity > 20")
+
+            Case "Out of Stock"
+                filters.Add("Quantity = 0")
+
+
+        End Select
+
+        _dtConsumables.DefaultView.RowFilter = String.Join(" AND ", filters)
 
     End Sub
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        ApplyFilter(txtSearch.Text.Trim().ToLower())
+        ApplyFilters()
+    End Sub
+
+    Private Sub cmbStockStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStockStatus.SelectedIndexChanged
+
+        ApplyFilters()
+
     End Sub
 
     Private Sub btnWalkIn_Click(sender As Object, e As EventArgs) Handles btnWalkIn.Click

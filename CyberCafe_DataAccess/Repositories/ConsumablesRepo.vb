@@ -4,6 +4,7 @@ Imports CyberCafeModels
 Public Class ConsumablesRepo
 
 
+
     Public Shared Function GetAllConsumablesAsDT() As DataTable
         Dim dt As New DataTable()
 
@@ -74,6 +75,69 @@ Public Class ConsumablesRepo
         End Try
 
         Return consumables
+
+    End Function
+
+    Public Shared Function GetKpiConsumables() As ConsumablesSummaryDTO
+
+        Dim query As String = "SELECT
+                                      (SELECT COUNT(*) FROM Consumables) AS TotalItems,
+                                  
+                                      (SELECT COUNT(*) 
+                                       FROM Consumables 
+                                       WHERE Quantity < 5) AS LowStockItems,
+                                  
+                                      (SELECT COUNT(*) 
+                                       FROM Consumables 
+                                       WHERE Quantity = 0) AS OutOfStock,
+                                  
+                                      (SELECT ISNULL(SUM(PaidAmount),0)
+                                       FROM Transactions
+                                       WHERE CAST(TransactionDate AS DATE) = CAST(GETDATE() AS DATE)
+                                      ) AS RevenueToday,
+                                  
+                                      (
+                                          SELECT TOP 1 C.ConsumableName
+                                          FROM PurchaseItems TD
+                                          INNER JOIN Consumables C
+                                          ON TD.ConsumableID = C.ConsumableID
+                                          GROUP BY C.ConsumableName
+                                          ORDER BY SUM(TD.Quantity) DESC
+                                      ) AS MostSoldItem"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+            Using cmd As New SqlCommand(query, conn)
+
+                conn.Open()
+
+                Try
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            Dim summary As New ConsumablesSummaryDTO With {
+                                .TotalItems = Convert.ToInt32(reader("TotalItems")),
+                                .LowStock = Convert.ToInt32(reader("LowStockItems")),
+                                .OutOfStock = Convert.ToInt32(reader("OutOfStock")),
+                                .TotalValue = Convert.ToDecimal(reader("RevenueToday")),
+                                .MostSoldItem = If(reader("MostSoldItem") Is DBNull.Value, "N/A", reader("MostSoldItem").ToString())
+                                }
+
+                            Return summary
+
+                        End If
+
+                    End Using
+
+                Catch ex As Exception
+
+                    Throw New Exception("Error While Loading KPI Consumables.", ex)
+
+                End Try
+            End Using
+
+        End Using
+
+        Return Nothing
 
     End Function
 

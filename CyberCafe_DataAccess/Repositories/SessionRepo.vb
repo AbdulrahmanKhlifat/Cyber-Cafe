@@ -795,4 +795,144 @@ Public Class SessionRepo
 
     End Function
 
+
+    Public Shared Function GetActiveSessionsView() As DataTable
+
+        Dim dt As New DataTable()
+
+        Dim query As String =
+        "SELECT 
+    Sessions.SessionID AS [Session ID],Users.Name AS [Customer],Devices.DeviceName AS [Device],DeviceType.DeviceTypeName AS [Device Type],
+    CASE Devices.Status
+        WHEN 1 THEN 'Available'
+        WHEN 2 THEN 'In Use'
+        ELSE 'Unknown'
+    END AS [Status],
+
+    CONVERT(VARCHAR,
+    DATEADD(SECOND, Sessions.RemainingSeconds, 0),
+    108) AS [Remaining Time],
+    FORMAT(Sessions.StartTime, 'hh:mm tt') AS [Start Time],
+
+    CONCAT('$',CAST(Sessions.SessionCost AS DECIMAL(10,2))) AS [Cost]
+ 
+    FROM Sessions
+
+    JOIN Users ON Sessions.CustomerID = Users.UserID
+
+    JOIN Devices ON Sessions.CurrentDeviceID = Devices.DeviceID
+
+    JOIN DeviceType ON Sessions.DeviceTypeID = DeviceType.DeviceTypeID
+    WHERE Sessions.EndTime IS NULL"
+
+        Using con As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, con)
+
+                con.Open()
+
+                Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                    dt.Load(reader)
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
+
+    Public Shared Function GetPausedSessionsView() As DataTable
+
+        Dim dt As New DataTable()
+
+        Dim query As String =
+        "SELECT 
+        Sessions.SessionID AS [Session ID],Users.Name AS [Customer],Devices.DeviceName AS [Device],DeviceType.DeviceTypeName AS [Device Type],
+
+        FORMAT(Sessions.StartTime, 'hh:mm tt') AS [Start Time],
+
+        CONVERT(VARCHAR,DATEADD(SECOND, Sessions.RemainingSeconds, 0),108) AS [Remaining Time],
+        CONCAT('$',CAST(Sessions.SessionCost AS DECIMAL(10,2))) AS [Cost]
+
+        FROM Sessions
+        
+        JOIN Users ON Sessions.CustomerID = Users.UserID
+        
+        JOIN Devices ON Sessions.CurrentDeviceID = Devices.DeviceID
+        
+        JOIN DeviceType ON Sessions.DeviceTypeID = DeviceType.DeviceTypeID
+        
+        WHERE Sessions.SessionStatus = 2"
+
+        Using con As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, con)
+
+                con.Open()
+
+                Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                    dt.Load(reader)
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
+    Public Shared Function GetSessionsHistoryView() As DataTable
+
+        Dim dt As New DataTable()
+
+        Dim query As String =
+        "SELECT 
+        Sessions.SessionID AS [Session ID],Users.Name AS [Customer],Devices.DeviceName AS [Device],DeviceType.DeviceTypeName AS [Device Type],
+
+        FORMAT(Sessions.StartTime, 'hh:mm tt') AS [Start Time],
+
+        FORMAT(Sessions.EndTime, 'hh:mm tt') AS [End Time],
+
+        CONVERT(VARCHAR,DATEADD(SECOND,DATEDIFF(SECOND,Sessions.StartTime,Sessions.EndTime),0), 108) AS [Duration],
+
+        CONCAT('$',CAST(Sessions.SessionCost AS DECIMAL(10,2))) AS [Cost]
+
+        FROM Sessions
+        
+        JOIN Users ON Sessions.CustomerID = Users.UserID
+        
+        JOIN Devices ON Sessions.CurrentDeviceID = Devices.DeviceID
+        
+        JOIN DeviceType ON Sessions.DeviceTypeID = DeviceType.DeviceTypeID
+        
+        WHERE Sessions.EndTime IS NOT NULL"
+
+        Using con As New SqlConnection(DataAccessSettings.connectionString)
+
+            Using cmd As New SqlCommand(query, con)
+
+                con.Open()
+
+                Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                    dt.Load(reader)
+
+                End Using
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
 End Class

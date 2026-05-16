@@ -20,15 +20,6 @@ Public Class frmDevices
 
     End Sub
 
-    Protected Overrides ReadOnly Property CreateParams As CreateParams
-        Get
-            Dim cp As CreateParams = MyBase.CreateParams
-            cp.ExStyle = cp.ExStyle Or &H2000000
-            Return cp
-        End Get
-    End Property
-
-
     Private Sub frmDevices_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         LoadDevices()
@@ -126,17 +117,24 @@ Public Class frmDevices
             _SelectedDeviceType = DeviceTypeServices.Find(Convert.ToInt32(cboDeviceType.SelectedValue))
 
             If _SelectedDeviceType IsNot Nothing Then
+
                 img = UIHelper.LoadImageUnlocked(UIHelper.GetImagePath(_SelectedDeviceType.ImagePath))
                 img = UIHelper.ResizeImage(img, 215, 150)
+
                 If Not String.IsNullOrEmpty(_SelectedDeviceType.ImagePath) Then
+
                     PictureBox1.Image = img
+
                 End If
+
             End If
+
         Else
 
             PictureBox1.Image = Nothing
         End If
     End Sub
+
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSaveDevice.Click
         If Not IsValidData() Then Return
 
@@ -260,8 +258,6 @@ Public Class frmDevices
         ClearAddDeviceDetails()
 
     End Sub
-
-
 
     Private Sub ApplyFilters()
 

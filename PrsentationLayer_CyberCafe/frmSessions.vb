@@ -1,4 +1,6 @@
 ﻿Imports System.Reflection
+Imports BusinessLayer_CyberCafe
+Imports CyberCafeModels
 
 Public Class frmSessions
 
@@ -6,9 +8,11 @@ Public Class frmSessions
 
         ConfigureGrids()
 
-        LoadMockActiveSessions()
-        LoadMockPausedSessions()
-        LoadMockSessionHistory()
+        'LoadMockActiveSessions()
+        RefreshData()
+
+        'LoadMockPausedSessions()
+        'LoadMockSessionHistory()
 
     End Sub
 
@@ -20,6 +24,25 @@ Public Class frmSessions
 
     End Sub
 
+    Public Sub RefreshData()
+
+        dgvActiveSessions.DataSource = SessionService.GetActiveSessionsAsView()
+        dgvPausedSessions.DataSource = SessionService.GetPausedSessionsAsView()
+        dgvSessionsHistory.DataSource = SessionService.GetSessionHistoryAsView()
+
+        'For Each row As DataGridViewRow In dgvActiveSessions.Rows
+
+        '    If row.Cells("Status").Value IsNot Nothing Then
+
+        '        row.Cells("Status").Style.ForeColor = Color.FromArgb(0, 200, 160)
+
+        '    End If
+
+        'Next
+
+
+
+    End Sub
     Private Sub LoadMockPausedSessions()
 
         dgvPausedSessions.Columns.Clear()
@@ -278,5 +301,6 @@ Public Class frmSessions
         Color.FromArgb(28, 33, 40)
 
     End Sub
+
 
 End Class

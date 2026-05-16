@@ -163,13 +163,13 @@ Partial Class ctrDeviceInfo
         Me.pbDeviceIcon.TabIndex = 19
         Me.pbDeviceIcon.TabStop = False
         '
-        'lblTimeRemainingHeader
+        'lblRemainingTimeHeader
         '
         Me.lblRemainingTimeHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
         Me.lblRemainingTimeHeader.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.lblRemainingTimeHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(127, Byte), Integer), CType(CType(135, Byte), Integer))
         Me.lblRemainingTimeHeader.Location = New System.Drawing.Point(11, 181)
-        Me.lblRemainingTimeHeader.Name = "lblTimeRemainingHeader"
+        Me.lblRemainingTimeHeader.Name = "lblRemainingTimeHeader"
         Me.lblRemainingTimeHeader.Size = New System.Drawing.Size(121, 24)
         Me.lblRemainingTimeHeader.TabIndex = 26
         Me.lblRemainingTimeHeader.Text = "Time Remaining:"

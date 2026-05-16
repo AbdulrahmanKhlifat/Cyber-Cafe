@@ -100,5 +100,16 @@ Public Class frmAdminMain
         _UpdateButtonColor(btnConsumables)
     End Sub
 
+    Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
 
+        LoggedInUser.CurrentUser.Username = ""
+        LoggedInUser.CurrentUser.RoleType = Nothing
+
+        Dim login As New frmLogin()
+
+        login.Show()
+
+        Me.Hide()
+
+    End Sub
 End Class

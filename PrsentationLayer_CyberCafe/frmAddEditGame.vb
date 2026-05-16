@@ -226,6 +226,7 @@ Public Class frmAddEditGame
                     GameServices.AddGame(game)
 
                 Case enMode.Update
+
                     GameServices.UpdateGame(game)
                     DeleteOldImage()
 

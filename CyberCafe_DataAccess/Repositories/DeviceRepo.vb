@@ -161,7 +161,8 @@ Public Class DeviceRepo
                                 .DeviceName = reader("DeviceName").ToString(),
                                 .DeviceTypeName = reader("DeviceTypeName").ToString(),
                                 .Status = CType(CByte(reader("Status")), enDeviceStatus),
-                                .ImagePath = If(reader("ImagePath") Is DBNull.Value, "", reader("ImagePath").ToString())
+                                .ImagePath = If(reader("ImagePath") Is DBNull.Value, "", reader("ImagePath").ToString()),
+                                .DeviceTypeID = Convert.ToInt32(reader("DeviceTypeID"))
                         })
                         End While
                     End Using
