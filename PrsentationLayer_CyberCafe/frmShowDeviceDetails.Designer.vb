@@ -49,12 +49,12 @@ Partial Class frmShowDeviceDetails
         Me.TabControl1 = New Guna.UI2.WinForms.Guna2TabControl()
         Me.tabActiveSessions = New System.Windows.Forms.TabPage()
         Me.dgvActiveSessions = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.cmsPauseResumeSession = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
+        Me.tsPauseSession = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsResumeSession = New System.Windows.Forms.ToolStripMenuItem()
         Me.tabDeviceGames = New System.Windows.Forms.TabPage()
         Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.flpDeviceGames = New System.Windows.Forms.FlowLayoutPanel()
-        Me.cmsPauseResumeSession = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
-        Me.tsResumeSession = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsPauseSession = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlHeader.SuspendLayout()
         CType(Me.pbDeviceIcon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStatusDot, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,8 +65,8 @@ Partial Class frmShowDeviceDetails
         Me.TabControl1.SuspendLayout()
         Me.tabActiveSessions.SuspendLayout()
         CType(Me.dgvActiveSessions, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tabDeviceGames.SuspendLayout()
         Me.cmsPauseResumeSession.SuspendLayout()
+        Me.tabDeviceGames.SuspendLayout()
         Me.SuspendLayout()
         '
         'Guna2BorderlessForm1
@@ -372,6 +372,41 @@ Partial Class frmShowDeviceDetails
         Me.dgvActiveSessions.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.dgvActiveSessions.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White
         '
+        'cmsPauseResumeSession
+        '
+        Me.cmsPauseResumeSession.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsPauseResumeSession.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
+        Me.cmsPauseResumeSession.ForeColor = System.Drawing.Color.White
+        Me.cmsPauseResumeSession.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.cmsPauseResumeSession.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsPauseSession, Me.tsResumeSession})
+        Me.cmsPauseResumeSession.Name = "DeviceContextMenu"
+        Me.cmsPauseResumeSession.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
+        Me.cmsPauseResumeSession.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsPauseResumeSession.RenderStyle.ColorTable = Nothing
+        Me.cmsPauseResumeSession.RenderStyle.RoundedEdges = True
+        Me.cmsPauseResumeSession.RenderStyle.SelectionArrowColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsPauseResumeSession.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
+        Me.cmsPauseResumeSession.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
+        Me.cmsPauseResumeSession.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
+        Me.cmsPauseResumeSession.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
+        Me.cmsPauseResumeSession.Size = New System.Drawing.Size(205, 56)
+        '
+        'tsPauseSession
+        '
+        Me.tsPauseSession.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsPauseSession.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.ChatGPT_Image_May_16__2026__01_37_12_PM_removebg_preview
+        Me.tsPauseSession.Name = "tsPauseSession"
+        Me.tsPauseSession.Size = New System.Drawing.Size(204, 26)
+        Me.tsPauseSession.Text = "Pause Session"
+        '
+        'tsResumeSession
+        '
+        Me.tsResumeSession.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsResumeSession.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.ChatGPT_Image_May_16__2026__01_40_07_PM
+        Me.tsResumeSession.Name = "tsResumeSession"
+        Me.tsResumeSession.Size = New System.Drawing.Size(204, 26)
+        Me.tsResumeSession.Text = "Resume Session"
+        '
         'tabDeviceGames
         '
         Me.tabDeviceGames.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(41, Byte), Integer))
@@ -413,41 +448,6 @@ Partial Class frmShowDeviceDetails
         Me.flpDeviceGames.Size = New System.Drawing.Size(762, 302)
         Me.flpDeviceGames.TabIndex = 1
         '
-        'cmsPauseResumeSession
-        '
-        Me.cmsPauseResumeSession.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmsPauseResumeSession.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
-        Me.cmsPauseResumeSession.ForeColor = System.Drawing.Color.White
-        Me.cmsPauseResumeSession.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.cmsPauseResumeSession.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsPauseSession, Me.tsResumeSession})
-        Me.cmsPauseResumeSession.Name = "DeviceContextMenu"
-        Me.cmsPauseResumeSession.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
-        Me.cmsPauseResumeSession.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmsPauseResumeSession.RenderStyle.ColorTable = Nothing
-        Me.cmsPauseResumeSession.RenderStyle.RoundedEdges = True
-        Me.cmsPauseResumeSession.RenderStyle.SelectionArrowColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmsPauseResumeSession.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(172, Byte), Integer))
-        Me.cmsPauseResumeSession.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
-        Me.cmsPauseResumeSession.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(43, Byte), Integer))
-        Me.cmsPauseResumeSession.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit
-        Me.cmsPauseResumeSession.Size = New System.Drawing.Size(205, 78)
-        '
-        'tsResumeSession
-        '
-        Me.tsResumeSession.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tsResumeSession.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.ChatGPT_Image_May_16__2026__01_40_07_PM
-        Me.tsResumeSession.Name = "tsResumeSession"
-        Me.tsResumeSession.Size = New System.Drawing.Size(204, 26)
-        Me.tsResumeSession.Text = "Resume Session"
-        '
-        'tsPauseSession
-        '
-        Me.tsPauseSession.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tsPauseSession.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.ChatGPT_Image_May_16__2026__01_37_12_PM_removebg_preview
-        Me.tsPauseSession.Name = "tsPauseSession"
-        Me.tsPauseSession.Size = New System.Drawing.Size(204, 26)
-        Me.tsPauseSession.Text = "Pause Session"
-        '
         'frmShowDeviceDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -477,8 +477,8 @@ Partial Class frmShowDeviceDetails
         Me.TabControl1.ResumeLayout(False)
         Me.tabActiveSessions.ResumeLayout(False)
         CType(Me.dgvActiveSessions, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.tabDeviceGames.ResumeLayout(False)
         Me.cmsPauseResumeSession.ResumeLayout(False)
+        Me.tabDeviceGames.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

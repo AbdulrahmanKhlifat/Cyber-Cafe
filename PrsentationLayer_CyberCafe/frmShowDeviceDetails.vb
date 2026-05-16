@@ -433,8 +433,7 @@ Public Class frmShowDeviceDetails
         End If
 
 
-        Dim selectedRow As DataGridViewRow =
-        dgvActiveSessions.SelectedRows(0)
+        Dim selectedRow As DataGridViewRow = dgvActiveSessions.SelectedRows(0)
 
         If selectedRow.Cells("SessionID").Value Is Nothing Then
 
@@ -451,16 +450,9 @@ Public Class frmShowDeviceDetails
 
         Dim sessionID As Integer
 
-        If Not Integer.TryParse(
-        selectedRow.Cells("SessionID").Value.ToString(),
-        sessionID
-    ) Then
+        If Not Integer.TryParse(selectedRow.Cells("SessionID").Value.ToString(), sessionID) Then
 
-            UIHelper.ShowGunaMessage(
-            "Invalid Session ID.",
-            "Error",
-            MessageDialogIcon.Error
-        )
+            UIHelper.ShowGunaMessage("Invalid Session ID.", "Error", MessageDialogIcon.Error)
 
             Return
 
@@ -476,18 +468,11 @@ Public Class frmShowDeviceDetails
 
     End Sub
 
-    Private Sub tsPauseSession_Click(
-    sender As Object,
-    e As EventArgs
-) Handles tsPauseSession.Click
+    Private Sub tsPauseSession_Click(sender As Object, e As EventArgs) Handles tsPauseSession.Click
 
         If dgvActiveSessions.SelectedRows.Count = 0 Then
 
-            UIHelper.ShowGunaMessage(
-            "Please select a session.",
-            "Validation",
-            MessageDialogIcon.Warning
-        )
+            UIHelper.ShowGunaMessage("Please select a session.", "Validation", MessageDialogIcon.Warning)
 
             Return
 
@@ -557,4 +542,6 @@ Public Class frmShowDeviceDetails
         End Try
 
     End Sub
+
+
 End Class

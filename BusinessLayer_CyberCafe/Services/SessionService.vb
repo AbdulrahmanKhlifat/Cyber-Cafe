@@ -319,6 +319,7 @@ Public Class SessionService
                 pausedSession.LastResumeTime = resumeTime
                 pausedSession.Status = SessionStatus.Active
                 pausedSession.CurrentDeviceID = deviceID
+                pausedSession.DeviceID = deviceID
                 RaiseEvent SessionResumed(pausedSession)
 
             End If
@@ -374,4 +375,7 @@ Public Class SessionService
     Public Shared Function GetSessionHistoryAsView() As DataTable
         Return SessionRepo.GetSessionsHistoryView()
     End Function
+
+
+
 End Class

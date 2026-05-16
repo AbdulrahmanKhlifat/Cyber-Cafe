@@ -201,6 +201,12 @@
     <Compile Include="frmStartSession.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmResumeSession.Designer.vb">
+      <DependentUpon>frmResumeSession.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmResumeSession.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmStartSession.resx">
       <DependentUpon>frmStartSession.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmResumeSession.resx">
+      <DependentUpon>frmResumeSession.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditGame.resx">
       <DependentUpon>frmAddEditGame.vb</DependentUpon>

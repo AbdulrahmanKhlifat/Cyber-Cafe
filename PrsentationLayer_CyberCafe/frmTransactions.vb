@@ -93,18 +93,11 @@ Public Class frmTransactions
 
     Private Sub cbTransactionType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb.SelectedIndexChanged
 
+        Dim dt As DataTable = CType(dgvTrans.DataSource, DataTable)
 
-        If dgvTrans.CurrentRow Is Nothing Then
-            Return
-        End If
-
-        If dgvTrans.CurrentRow.Cells(0).Value Is Nothing Then
-            Return
-        End If
+        If dt Is Nothing Then Return
 
         Dim selectedType As String = cmb.SelectedItem.ToString()
-
-        Dim dt As DataTable = CType(dgvTrans.DataSource, DataTable)
 
         If selectedType = "All Types" Then
 

@@ -4,16 +4,59 @@ Imports CyberCafeModels
 
 Public Class frmSessions
 
+
+    Private WithEvents tsmiResume As New ToolStripMenuItem(" Resume Session")
+
     Private Sub frmSessions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        tsmiResume.ForeColor = Color.White
+        tsmiResume.BackColor = Color.FromArgb(28, 33, 40)
+        cmsResumeSession.Items.Add(tsmiResume)
+        cmsResumeSession.BackColor = Color.FromArgb(28, 33, 40)
+        dgvPausedSessions.ContextMenuStrip = cmsResumeSession
 
         ConfigureGrids()
 
-        'LoadMockActiveSessions()
         RefreshData()
 
-        'LoadMockPausedSessions()
-        'LoadMockSessionHistory()
+    End Sub
 
+    Private Sub tsmiResume_Click(sender As Object, e As EventArgs) Handles tsmiResume.Click
+        If dgvPausedSessions.SelectedRows.Count > 0 Then
+            Dim row = dgvPausedSessions.SelectedRows(0)
+            
+            Dim sessionID As Integer = Convert.ToInt32(row.Cells("Session ID").Value)
+            Dim sessionDTO = ActiveSessionsManager.GetSession(sessionID)
+
+            If sessionDTO IsNot Nothing Then
+
+                Dim customerName As String = row.Cells("Customer").Value.ToString()
+                Dim currentDeviceName As String = row.Cells("Device").Value.ToString()
+                Dim deviceTypeName As String = row.Cells("Device Type").Value.ToString()
+
+                Dim frm As New frmResumeSession(sessionDTO.SessionID, sessionDTO.DeviceTypeID, sessionDTO.RemainingSeconds, customerName, currentDeviceName, deviceTypeName)
+
+                If frm.ShowDialog() = DialogResult.OK Then
+
+                    Dim newDeviceID = frm.SelectedNewDeviceID
+
+                    Try
+
+                        If SessionService.ResumeSession(sessionID, newDeviceID) Then
+                            RefreshData()
+                        Else
+
+                            UIHelper.ShowGunaMessage("Failed to resume session.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                        End If
+
+                    Catch ex As Exception
+
+                        UIHelper.ShowGunaMessage(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                End If
+            End If
+        End If
     End Sub
 
     Private Sub ConfigureGrids()
@@ -43,132 +86,6 @@ Public Class frmSessions
 
 
     End Sub
-    Private Sub LoadMockPausedSessions()
-
-        dgvPausedSessions.Columns.Clear()
-        dgvPausedSessions.Rows.Clear()
-
-        dgvPausedSessions.Columns.Add("SessionID", "Session ID")
-        dgvPausedSessions.Columns.Add("Customer", "Customer")
-        dgvPausedSessions.Columns.Add("Device", "Device")
-        dgvPausedSessions.Columns.Add("DeviceType", "Device Type")
-        dgvPausedSessions.Columns.Add("Status", "Status")
-        dgvPausedSessions.Columns.Add("PausedAt", "Paused At")
-        dgvPausedSessions.Columns.Add("Remaining", "Remaining Time")
-
-        dgvPausedSessions.Rows.Add(
-        2001,
-        "Omar",
-        "PC-04",
-        "Gaming PC",
-        "Paused",
-        "07:10 PM",
-        "00:32:11"
-    )
-
-        dgvPausedSessions.Rows.Add(
-        2002,
-        "Kareem",
-        "PS5-01",
-        "PlayStation 5",
-        "Paused",
-        "07:18 PM",
-        "01:12:45"
-    )
-
-        For Each row As DataGridViewRow In dgvPausedSessions.Rows
-
-            row.Cells("Status").Style.ForeColor =
-            Color.Goldenrod
-
-        Next
-
-    End Sub
-
-    Private Sub LoadMockActiveSessions()
-
-        dgvActiveSessions.Columns.Clear()
-        dgvActiveSessions.Rows.Clear()
-
-        dgvActiveSessions.Columns.Add("SessionID", "Session ID")
-        dgvActiveSessions.Columns.Add("Customer", "Customer")
-        dgvActiveSessions.Columns.Add("Device", "Device")
-        dgvActiveSessions.Columns.Add("DeviceType", "Device Type")
-        dgvActiveSessions.Columns.Add("Status", "Status")
-        dgvActiveSessions.Columns.Add("Remaining", "Remaining Time")
-        dgvActiveSessions.Columns.Add("StartTime", "Start Time")
-        dgvActiveSessions.Columns.Add("Cost", "Cost")
-
-        dgvActiveSessions.Rows.Add(
-        1001,
-        "Ahmad",
-        "PC-01",
-        "Gaming PC",
-        "Active",
-        "01:24:15",
-        "06:00 PM",
-        "$3.50"
-    )
-
-        dgvActiveSessions.Rows.Add(
-        1002,
-        "Mohammad",
-        "PS5-02",
-        "PlayStation 5",
-        "Active",
-        "00:45:20",
-        "06:35 PM",
-        "$2.00"
-    )
-
-        For Each row As DataGridViewRow In dgvActiveSessions.Rows
-
-            row.Cells("Status").Style.ForeColor =
-            Color.FromArgb(0, 200, 160)
-
-        Next
-
-    End Sub
-
-    Private Sub LoadMockSessionHistory()
-
-        dgvSessionsHistory.Columns.Clear()
-        dgvSessionsHistory.Rows.Clear()
-
-        dgvSessionsHistory.Columns.Add("SessionID", "Session ID")
-        dgvSessionsHistory.Columns.Add("Customer", "Customer")
-        dgvSessionsHistory.Columns.Add("Device", "Device")
-        dgvSessionsHistory.Columns.Add("DeviceType", "Device Type")
-        dgvSessionsHistory.Columns.Add("StartTime", "Start Time")
-        dgvSessionsHistory.Columns.Add("EndTime", "End Time")
-        dgvSessionsHistory.Columns.Add("Duration", "Duration")
-        dgvSessionsHistory.Columns.Add("Cost", "Cost")
-
-        dgvSessionsHistory.Rows.Add(
-        3001,
-        "Ali",
-        "PC-07",
-        "Gaming PC",
-        "03:00 PM",
-        "05:00 PM",
-        "02:00:00",
-        "$5.00"
-    )
-
-        dgvSessionsHistory.Rows.Add(
-        3002,
-        "Yousef",
-        "PS5-03",
-        "PlayStation 5",
-        "04:30 PM",
-        "06:00 PM",
-        "01:30:00",
-        "$4.00"
-    )
-
-    End Sub
-
-
 
     Private Sub ConfigureGrid(dgv As Guna.UI2.WinForms.Guna2DataGridView)
 

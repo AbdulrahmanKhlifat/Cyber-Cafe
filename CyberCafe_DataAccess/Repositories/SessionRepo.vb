@@ -948,28 +948,33 @@ Public Class SessionRepo
 
         Dim query As String =
         "SELECT 
-    Sessions.SessionID AS [Session ID],Users.Name AS [Customer],Devices.DeviceName AS [Device],DeviceType.DeviceTypeName AS [Device Type],
-    CASE Devices.Status
-        WHEN 1 THEN 'Available'
-        WHEN 2 THEN 'In Use'
-        ELSE 'Unknown'
-    END AS [Status],
-
-    CONVERT(VARCHAR,
-    DATEADD(SECOND, Sessions.RemainingSeconds, 0),
-    108) AS [Remaining Time],
-    FORMAT(Sessions.StartTime, 'hh:mm tt') AS [Start Time],
-
-    CONCAT('$',CAST(Sessions.SessionCost AS DECIMAL(10,2))) AS [Cost]
- 
-    FROM Sessions
-
-    JOIN Users ON Sessions.CustomerID = Users.UserID
-
-    JOIN Devices ON Sessions.CurrentDeviceID = Devices.DeviceID
-
-    JOIN DeviceType ON Sessions.DeviceTypeID = DeviceType.DeviceTypeID
-    WHERE Sessions.EndTime IS NULL"
+         Sessions.SessionID AS [Session ID],Users.Name AS [Customer],Devices.DeviceName AS [Device],DeviceType.DeviceTypeName AS [Device Type],
+     
+         CASE Sessions.SessionStatus
+             WHEN 0 THEN 'Active'
+             WHEN 1 THEN 'Paused'
+             WHEN 2 THEN 'Ended'
+             ELSE 'Unknown'
+         END AS [Status],
+     
+         CONVERT(VARCHAR,DATEADD(SECOND, Sessions.RemainingSeconds, 0),108) AS [Remaining Time],
+     
+         FORMAT(Sessions.StartTime,'hh:mm tt') AS [Start Time],
+     
+         CONCAT('$',CAST(Sessions.SessionCost AS DECIMAL(10,2))) AS [Cost]
+     
+         FROM Sessions
+     
+         JOIN Users
+         ON Sessions.CustomerID = Users.UserID
+         
+         LEFT JOIN Devices
+         ON Sessions.CurrentDeviceID = Devices.DeviceID
+         
+         JOIN DeviceType
+         ON Sessions.DeviceTypeID = DeviceType.DeviceTypeID
+         
+         WHERE Sessions.SessionStatus = 0 AND Sessions.RemainingSeconds > 0"
 
         Using con As New SqlConnection(DataAccessSettings.connectionString)
 
@@ -1009,11 +1014,11 @@ Public Class SessionRepo
         
         JOIN Users ON Sessions.CustomerID = Users.UserID
         
-        JOIN Devices ON Sessions.CurrentDeviceID = Devices.DeviceID
+        Left join Devices ON Sessions.CurrentDeviceID = Devices.DeviceID
         
         JOIN DeviceType ON Sessions.DeviceTypeID = DeviceType.DeviceTypeID
         
-        WHERE Sessions.SessionStatus = 2"
+        WHERE Sessions.SessionStatus = 1 AND Sessions.RemainingSeconds > 0"
 
         Using con As New SqlConnection(DataAccessSettings.connectionString)
 
