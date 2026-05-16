@@ -1,4 +1,5 @@
-﻿Imports CyberCafeModels
+﻿Imports BusinessLayer_CyberCafe
+Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
 
 Public Class frmCustomerMain
@@ -6,20 +7,32 @@ Public Class frmCustomerMain
 
     Private ReadOnly _SessionID As Integer
 
-    Private _SessionDto As SessionDTO
+    Private _SessionDto As ActiveSession
 
     Private _LastButtonClicked As Button
 
-    Public Sub New(sessionId As Integer)
+    Public Sub New(activeSession As ActiveSession)
 
         InitializeComponent()
 
-        _SessionID = sessionId
-
-        '_SessionDto = SessionServices.GetSessionByID(sessionId) بس عبود يعملها 
+        _SessionID = activeSession.SessionID
 
     End Sub
     Private Sub frmCustomerMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Try
+
+            _SessionDto = ActiveSessionsManager.GetSession(_SessionID)
+
+        Catch ex As Exception
+
+            If _SessionDto Is Nothing OrElse _SessionDto.Status <> SessionStatus.Active Then
+                UIHelper.ShowGunaMessage("You Currently Have No Active Session.", "Error", Guna.UI2.WinForms.MessageDialogIcon.Information)
+                Me.Close()
+                Return
+            End If
+
+        End Try
 
         Me.CenterToParent()
         pnlTopBar.EnableDragging()
@@ -57,7 +70,7 @@ Public Class frmCustomerMain
 
     Private Sub btnCart_Click(sender As Object, e As EventArgs) Handles btnCart.Click
 
-        ChangeForm(New frmCustomerCart())
+        ChangeForm(New frmCustomerCart(_SessionDto.CustomerID, _SessionDto.SessionID))
         _UpdateButtonColor(btnCart)
 
     End Sub

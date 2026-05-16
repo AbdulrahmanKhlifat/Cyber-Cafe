@@ -214,7 +214,7 @@ Public Class frmCustomers
                 frm.ShowDialog()
             End Using
 
-            LoadCustomerData()
+            RefreshCustomerDgv()
 
         End If
 
@@ -230,7 +230,7 @@ Public Class frmCustomers
                 frm.ShowDialog()
             End Using
 
-            LoadCustomerData()
+            RefreshCustomerDgv()
 
         End If
 

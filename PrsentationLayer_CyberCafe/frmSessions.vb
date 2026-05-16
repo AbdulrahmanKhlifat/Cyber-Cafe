@@ -1,6 +1,7 @@
 ﻿Imports System.Reflection
 Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
+Imports Guna.UI2.WinForms
 
 Public Class frmSessions
 
@@ -21,44 +22,60 @@ Public Class frmSessions
 
     End Sub
 
-    Private Sub tsmiResume_Click(sender As Object, e As EventArgs) Handles tsmiResume.Click
-        If dgvPausedSessions.SelectedRows.Count > 0 Then
-            Dim row = dgvPausedSessions.SelectedRows(0)
-            
-            Dim sessionID As Integer = Convert.ToInt32(row.Cells("Session ID").Value)
-            Dim sessionDTO = ActiveSessionsManager.GetSession(sessionID)
+    Private Sub tsmiResume_Click(
+    sender As Object,
+    e As EventArgs
+) Handles tsmiResume.Click
 
-            If sessionDTO IsNot Nothing Then
+        Try
 
-                Dim customerName As String = row.Cells("Customer").Value.ToString()
-                Dim currentDeviceName As String = row.Cells("Device").Value.ToString()
-                Dim deviceTypeName As String = row.Cells("Device Type").Value.ToString()
+            If dgvPausedSessions.SelectedRows.Count = 0 Then
 
-                Dim frm As New frmResumeSession(sessionDTO.SessionID, sessionDTO.DeviceTypeID, sessionDTO.RemainingSeconds, customerName, currentDeviceName, deviceTypeName)
+                UIHelper.ShowGunaMessage(
+                "Please select a paused session.",
+                "Validation",
+                MessageDialogIcon.Warning
+            )
+
+                Return
+
+            End If
+
+            Dim selectedRow As DataGridViewRow =
+            dgvPausedSessions.SelectedRows(0)
+
+            Dim sessionID As Integer =
+            Convert.ToInt32(
+                selectedRow.Cells("Session ID").Value
+            )
+
+            Using frm As New frmResumeSession(sessionID)
 
                 If frm.ShowDialog() = DialogResult.OK Then
 
-                    Dim newDeviceID = frm.SelectedNewDeviceID
+                    RefreshData()
 
-                    Try
-
-                        If SessionService.ResumeSession(sessionID, newDeviceID) Then
-                            RefreshData()
-                        Else
-
-                            UIHelper.ShowGunaMessage("Failed to resume session.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-                        End If
-
-                    Catch ex As Exception
-
-                        UIHelper.ShowGunaMessage(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End Try
                 End If
-            End If
-        End If
-    End Sub
 
+            End Using
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(
+            ex,
+            Reflection.MethodBase.
+            GetCurrentMethod().Name
+        )
+
+            UIHelper.ShowGunaMessage(
+            ex.Message,
+            "Error",
+            MessageDialogIcon.Error
+        )
+
+        End Try
+
+    End Sub
     Private Sub ConfigureGrids()
 
         ConfigureGrid(dgvActiveSessions)

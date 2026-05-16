@@ -1,5 +1,8 @@
-﻿Imports BusinessLayer_CyberCafe
+﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Window
+Imports BusinessLayer_CyberCafe
+Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
+Imports Guna.UI2.WinForms
 
 Module Program
 
@@ -48,8 +51,52 @@ Module Program
 
                         Dim customer As CustomerDTO = CType(LoggedInUser.CurrentUser, CustomerDTO)
 
+                        'This is for Demo purposes, in a real application you would likely have a more complex main form for customers
+
+                        SessionService.Initialize()
+
+                        Dim activeSession As ActiveSession =
+                            ActiveSessionsManager.
+                            GetAllSessions().
+                            FirstOrDefault(
+                                Function(s)
+                                    Return s.CustomerID = customer.UserID AndAlso
+                                           s.Status = SessionStatus.Active
+                                End Function
+                            )
+
+                        If activeSession Is Nothing Then
+                            Using tempForm As New Form
+
+                                tempForm.StartPosition =
+                                FormStartPosition.CenterScreen
+
+                                tempForm.Size = New Size(0, 0)
+
+                                tempForm.ShowInTaskbar = False
+
+                                tempForm.Opacity = 0
+
+                                tempForm.Show()
+
+                                Dim guna As New Guna2MessageDialog With {
+                                    .Caption = "Error",
+                                    .Text = "You currently have no active session.",
+                                    .Style = MessageDialogStyle.Dark,
+                                    .Icon = MessageDialogIcon.Information,
+                                    .Buttons = MessageDialogButtons.OK,
+                                    .Parent = tempForm
+                                }
+
+                                guna.Show()
+
+                            End Using
+
+                            Exit Do
+                        End If
+
                         Application.Run(
-                        New frmCustomerMain(1)
+                        New frmCustomerMain(activeSession)
                         )
 
                     Case Else

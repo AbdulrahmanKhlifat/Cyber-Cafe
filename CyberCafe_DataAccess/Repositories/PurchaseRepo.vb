@@ -360,7 +360,7 @@ Public Class PurchaseRepo
                     Dim transactionDto As New TransactionDTO With {
                     .ProcessedByAdminID = Nothing,
                     .SessionID = sessionID,
-                    .TransactionType = 4,
+                    .TransactionType = CByte(TransactionType.SessionSnackPurchase),
                     .PaidAmount = totalAmount,
                     .TransactionDate = DateTime.Now,
                     .TransactionNotes = "Session Purchase",

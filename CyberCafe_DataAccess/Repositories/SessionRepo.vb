@@ -1086,4 +1086,62 @@ Public Class SessionRepo
 
     End Function
 
+    Public Shared Function GetResumeSessionDetails(sessionID As Integer) As ResumeSessionDTO
+
+        If sessionID <= 0 Then
+            Throw New ArgumentException("Invalid SessionID.")
+        End If
+
+        Const query As String =
+            "SELECT TOP 1
+            s.SessionID,
+            s.CustomerID,
+            u.Name AS CustomerName,
+            s.DeviceTypeID,
+            dt.DeviceTypeName,
+            s.CurrentDeviceID,
+            d.DeviceName AS CurrentDeviceName,
+            s.RemainingSeconds,
+            s.SessionStatus
+         FROM Sessions s
+         INNER JOIN Users u ON u.UserID = s.CustomerID
+         INNER JOIN DeviceType dt ON dt.DeviceTypeID = s.DeviceTypeID
+         INNER JOIN Devices d ON d.DeviceID = s.CurrentDeviceID
+         WHERE s.SessionID = @SessionID
+           AND s.SessionStatus = @PausedStatus"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString),
+              cmd As New SqlCommand(query, conn)
+
+            cmd.Parameters.Add("@SessionID", SqlDbType.Int).Value = sessionID
+            cmd.Parameters.Add("@PausedStatus", SqlDbType.Int).Value = CInt(SessionStatus.Paused)
+
+            conn.Open()
+
+            Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                If Not reader.Read() Then
+                    Return Nothing
+                End If
+
+                Dim dto As New ResumeSessionDTO With {
+                    .SessionID = Convert.ToInt32(reader("SessionID")),
+                    .CustomerID = Convert.ToInt32(reader("CustomerID")),
+                    .CustomerName = reader("CustomerName").ToString(),
+                    .DeviceTypeID = Convert.ToInt32(reader("DeviceTypeID")),
+                    .DeviceTypeName = reader("DeviceTypeName").ToString(),
+                    .CurrentDeviceID = If(IsDBNull(reader("CurrentDeviceID")), CType(Nothing, Integer?), Convert.ToInt32(reader("CurrentDeviceID"))),
+                    .CurrentDeviceName = reader("CurrentDeviceName").ToString(),
+                    .RemainingSeconds = Convert.ToInt32(reader("RemainingSeconds")),
+                    .SessionStatus = CType(Convert.ToInt32(reader("SessionStatus")), SessionStatus)
+                }
+
+                Return dto
+
+            End Using
+
+        End Using
+
+    End Function
+
 End Class
