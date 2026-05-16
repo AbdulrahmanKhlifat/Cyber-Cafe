@@ -29,6 +29,8 @@ Partial Class frmCustomerCart
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnAddConsumable = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlFilter = New Guna.UI2.WinForms.Guna2Panel()
+        Me.lblMyCredit = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
         Me.cboCategoryFilter = New Guna.UI2.WinForms.Guna2ComboBox()
@@ -52,8 +54,6 @@ Partial Class frmCustomerCart
         Me.btnPurchase = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2VScrollBar1 = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.lblMyCredit = New System.Windows.Forms.Label()
         Me.pnlHeader.SuspendLayout()
         Me.pnlFilter.SuspendLayout()
         Me.pnlInvoice.SuspendLayout()
@@ -130,6 +130,28 @@ Partial Class frmCustomerCart
         Me.pnlFilter.Name = "pnlFilter"
         Me.pnlFilter.Size = New System.Drawing.Size(1300, 48)
         Me.pnlFilter.TabIndex = 4
+        '
+        'lblMyCredit
+        '
+        Me.lblMyCredit.AutoSize = True
+        Me.lblMyCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblMyCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.lblMyCredit.Location = New System.Drawing.Point(638, 11)
+        Me.lblMyCredit.Name = "lblMyCredit"
+        Me.lblMyCredit.Size = New System.Drawing.Size(33, 21)
+        Me.lblMyCredit.TabIndex = 4
+        Me.lblMyCredit.Text = "🧾"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(524, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(115, 21)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "🧾 My Credit:"
         '
         'txtSearch
         '
@@ -420,28 +442,6 @@ Partial Class frmCustomerCart
         '
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(524, 11)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(115, 21)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "🧾 My Credit:"
-        '
-        'lblMyCredit
-        '
-        Me.lblMyCredit.AutoSize = True
-        Me.lblMyCredit.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblMyCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.lblMyCredit.Location = New System.Drawing.Point(638, 11)
-        Me.lblMyCredit.Name = "lblMyCredit"
-        Me.lblMyCredit.Size = New System.Drawing.Size(33, 21)
-        Me.lblMyCredit.TabIndex = 4
-        Me.lblMyCredit.Text = "🧾"
         '
         'frmCustomerCart
         '

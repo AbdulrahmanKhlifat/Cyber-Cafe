@@ -1,5 +1,6 @@
 ﻿Imports BusinessLayer_CyberCafe
 Imports CyberCafeModels
+Imports CyberCafeModels.CyberCafe.Models
 
 
 Public Class frmCustomerMain
@@ -10,6 +11,9 @@ Public Class frmCustomerMain
     Private _SessionDto As ActiveSession
 
     Private _LastButtonClicked As Button
+
+    Private _customer As CustomerDTO
+
 
     Public Sub New(activeSession As ActiveSession)
 
@@ -38,6 +42,8 @@ Public Class frmCustomerMain
         pnlTopBar.EnableDragging()
 
         lblClock.Text = DateTime.Now.ToString("HH:mm:ss   ddd, MMM dd yyyy")
+        _customer = CustomerServices.Find(_SessionDto.CustomerID)
+        lblMyCredit.Text = _customer.Credit.ToString("C")
     End Sub
     Private Sub _UpdateButtonColor(btn As Button)
 
@@ -81,7 +87,13 @@ Public Class frmCustomerMain
 
     Private Sub btnShowDetails_Click(sender As Object, e As EventArgs) Handles btnShowDetails.Click
 
-        ChangeForm(New frmShowCustomerDetails(_SessionDto.CustomerID))
+
+
+        Using frmShowCustomerDetails As New frmShowCustomerDetails(_SessionDto.CustomerID)
+            frmShowCustomerDetails.ShowDialog()
+        End Using
 
     End Sub
+
+
 End Class

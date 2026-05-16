@@ -40,11 +40,11 @@ Public Class frmShowCustomerDetails
         lblCreditValue.Text = String.Format("{0:C}", _Customer.Credit)
         lblHoursValue.Text = _Customer.TotalHoursRes.ToString() & " Hrs"
         lblJoinedDate.Text = _Customer.CreatedAt.ToString("MMM dd, yyyy")
-
         lblFullNameValue.Text = _Customer.Name
         lblUsername.Text = _Customer.Username
         lblEmail.Text = If(String.IsNullOrEmpty(_Customer.Email), "N/A", _Customer.Email)
         lblPhone.Text = If(String.IsNullOrEmpty(_Customer.Phone), "N/A", _Customer.Phone)
+
 
         LoadRecentActivity()
     End Sub
@@ -60,5 +60,6 @@ Public Class frmShowCustomerDetails
     Private Sub btnClose_Click(sender As Object, e As EventArgs)
         Me.Close()
     End Sub
+
 
 End Class
