@@ -335,4 +335,28 @@ Public Class SessionService
 
     End Function
 
+    Public Shared Function GetDeviceSessionKPI(
+    deviceID As Integer
+) As DeviceSessionKPI
+
+        Try
+
+            Return SessionRepo.GetDeviceSessionKPI(
+                deviceID
+            )
+
+        Catch ex As Exception
+
+            ErrorLogger.LogErrorToFile(
+                ex,
+                Reflection.MethodBase.
+                GetCurrentMethod().Name
+            )
+
+            Throw
+
+        End Try
+
+    End Function
+
 End Class

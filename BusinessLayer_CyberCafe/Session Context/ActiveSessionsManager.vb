@@ -86,7 +86,11 @@ Public Class ActiveSessionsManager
 
     Public Shared Function GetAllSessions() As IReadOnlyCollection(Of ActiveSession)
 
-        Return _activeSessions.Values.ToList()
+        SyncLock _activeSessions
+
+            Return _activeSessions.Values.ToList()
+
+        End SyncLock
 
     End Function
 

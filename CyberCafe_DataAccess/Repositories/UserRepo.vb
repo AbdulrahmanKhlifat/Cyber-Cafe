@@ -112,5 +112,7 @@ Namespace CyberCafe.DAL
             End Using
             Return isFound
         End Function
+
     End Class
+
 End Namespace
