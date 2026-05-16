@@ -104,6 +104,21 @@ Public Class SessionRepo
                         Throw New Exception("Failed to update device status.")
                     End If
 
+                    Dim transactionInserted As Boolean = TransactionRepo.AddTransaction(New TransactionDTO With {
+                        .CustomerID = session.CustomerID,
+                        .ProcessedByAdminID = session.CreatedByAdminID,
+                        .TransactionType = TransactionType.SessionStart,
+                        .PaidAmount = session.SessionCost,
+                        .TransactionDate = session.StartTime,
+                        .SessionID = sessionID,
+                        .TransactionNotes = "Session Start"
+                    }, con, transaction) <> -1
+
+                    If Not transactionInserted Then
+                        transaction.Rollback()
+                        Throw New Exception("Failed to insert transaction record.")
+                    End If
+
                     transaction.Commit()
 
                     Return sessionID
@@ -426,6 +441,58 @@ Public Class SessionRepo
 
     End Function
 
+    Public Shared Function GetCurrentSessionByDeviceID(
+    deviceID As Integer
+) As DataTable
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException("Invalid DeviceID.")
+        End If
+
+        Dim dt As New DataTable()
+
+        Const query As String =
+            "
+            SELECT
+                s.SessionID,
+                u.FullName AS CustomerName,
+                s.StartTime,
+                s.RemainingSeconds,
+
+                CASE s.SessionStatus
+                    WHEN 0 THEN 'Active'
+                    WHEN 1 THEN 'Paused'
+                    WHEN 2 THEN 'Ended'
+                END AS SessionStatus
+
+            FROM Sessions s
+
+            INNER JOIN Users u
+                ON s.CustomerID = u.UserID
+
+            WHERE s.CurrentDeviceID = @DeviceID
+            AND s.SessionStatus IN (0, 1)
+            "
+
+        Using connection As New SqlConnection(DataAccessSettings.connectionString),
+          command As New SqlCommand(query, connection)
+
+            command.Parameters.AddWithValue("@DeviceID", deviceID)
+
+            connection.Open()
+
+            Using reader As SqlDataReader = command.ExecuteReader()
+
+                dt.Load(reader)
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
     Public Shared Function GetSessionStatus(sessionID As Integer) As SessionStatus
 
         If sessionID <= 0 Then
@@ -471,6 +538,85 @@ Public Class SessionRepo
             End Using
 
         End Using
+
+    End Function
+
+
+    Public Shared Function GetDeviceSessionKPI(
+    deviceID As Integer
+) As DeviceSessionKPI
+
+        If deviceID <= 0 Then
+            Throw New ArgumentException(
+            "Invalid DeviceID."
+        )
+        End If
+
+        Dim kpi As New DeviceSessionKPI()
+
+        Const query As String =
+    "
+    SELECT
+        ISNULL(SUM(SessionCost), 0) AS TotalRevenue,
+
+        ISNULL(
+            SUM(
+                DATEDIFF(
+                    SECOND,
+                    StartTime,
+                    EndTime
+                )
+            ) / 3600.0,
+            0
+        ) AS TotalHours,
+
+        COUNT(*) AS SessionCount
+
+    FROM Sessions
+
+    WHERE CurrentDeviceID = @DeviceID
+    AND SessionStatus = 2
+    "
+
+        Using connection As New SqlConnection(
+        DataAccessSettings.connectionString
+    ),
+    command As New SqlCommand(query, connection)
+
+            command.Parameters.AddWithValue(
+            "@DeviceID",
+            deviceID
+        )
+
+            connection.Open()
+
+            Using reader As SqlDataReader =
+            command.ExecuteReader()
+
+                If reader.Read() Then
+
+                    kpi.TotalRevenue =
+                    Convert.ToDecimal(
+                        reader("TotalRevenue")
+                    )
+
+                    kpi.TotalHours =
+                    Convert.ToDouble(
+                        reader("TotalHours")
+                    )
+
+                    kpi.SessionCount =
+                    Convert.ToInt32(
+                        reader("SessionCount")
+                    )
+
+                End If
+
+            End Using
+
+        End Using
+
+        Return kpi
 
     End Function
 

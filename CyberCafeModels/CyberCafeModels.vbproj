@@ -80,6 +80,7 @@
     <Compile Include="Enums\DeviceType.vb" />
     <Compile Include="Entity DTOs\DeviceTypeDTO.vb" />
     <Compile Include="Entity DTOs\GamesDTO.vb" />
+    <Compile Include="ResponseDTOs\DeviceSessionKPI.vb" />
     <Compile Include="ResponseDTOs\GameSelectionDTO.vb" />
     <Compile Include="ResponseDTOs\LoginResultDTO.vb" />
     <Compile Include="Entity DTOs\TransactionDTO.vb" />

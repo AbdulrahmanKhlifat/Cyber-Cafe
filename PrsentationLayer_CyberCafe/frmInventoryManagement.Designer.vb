@@ -60,6 +60,7 @@ Partial Class frmInventoryManagement
         Me.lblTotalTitle = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ScrollBar = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.pnlMain.SuspendLayout()
         Me.pnlAlerts.SuspendLayout()
         Me.pnlGridContainer.SuspendLayout()
@@ -133,6 +134,7 @@ Partial Class frmInventoryManagement
         Me.pnlGridContainer.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.pnlGridContainer.BorderRadius = 15
         Me.pnlGridContainer.BorderThickness = 1
+        Me.pnlGridContainer.Controls.Add(Me.ScrollBar)
         Me.pnlGridContainer.Controls.Add(Me.dgvInventory)
         Me.pnlGridContainer.FillColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.pnlGridContainer.Location = New System.Drawing.Point(12, 280)
@@ -208,7 +210,7 @@ Partial Class frmInventoryManagement
         Me.cms.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.RestockToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.cms.Name = "cms"
         Me.cms.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.cms.Size = New System.Drawing.Size(208, 94)
+        Me.cms.Size = New System.Drawing.Size(181, 70)
         '
         'EditToolStripMenuItem
         '
@@ -575,6 +577,30 @@ Partial Class frmInventoryManagement
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(32, 19)
         '
+        'RestockToolStripMenuItem
+        '
+        Me.RestockToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.RestockToolStripMenuItem.Name = "RestockToolStripMenuItem"
+        Me.RestockToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        Me.RestockToolStripMenuItem.Size = New System.Drawing.Size(32, 19)
+        Me.RestockToolStripMenuItem.Text = "    📦  Restock Inventory"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(95, Byte), Integer))
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(32, 19)
+        Me.DeleteToolStripMenuItem.Text = "    🗑  Delete Permanently"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
         'frmInventoryManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -642,4 +668,5 @@ Partial Class frmInventoryManagement
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ScrollBar As Guna.UI2.WinForms.Guna2VScrollBar
 End Class

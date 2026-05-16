@@ -411,4 +411,36 @@ Public Class CustomerRepo
 
     End Function
 
+    Public Shared Function HasActiveSessionByCustomerId(customerID As Integer) As Boolean
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Dim query As String = "SELECT COUNT(1) FROM Sessions WHERE CustomerID = @CustomerID AND SessionStatus = @ActiveStatus"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@CustomerID", customerID)
+                cmd.Parameters.AddWithValue("@ActiveStatus", CInt(SessionStatus.Active))
+
+                Try
+                    conn.Open()
+
+                    Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+
+                    Return count > 0
+
+                Catch ex As Exception
+
+                    ErrorLogger.LogErrorToFile(ex, System.Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    Throw
+
+                End Try
+
+            End Using
+
+        End Using
+
+    End Function
+
 End Class

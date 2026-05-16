@@ -305,48 +305,35 @@ Public Class DeviceRepo
 ) As Boolean
 
         If deviceID <= 0 Then
-            Throw New ArgumentException(
-                "Invalid DeviceID."
-            )
+            Throw New ArgumentException("Invalid DeviceID.")
         End If
 
         If deviceTypeID <= 0 Then
-            Throw New ArgumentException(
-                "Invalid DeviceTypeID."
-            )
+            Throw New ArgumentException("Invalid DeviceTypeID.")
         End If
 
-        Using conn As New SqlConnection(
-            DataAccessSettings.connectionString
-        )
+        Const query As String =
+            "IF EXISTS (
+                SELECT 1
+                FROM Devices
+                WHERE DeviceID = @DeviceID
+                AND DeviceTypeID = @DeviceTypeID
+            )
+            SELECT 1
+            ELSE
+            SELECT 0"
 
-            Dim query As String =
-            "SELECT 1
-         FROM Devices
-         WHERE
-            DeviceID = @DeviceID
-            AND DeviceTypeID = @DeviceTypeID"
+        Using connection As New SqlConnection(DataAccessSettings.connectionString),
+          command As New SqlCommand(query, connection)
 
-            Using cmd As New SqlCommand(query, conn)
+            command.Parameters.AddWithValue("@DeviceID", deviceID)
+            command.Parameters.AddWithValue("@DeviceTypeID", deviceTypeID)
 
-                cmd.Parameters.Add(
-                    "@DeviceID",
-                    SqlDbType.Int
-                ).Value = deviceID
+            connection.Open()
 
-                cmd.Parameters.Add(
-                    "@DeviceTypeID",
-                    SqlDbType.Int
-                ).Value = deviceTypeID
+            Dim result As Object = command.ExecuteScalar()
 
-                conn.Open()
-
-                Dim result As Object =
-                    cmd.ExecuteScalar()
-
-                Return result IsNot Nothing
-
-            End Using
+            Return Convert.ToInt32(result) = 1
 
         End Using
 

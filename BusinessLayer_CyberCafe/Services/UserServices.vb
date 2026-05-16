@@ -58,5 +58,18 @@ Namespace CyberCafe.BusinessLayer
 
         End Function
 
+        Public Shared Function GetUserNameByID(userID As Integer, role As UserRoleType) As String
+
+            Dim user As UserDTO = LoadUser(userID, role)
+
+            If user IsNot Nothing Then
+                Return user.Username
+            End If
+
+            Return String.Empty
+
+        End Function
+
     End Class
+
 End Namespace

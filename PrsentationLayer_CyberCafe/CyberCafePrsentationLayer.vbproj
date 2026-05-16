@@ -399,5 +399,11 @@
   <ItemGroup>
     <None Include="Resources\ChatGPT Image May 15, 2026, 06_17_47 PM.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT_Image_May_16__2026__01_37_12_PM-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image May 16, 2026, 01_40_07 PM.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
