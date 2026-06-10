@@ -1,4 +1,3 @@
-Imports System.Data
 Imports System.Data.SqlClient
 Imports CyberCafeModels
 Imports CyberCafe_DataAccess.Helpers
@@ -47,6 +46,7 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     AddMatchParameters(cmd, match)
@@ -55,11 +55,14 @@ Public Class TournamentMatchesRepo
                     matchID = Convert.ToInt32(cmd.ExecuteScalar())
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
         Return matchID
@@ -116,21 +119,26 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
 
                     conn.Open()
+
                     Using reader = cmd.ExecuteReader()
                         dt.Load(reader)
                     End Using
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
         Return dt
@@ -158,12 +166,15 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
 
                     conn.Open()
+
                     Using reader = cmd.ExecuteReader()
+
                         While reader.Read()
 
                             Dim dto As New TournamentMatchDTO With {
@@ -183,15 +194,20 @@ Public Class TournamentMatchesRepo
                             }
 
                             matchesList.Add(dto)
+
                         End While
+
                     End Using
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
         Return matchesList
@@ -216,12 +232,14 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@MatchID", SqlDbType.Int).Value = matchID
 
                     conn.Open()
                     Using reader = cmd.ExecuteReader()
+
                         If reader.Read() Then
 
                             Dim dto As New TournamentMatchDTO With {
@@ -244,14 +262,18 @@ Public Class TournamentMatchesRepo
                             Return dto
 
                         End If
+
                     End Using
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
         Return Nothing
@@ -277,6 +299,7 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
@@ -288,11 +311,14 @@ Public Class TournamentMatchesRepo
                     End Using
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
         Return dt
@@ -330,21 +356,28 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
 
                     conn.Open()
+
                     Using reader = cmd.ExecuteReader()
+
                         dt.Load(reader)
+
                     End Using
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
         Return dt
@@ -357,7 +390,7 @@ Public Class TournamentMatchesRepo
 
         Const query As String =
             "SELECT
-                U.Name            AS WinnerName,
+                U.Name AS WinnerName,
                 T.TournamentName,
                 TP.RegistrationDate,
                 T.TournamentTime  AS DateFinished
@@ -371,6 +404,7 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
@@ -381,11 +415,14 @@ Public Class TournamentMatchesRepo
                     End Using
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
         Return dt
@@ -403,6 +440,7 @@ Public Class TournamentMatchesRepo
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
@@ -411,11 +449,14 @@ Public Class TournamentMatchesRepo
                     Return Convert.ToInt32(cmd.ExecuteScalar()) > 0
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
     End Function
@@ -425,12 +466,12 @@ Public Class TournamentMatchesRepo
         Const query As String =
             "SELECT ISNULL(MAX(RoundNumber), 0)
              FROM TournamentMatches
-             WHERE TournamentID = @TournamentID
-               AND IsDeleted    = 0"
+             WHERE TournamentID = @TournamentID AND IsDeleted= 0"
 
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
                 Using cmd As New SqlCommand(query, conn)
 
                     cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
@@ -439,11 +480,14 @@ Public Class TournamentMatchesRepo
                     Return Convert.ToInt32(cmd.ExecuteScalar())
 
                 End Using
+
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
     End Function
@@ -479,8 +523,10 @@ Public Class TournamentMatchesRepo
             End Using
 
         Catch ex As Exception
+
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
             Throw
+
         End Try
 
     End Function
@@ -516,26 +562,30 @@ Public Class TournamentMatchesRepo
 
 
     Public Shared Function SaveDrawTransaction(tournamentID As Integer, matches As List(Of TournamentMatchDTO), newStatus As enTournamentStatus) As Boolean
+
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
             conn.Open()
+
             Using transaction = conn.BeginTransaction()
+
                 Try
-                    ' Soft delete existing matches (if re-generating)
+
                     Const deleteQuery As String = "UPDATE TournamentMatches SET IsDeleted = 1 WHERE TournamentID = @TournamentID AND IsDeleted = 0"
                     Using cmdDelete As New SqlCommand(deleteQuery, conn, transaction)
-                        cmdDelete.Parameters.AddWithValue("@TournamentID", tournamentID)
+                        cmdDelete.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
                         cmdDelete.ExecuteNonQuery()
                     End Using
 
-                    ' Bulk Insert new matches
+
                     Dim dtMatches = _ConvertMatchesToDataTable(matches)
                     _BulkInsertMatches(dtMatches, conn, transaction)
 
-                    ' Update Tournament Status
+
                     Const updateStatusQuery As String = "UPDATE Tournaments SET TournamentStatus = @Status WHERE TournamentID = @TournamentID"
                     Using cmdStatus As New SqlCommand(updateStatusQuery, conn, transaction)
-                        cmdStatus.Parameters.AddWithValue("@Status", CByte(newStatus))
-                        cmdStatus.Parameters.AddWithValue("@TournamentID", tournamentID)
+                        cmdStatus.Parameters.Add("@Status", SqlDbType.TinyInt).Value = newStatus
+                        cmdStatus.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
                         cmdStatus.ExecuteNonQuery()
                     End Using
 
@@ -543,47 +593,75 @@ Public Class TournamentMatchesRepo
                     Return True
 
                 Catch ex As Exception
+
                     transaction.Rollback()
+
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
                     Return False
+
                 End Try
+
             End Using
+
         End Using
+
     End Function
 
     Public Shared Function SaveNextRoundMatchesTransaction(matches As List(Of TournamentMatchDTO)) As Boolean
-        If matches Is Nothing OrElse matches.Count = 0 Then Return False
+
+        If matches Is Nothing OrElse matches.Count = 0 Then
+            Return False
+        End If
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
             conn.Open()
+
             Using transaction = conn.BeginTransaction()
+
                 Try
+
                     Dim dtMatches = _ConvertMatchesToDataTable(matches)
                     _BulkInsertMatches(dtMatches, conn, transaction)
 
                     transaction.Commit()
                     Return True
+
                 Catch ex As Exception
+
                     transaction.Rollback()
+
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
                     Return False
+
                 End Try
+
             End Using
+
         End Using
+
     End Function
 
     Private Shared Sub _BulkInsertMatches(matchesTable As DataTable, conn As SqlConnection, transaction As SqlTransaction)
+
         Using bulk As New SqlBulkCopy(conn, SqlBulkCopyOptions.Default, transaction)
+
             bulk.DestinationTableName = "TournamentMatches"
+
             For Each col As DataColumn In matchesTable.Columns
                 bulk.ColumnMappings.Add(col.ColumnName, col.ColumnName)
             Next
+
             bulk.WriteToServer(matchesTable)
+
         End Using
+
     End Sub
 
     Private Shared Function _ConvertMatchesToDataTable(matches As List(Of TournamentMatchDTO)) As DataTable
+
         Dim dt As New DataTable()
+
         dt.Columns.Add("TournamentID", GetType(Integer))
         dt.Columns.Add("RoundNumber", GetType(Byte))
         dt.Columns.Add("MatchOrder", GetType(Integer))
@@ -596,6 +674,7 @@ Public Class TournamentMatchesRepo
         dt.Columns.Add("IsDeleted", GetType(Boolean))
 
         For Each m In matches
+
             Dim row = dt.NewRow()
             row("TournamentID") = m.TournamentID
             row("RoundNumber") = m.RoundNumber
@@ -608,13 +687,13 @@ Public Class TournamentMatchesRepo
             row("CreatedDate") = m.CreatedDate
             row("IsDeleted") = m.IsDeleted
             dt.Rows.Add(row)
+
         Next
+
         Return dt
+
     End Function
 
-    ' ============================================================
-    '  PRIVATE HELPERS — Parameters
-    ' ============================================================
 
     Private Shared Sub AddMatchParameters(cmd As SqlCommand, match As TournamentMatchDTO)
 
@@ -635,14 +714,9 @@ Public Class TournamentMatchesRepo
 
     End Sub
 
-    Private Shared Sub AddNullableParameter(
-        cmd As SqlCommand,
-        parameterName As String,
-        dbType As SqlDbType,
-        value As Object)
+    Private Shared Sub AddNullableParameter(cmd As SqlCommand, parameterName As String, dbType As SqlDbType, value As Object)
 
-        cmd.Parameters.Add(parameterName, dbType).Value =
-            If(value Is Nothing, DBNull.Value, value)
+        cmd.Parameters.Add(parameterName, dbType).Value = If(value Is Nothing, DBNull.Value, value)
 
     End Sub
 

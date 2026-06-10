@@ -26,7 +26,7 @@ Public Class TournamentRepo
             FROM Tournaments T
             INNER JOIN Games G
                 ON T.GameID = G.GameID
-            WHERE T.TournamentID = @TournamentID"
+            WHERE T.TournamentID = @TournamentID and IsDeleted = 0"
 
             Using cmd As New SqlCommand(query, conn)
 
@@ -61,6 +61,8 @@ Public Class TournamentRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    Throw
 
                 End Try
 
@@ -145,6 +147,7 @@ Public Class TournamentRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
 
                 End Try
 
@@ -196,6 +199,7 @@ Public Class TournamentRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
 
                 End Try
 
@@ -243,6 +247,7 @@ Public Class TournamentRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
 
                 End Try
 
@@ -279,6 +284,7 @@ Public Class TournamentRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
 
                 End Try
 
@@ -312,7 +318,7 @@ Public Class TournamentRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-                    Return False
+                    Throw
 
                 End Try
 
@@ -321,8 +327,5 @@ Public Class TournamentRepo
         End Using
 
     End Function
-
-
-
 
 End Class

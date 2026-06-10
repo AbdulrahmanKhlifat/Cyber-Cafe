@@ -45,7 +45,7 @@ Public Class TournamentPlayersRepo
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
 
-                    Return False
+                    Throw
 
                 End Try
 
@@ -127,7 +127,7 @@ Public Class TournamentPlayersRepo
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
 
-                    Return False
+                    Throw
 
                 End Try
 
@@ -160,11 +160,9 @@ Public Class TournamentPlayersRepo
 
                 Catch ex As Exception
 
-                    ErrorLogger.LogErrorToFile(
-                    ex,
-                    Reflection.MethodBase.GetCurrentMethod().Name)
+                    ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
 
-                    Return 0
+                    Throw
 
                 End Try
 
@@ -231,9 +229,7 @@ Public Class TournamentPlayersRepo
 
     End Sub
 
-    Public Shared Function GetTournamentPlayers(
-        tournamentID As Integer
-    ) As DataTable
+    Public Shared Function GetTournamentPlayers(tournamentID As Integer) As DataTable
 
         Dim dt As New DataTable()
 
@@ -265,6 +261,7 @@ Public Class TournamentPlayersRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
 
                 End Try
 
@@ -276,22 +273,32 @@ Public Class TournamentPlayersRepo
 
     End Function
 
-    Public Shared Function RemovePlayer(PlayerID As Integer) As Boolean
+    Public Shared Function RemovePlayer(playerID As Integer) As Boolean
 
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
             Dim query As String =
-                "UPDATE TournamentPlayers
-                 SET IsDeleted = 1
-                 WHERE TournamentPlayerID = @TournamentPlayerID"
+            "UPDATE TournamentPlayers
+             SET IsDeleted = 1
+             WHERE TournamentPlayerID = @TournamentPlayerID"
 
             Using cmd As New SqlCommand(query, conn)
 
-                cmd.Parameters.Add("@TournamentPlayerID", SqlDbType.Int).Value = PlayerID
+                cmd.Parameters.Add("@TournamentPlayerID", SqlDbType.Int).Value = playerID
 
-                conn.Open()
+                Try
 
-                Return cmd.ExecuteNonQuery() > 0
+                    conn.Open()
+
+                    Return cmd.ExecuteNonQuery() > 0
+
+                Catch ex As Exception
+
+                    ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+                    Throw
+
+                End Try
 
             End Using
 
@@ -306,18 +313,25 @@ Public Class TournamentPlayersRepo
             Dim query As String =
                 "UPDATE TournamentPlayers
                  SET IsWinner = 1
-                 WHERE
-                    TournamentID = @TournamentID
-                    AND CustomerID = @CustomerID"
+                 WHERE TournamentID = @TournamentID AND CustomerID = @CustomerID"
 
             Using cmd As New SqlCommand(query, conn)
 
                 cmd.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
                 cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = customerID
 
-                conn.Open()
+                Try
+                    conn.Open()
 
-                Return cmd.ExecuteNonQuery() > 0
+                    Return cmd.ExecuteNonQuery() > 0
+
+                Catch ex As Exception
+
+                    ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
+
+                End Try
+
 
             End Using
 
@@ -367,6 +381,7 @@ Public Class TournamentPlayersRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                    Throw
 
                 End Try
 
