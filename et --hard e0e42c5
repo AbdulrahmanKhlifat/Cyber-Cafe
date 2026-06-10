@@ -1,0 +1,85 @@
+[33m9c2b8e5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33me0e42c5[m HEAD@{1}: reset: moving to HEAD~1
+[33m043aaf2[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: commit: feat(tournaments): implement complete tournament management system
+[33me0e42c5[m HEAD@{3}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33m4d53886[m HEAD@{4}: commit: Add Button ShowCustomerDetails
+[33mfd0a1bc[m HEAD@{5}: commit (merge): Solve the merge conflict
+[33m2353aba[m HEAD@{6}: commit: Add ShowDeatils in Customer Main
+[33m0c7f557[m HEAD@{7}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Merge made by the 'ort' strategy.
+[33m9e2fe90[m HEAD@{8}: commit: Add frmResumeSession
+[33m93528db[m HEAD@{9}: commit (merge): Staged
+[33m5c90709[m HEAD@{10}: commit: Add Filter to transactions
+[33m83468e5[m HEAD@{11}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33mab99206[m HEAD@{12}: commit (merge): Staged
+[33m30b560d[m HEAD@{13}: commit: The Biggest Commit
+[33me443404[m HEAD@{14}: commit: Modify AddDevice Design
+[33m7082729[m HEAD@{15}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33m3e278e3[m HEAD@{16}: rebase (abort): returning to refs/heads/master
+[33mf36c0db[m HEAD@{17}: commit: Create frmManagePlatforms
+[33m5cad0e4[m HEAD@{18}: pull origin master --rebase (start): checkout 5cad0e47629043db647af77540fd939a02165cfa
+[33m3e278e3[m HEAD@{19}: reset: moving to 3e278e3
+[33m5cad0e4[m HEAD@{20}: reset: moving to HEAD~1
+[33m846ca44[m HEAD@{21}: rebase (finish): returning to refs/heads/master
+[33m846ca44[m HEAD@{22}: rebase (pick): Create frmManagePlatforms
+[33m5cad0e4[m HEAD@{23}: pull --progress --no-edit --no-stat --recurse-submodules=no origin (start): checkout 5cad0e47629043db647af77540fd939a02165cfa
+[33m3e278e3[m HEAD@{24}: commit: Create frmManagePlatforms
+[33mf261308[m HEAD@{25}: reset: moving to origin/master
+[33mf261308[m HEAD@{26}: checkout: moving from master to master
+[33mf261308[m HEAD@{27}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33mc5ccf0f[m HEAD@{28}: commit: Create frmAddPlatform:
+[33m0320a45[m HEAD@{29}: commit: More Optimize on Filtering Device By game name
+[33m6a52cbf[m HEAD@{30}: commit: Delete Game with remove image from images folder
+[33mc71fa4d[m HEAD@{31}: commit: FIx Scroll Bar
+[33md8b2043[m HEAD@{32}: commit (merge): Fix Scroll Bar in frmAssignGames
+[33me90692c[m HEAD@{33}: reset: moving to HEAD
+[33me90692c[m HEAD@{34}: commit: Create frmCustomer (Add/Edit/List)
+[33mf7f0dd9[m HEAD@{35}: commit: Fixed Merge Conflict
+[33m5c0a50d[m HEAD@{36}: commit (merge): Commit Staged
+[33mc7bbdb3[m HEAD@{37}: commit: Create Game Library + Add/Edit Game
+[33m524b9aa[m HEAD@{38}: commit (merge): Commit Staged
+[33me433c9c[m HEAD@{39}: commit: Fix Customer Design
+[33m83ea415[m HEAD@{40}: commit: Small Changes
+[33mde4c4b1[m HEAD@{41}: commit: Fixed Find Device Info from DB
+[33m3f5740b[m HEAD@{42}: rebase (abort): returning to refs/heads/master
+[33mc471763[m HEAD@{43}: rebase (start): checkout HEAD~4
+[33m3f5740b[m HEAD@{44}: rebase (abort): returning to refs/heads/master
+[33mc471763[m HEAD@{45}: rebase (start): checkout HEAD~4
+[33m3f5740b[m HEAD@{46}: rebase (abort): returning to refs/heads/master
+[33m3f5740b[m HEAD@{47}: rebase (abort): returning to refs/heads/master
+[33m3f5740b[m HEAD@{48}: reset: moving to 3f5740b
+[33m5feaf99[m HEAD@{49}: reset: moving to HEAD~4
+[33ma09453a[m HEAD@{50}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Merge made by the 'ort' strategy.
+[33m3f5740b[m HEAD@{51}: commit: Virtual Flow Logic: Optimized the FlowLayoutPanel by implementing a "Destroy & Rebuild" strategy; using .Clear() and .Dispose() on existing controls before repopulating, ensuring the UI stays responsive regardless of the dataset size.
+[33mf0bdd60[m HEAD@{52}: commit (amend): Perf: Implement Virtual Flow Logic, Image Scaling, and Memory Optimization
+[33m6ef5d5e[m HEAD@{53}: commit (merge): Commit Staged
+[33m91227d7[m HEAD@{54}: commit: Virtual Flow Logic: Optimized the FlowLayoutPanel by implementing a "Destroy & Rebuild" strategy; using .Clear() and .Dispose() on existing controls before repopulating, ensuring the UI stays responsive regardless of the dataset size.
+[33m5feaf99[m HEAD@{55}: commit (merge): Commit Staged
+[33mc471763[m HEAD@{56}: commit: Add Hover+Cursor(Hand) to ctrDeviceInfo
+[33me366ff0[m HEAD@{57}: commit (merge): Commit Staged
+[33m1f7cd31[m HEAD@{58}: commit: !
+[33m502423b[m HEAD@{59}: commit (merge): ..
+[33m0782620[m HEAD@{60}: commit: Fix Sizes
+[33m4c4c0b7[m HEAD@{61}: commit (merge): Commit Staged
+[33m3be6585[m HEAD@{62}: commit: Fixed Spaces in DAL
+[33mb52fab8[m HEAD@{63}: commit: Fix Size Conflict
+[33mefa6414[m HEAD@{64}: commit: feat: implement optimized transactions and dynamic connection string
+[33md3ebe7c[m HEAD@{65}: commit (merge): final: update gitignore to include App.config path
+[33m833a704[m HEAD@{66}: commit: fix: move connection open before transaction and update validation
+[33m4c35fc3[m HEAD@{67}: commit: Business Layer: Added robust logic validations in DeviceManager and DeviceGameManager (IDs check, Null checks, and existence verification).
+[33m34b87d9[m HEAD@{68}: commit: complete 4-table backend logic (Devices, Games, DeviceTypes, DeviceGames)
+[33m8c5ce27[m HEAD@{69}: commit: Fixed Buttons
+[33m24d0e27[m HEAD@{70}: commit (merge): Small Modifications
+[33m94c60a9[m HEAD@{71}: commit: Snmall Modifications
+[33m16858d9[m HEAD@{72}: reset: moving to HEAD
+[33m16858d9[m HEAD@{73}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33m9f102cf[m HEAD@{74}: reset: moving to HEAD
+[33m9f102cf[m HEAD@{75}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33m7126075[m HEAD@{76}: commit: Add Transactions Form
+[33mc191c62[m HEAD@{77}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33m30fc0f6[m HEAD@{78}: commit: Add Customers and Sessions forms
+[33m0c2bb2f[m HEAD@{79}: commit: Add Devices Form
+[33m60b5a96[m HEAD@{80}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33m578ef97[m HEAD@{81}: commit: Dashboard
+[33m1f995f3[m HEAD@{82}: commit: Login Design
+[33m0ed8fe1[m HEAD@{83}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33ma347490[m HEAD@{84}: clone: from https://github.com/Abdulrahmankh967/Cyber-Cafe.git

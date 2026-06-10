@@ -3,7 +3,7 @@ Imports CyberCafeModels
 
 Public Class TournamentServices
 
-    Public Shared Function ValidateTournamentRegistration(customerID As Integer, requiredFee As Decimal) As RegistrationValidationResultDTO
+    Public Shared Function ValidateRegistrationEligibility(customerID As Integer, requiredFee As Decimal) As RegistrationValidationResultDTO
 
         Dim result As New RegistrationValidationResultDTO()
 
@@ -18,12 +18,20 @@ Public Class TournamentServices
 
         End If
 
+        If requiredFee < 0 Then
+
+            Throw New ArgumentException("Required fee cannot be negative.")
+
+        End If
+
         result.CustomerID = customer.UserID
         result.CustomerName = customer.Username
 
         Dim balance = CustomerServices.GetCustomerCreditBalance(customer.UserID)
 
         result.Balance = balance
+
+
 
         If balance >= requiredFee Then
 
@@ -49,7 +57,7 @@ Public Class TournamentServices
         End If
 
 
-        If dto.TournamentName Is Nothing OrElse String.IsNullOrWhiteSpace(dto.TournamentName) Then
+        If String.IsNullOrWhiteSpace(dto.TournamentName) Then
             Throw New ArgumentException("Tournament name cannot be empty")
         End If
 
@@ -79,7 +87,9 @@ Public Class TournamentServices
     Public Shared Function Find(tournamentID As Integer) As TournamentDTO
 
         If tournamentID <= 0 Then
-            Return Nothing
+
+            Throw New ArgumentException("Invalid TournamentID")
+
         End If
 
         Return TournamentRepo.GetTournamentByID(tournamentID)
@@ -98,12 +108,12 @@ Public Class TournamentServices
 
     Public Shared Function UpdateTournament(dto As TournamentDTO) As Boolean
 
-        If dto Is Nothing Then
-            Return False
-        End If
+        ValidateTournamentDTO(dto)
 
         If dto.TournamentID <= 0 Then
-            Return False
+
+            Throw New ArgumentException("Invalid TournamentID")
+
         End If
 
         Return TournamentRepo.UpdateTournament(dto)
@@ -119,11 +129,11 @@ Public Class TournamentServices
     Public Shared Function UpdateTournamentStatus(tournamentID As Integer, status As enTournamentStatus) As Boolean
 
         If tournamentID <= 0 Then
-            Return False
+            Throw New ArgumentException("Invalid TournamentID")
         End If
 
         If Not enTournamentStatus.IsDefined(GetType(enTournamentStatus), status) Then
-            Return False
+            Throw New ArgumentException("Invalid tournament status")
         End If
 
         Return TournamentRepo.UpdateTournamentStatus(tournamentID, CByte(status))
@@ -133,16 +143,16 @@ Public Class TournamentServices
     Public Shared Sub SoftDeleteTournament(tournamentID As Integer)
 
         If tournamentID <= 0 Then
+
             Throw New ArgumentException("Invalid TournamentID")
 
         End If
 
-        Dim isDeleted As Boolean =
-            TournamentRepo.SoftDeleteTournament(tournamentID)
+        Dim isDeleted As Boolean = TournamentRepo.SoftDeleteTournament(tournamentID)
 
         If Not isDeleted Then
 
-            Throw New Exception("Tournament was not deleted")
+            Throw New InvalidOperationException("Tournament could not be deleted.")
 
         End If
 

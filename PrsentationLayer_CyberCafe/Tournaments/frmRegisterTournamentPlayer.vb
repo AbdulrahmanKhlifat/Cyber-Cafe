@@ -98,7 +98,7 @@ Public Class frmRegisterTournamentPlayer
 
         Try
 
-            Dim result = TournamentServices.ValidateTournamentRegistration(customerID, _requiredFee)
+            Dim result = TournamentServices.ValidateRegistrationEligibility(customerID, _requiredFee)
 
             If result.CustomerID = 0 Then
 
