@@ -738,5 +738,42 @@ Public Class GameRepo
 
     End Function
 
+    Public Shared Function GetTournamentSupportedGames() As DataTable
+
+        Dim dt As New DataTable()
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            Dim query As String = "SELECT GameID, GameName
+                                   FROM Games
+                                   WHERE SupportsTournament = 1"
+
+            Using cmd As New SqlCommand(query, conn)
+
+                Try
+
+                    conn.Open()
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+
+                        dt.Load(reader)
+
+                    End Using
+
+                Catch ex As Exception
+
+                    ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+                End Try
+
+            End Using
+
+        End Using
+
+        Return dt
+
+    End Function
+
+
 
 End Class

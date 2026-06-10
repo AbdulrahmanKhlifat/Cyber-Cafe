@@ -90,6 +90,10 @@
     <Compile Include="Services\GameServices.vb" />
     <Compile Include="Services\SessionService.vb" />
     <Compile Include="Services\PurchaseSerivces.vb" />
+    <Compile Include="Services\TournamentPlayerServices.vb" />
+    <Compile Include="Services\TournamentSevices.vb" />
+    <Compile Include="Services\TournamentMatchesServices.vb" />
+    <Compile Include="Services\Tournaments\BracketGeneratorLogic.vb" />
     <Compile Include="Session Context\ActiveSessionsManager.vb" />
     <Compile Include="Utilities\HashUtility.vb" />
     <Compile Include="Session Context\LoggedInUser.vb" />

@@ -1,5 +1,9 @@
 ﻿Imports System.IO
 
+
+
+
+
 Public Class ErrorLogger
     'This Class Should be in its own infrastructure layer kept here for simplicity
 

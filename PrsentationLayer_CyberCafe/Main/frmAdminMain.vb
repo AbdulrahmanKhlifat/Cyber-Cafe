@@ -112,4 +112,9 @@ Public Class frmAdminMain
         Me.Hide()
 
     End Sub
+
+    Private Sub btnTournaments_Click(sender As Object, e As EventArgs) Handles btnTournaments.Click
+        ChangeForm(New frmTournamentManagement)
+        _UpdateButtonColor(btnTournaments)
+    End Sub
 End Class

@@ -79,144 +79,144 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ctrDeviceInfo.Designer.vb">
+    <Compile Include="Devices\ctrDeviceInfo.Designer.vb">
       <DependentUpon>ctrDeviceInfo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ctrDeviceInfo.vb">
+    <Compile Include="Devices\ctrDeviceInfo.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctrGameCard.Designer.vb">
+    <Compile Include="Games\ctrGameCard.Designer.vb">
       <DependentUpon>ctrGameCard.vb</DependentUpon>
     </Compile>
-    <Compile Include="ctrGameCard.vb">
+    <Compile Include="Games\ctrGameCard.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctrConsumableCard.Designer.vb">
+    <Compile Include="Consumables\ctrConsumableCard.Designer.vb">
       <DependentUpon>ctrConsumableCard.vb</DependentUpon>
     </Compile>
-    <Compile Include="ctrConsumableCard.vb">
+    <Compile Include="Consumables\ctrConsumableCard.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmAddDeductCustomerCredit.Designer.vb">
+    <Compile Include="CustomerManagment\frmAddDeductCustomerCredit.Designer.vb">
       <DependentUpon>frmAddDeductCustomerCredit.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAddDeductCustomerCredit.vb">
+    <Compile Include="CustomerManagment\frmAddDeductCustomerCredit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAssignGames.Designer.vb">
+    <Compile Include="Games\frmAssignGames.Designer.vb">
       <DependentUpon>frmAssignGames.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAssignGames.vb">
+    <Compile Include="Games\frmAssignGames.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DragHelper.vb" />
-    <Compile Include="frmCustomerCart.Designer.vb">
+    <Compile Include="Helpers\DragHelper.vb" />
+    <Compile Include="CustomerUI\frmCustomerCart.Designer.vb">
       <DependentUpon>frmCustomerCart.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomerCart.vb">
+    <Compile Include="CustomerUI\frmCustomerCart.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCustomerDetails.Designer.vb">
+    <Compile Include="CustomerManagment\frmCustomerDetails.Designer.vb">
       <DependentUpon>frmCustomerDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomerDetails.vb">
+    <Compile Include="CustomerManagment\frmCustomerDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCustomerMain.Designer.vb">
+    <Compile Include="CustomerUI\frmCustomerMain.Designer.vb">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomerMain.vb">
+    <Compile Include="CustomerUI\frmCustomerMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCustomers.Designer.vb">
+    <Compile Include="CustomerManagment\frmCustomers.Designer.vb">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomers.vb">
+    <Compile Include="CustomerManagment\frmCustomers.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdminMain.Designer.vb">
+    <Compile Include="Main\frmAdminMain.Designer.vb">
       <DependentUpon>frmAdminMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAdminMain.vb">
+    <Compile Include="Main\frmAdminMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDevices.Designer.vb">
+    <Compile Include="Devices\frmDevices.Designer.vb">
       <DependentUpon>frmDevices.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDevices.vb">
+    <Compile Include="Devices\frmDevices.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGameLauncher.Designer.vb">
+    <Compile Include="CustomerUI\frmGameLauncher.Designer.vb">
       <DependentUpon>frmGameLauncher.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmGameLauncher.vb">
+    <Compile Include="CustomerUI\frmGameLauncher.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.vb">
+    <Compile Include="Main\frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.vb">
+    <Compile Include="Main\frmLogin.Designer.vb">
       <DependentUpon>frmLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDashboard.Designer.vb">
+    <Compile Include="Main\frmDashboard.Designer.vb">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDashboard.vb">
+    <Compile Include="Main\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInventoryManagement.Designer.vb">
+    <Compile Include="Consumables\frmInventoryManagement.Designer.vb">
       <DependentUpon>frmInventoryManagement.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmInventoryManagement.vb">
+    <Compile Include="Consumables\frmInventoryManagement.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddEditConsumable.Designer.vb">
+    <Compile Include="Consumables\frmAddEditConsumable.Designer.vb">
       <DependentUpon>frmAddEditConsumable.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAddEditConsumable.vb">
+    <Compile Include="Consumables\frmAddEditConsumable.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRestockConsumable.Designer.vb">
+    <Compile Include="Consumables\frmRestockConsumable.Designer.vb">
       <DependentUpon>frmRestockConsumable.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmRestockConsumable.vb">
+    <Compile Include="Consumables\frmRestockConsumable.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmManagePlatforms.Designer.vb">
+    <Compile Include="Devices\frmManagePlatforms.Designer.vb">
       <DependentUpon>frmManagePlatforms.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmManagePlatforms.vb">
+    <Compile Include="Devices\frmManagePlatforms.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSessions.Designer.vb">
+    <Compile Include="Sessions\frmSessions.Designer.vb">
       <DependentUpon>frmSessions.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSessions.vb">
+    <Compile Include="Sessions\frmSessions.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmShowDeviceDetails.Designer.vb">
+    <Compile Include="Devices\frmShowDeviceDetails.Designer.vb">
       <DependentUpon>frmShowDeviceDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmShowDeviceDetails.vb">
+    <Compile Include="Devices\frmShowDeviceDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTransactions.Designer.vb">
+    <Compile Include="Trnsactions\frmTransactions.Designer.vb">
       <DependentUpon>frmTransactions.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmTransactions.vb">
+    <Compile Include="Trnsactions\frmTransactions.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmStartSession.Designer.vb">
+    <Compile Include="Sessions\frmStartSession.Designer.vb">
       <DependentUpon>frmStartSession.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmStartSession.vb">
+    <Compile Include="Sessions\frmStartSession.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmResumeSession.Designer.vb">
+    <Compile Include="Sessions\frmResumeSession.Designer.vb">
       <DependentUpon>frmResumeSession.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmResumeSession.vb">
+    <Compile Include="Sessions\frmResumeSession.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -235,107 +235,182 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="frmAddEditGame.Designer.vb">
+    <Compile Include="Games\frmAddEditGame.Designer.vb">
       <DependentUpon>frmAddEditGame.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAddEditGame.vb">
+    <Compile Include="Games\frmAddEditGame.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddPlatform.Designer.vb">
+    <Compile Include="Devices\frmAddPlatform.Designer.vb">
       <DependentUpon>frmAddPlatform.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAddPlatform.vb">
+    <Compile Include="Devices\frmAddPlatform.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGameLibrary.Designer.vb">
+    <Compile Include="Games\frmGameLibrary.Designer.vb">
       <DependentUpon>frmGameLibrary.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmGameLibrary.vb">
+    <Compile Include="Games\frmGameLibrary.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.vb" />
-    <Compile Include="UIHelper.vb" />
-    <Compile Include="ValidationHelper.vb" />
+    <Compile Include="Helpers\UIHelper.vb" />
+    <Compile Include="Helpers\ValidationHelper.vb" />
+    <Compile Include="Tournaments\frmTournamentManagement.Designer.vb">
+      <DependentUpon>frmTournamentManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmAddUpdateTournament.Designer.vb">
+      <DependentUpon>frmAddUpdateTournament.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmAddUpdateTournament.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmRegisterTournamentPlayer.Designer.vb">
+      <DependentUpon>frmRegisterTournamentPlayer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmRegisterTournamentPlayer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentDetails.Designer.vb">
+      <DependentUpon>frmTournamentDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmGenerateDraw.Designer.vb">
+      <DependentUpon>frmGenerateDraw.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmGenerateDraw.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmMatchResult.Designer.vb">
+      <DependentUpon>frmMatchResult.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmMatchResult.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmListTournamentPlayers.Designer.vb">
+      <DependentUpon>frmListTournamentPlayers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmListTournamentPlayers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentResults.Designer.vb">
+      <DependentUpon>frmTournamentResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentWinner.Designer.vb">
+      <DependentUpon>frmTournamentWinner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentWinner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentBracket.Designer.vb">
+      <DependentUpon>frmTournamentBracket.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tournaments\frmTournamentBracket.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ctrDeviceInfo.resx">
+    <EmbeddedResource Include="Devices\ctrDeviceInfo.resx">
       <DependentUpon>ctrDeviceInfo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctrGameCard.resx">
+    <EmbeddedResource Include="Games\ctrGameCard.resx">
       <DependentUpon>ctrGameCard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctrConsumableCard.resx">
+    <EmbeddedResource Include="Consumables\ctrConsumableCard.resx">
       <DependentUpon>ctrConsumableCard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddDeductCustomerCredit.resx">
+    <EmbeddedResource Include="CustomerManagment\frmAddDeductCustomerCredit.resx">
       <DependentUpon>frmAddDeductCustomerCredit.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAssignGames.resx">
+    <EmbeddedResource Include="Games\frmAssignGames.resx">
       <DependentUpon>frmAssignGames.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomerCart.resx">
+    <EmbeddedResource Include="CustomerUI\frmCustomerCart.resx">
       <DependentUpon>frmCustomerCart.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomerDetails.resx">
+    <EmbeddedResource Include="CustomerManagment\frmCustomerDetails.resx">
       <DependentUpon>frmCustomerDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomerMain.resx">
+    <EmbeddedResource Include="CustomerUI\frmCustomerMain.resx">
       <DependentUpon>frmCustomerMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomers.resx">
+    <EmbeddedResource Include="CustomerManagment\frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdminMain.resx">
+    <EmbeddedResource Include="Main\frmAdminMain.resx">
       <DependentUpon>frmAdminMain.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDevices.resx">
+    <EmbeddedResource Include="Devices\frmDevices.resx">
       <DependentUpon>frmDevices.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGameLauncher.resx">
+    <EmbeddedResource Include="CustomerUI\frmGameLauncher.resx">
       <DependentUpon>frmGameLauncher.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="Main\frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDashboard.resx">
+    <EmbeddedResource Include="Main\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInventoryManagement.resx">
+    <EmbeddedResource Include="Consumables\frmInventoryManagement.resx">
       <DependentUpon>frmInventoryManagement.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddEditConsumable.resx">
+    <EmbeddedResource Include="Consumables\frmAddEditConsumable.resx">
       <DependentUpon>frmAddEditConsumable.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRestockConsumable.resx">
+    <EmbeddedResource Include="Consumables\frmRestockConsumable.resx">
       <DependentUpon>frmRestockConsumable.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmManagePlatforms.resx">
+    <EmbeddedResource Include="Devices\frmManagePlatforms.resx">
       <DependentUpon>frmManagePlatforms.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSessions.resx">
+    <EmbeddedResource Include="Sessions\frmSessions.resx">
       <DependentUpon>frmSessions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmShowDeviceDetails.resx">
+    <EmbeddedResource Include="Devices\frmShowDeviceDetails.resx">
       <DependentUpon>frmShowDeviceDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTransactions.resx">
+    <EmbeddedResource Include="Tournaments\frmAddUpdateTournament.resx">
+      <DependentUpon>frmAddUpdateTournament.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tournaments\frmListTournamentPlayers.resx">
+      <DependentUpon>frmListTournamentPlayers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tournaments\frmTournamentBracket.resx">
+      <DependentUpon>frmTournamentBracket.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tournaments\frmTournamentDetails.resx">
+      <DependentUpon>frmTournamentDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tournaments\frmGenerateDraw.resx">
+      <DependentUpon>frmGenerateDraw.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trnsactions\frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmStartSession.resx">
+    <EmbeddedResource Include="Sessions\frmStartSession.resx">
       <DependentUpon>frmStartSession.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmResumeSession.resx">
+    <EmbeddedResource Include="Sessions\frmResumeSession.resx">
       <DependentUpon>frmResumeSession.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddEditGame.resx">
+    <EmbeddedResource Include="Games\frmAddEditGame.resx">
       <DependentUpon>frmAddEditGame.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddPlatform.resx">
+    <EmbeddedResource Include="Devices\frmAddPlatform.resx">
       <DependentUpon>frmAddPlatform.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGameLibrary.resx">
+    <EmbeddedResource Include="Games\frmGameLibrary.resx">
       <DependentUpon>frmGameLibrary.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -344,6 +419,12 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tournaments\frmTournamentManagement.resx">
+      <DependentUpon>frmTournamentManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tournaments\frmRegisterTournamentPlayer.resx">
+      <DependentUpon>frmRegisterTournamentPlayer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -440,6 +521,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ChatGPT Image May 16, 2026, 08_54_34 PM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-user %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancelled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stadium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trophy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\programming.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scoreboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tournament.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-players-64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

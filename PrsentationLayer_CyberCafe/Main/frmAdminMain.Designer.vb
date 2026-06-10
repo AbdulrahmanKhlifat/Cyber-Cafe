@@ -43,6 +43,7 @@ Partial Class frmAdminMain
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDevices = New System.Windows.Forms.Button()
         Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.btnTournaments = New System.Windows.Forms.Button()
         Me.pnlTopBar.SuspendLayout()
         Me.pnlUserBadge.SuspendLayout()
         Me.pnlNav.SuspendLayout()
@@ -172,6 +173,7 @@ Partial Class frmAdminMain
         'pnlNav
         '
         Me.pnlNav.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.pnlNav.Controls.Add(Me.btnTournaments)
         Me.pnlNav.Controls.Add(Me.btnConsumables)
         Me.pnlNav.Controls.Add(Me.btnGameLib)
         Me.pnlNav.Controls.Add(Me.btnTransactions)
@@ -320,6 +322,21 @@ Partial Class frmAdminMain
         Me.pnlMain.Size = New System.Drawing.Size(1341, 715)
         Me.pnlMain.TabIndex = 3
         '
+        'btnTournaments
+        '
+        Me.btnTournaments.FlatAppearance.BorderSize = 0
+        Me.btnTournaments.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTournaments.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnTournaments.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.btnTournaments.Location = New System.Drawing.Point(-1, 563)
+        Me.btnTournaments.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnTournaments.Name = "btnTournaments"
+        Me.btnTournaments.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
+        Me.btnTournaments.Size = New System.Drawing.Size(182, 78)
+        Me.btnTournaments.TabIndex = 14
+        Me.btnTournaments.Text = "🏆 Tournaments"
+        Me.btnTournaments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'frmAdminMain
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -361,4 +378,5 @@ Partial Class frmAdminMain
     Friend WithEvents btnTransactions As Button
     Friend WithEvents btnGameLib As Button
     Friend WithEvents btnConsumables As Button
+    Friend WithEvents btnTournaments As Button
 End Class

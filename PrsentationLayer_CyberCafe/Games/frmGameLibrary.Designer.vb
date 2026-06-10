@@ -18,13 +18,13 @@ Partial Class frmGameLibrary
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.pnlTop = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnAddGame = New Guna.UI2.WinForms.Guna2Button()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.flpGames = New System.Windows.Forms.FlowLayoutPanel()
         Me.cmsGameMenu = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
         Me.tsiEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsiDelete = New System.Windows.Forms.ToolStripMenuItem()
         Me.Guna2VScrollBar1 = New Guna.UI2.WinForms.Guna2VScrollBar()
-        Me.btnAddGame = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlTop.SuspendLayout()
         Me.cmsGameMenu.SuspendLayout()
         Me.SuspendLayout()
@@ -40,6 +40,25 @@ Partial Class frmGameLibrary
         Me.pnlTop.Name = "pnlTop"
         Me.pnlTop.Size = New System.Drawing.Size(1341, 61)
         Me.pnlTop.TabIndex = 0
+        '
+        'btnAddGame
+        '
+        Me.btnAddGame.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddGame.BorderRadius = 6
+        Me.btnAddGame.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAddGame.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnAddGame.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnAddGame.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnAddGame.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnAddGame.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.btnAddGame.Font = New System.Drawing.Font("Segoe UI Semibold", 10.2!, System.Drawing.FontStyle.Bold)
+        Me.btnAddGame.ForeColor = System.Drawing.Color.White
+        Me.btnAddGame.Location = New System.Drawing.Point(1144, 15)
+        Me.btnAddGame.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddGame.Name = "btnAddGame"
+        Me.btnAddGame.Size = New System.Drawing.Size(171, 32)
+        Me.btnAddGame.TabIndex = 1
+        Me.btnAddGame.Text = "+ Add New Game"
         '
         'txtSearch
         '
@@ -125,25 +144,6 @@ Partial Class frmGameLibrary
         Me.Guna2VScrollBar1.Size = New System.Drawing.Size(18, 654)
         Me.Guna2VScrollBar1.TabIndex = 0
         Me.Guna2VScrollBar1.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(82, Byte), Integer))
-        '
-        'btnAddGame
-        '
-        Me.btnAddGame.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddGame.BorderRadius = 6
-        Me.btnAddGame.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAddGame.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnAddGame.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnAddGame.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnAddGame.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnAddGame.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.btnAddGame.Font = New System.Drawing.Font("Segoe UI Semibold", 10.2!, System.Drawing.FontStyle.Bold)
-        Me.btnAddGame.ForeColor = System.Drawing.Color.White
-        Me.btnAddGame.Location = New System.Drawing.Point(1144, 15)
-        Me.btnAddGame.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnAddGame.Name = "btnAddGame"
-        Me.btnAddGame.Size = New System.Drawing.Size(171, 32)
-        Me.btnAddGame.TabIndex = 1
-        Me.btnAddGame.Text = "+ Add New Game"
         '
         'frmGameLibrary
         '

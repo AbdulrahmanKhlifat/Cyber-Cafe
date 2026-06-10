@@ -70,8 +70,14 @@
     <Compile Include="Entity DTOs\CustomerDTO.vb" />
     <Compile Include="Entity DTOs\PurchaseDTO.vb" />
     <Compile Include="Entity DTOs\SessionDTO.vb" />
+    <Compile Include="Entity DTOs\TournamentDTO.vb" />
+    <Compile Include="Entity DTOs\TournamentMatchDTO.vb" />
+    <Compile Include="Entity DTOs\MatchResultDTO.vb" />
+    <Compile Include="Entity DTOs\TournamentPlayerDTO.vb" />
+    <Compile Include="Enums\enMatchStatus.vb" />
     <Compile Include="Enums\PurchaseType.vb" />
     <Compile Include="Enums\SessionStatus.vb" />
+    <Compile Include="Enums\TournamentStatus.vb" />
     <Compile Include="ResponseDTOs\ConsumableSummaryDTO.vb" />
     <Compile Include="ResponseDTOs\DailyTransactionsSummaryDTO.vb" />
     <Compile Include="ResponseDTOs\DashboardKpiDTO.vb" />
@@ -88,6 +94,7 @@
     <Compile Include="Enums\TransactionType .vb" />
     <Compile Include="Enums\UserRoleType.vb" />
     <Compile Include="Entity DTOs\UserDTO.vb" />
+    <Compile Include="ResponseDTOs\RegistrationValidationResultDTO.vb" />
     <Compile Include="ResponseDTOs\ResumeSessionDTO.vb" />
     <Compile Include="Utilities\ErrorLogger.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

@@ -77,8 +77,12 @@
     <Compile Include="Repositories\PurchaseItemsRepo.vb" />
     <Compile Include="Repositories\PurchaseRepo.vb" />
     <Compile Include="Repositories\SessionRepo.vb" />
+    <Compile Include="Repositories\TournamentPlayersRepo.vb" />
+    <Compile Include="Repositories\TournamentRepo.vb" />
+    <Compile Include="Repositories\TournamentMatchesRepo.vb" />
     <Compile Include="Repositories\TransactionRepo.vb" />
     <Compile Include="Repositories\UserRepo.vb" />
+    <Compile Include="Helpers\DataReaderExtensions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

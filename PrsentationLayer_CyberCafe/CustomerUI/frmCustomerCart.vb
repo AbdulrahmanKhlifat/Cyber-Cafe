@@ -400,7 +400,7 @@ Public Class frmCustomerCart
             End If
 
             ProcessPurchase()
-            Me.Close()
+
 
         Catch ex As Exception
 

@@ -157,13 +157,27 @@ Public Class GameServices
     End Function
 
     Public Shared Function GetImagePath(GameID As Integer) As String
+
         If GameID <= 0 Then
+
             Return Nothing
+
         End If
+
         If Not GameRepo.IsGameExists(GameID) Then
+
             Throw New Exception("Game Does not Exists")
+
         End If
+
         Return GameRepo.GetImagePathByGameID(GameID)
+
+    End Function
+
+    Public Shared Function GetTournamentSupportedGames() As DataTable
+
+        Return GameRepo.GetTournamentSupportedGames()
+
     End Function
 
 End Class

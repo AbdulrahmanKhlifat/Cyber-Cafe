@@ -9,4 +9,8 @@
     WalkInPurchase = 3
 
     DeductCredit = 4
+
+    TournamentEntryFee = 4
+
+    TournamentPrize = 5
 End Enum

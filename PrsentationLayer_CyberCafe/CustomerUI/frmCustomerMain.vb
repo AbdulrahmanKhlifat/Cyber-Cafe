@@ -148,10 +148,7 @@ Public Class frmCustomerMain
 
     Private Sub btnCart_Click(sender As Object, e As EventArgs) Handles btnCart.Click
 
-        Dim frm As New frmCustomerCart(
-        _SessionDto.CustomerID,
-        _SessionDto.SessionID
-    )
+        Dim frm As New frmCustomerCart(_SessionDto.CustomerID, _SessionDto.SessionID)
 
         AddHandler frm.PurchaseCompleted,
         Sub()

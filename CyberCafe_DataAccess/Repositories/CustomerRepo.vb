@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+Imports System.Data.SqlClient
 Imports CyberCafe_DataAccess.CyberCafe.DAL
 Imports CyberCafeModels
 Imports CyberCafeModels.CyberCafe.Models
@@ -641,13 +641,8 @@ Public Class CustomerRepo
         Return UserRepo.IsUsernameTaken(username)
     End Function
 
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="اوف"></param>
-    ''' <returns></returns>
 
-    Public Shared Function GetTop10Customers(search As String) As List(Of CustomerDTO)
+    Public Shared Function GetTop10Customers(search As String, Optional excludeTournamentID As Integer = 0) As List(Of CustomerDTO)
 
         Dim result As New List(Of CustomerDTO)
 
@@ -664,6 +659,13 @@ Public Class CustomerRepo
             "   WHERE S.CustomerID = C.UserID " &
             "   AND S.SessionStatus = @ActiveStatus " &
             ") " &
+            "AND (@TournamentID = 0 OR NOT EXISTS ( " &
+            "   SELECT 1 " &
+            "   FROM TournamentPlayers TP " &
+            "   WHERE TP.CustomerID = C.UserID " &
+            "   AND TP.TournamentID = @TournamentID " &
+            "   AND TP.IsDeleted = 0 " &
+            ")) " &
             "ORDER BY U.Name ASC"
 
             Using cmd As New SqlCommand(query, conn)
@@ -675,6 +677,10 @@ Public Class CustomerRepo
                 cmd.Parameters.AddWithValue(
                 "@ActiveStatus",
                 CInt(SessionStatus.Active))
+
+                cmd.Parameters.AddWithValue(
+                "@TournamentID",
+                excludeTournamentID)
 
                 conn.Open()
 

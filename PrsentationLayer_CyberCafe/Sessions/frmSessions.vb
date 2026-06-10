@@ -6,8 +6,11 @@ Public Class frmSessions
 
 
     Private WithEvents tsmiResume As New ToolStripMenuItem(" Resume Session")
+    Private WithEvents tmrSessionRefresh As New Timer()
 
     Private Sub frmSessions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
 
         tsmiResume.ForeColor = Color.White
         tsmiResume.BackColor = Color.FromArgb(28, 33, 40)
@@ -16,15 +19,14 @@ Public Class frmSessions
         dgvPausedSessions.ContextMenuStrip = cmsResumeSession
 
         ConfigureGrids()
-
         RefreshData()
+
 
     End Sub
 
-    Private Sub tsmiResume_Click(
-    sender As Object,
-    e As EventArgs
-) Handles tsmiResume.Click
+
+
+    Private Sub tsmiResume_Click(sender As Object, e As EventArgs) Handles tsmiResume.Click
 
         Try
 
@@ -60,17 +62,9 @@ Public Class frmSessions
 
         Catch ex As Exception
 
-            ErrorLogger.LogErrorToFile(
-            ex,
-            Reflection.MethodBase.
-            GetCurrentMethod().Name
-        )
+            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
 
-            UIHelper.ShowGunaMessage(
-            ex.Message,
-            "Error",
-            MessageDialogIcon.Error
-        )
+            UIHelper.ShowGunaMessage(ex.Message, "Error", MessageDialogIcon.Error)
 
         End Try
 
@@ -89,20 +83,51 @@ Public Class frmSessions
         dgvPausedSessions.DataSource = SessionService.GetPausedSessionsAsView()
         dgvSessionsHistory.DataSource = SessionService.GetSessionHistoryAsView()
 
-        'For Each row As DataGridViewRow In dgvActiveSessions.Rows
-
-        '    If row.Cells("Status").Value IsNot Nothing Then
-
-        '        row.Cells("Status").Style.ForeColor = Color.FromArgb(0, 200, 160)
-
-        '    End If
-
-        'Next
-
-
-
     End Sub
 
+    Private Sub RefreshSessionsGrid()
+
+        Dim sessions = ActiveSessionsManager.GetAllSessions()
+
+        For Each row As DataGridViewRow In dgvActiveSessions.Rows
+
+            If row.Cells("Session ID").Value Is Nothing Then
+                Continue For
+            End If
+
+            Dim sessionID As Integer = CInt(row.Cells("Session ID").Value)
+
+            Dim runtimeSession = sessions.FirstOrDefault(Function(s)
+                                                             Return s.SessionID = sessionID
+                                                         End Function)
+
+            If runtimeSession Is Nothing Then
+
+                Continue For
+
+            End If
+
+            row.Cells("Remaining Time").Value = TimeSpan.FromSeconds(runtimeSession.RemainingSeconds).ToString("hh\:mm\:ss")
+
+            Select Case runtimeSession.Status
+
+                Case SessionStatus.Active
+
+                    row.Cells("Status").Value = "Active"
+
+                    row.Cells("Status").Style.ForeColor = Color.MediumSeaGreen
+
+                Case SessionStatus.Paused
+
+                    row.Cells("Status").Value = "Paused"
+
+                    row.Cells("Status").Style.ForeColor = Color.Goldenrod
+
+            End Select
+
+        Next
+
+    End Sub
     Private Sub ConfigureGrid(dgv As Guna.UI2.WinForms.Guna2DataGridView)
 
         dgv.AllowUserToAddRows = False
@@ -235,5 +260,7 @@ Public Class frmSessions
 
     End Sub
 
+    Private Sub dgvActiveSessions_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvActiveSessions.CellContentClick
 
+    End Sub
 End Class

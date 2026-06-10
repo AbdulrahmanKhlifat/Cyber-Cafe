@@ -133,8 +133,8 @@ Public Class CustomerServices
     End Function
 
 
-    Public Shared Function GetTop10Customers(Optional str As String = "") As List(Of CustomerDTO)
-        Return CustomerRepo.GetTop10Customers(str)
+    Public Shared Function GetTop10Customers(Optional str As String = "", Optional excludeTournamentID As Integer = 0) As List(Of CustomerDTO)
+        Return CustomerRepo.GetTop10Customers(str, excludeTournamentID)
     End Function
 
     Public Shared Function AddCredits(customerID As Integer, amount As Integer, processedByAdminID As Integer) As Boolean

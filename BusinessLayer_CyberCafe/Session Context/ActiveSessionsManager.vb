@@ -100,6 +100,7 @@ Public Class ActiveSessionsManager
 
         _timer.Interval = 1000
 
+
         AddHandler _timer.Elapsed,
             AddressOf OnTimerElapsed
 
