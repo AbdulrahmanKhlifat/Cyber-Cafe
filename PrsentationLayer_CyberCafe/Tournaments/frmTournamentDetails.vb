@@ -28,7 +28,7 @@ Public Class frmTournamentDetails
 
     Private Sub LoadTournamentDetails()
 
-        Dim duration = _tournament.ExpectedEndTime - _tournament.TournamentTime
+        Dim duration As TimeSpan = _tournament.ExpectedEndTime - _tournament.TournamentTime
 
 
         lblDetTitle.Text = _tournament.TournamentName
@@ -39,14 +39,14 @@ Public Class frmTournamentDetails
 
         lblDetExpectedEndVal.Text = _tournament.ExpectedEndTime.ToString("dd MMM yyyy hh:mm tt")
 
-        lblDetDurationVal.Text = $"{duration.Days}d {duration.Hours}h {duration.Minutes}m"
+        lblDetDurationVal.Text = $"{CInt(duration.TotalHours)}h {duration.Minutes}m"
 
         lblDetEntryFeeVal.Text = _tournament.EntryFee.ToString("C")
 
         lblDetPrizeVal.Text = _tournament.PrizeAmount.ToString("C")
 
         lblDetPlayersVal.Text = _tournament.MaxPlayers.ToString()
-        lblDetRevenueVal.Text = Convert.ToDecimal(_tournament.EntryFee * _tournament.MaxPlayers).ToString("C")
+        lblDetRevenueVal.Text = (_tournament.EntryFee * _tournament.MaxPlayers).ToString("C")
 
     End Sub
 

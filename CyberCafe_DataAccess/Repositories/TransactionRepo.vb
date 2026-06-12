@@ -77,8 +77,7 @@ Public Class TransactionRepo
 
                 cmd.Parameters.Add("@TransactionDate", SqlDbType.DateTime).Value = transactionDto.TransactionDate
 
-                cmd.Parameters.Add("@TransactionNotes", SqlDbType.NVarChar, 255).Value =
-                 If(String.IsNullOrWhiteSpace(transactionDto.TransactionNotes), DBNull.Value, transactionDto.TransactionNotes)
+                cmd.Parameters.Add("@TransactionNotes", SqlDbType.NVarChar, 255).Value = If(String.IsNullOrWhiteSpace(transactionDto.TransactionNotes), DBNull.Value, transactionDto.TransactionNotes)
 
                 cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = If(transactionDto.CustomerID.HasValue, transactionDto.CustomerID.Value, DBNull.Value)
 

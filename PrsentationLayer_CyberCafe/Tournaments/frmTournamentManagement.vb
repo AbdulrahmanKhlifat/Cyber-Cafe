@@ -129,7 +129,7 @@ Public Class frmTournamentManagement
 
     End Sub
 
-    Private Sub btnAddTournament_Click(sender As Object, e As EventArgs)
+    Private Sub btnAddTournament_Click(sender As Object, e As EventArgs) Handles btnAddTournament.Click
 
 
         Dim addForm As New frmAddUpdateTournament()
@@ -408,6 +408,10 @@ Public Class frmTournamentManagement
 
         ApplyFilters()
 
+
+    End Sub
+
+    Private Sub pnlToolbar_Paint(sender As Object, e As PaintEventArgs) Handles pnlToolbar.Paint
 
     End Sub
 End Class

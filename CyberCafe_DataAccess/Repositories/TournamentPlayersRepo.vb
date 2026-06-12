@@ -20,6 +20,7 @@ Public Class TournamentPlayersRepo
                     End If
 
                     Dim transactionDto As New TransactionDTO With {
+                   .CustomerID = customerID,
                    .ProcessedByAdminID = adminID,
                    .TransactionType = TransactionType.TournamentEntryFee,
                    .PaidAmount = entryFee,

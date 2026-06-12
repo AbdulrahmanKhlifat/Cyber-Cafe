@@ -22,11 +22,12 @@ Public Class TournamentRepo
                 T.MaxPlayers,
                 T.TournamentStatus,
                 T.CreatedByAdminID,
-                T.CreatedDate
+                T.CreatedDate,
+                T.ExpectedEndTime
             FROM Tournaments T
             INNER JOIN Games G
                 ON T.GameID = G.GameID
-            WHERE T.TournamentID = @TournamentID and IsDeleted = 0"
+            WHERE T.TournamentID = @TournamentID and T.IsDeleted = 0"
 
             Using cmd As New SqlCommand(query, conn)
 
@@ -47,6 +48,7 @@ Public Class TournamentRepo
                             .GameName = reader("GameName").ToString(),
                             .TournamentTime = CDate(reader("TournamentTime")),
                             .EntryFee = CDec(reader("EntryFee")),
+                            .ExpectedEndTime = CDate(reader("ExpectedEndTime")),
                             .PrizeAmount = CDec(reader("PrizeAmount")),
                             .MaxPlayers = CShort(reader("MaxPlayers")),
                             .TournamentStatus = CByte(reader("TournamentStatus")),

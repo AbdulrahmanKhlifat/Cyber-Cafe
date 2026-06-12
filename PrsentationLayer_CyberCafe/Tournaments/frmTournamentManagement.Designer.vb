@@ -18,12 +18,24 @@ Partial Class frmTournamentManagement
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlMainContainer = New Guna.UI2.WinForms.Guna2Panel()
         Me.pnlGridContainer = New Guna.UI2.WinForms.Guna2Panel()
         Me.dgvTournaments = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.cmsTournament = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
+        Me.tsmiShowDetails = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiStart = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiEdit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiRegister = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiCancel = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiGenerateDraw = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiViewMatches = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiViewPlayers = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiViewResults = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiViewWinner = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiReopen = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlCardsContainer = New Guna.UI2.WinForms.Guna2Panel()
         Me.tlpCards = New System.Windows.Forms.TableLayoutPanel()
         Me.cardActive = New Guna.UI2.WinForms.Guna2Panel()
@@ -49,23 +61,12 @@ Partial Class frmTournamentManagement
         Me.pnlHeader = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblSubtitle = New System.Windows.Forms.Label()
         Me.lblPageTitle = New System.Windows.Forms.Label()
-        Me.cmsTournament = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
-        Me.tsmiShowDetails = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiStart = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiEdit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiRegister = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiCancel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiGenerateDraw = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiViewMatches = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiViewPlayers = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiViewResults = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiViewWinner = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiReopen = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrLiveTime = New System.Windows.Forms.Timer(Me.components)
         Me.tmrTournamentDuration = New System.Windows.Forms.Timer(Me.components)
         Me.pnlMainContainer.SuspendLayout()
         Me.pnlGridContainer.SuspendLayout()
         CType(Me.dgvTournaments, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsTournament.SuspendLayout()
         Me.pnlCardsContainer.SuspendLayout()
         Me.tlpCards.SuspendLayout()
         Me.cardActive.SuspendLayout()
@@ -75,7 +76,6 @@ Partial Class frmTournamentManagement
         Me.cardRevenue.SuspendLayout()
         Me.pnlToolbar.SuspendLayout()
         Me.pnlHeader.SuspendLayout()
-        Me.cmsTournament.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlMainContainer
@@ -106,26 +106,27 @@ Partial Class frmTournamentManagement
         Me.dgvTournaments.AllowUserToAddRows = False
         Me.dgvTournaments.AllowUserToDeleteRows = False
         Me.dgvTournaments.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.dgvTournaments.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.dgvTournaments.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvTournaments.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvTournaments.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(45, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(158, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvTournaments.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvTournaments.ColumnHeadersHeight = 45
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvTournaments.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvTournaments.ContextMenuStrip = Me.cmsTournament
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvTournaments.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvTournaments.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvTournaments.GridColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
         Me.dgvTournaments.Location = New System.Drawing.Point(20, 10)
@@ -156,6 +157,110 @@ Partial Class frmTournamentManagement
         Me.dgvTournaments.ThemeStyle.RowsStyle.Height = 50
         Me.dgvTournaments.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
         Me.dgvTournaments.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black
+        '
+        'cmsTournament
+        '
+        Me.cmsTournament.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.cmsTournament.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiShowDetails, Me.tsmiStart, Me.tsmiEdit, Me.tsmiRegister, Me.tsmiCancel, Me.tsmiGenerateDraw, Me.tsmiViewMatches, Me.tsmiViewPlayers, Me.tsmiViewResults, Me.tsmiViewWinner, Me.tsmiReopen})
+        Me.cmsTournament.Name = "cmsTournament"
+        Me.cmsTournament.RenderStyle.ArrowColor = System.Drawing.Color.White
+        Me.cmsTournament.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.cmsTournament.RenderStyle.ColorTable = Nothing
+        Me.cmsTournament.RenderStyle.RoundedEdges = True
+        Me.cmsTournament.RenderStyle.SelectionArrowColor = System.Drawing.Color.White
+        Me.cmsTournament.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.cmsTournament.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
+        Me.cmsTournament.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
+        Me.cmsTournament.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit
+        Me.cmsTournament.Size = New System.Drawing.Size(183, 246)
+        '
+        'tsmiShowDetails
+        '
+        Me.tsmiShowDetails.ForeColor = System.Drawing.Color.White
+        Me.tsmiShowDetails.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.file
+        Me.tsmiShowDetails.Name = "tsmiShowDetails"
+        Me.tsmiShowDetails.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiShowDetails.Text = "Show Details"
+        '
+        'tsmiStart
+        '
+        Me.tsmiStart.ForeColor = System.Drawing.Color.White
+        Me.tsmiStart.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.play
+        Me.tsmiStart.Name = "tsmiStart"
+        Me.tsmiStart.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiStart.Text = "Start Tournament"
+        '
+        'tsmiEdit
+        '
+        Me.tsmiEdit.ForeColor = System.Drawing.Color.White
+        Me.tsmiEdit.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.edit
+        Me.tsmiEdit.Name = "tsmiEdit"
+        Me.tsmiEdit.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiEdit.Text = "Edit Tournament"
+        '
+        'tsmiRegister
+        '
+        Me.tsmiRegister.ForeColor = System.Drawing.Color.White
+        Me.tsmiRegister.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.add_user__2_
+        Me.tsmiRegister.Name = "tsmiRegister"
+        Me.tsmiRegister.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiRegister.Text = "Register Player"
+        '
+        'tsmiCancel
+        '
+        Me.tsmiCancel.ForeColor = System.Drawing.Color.White
+        Me.tsmiCancel.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.cancelled
+        Me.tsmiCancel.Name = "tsmiCancel"
+        Me.tsmiCancel.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiCancel.Text = "Cancel Tournament"
+        '
+        'tsmiGenerateDraw
+        '
+        Me.tsmiGenerateDraw.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.tsmiGenerateDraw.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.tournament
+        Me.tsmiGenerateDraw.Name = "tsmiGenerateDraw"
+        Me.tsmiGenerateDraw.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiGenerateDraw.Text = "Generate Draw"
+        '
+        'tsmiViewMatches
+        '
+        Me.tsmiViewMatches.ForeColor = System.Drawing.Color.White
+        Me.tsmiViewMatches.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.stadium
+        Me.tsmiViewMatches.Name = "tsmiViewMatches"
+        Me.tsmiViewMatches.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiViewMatches.Text = "View Matches"
+        '
+        'tsmiViewPlayers
+        '
+        Me.tsmiViewPlayers.ForeColor = System.Drawing.Color.White
+        Me.tsmiViewPlayers.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.icons8_players_64
+        Me.tsmiViewPlayers.Name = "tsmiViewPlayers"
+        Me.tsmiViewPlayers.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiViewPlayers.Text = "View Players"
+        '
+        'tsmiViewResults
+        '
+        Me.tsmiViewResults.ForeColor = System.Drawing.Color.White
+        Me.tsmiViewResults.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.scoreboard
+        Me.tsmiViewResults.Name = "tsmiViewResults"
+        Me.tsmiViewResults.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiViewResults.Text = "View Results"
+        '
+        'tsmiViewWinner
+        '
+        Me.tsmiViewWinner.ForeColor = System.Drawing.Color.White
+        Me.tsmiViewWinner.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.trophy
+        Me.tsmiViewWinner.Name = "tsmiViewWinner"
+        Me.tsmiViewWinner.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiViewWinner.Text = "View Winner"
+        '
+        'tsmiReopen
+        '
+        Me.tsmiReopen.ForeColor = System.Drawing.Color.White
+        Me.tsmiReopen.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.programming
+        Me.tsmiReopen.Name = "tsmiReopen"
+        Me.tsmiReopen.Size = New System.Drawing.Size(182, 22)
+        Me.tsmiReopen.Text = "Reopen Tournament"
         '
         'pnlCardsContainer
         '
@@ -225,7 +330,7 @@ Partial Class frmTournamentManagement
         Me.lblCardActiveVal.Name = "lblCardActiveVal"
         Me.lblCardActiveVal.Size = New System.Drawing.Size(38, 45)
         Me.lblCardActiveVal.TabIndex = 1
-        Me.lblCardActiveVal.Text = "0"
+        Me.lblCardActiveVal.Text = "4"
         '
         'cardRunning
         '
@@ -264,7 +369,7 @@ Partial Class frmTournamentManagement
         Me.lblCardRunningVal.Name = "lblCardRunningVal"
         Me.lblCardRunningVal.Size = New System.Drawing.Size(38, 45)
         Me.lblCardRunningVal.TabIndex = 1
-        Me.lblCardRunningVal.Text = "0"
+        Me.lblCardRunningVal.Text = "8"
         '
         'cardPlayers
         '
@@ -301,9 +406,9 @@ Partial Class frmTournamentManagement
         Me.lblCardPlayersVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(157, Byte), Integer), CType(CType(78, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.lblCardPlayersVal.Location = New System.Drawing.Point(15, 40)
         Me.lblCardPlayersVal.Name = "lblCardPlayersVal"
-        Me.lblCardPlayersVal.Size = New System.Drawing.Size(38, 45)
+        Me.lblCardPlayersVal.Size = New System.Drawing.Size(56, 45)
         Me.lblCardPlayersVal.TabIndex = 1
-        Me.lblCardPlayersVal.Text = "0"
+        Me.lblCardPlayersVal.Text = "75"
         '
         'cardPrize
         '
@@ -340,9 +445,9 @@ Partial Class frmTournamentManagement
         Me.lblCardPrizeVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(193, Byte), Integer), CType(CType(7, Byte), Integer))
         Me.lblCardPrizeVal.Location = New System.Drawing.Point(15, 40)
         Me.lblCardPrizeVal.Name = "lblCardPrizeVal"
-        Me.lblCardPrizeVal.Size = New System.Drawing.Size(56, 45)
+        Me.lblCardPrizeVal.Size = New System.Drawing.Size(92, 45)
         Me.lblCardPrizeVal.TabIndex = 1
-        Me.lblCardPrizeVal.Text = "$0"
+        Me.lblCardPrizeVal.Text = "$500"
         '
         'cardRevenue
         '
@@ -379,9 +484,9 @@ Partial Class frmTournamentManagement
         Me.lblCardRevenueVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(157, Byte), Integer))
         Me.lblCardRevenueVal.Location = New System.Drawing.Point(15, 40)
         Me.lblCardRevenueVal.Name = "lblCardRevenueVal"
-        Me.lblCardRevenueVal.Size = New System.Drawing.Size(56, 45)
+        Me.lblCardRevenueVal.Size = New System.Drawing.Size(110, 45)
         Me.lblCardRevenueVal.TabIndex = 1
-        Me.lblCardRevenueVal.Text = "$0"
+        Me.lblCardRevenueVal.Text = "$1000"
         '
         'pnlToolbar
         '
@@ -404,7 +509,7 @@ Partial Class frmTournamentManagement
         Me.btnAddTournament.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAddTournament.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddTournament.ForeColor = System.Drawing.Color.Black
-        Me.btnAddTournament.Location = New System.Drawing.Point(1010, 15)
+        Me.btnAddTournament.Location = New System.Drawing.Point(1010, 16)
         Me.btnAddTournament.Name = "btnAddTournament"
         Me.btnAddTournament.Size = New System.Drawing.Size(170, 40)
         Me.btnAddTournament.TabIndex = 3
@@ -423,7 +528,7 @@ Partial Class frmTournamentManagement
         Me.cmbGameFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbGameFilter.ForeColor = System.Drawing.Color.White
         Me.cmbGameFilter.ItemHeight = 30
-        Me.cmbGameFilter.Items.AddRange(New Object() {"All", "FIFA", "Rocket League", "Tekken", "Mortal Kombat"})
+        Me.cmbGameFilter.Items.AddRange(New Object() {"All", "Fifa 26", "Fifa 24", "Rocket League", "Tekken"})
         Me.cmbGameFilter.Location = New System.Drawing.Point(440, 15)
         Me.cmbGameFilter.Name = "cmbGameFilter"
         Me.cmbGameFilter.Size = New System.Drawing.Size(150, 36)
@@ -500,110 +605,6 @@ Partial Class frmTournamentManagement
         Me.lblPageTitle.TabIndex = 0
         Me.lblPageTitle.Text = "TOURNAMENT MANAGEMENT"
         '
-        'cmsTournament
-        '
-        Me.cmsTournament.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.cmsTournament.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiShowDetails, Me.tsmiStart, Me.tsmiEdit, Me.tsmiRegister, Me.tsmiCancel, Me.tsmiGenerateDraw, Me.tsmiViewMatches, Me.tsmiViewPlayers, Me.tsmiViewResults, Me.tsmiViewWinner, Me.tsmiReopen})
-        Me.cmsTournament.Name = "cmsTournament"
-        Me.cmsTournament.RenderStyle.ArrowColor = System.Drawing.Color.White
-        Me.cmsTournament.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.cmsTournament.RenderStyle.ColorTable = Nothing
-        Me.cmsTournament.RenderStyle.RoundedEdges = True
-        Me.cmsTournament.RenderStyle.SelectionArrowColor = System.Drawing.Color.White
-        Me.cmsTournament.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.cmsTournament.RenderStyle.SelectionForeColor = System.Drawing.Color.Black
-        Me.cmsTournament.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(61, Byte), Integer))
-        Me.cmsTournament.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit
-        Me.cmsTournament.Size = New System.Drawing.Size(183, 246)
-        '
-        'tsmiShowDetails
-        '
-        Me.tsmiShowDetails.ForeColor = System.Drawing.Color.White
-        Me.tsmiShowDetails.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.file
-        Me.tsmiShowDetails.Name = "tsmiShowDetails"
-        Me.tsmiShowDetails.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiShowDetails.Text = "Show Details"
-        '
-        'tsmiStart
-        '
-        Me.tsmiStart.ForeColor = System.Drawing.Color.White
-        Me.tsmiStart.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.play
-        Me.tsmiStart.Name = "tsmiStart"
-        Me.tsmiStart.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiStart.Text = "Start Tournament"
-        '
-        'tsmiEdit
-        '
-        Me.tsmiEdit.ForeColor = System.Drawing.Color.White
-        Me.tsmiEdit.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.edit
-        Me.tsmiEdit.Name = "tsmiEdit"
-        Me.tsmiEdit.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiEdit.Text = "Edit Tournament"
-        '
-        'tsmiRegister
-        '
-        Me.tsmiRegister.ForeColor = System.Drawing.Color.White
-        Me.tsmiRegister.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.add_user__2_
-        Me.tsmiRegister.Name = "tsmiRegister"
-        Me.tsmiRegister.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiRegister.Text = "Register Players"
-        '
-        'tsmiCancel
-        '
-        Me.tsmiCancel.ForeColor = System.Drawing.Color.White
-        Me.tsmiCancel.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.cancelled
-        Me.tsmiCancel.Name = "tsmiCancel"
-        Me.tsmiCancel.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiCancel.Text = "Cancel Tournament"
-        '
-        'tsmiGenerateDraw
-        '
-        Me.tsmiGenerateDraw.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.tsmiGenerateDraw.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.tournament
-        Me.tsmiGenerateDraw.Name = "tsmiGenerateDraw"
-        Me.tsmiGenerateDraw.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiGenerateDraw.Text = "Generate Draw"
-        '
-        'tsmiViewMatches
-        '
-        Me.tsmiViewMatches.ForeColor = System.Drawing.Color.White
-        Me.tsmiViewMatches.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.stadium
-        Me.tsmiViewMatches.Name = "tsmiViewMatches"
-        Me.tsmiViewMatches.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiViewMatches.Text = "View Matches"
-        '
-        'tsmiViewPlayers
-        '
-        Me.tsmiViewPlayers.ForeColor = System.Drawing.Color.White
-        Me.tsmiViewPlayers.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.icons8_players_64
-        Me.tsmiViewPlayers.Name = "tsmiViewPlayers"
-        Me.tsmiViewPlayers.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiViewPlayers.Text = "View Players"
-        '
-        'tsmiViewResults
-        '
-        Me.tsmiViewResults.ForeColor = System.Drawing.Color.White
-        Me.tsmiViewResults.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.scoreboard
-        Me.tsmiViewResults.Name = "tsmiViewResults"
-        Me.tsmiViewResults.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiViewResults.Text = "View Results"
-        '
-        'tsmiViewWinner
-        '
-        Me.tsmiViewWinner.ForeColor = System.Drawing.Color.White
-        Me.tsmiViewWinner.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.trophy
-        Me.tsmiViewWinner.Name = "tsmiViewWinner"
-        Me.tsmiViewWinner.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiViewWinner.Text = "View Winner"
-        '
-        'tsmiReopen
-        '
-        Me.tsmiReopen.ForeColor = System.Drawing.Color.White
-        Me.tsmiReopen.Image = Global.PrsentationLayer_CyberCafe.My.Resources.Resources.programming
-        Me.tsmiReopen.Name = "tsmiReopen"
-        Me.tsmiReopen.Size = New System.Drawing.Size(182, 22)
-        Me.tsmiReopen.Text = "Reopen Tournament"
-        '
         'tmrLiveTime
         '
         Me.tmrLiveTime.Enabled = True
@@ -626,6 +627,7 @@ Partial Class frmTournamentManagement
         Me.pnlMainContainer.ResumeLayout(False)
         Me.pnlGridContainer.ResumeLayout(False)
         CType(Me.dgvTournaments, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsTournament.ResumeLayout(False)
         Me.pnlCardsContainer.ResumeLayout(False)
         Me.tlpCards.ResumeLayout(False)
         Me.cardActive.ResumeLayout(False)
@@ -641,7 +643,6 @@ Partial Class frmTournamentManagement
         Me.pnlToolbar.ResumeLayout(False)
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlHeader.PerformLayout()
-        Me.cmsTournament.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
