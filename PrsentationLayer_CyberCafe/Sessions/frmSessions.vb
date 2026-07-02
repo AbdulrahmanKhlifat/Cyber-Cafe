@@ -25,7 +25,6 @@ Public Class frmSessions
     End Sub
 
 
-
     Private Sub tsmiResume_Click(sender As Object, e As EventArgs) Handles tsmiResume.Click
 
         Try

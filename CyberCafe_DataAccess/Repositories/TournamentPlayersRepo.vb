@@ -347,9 +347,19 @@ Public Class TournamentPlayersRepo
         Using conn As New SqlConnection(DataAccessSettings.connectionString)
 
             Dim query As String =
-                "SELECT TournamentPlayerID, TournamentID, CustomerID, RegisteredByAdminID, RegistrationDate, IsWinner, IsDeleted
-                 FROM TournamentPlayers
-                 WHERE TournamentID = @TournamentID AND IsDeleted = 0"
+                "SELECT
+                TournamentPlayerID,
+                TournamentID,
+                CustomerID,
+                Users.Name,
+                RegisteredByAdminID,
+                RegistrationDate,
+                IsWinner,
+                TournamentPlayers.IsDeleted
+                FROM TournamentPlayers
+                INNER JOIN Users
+                    ON Users.UserID = TournamentPlayers.CustomerID
+                WHERE TournamentID = @TournamentID AND TournamentPlayers.IsDeleted = 0;"
 
             Using cmd As New SqlCommand(query, conn)
 
@@ -367,6 +377,7 @@ Public Class TournamentPlayersRepo
                                 .TournamentPlayerID = CInt(reader("TournamentPlayerID")),
                                 .TournamentID = CInt(reader("TournamentID")),
                                 .CustomerID = CInt(reader("CustomerID")),
+                                .CustomerName = reader("Name").ToString(),
                                 .RegisteredByUserID = CInt(reader("RegisteredByAdminID")),
                                 .RegistrationDate = CDate(reader("RegistrationDate")),
                                 .IsWinner = CBool(reader("IsWinner")),
@@ -382,7 +393,6 @@ Public Class TournamentPlayersRepo
                 Catch ex As Exception
 
                     ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-                    Throw
 
                 End Try
 

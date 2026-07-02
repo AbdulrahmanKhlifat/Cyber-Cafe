@@ -1,7 +1,7 @@
 ﻿Imports CyberCafeModels
 Imports CyberCafe_DataAccess
 
-Public Class PurchaseSerivces
+Public Class PurchaseServices
 
     Private Shared Function CalculateTotal(items As List(Of CartItemDTO)) As Decimal
         Return items.Sum(Function(i) i.Quantity * i.UnitPrice)

@@ -34,6 +34,7 @@ Partial Class frmAdminMain
         Me.btnCloseWin = New Guna.UI2.WinForms.Guna2Button()
         Me.tmrClock = New System.Windows.Forms.Timer(Me.components)
         Me.pnlNav = New System.Windows.Forms.Panel()
+        Me.btnTournaments = New System.Windows.Forms.Button()
         Me.btnConsumables = New System.Windows.Forms.Button()
         Me.btnGameLib = New System.Windows.Forms.Button()
         Me.btnTransactions = New System.Windows.Forms.Button()
@@ -43,7 +44,6 @@ Partial Class frmAdminMain
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDevices = New System.Windows.Forms.Button()
         Me.pnlMain = New System.Windows.Forms.Panel()
-        Me.btnTournaments = New System.Windows.Forms.Button()
         Me.pnlTopBar.SuspendLayout()
         Me.pnlUserBadge.SuspendLayout()
         Me.pnlNav.SuspendLayout()
@@ -189,6 +189,21 @@ Partial Class frmAdminMain
         Me.pnlNav.Size = New System.Drawing.Size(182, 715)
         Me.pnlNav.TabIndex = 2
         '
+        'btnTournaments
+        '
+        Me.btnTournaments.FlatAppearance.BorderSize = 0
+        Me.btnTournaments.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTournaments.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnTournaments.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.btnTournaments.Location = New System.Drawing.Point(-1, 563)
+        Me.btnTournaments.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnTournaments.Name = "btnTournaments"
+        Me.btnTournaments.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
+        Me.btnTournaments.Size = New System.Drawing.Size(182, 78)
+        Me.btnTournaments.TabIndex = 14
+        Me.btnTournaments.Text = "🏆 Tournaments"
+        Me.btnTournaments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'btnConsumables
         '
         Me.btnConsumables.FlatAppearance.BorderSize = 0
@@ -256,7 +271,7 @@ Partial Class frmAdminMain
         Me.btnSessions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSessions.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSessions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnSessions.Location = New System.Drawing.Point(-1, 244)
+        Me.btnSessions.Location = New System.Drawing.Point(-1, 243)
         Me.btnSessions.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSessions.Name = "btnSessions"
         Me.btnSessions.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
@@ -321,21 +336,6 @@ Partial Class frmAdminMain
         Me.pnlMain.Name = "pnlMain"
         Me.pnlMain.Size = New System.Drawing.Size(1341, 715)
         Me.pnlMain.TabIndex = 3
-        '
-        'btnTournaments
-        '
-        Me.btnTournaments.FlatAppearance.BorderSize = 0
-        Me.btnTournaments.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnTournaments.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btnTournaments.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.btnTournaments.Location = New System.Drawing.Point(-1, 563)
-        Me.btnTournaments.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnTournaments.Name = "btnTournaments"
-        Me.btnTournaments.Padding = New System.Windows.Forms.Padding(25, 0, 0, 0)
-        Me.btnTournaments.Size = New System.Drawing.Size(182, 78)
-        Me.btnTournaments.TabIndex = 14
-        Me.btnTournaments.Text = "🏆 Tournaments"
-        Me.btnTournaments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frmAdminMain
         '

@@ -89,9 +89,9 @@
     <Compile Include="Services\DeviceTypeServices.vb" />
     <Compile Include="Services\GameServices.vb" />
     <Compile Include="Services\SessionService.vb" />
-    <Compile Include="Services\PurchaseSerivces.vb" />
+    <Compile Include="Services\PurchaseServices.vb" />
     <Compile Include="Services\TournamentPlayerServices.vb" />
-    <Compile Include="Services\TournamentSevices.vb" />
+    <Compile Include="Services\TournamentServices.vb" />
     <Compile Include="Services\TournamentMatchesServices.vb" />
     <Compile Include="Services\BracketGeneratorLogic.vb" />
     <Compile Include="Session Context\ActiveSessionsManager.vb" />

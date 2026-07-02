@@ -22,34 +22,45 @@ Public Class BracketGeneratorLogic
                 .RoundNumber = 1,
                 .MatchOrder = matchOrder,
                 .CreatedDate = DateTime.Now,
-                .IsDeleted = False
+                .IsDeleted = False,
+                .MatchStatus = enMatchStatus.Upcoming,
+                .Player1ID = If(p1 IsNot Nothing, p1.TournamentPlayerID, CType(Nothing, Integer?)),
+                .Player2ID = If(p2 IsNot Nothing, p2.TournamentPlayerID, CType(Nothing, Integer?)),
+                .Player1Name = If(p1 IsNot Nothing, p1.CustomerName, "TBD"),
+                .Player2Name = If(p2 IsNot Nothing, p2.CustomerName, "TBD")
             }
 
             If p1 IsNot Nothing Then
 
-                match.Player1ID = p1.CustomerID
+                match.Player1ID = p1.TournamentPlayerID
 
             End If
 
             If p2 IsNot Nothing Then
 
-                match.Player2ID = p2.CustomerID
+                match.Player2ID = p2.TournamentPlayerID
 
             End If
 
             If p1 IsNot Nothing AndAlso p2 Is Nothing Then
 
-                match.WinnerPlayerID = p1.CustomerID
+                match.WinnerPlayerID = p1.TournamentPlayerID
                 match.MatchStatus = enMatchStatus.Finished
 
             ElseIf p2 IsNot Nothing AndAlso p1 Is Nothing Then
 
-                match.WinnerPlayerID = p2.CustomerID
+                match.WinnerPlayerID = p2.TournamentPlayerID
                 match.MatchStatus = enMatchStatus.Finished
 
             Else
 
                 match.MatchStatus = enMatchStatus.Upcoming
+
+            End If
+
+            If p1 Is Nothing AndAlso p2 Is Nothing Then
+
+                Continue For
 
             End If
 
@@ -102,7 +113,7 @@ Public Class BracketGeneratorLogic
     Private Shared Function PadPlayersToPowerOfTwo(players As List(Of TournamentPlayerDTO)) As List(Of TournamentPlayerDTO)
 
         Dim count As Integer = players.Count
-        Dim powerOfTwo As Integer = 1
+        Dim powerOfTwo As Integer = 2
 
         While powerOfTwo < count
             powerOfTwo *= 2
@@ -110,11 +121,8 @@ Public Class BracketGeneratorLogic
 
         Dim paddedList As New List(Of TournamentPlayerDTO)(players)
 
-
         While paddedList.Count < powerOfTwo
-
             paddedList.Add(Nothing)
-
         End While
 
         Return paddedList

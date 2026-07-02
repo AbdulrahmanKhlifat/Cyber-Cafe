@@ -6,6 +6,8 @@
 
     Public Property CustomerID As Integer
 
+    Public Property CustomerName As String
+
     Public Property RegisteredByUserID As Integer
 
     Public Property RegistrationDate As DateTime

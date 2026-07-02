@@ -61,7 +61,7 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
@@ -75,46 +75,28 @@ Public Class TournamentMatchesRepo
         Dim dt As New DataTable()
 
         Const query As String =
-            "SELECT
-                M.MatchID,
-                M.TournamentID,
-                M.RoundNumber,
-                M.MatchOrder,
-                M.Player1ID,
-                M.Player2ID,
-
-                COALESCE(U1.Name, 'TBD') AS Player1Name,
-
-                CASE
-                    WHEN M.Player2ID IS NULL
-                         AND M.WinnerPlayerID IS NOT NULL
-                    THEN 'BYE'
-                    ELSE COALESCE(U2.Name, 'TBD')
-                END AS Player2Name,
-
-                M.Player1Score,
-                M.Player2Score,
-                M.WinnerPlayerID,
-                M.MatchStatus,
-
-                CASE M.MatchStatus
-                    WHEN 0 THEN 'Upcoming'
-                    WHEN 1 THEN 'Running'
-                    WHEN 2 THEN 'Finished'
-                    WHEN 3 THEN 'Cancelled'
-                    ELSE 'Unknown'
-                END AS MatchStatusText,
-
-                M.ScheduledTime,
-                M.CreatedDate,
-                M.IsDeleted
-
-            FROM TournamentMatches M
-            LEFT JOIN Users U1 ON M.Player1ID = U1.UserID
-            LEFT JOIN Users U2 ON M.Player2ID = U2.UserID
-            WHERE  M.TournamentID = @TournamentID
-              AND  M.IsDeleted = 0
-            ORDER BY M.RoundNumber, M.MatchOrder"
+          "SELECT
+             M.MatchID,
+             M.TournamentID,
+             M.RoundNumber,
+             M.MatchOrder,
+             M.Player1ID,
+             M.Player2ID,
+             COALESCE(U1.Name, 'TBD') AS Player1Name,
+             COALESCE(U2.Name, 'TBD') AS Player2Name,
+             M.Player1Score,
+             M.Player2Score,
+             M.WinnerPlayerID,
+             M.MatchStatus,
+             M.ScheduledTime
+          FROM TournamentMatches M
+          LEFT JOIN TournamentPlayers TP1 ON M.Player1ID = TP1.TournamentPlayerID
+          LEFT JOIN Users U1 ON TP1.CustomerID = U1.UserID
+          LEFT JOIN TournamentPlayers TP2 ON M.Player2ID = TP2.TournamentPlayerID
+          LEFT JOIN Users U2 ON TP2.CustomerID = U2.UserID
+          WHERE M.TournamentID = @TournamentID
+            AND M.IsDeleted = 0
+          ORDER BY M.RoundNumber, M.MatchOrder;"
 
         Try
 
@@ -137,7 +119,7 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
@@ -150,19 +132,28 @@ Public Class TournamentMatchesRepo
         Dim matchesList As New List(Of TournamentMatchDTO)()
 
         Const query As String =
-            "SELECT
-                M.MatchID, M.TournamentID, M.RoundNumber, M.MatchOrder,
-                M.Player1ID, M.Player2ID,
-                COALESCE(U1.Name, 'TBD') AS Player1Name,
-                COALESCE(U2.Name, 'TBD') AS Player2Name,
-                M.Player1Score, M.Player2Score, M.WinnerPlayerID,
-                M.MatchStatus, M.ScheduledTime
-             FROM TournamentMatches M
-             LEFT JOIN Users U1 ON M.Player1ID = U1.UserID
-             LEFT JOIN Users U2 ON M.Player2ID = U2.UserID
-             WHERE M.TournamentID = @TournamentID AND M.IsDeleted = 0
-             ORDER BY M.RoundNumber ASC, M.MatchOrder ASC"
-
+         "SELECT
+             M.MatchID,
+             M.TournamentID,
+             M.RoundNumber,
+             M.MatchOrder,
+             M.Player1ID,
+             M.Player2ID,
+             COALESCE(U1.Name, 'TBD') AS Player1Name,
+             COALESCE(U2.Name, 'TBD') AS Player2Name,
+             M.Player1Score,
+             M.Player2Score,
+             M.WinnerPlayerID,
+             M.MatchStatus,
+             M.ScheduledTime
+          FROM TournamentMatches M
+          LEFT JOIN TournamentPlayers TP1 ON M.Player1ID = TP1.TournamentPlayerID
+          LEFT JOIN Users U1 ON TP1.CustomerID = U1.UserID
+          LEFT JOIN TournamentPlayers TP2 ON M.Player2ID = TP2.TournamentPlayerID
+          LEFT JOIN Users U2 ON TP2.CustomerID = U2.UserID
+          WHERE M.TournamentID = @TournamentID
+            AND M.IsDeleted = 0
+          ORDER BY M.RoundNumber, M.MatchOrder;"
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
@@ -206,7 +197,7 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
@@ -217,18 +208,32 @@ Public Class TournamentMatchesRepo
     Public Shared Function GetMatchByID(matchID As Integer) As TournamentMatchDTO
 
         Const query As String =
-            "SELECT
-                M.MatchID, M.TournamentID, M.RoundNumber, M.MatchOrder,
-                M.Player1ID, M.Player2ID,
-                COALESCE(U1.Name, 'TBD') AS Player1Name,
-                COALESCE(U2.Name, 'TBD') AS Player2Name,
-                M.Player1Score, M.Player2Score, M.WinnerPlayerID,
-                M.MatchStatus, M.ScheduledTime, M.CreatedDate
-             FROM TournamentMatches M
-             LEFT JOIN Users U1 ON M.Player1ID = U1.UserID
-             LEFT JOIN Users U2 ON M.Player2ID = U2.UserID
-             WHERE M.MatchID = @MatchID AND M.IsDeleted = 0"
-
+        "Select
+            M.MatchID,
+            M.TournamentID,
+            M.RoundNumber,
+            M.MatchOrder,
+            M.Player1ID,
+            M.Player2ID,
+            COALESCE(U1.Name, 'TBD') AS Player1Name,
+            COALESCE(U2.Name, 'TBD') AS Player2Name,
+            M.Player1Score,
+            M.Player2Score,
+            M.WinnerPlayerID,
+            M.MatchStatus,
+            M.ScheduledTime,
+            M.CreatedDate
+         From TournamentMatches M
+         Left Join TournamentPlayers TP1
+             On M.Player1ID = TP1.TournamentPlayerID
+         Left Join Users U1
+             On TP1.CustomerID = U1.UserID
+         Left Join TournamentPlayers TP2
+             On M.Player2ID = TP2.TournamentPlayerID
+         Left Join Users U2
+             On TP2.CustomerID = U2.UserID
+         WHERE M.MatchID = @MatchID
+          And M.IsDeleted = 0;"
         Try
 
             Using conn As New SqlConnection(DataAccessSettings.connectionString)
@@ -272,7 +277,7 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
@@ -317,7 +322,7 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
@@ -331,27 +336,41 @@ Public Class TournamentMatchesRepo
 
         Const query As String =
             "SELECT
-                M.RoundNumber,
-                M.MatchOrder,
-                COALESCE(U1.Name, 'TBD')  AS Player1Name,
-                COALESCE(U2.Name, 'BYE')  AS Player2Name,
-                M.Player1Score,
-                M.Player2Score,
-                COALESCE(UW.Name, '-')    AS WinnerName,
-                CASE M.MatchStatus
-                    WHEN 0 THEN 'Upcoming'
-                    WHEN 1 THEN 'Running'
-                    WHEN 2 THEN 'Finished'
-                    WHEN 3 THEN 'Cancelled'
-                    ELSE 'Unknown'
-                END AS MatchStatusText
-             FROM TournamentMatches M
-             LEFT JOIN Users U1 ON M.Player1ID      = U1.UserID
-             LEFT JOIN Users U2 ON M.Player2ID      = U2.UserID
-             LEFT JOIN Users UW ON M.WinnerPlayerID = UW.UserID
-             WHERE M.TournamentID = @TournamentID
-               AND M.IsDeleted    = 0
-             ORDER BY M.RoundNumber, M.MatchOrder"
+    M.RoundNumber,
+    M.MatchOrder,
+    COALESCE(U1.Name, 'TBD') AS Player1Name,
+    COALESCE(U2.Name, 'BYE') AS Player2Name,
+    M.Player1Score,
+    M.Player2Score,
+    COALESCE(UW.Name, '-') AS WinnerName,
+    CASE M.MatchStatus
+        WHEN 0 THEN 'Upcoming'
+        WHEN 1 THEN 'Running'
+        WHEN 2 THEN 'Finished'
+        WHEN 3 THEN 'Cancelled'
+        ELSE 'Unknown'
+    END AS MatchStatusText
+FROM TournamentMatches M
+
+LEFT JOIN TournamentPlayers TP1
+    ON M.Player1ID = TP1.TournamentPlayerID
+LEFT JOIN Users U1
+    ON TP1.CustomerID = U1.UserID
+
+LEFT JOIN TournamentPlayers TP2
+    ON M.Player2ID = TP2.TournamentPlayerID
+LEFT JOIN Users U2
+    ON TP2.CustomerID = U2.UserID
+
+LEFT JOIN TournamentPlayers TPW
+    ON M.WinnerPlayerID = TPW.TournamentPlayerID
+LEFT JOIN Users UW
+    ON TPW.CustomerID = UW.UserID
+
+WHERE M.TournamentID = @TournamentID
+  AND M.IsDeleted = 0
+
+ORDER BY M.RoundNumber, M.MatchOrder;"
 
         Try
 
@@ -376,7 +395,7 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
@@ -421,7 +440,7 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
@@ -486,12 +505,112 @@ Public Class TournamentMatchesRepo
         Catch ex As Exception
 
             ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
-            Throw
+
 
         End Try
 
     End Function
 
+
+    ''' <summary>
+    ''' Atomically updates a match result AND applies the round-advancement outcome
+    ''' (either generating next-round matches, or closing the tournament with a winner)
+    ''' in a single database transaction. This guarantees the match score can never be
+    ''' saved while the advancement step fails, which would otherwise leave the
+    ''' tournament stuck in an inconsistent state.
+    ''' </summary>
+    ''' <param name="advancementMatches">Next round matches to insert, or Nothing/empty if not applicable.</param>
+    ''' <param name="finalWinnerCustomerID">Set when this result decides the tournament winner, else Nothing.</param>
+    Public Shared Function SaveMatchResultAndAdvanceTransaction(
+        matchResult As MatchResultDTO,
+        tournamentID As Integer,
+        advancementMatches As List(Of TournamentMatchDTO),
+        finalWinnerCustomerID As Integer?) As Boolean
+
+        Const updateMatchQuery As String =
+            "UPDATE TournamentMatches
+             SET
+                Player1Score   = @Player1Score,
+                Player2Score   = @Player2Score,
+                WinnerPlayerID = @WinnerPlayerID,
+                MatchStatus    = @MatchStatus
+             WHERE MatchID   = @MatchID
+               AND IsDeleted = 0"
+
+        Const updateTournamentStatusQuery As String =
+            "UPDATE Tournaments SET TournamentStatus = @Status WHERE TournamentID = @TournamentID"
+
+        Const updateWinnerQuery As String =
+            "UPDATE TournamentPlayers
+             SET IsWinner = 1
+             WHERE TournamentID = @TournamentID AND CustomerID = @CustomerID"
+
+        Using conn As New SqlConnection(DataAccessSettings.connectionString)
+
+            conn.Open()
+
+            Using transaction = conn.BeginTransaction()
+
+                Try
+
+                    Using cmd As New SqlCommand(updateMatchQuery, conn, transaction)
+
+                        cmd.Parameters.Add("@MatchID", SqlDbType.Int).Value = matchResult.MatchID
+                        cmd.Parameters.Add("@Player1Score", SqlDbType.TinyInt).Value = matchResult.Score1
+                        cmd.Parameters.Add("@Player2Score", SqlDbType.TinyInt).Value = matchResult.Score2
+                        cmd.Parameters.Add("@WinnerPlayerID", SqlDbType.Int).Value = matchResult.WinnerID
+                        cmd.Parameters.Add("@MatchStatus", SqlDbType.TinyInt).Value = CByte(enMatchStatus.Finished)
+
+                        Dim rowsAffected = cmd.ExecuteNonQuery()
+
+                        If rowsAffected = 0 Then
+
+                            Throw New Exception($"Match #{matchResult.MatchID} could not be updated (not found or already deleted).")
+
+                        End If
+
+                    End Using
+
+                    If finalWinnerCustomerID.HasValue Then
+
+                        Using cmdStatus As New SqlCommand(updateTournamentStatusQuery, conn, transaction)
+                            cmdStatus.Parameters.Add("@Status", SqlDbType.TinyInt).Value = CByte(enTournamentStatus.Finished)
+                            cmdStatus.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
+                            cmdStatus.ExecuteNonQuery()
+                        End Using
+
+                        Using cmdWinner As New SqlCommand(updateWinnerQuery, conn, transaction)
+                            cmdWinner.Parameters.Add("@TournamentID", SqlDbType.Int).Value = tournamentID
+                            cmdWinner.Parameters.Add("@CustomerID", SqlDbType.Int).Value = finalWinnerCustomerID.Value
+                            cmdWinner.ExecuteNonQuery()
+                        End Using
+
+                    ElseIf advancementMatches IsNot Nothing AndAlso advancementMatches.Count > 0 Then
+
+                        Dim dtMatches = _ConvertMatchesToDataTable(advancementMatches)
+                        _BulkInsertMatches(dtMatches, conn, transaction)
+
+                    End If
+
+                    transaction.Commit()
+
+                    Return True
+
+                Catch ex As Exception
+
+                    transaction.Rollback()
+
+                    ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+
+
+
+                End Try
+
+            End Using
+
+        End Using
+
+    End Function
 
     Public Shared Function UpdateMatchResult(matchResult As MatchResultDTO) As Boolean
 

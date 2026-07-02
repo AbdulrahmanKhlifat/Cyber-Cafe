@@ -10,9 +10,10 @@ Public Class TournamentMatchesServices
 
             Dim tournament = TournamentServices.Find(tournamentID)
 
-            ValidateTournamentPlayers(tournamentID, tournament)
 
             Dim players = TournamentPlayersRepo.GetTournamentPlayersList(tournamentID)
+
+            ValidateTournamentPlayers(players, tournament)
 
             Dim initialMatches = BracketGeneratorLogic.GenerateFirstRoundMatches(tournamentID, players)
 
@@ -113,9 +114,8 @@ Public Class TournamentMatchesServices
 
 
 
-    Private Shared Sub ValidateTournamentPlayers(tournamentID As Integer, tournament As TournamentDTO)
+    Private Shared Sub ValidateTournamentPlayers(players As List(Of TournamentPlayerDTO), tournament As TournamentDTO)
 
-        Dim players = TournamentPlayersRepo.GetTournamentPlayersList(tournamentID)
 
         Dim minimumPlayers As Integer = tournament.MaxPlayers \ 2
 
@@ -156,6 +156,13 @@ Public Class TournamentMatchesServices
             End If
 
 
+
+            If Not match.Player1ID.HasValue OrElse Not match.Player2ID.HasValue Then
+
+                Throw New InvalidOperationException("This match is a BYE and is resolved automatically. It cannot have a manual result.")
+
+            End If
+
             If matchResultDto.Score1 = matchResultDto.Score2 Then
 
                 Throw New Exception("Ties are not allowed. One player must win!")
@@ -163,9 +170,9 @@ Public Class TournamentMatchesServices
             End If
 
 
-            Dim player1ID As Integer = match.Player1ID
+            Dim player1ID As Integer = match.Player1ID.Value
 
-            Dim player2ID As Integer = match.Player2ID
+            Dim player2ID As Integer = match.Player2ID.Value
 
             Dim tournamentID As Integer = match.TournamentID
 
@@ -174,19 +181,18 @@ Public Class TournamentMatchesServices
 
             Dim winnerPlayerID As Integer = If(matchResultDto.Score1 > matchResultDto.Score2, player1ID, player2ID)
 
+
             matchResultDto.WinnerID = winnerPlayerID
 
-            Dim success As Boolean = TournamentMatchesRepo.UpdateMatchResult(matchResultDto)
+            Dim advancement = ComputeRoundAdvancement(tournamentID, roundNumber, matchResultDto.MatchID, winnerPlayerID)
 
+            TournamentPlayersRepo.SelectWinner(tournamentID, winnerPlayerID)
 
-            If success Then
-
-                ProcessRoundAdvancement(tournamentID, roundNumber)
-
-            End If
-
-
-            Return success
+            Return TournamentMatchesRepo.SaveMatchResultAndAdvanceTransaction(
+                matchResultDto,
+                tournamentID,
+                advancement.NextRoundMatches,
+                advancement.FinalWinnerCustomerID)
 
         Catch ex As Exception
 
@@ -199,70 +205,74 @@ Public Class TournamentMatchesServices
     End Function
 
 
-    Private Shared Sub ProcessRoundAdvancement(tournamentID As Integer, currentRound As Byte)
+    Private Class RoundAdvancementResult
+        Public Property NextRoundMatches As List(Of TournamentMatchDTO)
+        Public Property FinalWinnerCustomerID As Integer?
+    End Class
 
-        Try
+    ''' <summary>
+    ''' Looks at the OTHER already-finished matches in the same round (the current
+    ''' match's result is passed in directly since it hasn't been saved yet) and
+    ''' decides whether the round is complete, and if so, whether the tournament
+    ''' is finished or a new round needs to be generated. Pure decision logic —
+    ''' no writes happen here.
+    ''' </summary>
+    Private Shared Function ComputeRoundAdvancement(tournamentID As Integer, currentRound As Byte, currentMatchID As Integer, currentMatchWinnerID As Integer) As RoundAdvancementResult
 
-            Dim dtMatches As DataTable = TournamentMatchesRepo.GetMatchesByRound(tournamentID, currentRound)
+        Dim result As New RoundAdvancementResult()
 
-            If dtMatches Is Nothing OrElse dtMatches.Rows.Count = 0 Then
-                Return
-            End If
+        Dim dtMatches As DataTable = TournamentMatchesRepo.GetMatchesByRound(tournamentID, currentRound)
 
+        If dtMatches Is Nothing OrElse dtMatches.Rows.Count = 0 Then
+            Return result
+        End If
 
-            For Each row As DataRow In dtMatches.Rows
+        Dim winners As New List(Of Integer)()
 
-                Dim status As Byte = CByte(row("MatchStatus"))
+        For Each row As DataRow In dtMatches.Rows
 
-                If status <> CByte(enMatchStatus.Finished) Then
+            Dim rowMatchID As Integer = CInt(row("MatchID"))
 
-                    Return
+            If rowMatchID = currentMatchID Then
 
-                End If
-
-            Next
-
-
-            Dim winners As New List(Of Integer)()
-
-            For Each row As DataRow In dtMatches.Rows
-
-                If Not IsDBNull(row("WinnerPlayerID")) Then
-
-                    winners.Add(CInt(row("WinnerPlayerID")))
-
-                End If
-
-            Next
-
-
-            If winners.Count = 1 Then
-
-                Dim finalWinnerID As Integer = winners(0)
-
-                TournamentServices.UpdateTournamentStatus(tournamentID, enTournamentStatus.Finished)
-
-                TournamentPlayersServices.SelectWinner(tournamentID, finalWinnerID)
-
-            ElseIf winners.Count > 1 Then
-
-                Dim nextRound As Byte = CByte(currentRound + 1)
-                Dim nextRoundMatches = BracketGeneratorLogic.GenerateNextRoundMatches(tournamentID, nextRound, winners)
-
-                TournamentMatchesRepo.SaveNextRoundMatchesTransaction(nextRoundMatches)
+                ' This is the match being saved right now — use the winner we just computed,
+                ' since the DB row doesn't reflect it yet.
+                winners.Add(currentMatchWinnerID)
+                Continue For
 
             End If
 
+            Dim status As Byte = CByte(row("MatchStatus"))
 
-        Catch ex As Exception
+            If status <> CByte(enMatchStatus.Finished) Then
 
-            ErrorLogger.LogErrorToFile(ex, Reflection.MethodBase.GetCurrentMethod().Name)
+                ' Round isn't complete yet — nothing to do.
+                Return result
 
-            Throw
+            End If
 
-        End Try
+            If Not IsDBNull(row("WinnerPlayerID")) Then
 
-    End Sub
+                winners.Add(CInt(row("WinnerPlayerID")))
+
+            End If
+
+        Next
+
+        If winners.Count = 1 Then
+
+            result.FinalWinnerCustomerID = winners(0)
+
+        ElseIf winners.Count > 1 Then
+
+            Dim nextRound As Byte = CByte(currentRound + 1)
+            result.NextRoundMatches = BracketGeneratorLogic.GenerateNextRoundMatches(tournamentID, nextRound, winners)
+
+        End If
+
+        Return result
+
+    End Function
 
 
 

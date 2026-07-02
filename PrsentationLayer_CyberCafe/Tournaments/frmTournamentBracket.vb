@@ -485,9 +485,6 @@ Public Class frmTournamentBracket
         Return pnlCard
     End Function
 
-    ' ================================================
-    ' UTILITY
-    ' ================================================
 
     Private Sub EnableDoubleBuffering(ctrl As Control)
 
@@ -508,5 +505,6 @@ Public Class frmTournamentBracket
         End If
 
     End Sub
+
 
 End Class

@@ -189,6 +189,11 @@
     <Compile Include="Devices\frmManagePlatforms.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Sessions\frmSessions.Designer.vb">
       <DependentUpon>frmSessions.vb</DependentUpon>
     </Compile>
@@ -224,11 +229,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -415,7 +415,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -496,9 +496,6 @@
     <None Include="Resources\money-bills-solid1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\latest.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pen %281%29.png" />
   </ItemGroup>
   <ItemGroup>
@@ -554,6 +551,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-players-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\latest.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

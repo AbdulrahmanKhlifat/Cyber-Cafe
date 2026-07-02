@@ -329,7 +329,7 @@ Public Class frmCustomerCart
 
         Dim purchase As PurchaseDTO = CreateWalkInPurchase(totalAmount)
 
-        Dim success As Boolean = PurchaseSerivces.ProcessWalkInPurchase(purchase, items, LoggedInUser.CurrentUser.UserID)
+        Dim success As Boolean = PurchaseServices.ProcessWalkInPurchase(purchase, items, LoggedInUser.CurrentUser.UserID)
 
         If Not success Then
 
@@ -362,7 +362,7 @@ Public Class frmCustomerCart
 
         Dim purchase As PurchaseDTO = CreateSessionPurchase(totalAmount)
 
-        Dim success As Boolean = PurchaseSerivces.ProcessPurchasePerSession(purchase, items, _SessionID, _CustomerID)
+        Dim success As Boolean = PurchaseServices.ProcessPurchasePerSession(purchase, items, _SessionID, _CustomerID)
 
         If Not success Then
 

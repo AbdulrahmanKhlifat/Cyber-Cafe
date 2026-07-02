@@ -75,6 +75,7 @@ Public Class frmAdminMain
 
     End Sub
     Private Sub btnSessions_Click(sender As Object, e As EventArgs) Handles btnSessions.Click
+
         ChangeForm(New frmSessions())
         _UpdateButtonColor(btnSessions)
 
